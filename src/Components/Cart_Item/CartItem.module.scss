@@ -1,0 +1,50 @@
+@import "../../Style/variables.scss";
+@import "../../Style/mixins.scss";
+
+.cart_item {
+  display: flex;
+  min-width: 50%;
+
+  padding: 10px;
+  background-color: $color_light_whiteHeader;
+  border-radius: 10px;
+  box-shadow: $boxshadow_big;
+
+  &_description {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 2;
+
+    &_title {
+      width: 100%;
+    }
+  }
+
+  &_setting {
+    min-width: 250px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+
+    strong {
+      text-align: center;
+      min-width: 40px;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+
+    &_description {
+      width: 100%;
+      justify-content: space-around;
+      align-items: center;
+    }
+    &_setting {
+      margin: 5px 5px;
+    }
+  }
+}

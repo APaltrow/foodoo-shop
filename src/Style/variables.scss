@@ -1,0 +1,30 @@
+//layout color scheme
+$color_gradient: radial-gradient(rgba(255, 246, 0, 1), rgba(254, 90, 29, 1));
+
+$color_light_whiteHeader: rgba(248, 247, 247, 1);
+$color_transparent_BG: rgba(255, 255, 255, 0.5);
+$color_light_orange: rgba(255, 236, 187, 1);
+$color_darken_orange: rgba(255, 182, 0, 1);
+$color_darken_brown: rgba(115, 84, 28, 1);
+$color_light_red: rgba(255, 170, 170, 1);
+$color_darken_red: rgba(250, 88, 88, 1);
+$color_light_white: rgba(255, 255, 255, 1);
+$color_EX_darken_orange: rgba(254, 129, 22, 1);
+$color_EX_light_orange: rgba(254, 129, 22, 0.5);
+//=====FONTS
+$font_large: rem(20);
+$font_mid: rem(18);
+$font_small: rem(16);
+
+/// SIZES
+$size_40: 40px;
+$size_60: 60px;
+$size_150: 150px;
+$size_250: 250px;
+$size_300: 300px;
+
+$boxshadow_big: -5px 5px 10px rgba(0, 0, 0, 0.3);
+$boxshadow_small: 0px 2px 5px rgba(0, 0, 0, 0.3);
+
+/// Media queries
+$medium_screen: 1250px;

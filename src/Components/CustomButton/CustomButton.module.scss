@@ -1,0 +1,13 @@
+@import "../../Style/mixins.scss";
+@import "../../Style/variables.scss";
+
+.custom {
+  @include buttonCreator(40, 150, $color_darken_brown);
+}
+.delete {
+  @include buttonCreator(40, 30, $color_darken_red);
+}
+.service {
+  @include buttonCreator(30, 30, $color_EX_darken_orange);
+  font-size: rem(20);
+}

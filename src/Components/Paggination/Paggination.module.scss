@@ -1,0 +1,61 @@
+@import "../../Style/mixins.scss";
+@import "../../Style/variables.scss";
+
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex: 1 0 auto;
+  gap: 10px;
+
+  min-width: rem(300);
+  min-height: rem(60);
+  margin: 10px 10px;
+  padding: 0 10px;
+  overflow: auto;
+
+  &_prev {
+    border-radius: 50%;
+    flex: 0 0 auto;
+    transform: rotateY(180deg);
+    width: rem(30);
+    height: rem(30);
+    fill: $color_darken_brown;
+    &:hover {
+      cursor: pointer;
+      box-shadow: $boxshadow_big;
+    }
+  }
+  &_next {
+    width: rem(30);
+    height: rem(30);
+    fill: $color_darken_brown;
+    border-radius: 50%;
+    flex: 0 0 auto;
+    &:hover {
+      cursor: pointer;
+      box-shadow: $boxshadow_big;
+    }
+  }
+  &_item {
+    @include paggination;
+    color: $color_darken_brown;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color_darken_brown;
+      box-shadow: $boxshadow_big;
+      transform: scale(1.2);
+    }
+  }
+  &_item_active {
+    @include paggination;
+    background-color: $color_darken_brown;
+    color: $color_light_whiteHeader;
+  }
+  @media only screen and (max-width: 690px) {
+    max-width: rem(300);
+    flex-wrap: wrap;
+  }
+}

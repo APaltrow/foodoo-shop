@@ -1,0 +1,19 @@
+@import "../../Style/variables.scss";
+@import "../../Style/mixins.scss";
+
+.not_found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 auto;
+  row-gap: 5vh;
+  color: $color_darken_brown;
+  &_icon {
+    svg {
+      height: 30vh;
+      width: 30vh;
+      fill: $color_darken_brown;
+    }
+  }
+}

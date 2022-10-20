@@ -1,0 +1,39 @@
+@import "../../Style/variables.scss";
+@import "../../Style/mixins.scss";
+
+.empty_cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  flex: 1 0 auto;
+  p,
+  h2 {
+    padding: 0 20px;
+  }
+  img {
+    transform: translate(10px, 10px);
+    width: 80%;
+    height: 80%;
+  }
+  &_img {
+    background-color: $color_darken_brown;
+    border-radius: 50%;
+    width: 30vh;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  @media only screen and (max-width: 650px) {
+    h1 {
+      font-size: rem(28);
+    }
+    p {
+      font-size: rem(16);
+    }
+  }
+}

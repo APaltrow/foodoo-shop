@@ -1,0 +1,45 @@
+@import "../../Style/variables.scss";
+@import "../../Style/mixins.scss";
+
+.root {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  width: rem(300);
+  margin: 0 auto;
+  color: $color_darken_brown;
+
+  svg {
+    fill: $color_darken_brown;
+  }
+
+  strong {
+    color: $color_darken_brown;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: $font_mid;
+    text-shadow: $boxshadow_small;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .selected {
+    transform: rotateX(180deg);
+  }
+
+  label {
+    background-color: $color_darken_orange;
+    width: rem(30);
+    height: rem(30);
+    border-radius: 10px;
+    flex: 0 0 auto;
+    &:hover {
+      cursor: pointer;
+      box-shadow: $boxshadow_big;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@import "../../Style/mixins.scss";
+@import "../../Style/variables.scss";
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 5px;
+  height: 50px;
+
+  span {
+    position: absolute;
+    right: 10%;
+  }
+}
+
+.input {
+  height: 40px;
+
+  padding: 0 40px 0 25px;
+  transform: translatex(-20px);
+  border-radius: 15px;
+  background-color: $color_light_orange;
+  border: 1px solid $color_darken_brown;
+  color: $color_darken_brown;
+}

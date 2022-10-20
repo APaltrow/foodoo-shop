@@ -1,0 +1,19 @@
+@import "../../Style/variables.scss";
+@import "../../Style/mixins.scss";
+
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  svg {
+    height: rem(15);
+    width: rem(15);
+    opacity: 1;
+    fill: gold;
+  }
+  &:hover svg {
+    cursor: default;
+  }
+}

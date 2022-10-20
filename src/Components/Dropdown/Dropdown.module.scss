@@ -1,0 +1,48 @@
+@import "../../Style/variables.scss";
+@import "../../Style/mixins.scss";
+
+.root {
+  position: absolute;
+  top: 115%;
+  right: 20px;
+
+  min-width: rem(200);
+  font-size: rem(16);
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+
+  background-color: $color_light_orange;
+  overflow: hidden;
+  border: 1px solid $color_darken_brown;
+  z-index: 10;
+
+  li {
+    height: rem(40);
+    line-height: rem(40);
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+
+    flex: 1 0;
+
+    background-color: $color_light_orange;
+    color: $color_darken_brown;
+    svg {
+      width: rem(30);
+      height: rem(30);
+      margin-right: 20px;
+      fill: $color_darken_brown;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color_darken_orange;
+      svg {
+        opacity: 1;
+      }
+    }
+  }
+}

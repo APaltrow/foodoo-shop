@@ -1,0 +1,27 @@
+@import "../../Style/mixins.scss";
+
+.logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 0 0;
+
+  min-width: rem(300);
+  cursor: pointer;
+
+  &_text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+
+    h1 {
+      font-size: rem(32);
+      color: $color_darken_brown;
+      text-shadow: $boxshadow_big;
+    }
+    p {
+      font-style: italic;
+      font-size: rem(18);
+    }
+  }
+}

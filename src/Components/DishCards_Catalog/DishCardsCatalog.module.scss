@@ -1,0 +1,37 @@
+@import "../../Style/variables.scss";
+@import "../../Style/mixins.scss";
+
+.dishCards {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    margin: 20px 0;
+  }
+}
+.dishCards_container {
+  padding: 0 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+
+  margin-bottom: 10px;
+
+  @media only screen and (max-width: 1350px) {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 20px;
+    grid-column-gap: auto;
+    grid-row-gap: auto;
+  }
+
+  @media only screen and (max-width: 1150px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media only screen and (max-width: 680px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

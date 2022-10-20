@@ -1,0 +1,111 @@
+@import "../../Style/mixins.scss";
+@import "../../Style/variables.scss";
+
+.big {
+  @include iconCreator(60, $color_darken_brown, $color_darken_orange);
+}
+.mid {
+  @include iconCreator(50, $color_darken_brown, $color_darken_orange);
+  background-color: $color_darken_orange;
+}
+.small {
+  @include iconCreator(30, $color_darken_brown, $color_darken_orange);
+  border: none;
+  padding: 0;
+  &:hover {
+    background-color: transparent;
+    box-shadow: none;
+    transform: scale(1.2);
+  }
+}
+.count {
+  @include iconCreator(40, $color_darken_brown, transparent);
+
+  background-color: $color_darken_brown;
+  border-radius: 50%;
+  padding: 5px 8px;
+  fill: lighten($color_darken_brown, 30);
+  box-shadow: $boxshadow_big;
+}
+
+/// custom informers
+
+.favourite {
+  @include iconCreator(35, $color_darken_red, lighten($color_darken_red, 30));
+  padding: 5px;
+  border-radius: 10px;
+  svg {
+    transform: translatex(5px);
+    transform: translatey(3px);
+  }
+  &:hover {
+    &::after {
+      position: absolute;
+      top: 130%;
+      content: "Add to Favourites";
+      min-width: 50px;
+
+      text-align: center;
+      font-size: 10px;
+      font-weight: bold;
+      background-color: transparent;
+    }
+  }
+}
+.ratings {
+  @include iconCreator(
+    35,
+    $color_EX_darken_orange,
+    lighten($color_EX_darken_orange, 40)
+  );
+  padding: 5px;
+  border-radius: 10px;
+
+  &:hover {
+    &::after {
+      position: absolute;
+      top: 130%;
+      content: "Rate this product!";
+      min-width: 50px;
+
+      text-align: center;
+      font-size: 10px;
+      font-weight: bold;
+      background-color: transparent;
+    }
+  }
+}
+.attention {
+  @include iconCreator(35, $color_darken_orange, $color_light_orange);
+  padding: 5px;
+  &:hover {
+    &::after {
+      position: absolute;
+      top: 130%;
+      content: "Allergic sensitive";
+      min-width: 50px;
+
+      text-align: center;
+      font-size: 10px;
+      font-weight: bold;
+      background-color: transparent;
+    }
+  }
+}
+.vegitarian {
+  @include iconCreator(35, green, lighten(green, 30));
+  padding: 5px;
+  &:hover {
+    &::after {
+      position: absolute;
+      top: 130%;
+      content: "Vegitarian";
+      min-width: 50px;
+
+      text-align: center;
+      font-size: 10px;
+      font-weight: bold;
+      background-color: transparent;
+    }
+  }
+}

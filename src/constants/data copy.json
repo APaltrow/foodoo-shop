@@ -1,0 +1,353 @@
+[
+  {
+    "id": "asdasd",
+    "title": "Pepperoni",
+    "category": 1,
+    "ingredients": [
+      "Mashrooms",
+      "Pepperoni",
+      "Sausages",
+      "Pepper",
+      "Cucumber",
+      "Mozzarella cheese",
+      "Tomato sauce"
+    ],
+    "sizes": [
+      {
+        "size": "Large",
+        "price": 10,
+        "weight": 700,
+        "nutrition": 1250
+      },
+      {
+        "size": "Medium",
+        "price": 9,
+        "weight": 450,
+        "nutrition": 950
+      },
+      {
+        "size": "Small",
+        "price": 6,
+        "weight": 300,
+        "nutrition": 700
+      }
+    ],
+    "price": 10,
+    "discount": 10,
+    "rating": 4,
+    "isVegitarian": false,
+    "description": "Super tasty pizza, best in the city! Try one and share with your friends!",
+    "imgURL": "https://images.pexels.com/photos/803290/pexels-photo-803290.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
+    "id": "0asaad2",
+    "title": "Chizza Royal",
+    "category": 1,
+    "ingredients": [
+      "Tomatoes",
+      "Brokkoli",
+      "Baby Corn",
+      "Basilla",
+      "Carrot",
+      "Olives",
+      "Mozzarella cheese",
+      "Royal sauce"
+    ],
+    "sizes": [
+      {
+        "size": "Large",
+        "price": 15,
+        "weight": 630,
+        "nutrition": 950
+      },
+      {
+        "size": "Small",
+        "price": 10,
+        "weight": 580,
+        "nutrition": 850
+      }
+    ],
+    "price": 15,
+    "discount": 8,
+    "rating": 5,
+    "isVegitarian": true,
+    "description": "Super tasty pizza, best in the city! Try one and share with your friends!",
+    "imgURL": "https://images.pexels.com/photos/5640020/pexels-photo-5640020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
+    "id": "0asdaq223",
+    "title": "Yammani",
+    "category": 1,
+    "ingredients": [
+      "Cherry tomatoes",
+      "Salad",
+      "Chicken fried",
+      "Basilla",
+      "Cheddar cheese",
+      "Mustardo sauce"
+    ],
+    "sizes": [
+      {
+        "size": "Large",
+        "price": 12
+      },
+      {
+        "size": "Medium",
+        "price": 10
+      },
+      {
+        "size": "Small",
+        "price": 8
+      }
+    ],
+    "price": 12,
+    "rating": 4,
+    "isVegitarian": false,
+    "description": "Super tasty pizza, best in the city! Try one and share with your friends!",
+    "imgURL": "https://images.pexels.com/photos/5640041/pexels-photo-5640041.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
+    "id": "0aasdqw22214",
+    "title": "Fujitsu",
+    "category": 1,
+    "ingredients": [
+      "Tomatoes",
+      "Corn",
+      "Mushrooms",
+      "Basilla",
+      "Cottage cheese",
+      "Liotto sauce"
+    ],
+    "sizes": [
+      {
+        "size": "Large",
+        "price": 20
+      },
+      {
+        "size": "Small",
+        "price": 15
+      }
+    ],
+    "price": 20,
+    "discount": 5,
+    "rating": 3,
+    "isVegitarian": true,
+    "description": "Super tasty pizza, best in the city! Try one and share with your friends!",
+    "imgURL": "https://images.pexels.com/photos/262977/pexels-photo-262977.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
+    "id": "0a000qw22214",
+    "title": "Cheeseburger",
+    "category": 2,
+    "ingredients": [
+      "Salad",
+      "Chicken sausage",
+      "Cheddar cheese",
+      "Cheesy sauce"
+    ],
+    "sizes": [
+      {
+        "size": "Large",
+        "price": 7
+      },
+      {
+        "size": "Small",
+        "price": 5
+      }
+    ],
+    "price": 7,
+    "rating": 5,
+    "isVegitarian": false,
+    "description": "Super tasty burger, best in the city! Try one and share with your friends!",
+    "imgURL": "https://images.pexels.com/photos/2282532/pexels-photo-2282532.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
+    "id": "0pppaaaw0qw22214",
+    "title": "Makatosan",
+    "category": 2,
+    "ingredients": [
+      "Fried onion",
+      "Beef sausage",
+      "Cheddar cheese",
+      "Ketchup sauce"
+    ],
+    "sizes": [
+      {
+        "size": "Large",
+        "price": 9
+      },
+      {
+        "size": "Small",
+        "price": 7
+      }
+    ],
+    "price": 9,
+    "rating": 5,
+    "isVegitarian": false,
+    "description": "Super tasty burger, best in the city! Try one and share with your friends!",
+    "imgURL": "https://images.pexels.com/photos/10922926/pexels-photo-10922926.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
+    "id": "0pfffgggaaw0qw22214",
+    "title": "Purpolle",
+    "category": 2,
+    "ingredients": [
+      "Fried blue onion",
+      "Beef sausage",
+      "Cheddar cheese",
+      "Pepper sauce"
+    ],
+    "sizes": [
+      {
+        "size": "Large",
+        "price": 12
+      },
+      {
+        "size": "Small",
+        "price": 10
+      }
+    ],
+    "price": 12,
+    "rating": 5,
+    "isVegitarian": false,
+    "description": "Super tasty burger, best in the city! Try one and share with your friends!",
+    "imgURL": "https://www.foodandwine.com/thmb/bw_R6O1xlL4egHkonGB5kXKl_z0=/2000x1333/filters:fill(auto,1)/Tocino-Burgers-FT-RECIPE0722-def99f6c3ce6462fae5b41a688094f4d.jpg"
+  },
+  {
+    "id": "0pfuuuvegi214",
+    "title": "Vegitarion",
+    "category": 2,
+    "ingredients": [
+      "Kinza",
+      "Tomato sliced",
+      "Avocado sliced",
+      "Vegitarian sausage",
+      "Vegitarian sauce"
+    ],
+    "sizes": [
+      {
+        "size": "Large",
+        "price": 12
+      },
+      {
+        "size": "Small",
+        "price": 9
+      }
+    ],
+    "price": 12,
+    "discount": 15,
+    "rating": 4,
+    "isVegitarian": true,
+    "description": "Super tasty burger, best in the city! Try one and share with your friends!",
+    "imgURL": "https://static01.nyt.com/images/2020/06/28/dining/jo-black-bean-burgers/merlin_167531589_227b9414-ffad-4b44-ae53-67483bd2bae5-articleLarge.jpg"
+  },
+  {
+    "id": "0pfuuuvegi2",
+    "title": "Chiabbatone",
+    "category": 2,
+    "ingredients": [
+      "Fried onion",
+      "Tomato sliced",
+      "Mashrooms",
+      "Pork sausage",
+      "Cheddar cheese",
+      "Cheesy sauce"
+    ],
+    "sizes": [
+      {
+        "size": "Large",
+        "price": 6
+      },
+      {
+        "size": "Small",
+        "price": 4
+      }
+    ],
+    "price": 6,
+    "rating": 4,
+    "isVegitarian": false,
+    "description": "Super tasty burger, best in the city! Try one and share with your friends!",
+    "imgURL": "https://images.pexels.com/photos/3727243/pexels-photo-3727243.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
+    "id": "0pfdrinkooo4",
+    "title": "Mango",
+    "category": 3,
+    "ingredients": [
+      "Fresh Mango",
+      "Gas water",
+      "Sugar syrop",
+      "Lemon juice",
+      "Mint"
+    ],
+    "sizes": [
+      {
+        "size": "Large",
+        "price": 2
+      },
+      {
+        "size": "Small",
+        "price": 1
+      }
+    ],
+    "price": 2,
+    "rating": 4,
+    "isVegitarian": true,
+    "description": "Super tasty mango drink, best in the city! Try one and share with your friends!",
+    "imgURL": "https://images.pexels.com/photos/2616171/pexels-photo-2616171.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
+    "id": "0pfdrsqq11wesabgo4",
+    "title": "Oranjado",
+    "category": 3,
+    "ingredients": [
+      "Fresh Orange",
+      "Gas water",
+      "Sugar syrop",
+      "Lemon juice",
+      "Mint"
+    ],
+    "sizes": [
+      {
+        "size": "Large",
+        "price": 2
+      },
+      {
+        "size": "Small",
+        "price": 1
+      }
+    ],
+    "price": 2,
+    "rating": 4,
+    "isVegitarian": true,
+    "description": "Super tasty drink with orange juice, best in the city! Try one and share with your friends!",
+    "imgURL": "https://images.pexels.com/photos/109275/pexels-photo-109275.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
+    "id": "0pfdrsqq11weasdasdqsabgo4",
+    "title": "Strauberrito",
+    "category": 3,
+    "ingredients": [
+      "Fresh Strauberry",
+      "Gas water",
+      "Sugar syrop",
+      "Lemon juice",
+      "Mint"
+    ],
+    "sizes": [
+      {
+        "size": "Large",
+        "price": 4
+      },
+      {
+        "size": "Small",
+        "price": 2
+      }
+    ],
+    "price": 4,
+    "rating": 4,
+    "isVegitarian": true,
+    "description": "Super tasty drink with strawberry, best in the city! Try one and share with your friends!",
+    "imgURL": "https://images.pexels.com/photos/5817630/pexels-photo-5817630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  }
+]

@@ -1,0 +1,41 @@
+@import "../../Style/mixins.scss";
+@import "../../Style/variables.scss";
+
+.cart {
+  display: flex;
+  justify-content: center;
+
+  min-height: rem(50);
+  font-size: rem(16);
+  font-weight: 500;
+}
+.pricetag {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  flex: 1 0 auto;
+
+  min-width: rem(40);
+
+  transform: translatex(-15px);
+}
+.none {
+  display: none;
+}
+.count {
+  background-color: $color_darken_brown;
+  width: 100%;
+  color: wheat;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 0 0 10px;
+}
+.cost {
+  border: 1px solid $color_darken_brown;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 10px;
+
+  border-radius: 0 10px 0;
+}

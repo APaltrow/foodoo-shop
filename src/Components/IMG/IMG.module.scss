@@ -1,0 +1,62 @@
+@import "../../Style/mixins.scss";
+@import "../../Style/variables.scss";
+
+.small {
+  min-width: 100px;
+  height: 70px;
+  border-radius: 5px;
+  overflow: hidden;
+  img {
+    min-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 60%;
+  }
+}
+.hint {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: $color_light_whiteHeader;
+  font-style: italic;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  cursor: pointer;
+}
+.mid {
+  position: relative;
+  min-width: 100%;
+  height: 50%;
+  overflow: hidden;
+  box-shadow: $boxshadow_big;
+  &:hover .hint {
+    display: flex;
+  }
+  img {
+    min-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 60%;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.big {
+  min-width: 500px;
+  height: 350px;
+  border-radius: 5px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 60%;
+  }
+}

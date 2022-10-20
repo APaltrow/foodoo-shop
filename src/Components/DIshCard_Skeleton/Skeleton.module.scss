@@ -1,0 +1,55 @@
+@import "../../Style/variables.scss";
+@import "../../Style/mixins.scss";
+
+.dish_card_skeleton {
+  min-width: 280px;
+  height: 400px;
+  background-color: $color_light_whiteHeader;
+  border-radius: 10px;
+  box-shadow: $boxshadow_big;
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+  .image {
+    animation: skeleton-loading 1s linear infinite alternate;
+    width: 100%;
+    height: 50%;
+  }
+
+  .description {
+    width: 70%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    flex: 1 0 auto;
+  }
+  .fields {
+    animation: skeleton-loading 1s linear infinite alternate;
+    display: flex;
+    width: 100%;
+    height: 20px;
+    border-radius: 20px;
+  }
+
+  .btn {
+    animation: skeleton-loading 1s linear infinite alternate;
+    width: 80%;
+    height: 30px;
+    border-radius: 20px;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-color: hsl(39, 20%, 60%);
+    }
+    100% {
+      background-color: hsl(39, 20%, 90%);
+    }
+  }
+}

@@ -1,0 +1,58 @@
+@import "../../Style/variables.scss";
+@import "../../Style/mixins.scss";
+
+.dish_card {
+  position: relative;
+  width: rem(280);
+  height: rem(400);
+  background-color: $color_light_whiteHeader;
+  border-radius: 10px;
+  box-shadow: $boxshadow_big;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  overflow: hidden;
+
+  .description {
+    position: relative;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 auto;
+    gap: 10px;
+  }
+}
+
+.discount {
+  width: 70%;
+  height: rem(60);
+
+  position: absolute;
+  padding: 5px 0;
+  top: 0;
+  right: -25%;
+  z-index: 1;
+
+  background-color: darken($color_darken_red, 10);
+  font-size: rem(26);
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: $boxshadow_big;
+
+  transform: rotate(45deg);
+
+  span {
+    font-size: rem(14);
+    font-style: italic;
+    color: wheat;
+  }
+  strong {
+    color: wheat;
+  }
+}

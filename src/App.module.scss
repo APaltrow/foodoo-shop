@@ -1,0 +1,27 @@
+@import "./Style/variables.scss";
+@import "./Style/normalize.scss";
+@import "./Style/mixins.scss";
+
+* {
+  @include normalize;
+}
+.wrapper {
+  background: $color_gradient;
+  padding: 10px 0px;
+  width: 100%;
+  min-height: 100vh;
+}
+.content {
+  width: 98%;
+  min-height: calc(100vh - 20px);
+  margin: 0px auto;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+
+  border-radius: 10px;
+  overflow: auto;
+  box-shadow: $boxshadow_big;
+  background-color: $color_transparent_BG;
+}

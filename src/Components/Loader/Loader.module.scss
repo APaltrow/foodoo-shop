@@ -1,0 +1,25 @@
+@import "../../Style/mixins.scss";
+@import "../../Style/variables.scss";
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  fill: $color_darken_red;
+
+  svg {
+    height: 30px;
+    animation: loader 0.8s linear infinite;
+  }
+
+  @keyframes loader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
