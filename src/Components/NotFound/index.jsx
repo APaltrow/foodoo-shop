@@ -7,7 +7,7 @@ import style from "./NotFound.module.scss";
 
 function NotFound({ page }) {
   const navigate = useNavigate();
-  const onClickBack = () => navigate(-1);
+  const onClickBack = () => navigate("/");
   return (
     <div className={style.not_found}>
       {page && <h2>NOT FOUND</h2>}
