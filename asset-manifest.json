@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/foodoo-shop/static/css/main.a9ff1d64.css",
-    "main.js": "/foodoo-shop/static/js/main.c0c57830.js",
+    "main.js": "/foodoo-shop/static/js/main.94baa5f3.js",
     "static/media/emptyBasket.png": "/foodoo-shop/static/media/emptyBasket.5d7daea22ae84e9e4ea0.png",
     "index.html": "/foodoo-shop/index.html",
     "main.a9ff1d64.css.map": "/foodoo-shop/static/css/main.a9ff1d64.css.map",
-    "main.c0c57830.js.map": "/foodoo-shop/static/js/main.c0c57830.js.map"
+    "main.94baa5f3.js.map": "/foodoo-shop/static/js/main.94baa5f3.js.map"
   },
   "entrypoints": [
     "static/css/main.a9ff1d64.css",
-    "static/js/main.c0c57830.js"
+    "static/js/main.94baa5f3.js"
   ]
 }
