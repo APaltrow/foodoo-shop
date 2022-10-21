@@ -92,10 +92,10 @@ const SingleProduct = () => {
           activeSize={activeSize}
         />
 
-        <div>Add discount logic***</div>
+        {/*<div>Add discount logic***</div>
         <div>Add special order logic***</div>
         <div>Add add to favourites logic***</div>
-        <div>Add ratings logic***</div>
+        <div>Add ratings logic***</div>*/}
       </div>
     </div>
   );

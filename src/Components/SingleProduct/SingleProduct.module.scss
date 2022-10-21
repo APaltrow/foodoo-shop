@@ -34,9 +34,21 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  padding: 0 10px;
+  padding: 10px 10px;
   background-color: white;
   border-radius: 10px;
   box-shadow: $boxshadow_big;
   flex: 1;
+}
+@media only screen and (max-width: 950px) {
+  .product_container {
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .informers {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
 }

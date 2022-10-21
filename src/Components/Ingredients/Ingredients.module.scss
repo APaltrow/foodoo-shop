@@ -35,3 +35,9 @@
   padding: 10px 30px;
   border-bottom: 1px solid $color_darken_brown;
 }
+
+@media only screen and (max-width: 480px) {
+  .clips_bot {
+    flex-direction: column;
+  }
+}
