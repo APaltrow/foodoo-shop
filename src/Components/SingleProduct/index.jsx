@@ -1,9 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useToggle } from "../../Helpers/useToggle";
+import { useParams, useNavigate } from "react-router-dom";
 
 import IMG from "../IMG";
 import Rating from "../Rating";
@@ -11,23 +9,23 @@ import CustomButton from "../CustomButton";
 import Loader from "../Loader";
 import Sizes from "../Sizes";
 import CustomIcon from "../CustomIcon";
+import Ingredients from "../Ingredients";
+import Reviews from "../Reviews";
 
 import style from "./SingleProduct.module.scss";
 
 const SingleProduct = () => {
   const navigation = useNavigate();
+
+  const { id } = useParams();
+
   const [singleProduct, setProduct] = useState(false);
   const [activeSize, setActiveSize] = useState([]);
-  const [isLoading, setLoading] = useState(false);
-  const { id } = useParams();
-  const [isOpened, setOpened] = useState(true);
-  const [isVisible, ref, toggle] = useToggle();
-
-  console.log(isVisible);
+  const [isLoading, setLoading] = useState(true);
 
   const onActiveSizeChange = (index) =>
     setActiveSize(singleProduct.sizes[index]);
-  const toggle1 = () => setOpened(!isOpened);
+
   const onClickBack = () => navigation(-1);
   const onAddToFavourites = () =>
     alert(`Has been added to Favourites: ${singleProduct.id}`);
@@ -59,15 +57,14 @@ const SingleProduct = () => {
       <div className={style.product_left}>
         <IMG type="big" {...singleProduct} />
         <div> Slider bar</div>
-        <div className={style.product_left_something}>
-          Something do not know yet
-        </div>
+        <Reviews reviews={singleProduct.reviews} />
+
         <div className={style.btns}>
           <CustomButton icon={"return"} text={"Go Back"} action={onClickBack} />
           <CustomButton icon={"plus"} text={"Add to cart"} />
         </div>
       </div>
-      <div className={style.product_right} ref={ref}>
+      <div className={style.product_right}>
         <h2> {singleProduct.title}</h2>
         <div className={style.informers}>
           <CustomIcon
@@ -82,59 +79,23 @@ const SingleProduct = () => {
           )}
         </div>
         <Rating rating={singleProduct.rating} />
-        <div>{singleProduct.description}</div>
-        {singleProduct && (
-          <Sizes
-            {...singleProduct}
-            activeSize={activeSize}
-            action={onActiveSizeChange}
-          />
-        )}
+        <p>{singleProduct.description}</p>
 
-        <div className={style.ingredients}>
-          <div className={style.clips}>
-            <h3>Ingredients</h3>
-            <CustomIcon type={"small"} icon={"arrow"} action={toggle1} />
-          </div>
-          {isOpened && (
-            <div>
-              {singleProduct &&
-                singleProduct.ingredients.map((item) => (
-                  <div className={style.single_ingredient}> {item}</div>
-                ))}
-              {singleProduct && (
-                <div className={style.clips_bot}>
-                  <span>Weight: {activeSize.weight} g</span>
-                  <span>Nutrition: {activeSize.nutrition} kkal</span>
-                  <CustomButton text={"special order"} action={toggle} />
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+        <Sizes
+          {...singleProduct}
+          activeSize={activeSize}
+          action={onActiveSizeChange}
+        />
 
-        {isVisible && (
-          <div className={style.special_modal}>
-            <div className={style.special_modal_area}>
-              <h3>Special order</h3>
-              <label htmlFor="no-meat">
-                No meat
-                <input type="checkbox" name="no-meat" id="no-meat" />
-              </label>
-              <label htmlFor="no-sauce">
-                No sauce
-                <input type="checkbox" name="no-sauce" id="no-sauce" />
-              </label>
-              <label htmlFor="extra-sauce">
-                Extra sauce
-                <input type="checkbox" name="extra-sauce" id="extra-sauce" />
-              </label>
-              <CustomButton text={"apply"} icon={"checkmark"} />
-            </div>
-          </div>
-        )}
-        <div>Feedback comments</div>
+        <Ingredients
+          ingredients={singleProduct.ingredients}
+          activeSize={activeSize}
+        />
+
         <div>Add discount logic***</div>
+        <div>Add special order logic***</div>
+        <div>Add add to favourites logic***</div>
+        <div>Add ratings logic***</div>
       </div>
     </div>
   );

@@ -3,9 +3,9 @@ import { generateIcon } from "../Icons/Icons";
 
 import style from "./Rating.module.scss";
 
-function Rating({ rating }) {
+function Rating({ rating, type }) {
   return (
-    <div className={style.rating}>
+    <div className={type ? style[type] : style.rating}>
       {[...new Array(rating)].map((_, i) => (
         <span key={i}>{generateIcon("star")}</span>
       ))}

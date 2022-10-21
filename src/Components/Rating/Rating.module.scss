@@ -17,3 +17,18 @@
     cursor: default;
   }
 }
+.small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  svg {
+    height: rem(10);
+    width: rem(10);
+    opacity: 1;
+    fill: gold;
+  }
+  &:hover svg {
+    cursor: default;
+  }
+}

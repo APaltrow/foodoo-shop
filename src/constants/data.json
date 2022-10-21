@@ -36,6 +36,11 @@
     "discount": 10,
     "rating": 4,
     "isVegitarian": false,
+    "reviews": [
+      { "rating": 5, "comment": "Best pizza!!" },
+      { "rating": 5, "comment": "Super tasty, will get another one again!" },
+      { "rating": 4, "comment": "Not bad at all!!" }
+    ],
     "description": "Super tasty pizza, best in the city! Try one and share with your friends!",
     "imgURL": "https://images.pexels.com/photos/803290/pexels-photo-803290.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
@@ -71,6 +76,11 @@
     "discount": 8,
     "rating": 5,
     "isVegitarian": true,
+    "reviews": [
+      { "rating": 3, "comment": "Might be better" },
+      { "rating": 5, "comment": "Amazing, love it!" },
+      { "rating": 4, "comment": "Should try another one" }
+    ],
     "description": "Super tasty pizza, best in the city! Try one and share with your friends!",
     "imgURL": "https://images.pexels.com/photos/5640020/pexels-photo-5640020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
@@ -109,6 +119,12 @@
     "price": 12,
     "rating": 4,
     "isVegitarian": false,
+    "reviews": [
+      { "rating": 3, "comment": "Not my day, but this one is so-so" },
+      { "rating": 4, "comment": "Amazing, love it!" },
+      { "rating": 4, "comment": "Need more sauce, a little bit .." },
+      { "rating": 4, "comment": "Amazing, love it!" }
+    ],
     "description": "Super tasty pizza, best in the city! Try one and share with your friends!",
     "imgURL": "https://images.pexels.com/photos/5640041/pexels-photo-5640041.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
@@ -142,6 +158,12 @@
     "discount": 5,
     "rating": 3,
     "isVegitarian": true,
+    "reviews": [
+      { "rating": 3, "comment": "Not my day, but this one is so-so" },
+      { "rating": 5, "comment": "Amazing, love it!" },
+      { "rating": 2, "comment": "Try something else, not so good" },
+      { "rating": 2, "comment": "Tastes not so well" }
+    ],
     "description": "Super tasty pizza, best in the city! Try one and share with your friends!",
     "imgURL": "https://images.pexels.com/photos/262977/pexels-photo-262977.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
@@ -172,6 +194,15 @@
     "price": 7,
     "rating": 5,
     "isVegitarian": false,
+    "reviews": [
+      { "rating": 5, "comment": "American taste!!!" },
+      { "rating": 5, "comment": "Amazing, love it!" },
+      { "rating": 5, "comment": "What might be better!" },
+      {
+        "rating": 4,
+        "comment": "Will get one if I'm hungry .... but please add some more meat!"
+      }
+    ],
     "description": "Super tasty burger, best in the city! Try one and share with your friends!",
     "imgURL": "https://images.pexels.com/photos/2282532/pexels-photo-2282532.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
@@ -202,6 +233,15 @@
     "price": 9,
     "rating": 5,
     "isVegitarian": false,
+    "reviews": [
+      { "rating": 5, "comment": "Best!!" },
+      { "rating": 5, "comment": "Amazing, love it!" },
+      { "rating": 5, "comment": "What might be better!" },
+      {
+        "rating": 5,
+        "comment": "Definitely love it, my kids are amazed of it!!"
+      }
+    ],
     "description": "Super tasty burger, best in the city! Try one and share with your friends!",
     "imgURL": "https://images.pexels.com/photos/10922926/pexels-photo-10922926.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
@@ -232,6 +272,12 @@
     "price": 12,
     "rating": 5,
     "isVegitarian": false,
+    "reviews": [
+      { "rating": 5, "comment": "Best!!" },
+      { "rating": 4, "comment": "Amazing, love it!" },
+      { "rating": 5, "comment": "Super cool one!!" },
+      { "rating": 4, "comment": "Definitely love it!!" }
+    ],
     "description": "Super tasty burger, best in the city! Try one and share with your friends!",
     "imgURL": "https://www.foodandwine.com/thmb/bw_R6O1xlL4egHkonGB5kXKl_z0=/2000x1333/filters:fill(auto,1)/Tocino-Burgers-FT-RECIPE0722-def99f6c3ce6462fae5b41a688094f4d.jpg"
   },
@@ -264,6 +310,18 @@
     "discount": 15,
     "rating": 4,
     "isVegitarian": true,
+    "reviews": [
+      {
+        "rating": 3,
+        "comment": "Need some meat !! But in general, not so bad"
+      },
+      { "rating": 5, "comment": "Best for vegitarians" },
+      { "rating": 4, "comment": "What might be better!" },
+      {
+        "rating": 5,
+        "comment": "Definitely love it, my kids are amazed of it!!"
+      }
+    ],
     "description": "Super tasty burger, best in the city! Try one and share with your friends!",
     "imgURL": "https://static01.nyt.com/images/2020/06/28/dining/jo-black-bean-burgers/merlin_167531589_227b9414-ffad-4b44-ae53-67483bd2bae5-articleLarge.jpg"
   },
@@ -358,6 +416,12 @@
     "price": 2,
     "rating": 4,
     "isVegitarian": true,
+    "reviews": [
+      { "rating": 5, "comment": "My favourite one, would starve otherwise..." },
+      { "rating": 5, "comment": "Best for vegitarians" },
+      { "rating": 4, "comment": "What might be better!" },
+      { "rating": 5, "comment": "Definitely love it!!" }
+    ],
     "description": "Super tasty drink with orange juice, best in the city! Try one and share with your friends!",
     "imgURL": "https://images.pexels.com/photos/109275/pexels-photo-109275.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
@@ -389,6 +453,15 @@
     "price": 4,
     "rating": 4,
     "isVegitarian": true,
+    "reviews": [
+      { "rating": 3, "comment": "Too sweet .." },
+      { "rating": 5, "comment": "Chilling and sweet! " },
+      { "rating": 4, "comment": "One love!" },
+      {
+        "rating": 5,
+        "comment": "Definitely love it, my kids are amazed of it!!"
+      }
+    ],
     "description": "Super tasty drink with strawberry, best in the city! Try one and share with your friends!",
     "imgURL": "https://images.pexels.com/photos/5817630/pexels-photo-5817630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   }
