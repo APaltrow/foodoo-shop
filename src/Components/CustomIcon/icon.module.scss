@@ -109,3 +109,8 @@
     }
   }
 }
+.scroll-top {
+  @include iconCreator(50, $color_darken_brown, $color_darken_orange);
+  background-color: $color_darken_orange;
+  box-shadow: $boxshadow_big;
+}

@@ -2,12 +2,13 @@
 @import "../../Style/variables.scss";
 
 .reviews {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
   height: 150px;
   width: 100%;
-  padding: 15px;
+  padding: 0 15px;
   background-color: white;
   flex: 1 0 auto;
 
@@ -16,6 +17,15 @@
   overflow: scroll;
   &::-webkit-scrollbar {
     display: none;
+  }
+  h3 {
+    padding-top: 10px;
+    border-bottom: 1px solid $color_darken_brown;
+    background-color: white;
+    position: sticky;
+    top: 0;
+
+    z-index: 2;
   }
 
   &_single {

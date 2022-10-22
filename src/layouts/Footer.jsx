@@ -1,6 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { getAuthState } from "../Redux/Slices/authSlice";
 
 import style from "./Layouts.module.scss";
 

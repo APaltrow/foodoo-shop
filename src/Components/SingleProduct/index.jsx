@@ -66,6 +66,7 @@ const SingleProduct = () => {
       </div>
       <div className={style.product_right}>
         <h2> {singleProduct.title}</h2>
+        <Rating rating={singleProduct.rating} />
         <div className={style.informers}>
           <CustomIcon
             type={"favourite"}
@@ -78,7 +79,6 @@ const SingleProduct = () => {
             <CustomIcon type={"vegitarian"} icon={"salad"} />
           )}
         </div>
-        <Rating rating={singleProduct.rating} />
         <p>{singleProduct.description}</p>
 
         <Sizes
