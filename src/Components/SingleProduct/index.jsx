@@ -11,6 +11,7 @@ import Sizes from "../Sizes";
 import CustomIcon from "../CustomIcon";
 import Ingredients from "../Ingredients";
 import Reviews from "../Reviews";
+import RateProduct from "../RateProduct";
 
 import style from "./SingleProduct.module.scss";
 
@@ -18,10 +19,11 @@ const SingleProduct = () => {
   const navigation = useNavigate();
   const { id } = useParams();
 
+  const [isLoading, setLoading] = useState(true);
   const [singleProduct, setProduct] = useState(false);
   const [activeSize, setActiveSize] = useState([]);
-  const [isLoading, setLoading] = useState(true);
   const [specialOrder, setSpecialOrder] = useState([]);
+  const [rateProduct, setRate] = useState(false);
 
   const getSpecialOrder = (order) => setSpecialOrder(order);
   const onActiveSizeChange = (index) =>
@@ -29,7 +31,7 @@ const SingleProduct = () => {
   const onClickBack = () => navigation(-1);
   const onAddToFavourites = () =>
     alert(`Has been added to Favourites: ${singleProduct.id}`);
-  const onRateProduct = () => alert(`Has been Rated: ${singleProduct.id}`);
+  const onRateProduct = () => setRate(!rateProduct);
 
   const getSingleProduct = async () => {
     setLoading(true);
@@ -67,6 +69,7 @@ const SingleProduct = () => {
       <div className={style.product_right}>
         <h2> {singleProduct.title}</h2>
         <Rating rating={singleProduct.rating} />
+        {rateProduct && <RateProduct toggle={onRateProduct} />}
         <div className={style.informers}>
           <CustomIcon
             type={"favourite"}
