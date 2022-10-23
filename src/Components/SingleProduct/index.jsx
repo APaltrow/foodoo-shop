@@ -16,16 +16,16 @@ import style from "./SingleProduct.module.scss";
 
 const SingleProduct = () => {
   const navigation = useNavigate();
-
   const { id } = useParams();
 
   const [singleProduct, setProduct] = useState(false);
   const [activeSize, setActiveSize] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [specialOrder, setSpecialOrder] = useState([]);
 
+  const getSpecialOrder = (order) => setSpecialOrder(order);
   const onActiveSizeChange = (index) =>
     setActiveSize(singleProduct.sizes[index]);
-
   const onClickBack = () => navigation(-1);
   const onAddToFavourites = () =>
     alert(`Has been added to Favourites: ${singleProduct.id}`);
@@ -90,12 +90,9 @@ const SingleProduct = () => {
         <Ingredients
           ingredients={singleProduct.ingredients}
           activeSize={activeSize}
+          getSpecialOrder={getSpecialOrder}
+          specialOrder={specialOrder}
         />
-
-        {/*<div>Add discount logic***</div>
-        <div>Add special order logic***</div>
-        <div>Add add to favourites logic***</div>
-        <div>Add ratings logic***</div>*/}
       </div>
     </div>
   );

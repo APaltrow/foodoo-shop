@@ -2,8 +2,11 @@
 @import "../../Style/variables.scss";
 
 .special_modal {
-  background-color: rgba($color: #0000006e, $alpha: 0.5);
+  background-color: rgba($color: #bc7503, $alpha: 0.4);
+  backdrop-filter: blur(2px);
   position: absolute;
+  width: 100%;
+  height: 100%;
   top: 0;
   bottom: 0;
   right: 0;
@@ -13,30 +16,70 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  &_area {
+}
+
+.modal_area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 80%;
+  min-height: 50%;
+  padding: 10px 0;
+  text-shadow: $boxshadow_big;
+  background-color: $color_light_whiteHeader;
+  border-radius: 10px;
+
+  .ingredient {
+    position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    width: 50%;
-    min-height: 200px;
-    padding: 10px 0;
-    text-shadow: $boxshadow_big;
-    background-color: $color_light_whiteHeader;
-    border-radius: 10px;
-    input {
-      display: none;
-    }
-    label {
-      text-align: center;
-      line-height: 40px;
-      width: 100%;
-      height: 40px;
+
+    width: 80%;
+    height: 25px;
+    line-height: 25px;
+
+    &:hover {
       cursor: pointer;
-      &:hover {
-        background-color: $color_darken_orange;
-        text-decoration: underline;
-      }
+      background-color: $color_light_red;
+      text-decoration: underline;
+      color: red;
+      text-decoration: line-through;
+    }
+  }
+
+  label {
+    width: 100%;
+    cursor: pointer;
+    padding-left: 5%;
+  }
+  input {
+    display: none;
+  }
+  button {
+    margin: 10px 0;
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  input[type="checkbox"]:checked + label {
+    color: $color_darken_red;
+    text-decoration: line-through;
+    &::after {
+      content: "-";
+      position: absolute;
+      left: -10%;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      background-color: $color_darken_red;
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      text-align: center;
     }
   }
 }
