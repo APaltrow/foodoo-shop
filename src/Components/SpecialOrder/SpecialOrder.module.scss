@@ -1,48 +1,44 @@
 @import "../../Style/mixins.scss";
 @import "../../Style/variables.scss";
 
-.special_modal {
-  background-color: rgba($color: #bc7503, $alpha: 0.4);
-  backdrop-filter: blur(2px);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 5;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal_area {
+.special_order {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  gap: 10px;
+  flex: 1 0 auto;
 
-  width: 80%;
-  min-height: 50%;
-  padding: 10px 0;
+  width: 100%;
+
   text-shadow: $boxshadow_big;
-  background-color: $color_light_whiteHeader;
+
   border-radius: 10px;
+
+  .ingredients {
+    width: 80%;
+    flex: 1 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
   .ingredient {
     position: relative;
     display: flex;
 
-    width: 80%;
-    height: 25px;
-    line-height: 25px;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10%;
 
     &:hover {
       cursor: pointer;
       background-color: $color_light_red;
-      text-decoration: underline;
-      color: red;
+
+      color: $color_darken_red;
       text-decoration: line-through;
     }
   }
@@ -56,9 +52,8 @@
     display: none;
   }
   button {
-    margin: 10px 0;
-    width: 150px;
-    height: 30px;
+    width: 50%;
+    height: 40px;
     font-size: 14px;
     padding: 5px;
   }
@@ -66,10 +61,11 @@
   input[type="checkbox"]:checked + label {
     color: $color_darken_red;
     text-decoration: line-through;
-    &::after {
+    &::before {
       content: "-";
       position: absolute;
-      left: -10%;
+      top: 20%;
+      left: 0;
       width: 20px;
       height: 20px;
       line-height: 20px;
@@ -78,7 +74,6 @@
       background-color: $color_darken_red;
       color: white;
       border-radius: 50%;
-      text-decoration: none;
       text-align: center;
     }
   }

@@ -1,0 +1,32 @@
+@import "../../Style/mixins.scss";
+@import "../../Style/variables.scss";
+
+.favourite_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+
+  h3 {
+    font-size: rem(24);
+    margin-bottom: 10px;
+  }
+
+  svg {
+    fill: $color_darken_red;
+  }
+}
+.special_excluded {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  span {
+    text-decoration: line-through;
+    color: $color_darken_red;
+  }
+}

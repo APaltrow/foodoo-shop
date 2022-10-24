@@ -1,44 +1,22 @@
-import style from "./RateProduct.module.scss";
+import { RATING_STATUSES } from "../../constants/RatingStatuses";
 import { generateIcon } from "../Icons/Icons";
-import { useState } from "react";
-import bad from "../../assets/Bad.png";
-import excellent from "../../assets/Excellent.png";
-import mid from "../../assets/Mid.png";
-import rate from "../../assets/Rate.png";
+import { useState, useEffect } from "react";
 import CustomButton from "../CustomButton";
-import CustomIcon from "../CustomIcon";
+
+import style from "./RateProduct.module.scss";
 
 const RateProduct = ({ toggle }) => {
   const [rating, setRating] = useState(0);
+  const [status, setStatus] = useState(RATING_STATUSES[0]);
 
-  const img = () => {
-    if (rating === 0) {
-      return rate;
-    }
-    if (rating > 0 && rating < 3) {
-      return bad;
-    }
-    if (rating === 3 || rating === 4) {
-      return mid;
-    }
-    if (rating === 5) {
-      return excellent;
-    }
+  const getRatingStatus = () => {
+    rating > 0 && rating < 3 && setStatus(RATING_STATUSES[1]);
+    rating >= 3 && rating < 5 && setStatus(RATING_STATUSES[2]);
+    rating === 5 && setStatus(RATING_STATUSES[3]);
   };
-  const CTA = () => {
-    if (rating === 0) {
-      return "Let`s go!";
-    }
-    if (rating > 0 && rating < 3) {
-      return "Has to improve...";
-    }
-    if (rating === 3 || rating === 4) {
-      return "Love it !";
-    }
-    if (rating === 5) {
-      return "Excellent !!!";
-    }
-  };
+  useEffect(() => {
+    getRatingStatus();
+  }, [rating]);
 
   const onRateNow = () => {
     toggle();
@@ -48,11 +26,11 @@ const RateProduct = ({ toggle }) => {
     setRating(rating);
   };
   return (
-    <div className={style.rate_wrapper}>
-      <div className={style.rate_container}>
-        <h3>Rate this product ...</h3>
-        <img src={img()} alt="rate" />
-        <p>{CTA()}</p>
+    <div className={style.rate_container}>
+      <h3>Rate this product </h3>
+      <div className={style.rate_content}>
+        <img src={status.rating} alt="rate" />
+        <p>{status.msg}</p>
         <div className={style.rating}>
           <span
             className={rating === 5 ? style.rated : style.stars}
@@ -91,18 +69,20 @@ const RateProduct = ({ toggle }) => {
           </div>
         </div>
         <label htmlFor="comment">
-          <input type={"text"} id="comment" placeholder="Comment ..." />
+          <input
+            type={"text"}
+            id="comment"
+            placeholder="Comment ..."
+            autoComplete="off"
+          />
         </label>
-        <CustomButton
-          icon={"rocket"}
-          text={"Rate now"}
-          action={onRateNow}
-          disabled={rating < 1 && true}
-        />
-        <div className={style.dismiss}>
-          <CustomIcon icon={"dismiss"} type={"small"} action={toggle} />
-        </div>
       </div>
+      <CustomButton
+        icon={"rocket"}
+        text={"Rate now"}
+        action={onRateNow}
+        disabled={rating < 1 && true}
+      />
     </div>
   );
 };

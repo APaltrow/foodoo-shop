@@ -1,9 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import CustomButton from "../CustomButton";
 import SpecialOrder from "../SpecialOrder";
+import CustomModal from "../CustomModal";
 
 import style from "./Ingredients.module.scss";
-import { useState } from "react";
 
 const Ingredients = ({
   ingredients,
@@ -50,16 +51,14 @@ const Ingredients = ({
           <CustomButton text={"special order"} action={handleModal} />
         </div>
       </div>
-
-      {isVisibleModal && (
+      <CustomModal visible={isVisibleModal} handleModal={handleModal}>
         <SpecialOrder
           ingredients={ingredients}
           getSpecialOrder={getSpecialOrder}
-          handleModal={handleModal}
           specialOrder={specialOrder}
-          isVisibleModal={isVisibleModal}
+          handleModal={handleModal}
         />
-      )}
+      </CustomModal>
     </div>
   );
 };

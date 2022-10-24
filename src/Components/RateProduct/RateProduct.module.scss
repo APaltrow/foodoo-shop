@@ -1,37 +1,29 @@
 @import "../../Style/variables.scss";
 @import "../../Style/mixins.scss";
 
-.rate_wrapper {
-  position: absolute;
-  background-color: rgba($color: #bc7503, $alpha: 0.4);
-
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-}
-
 .rate_container {
-  position: relative;
-  padding: 20px;
-  width: 70%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
 
-  z-index: 8;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 20px;
-  box-shadow: $boxshadow_big;
-  border-radius: 20px;
-  background: radial-gradient($color_light_orange, $color_EX_darken_orange);
-  animation: fade-in 0.3s linear;
+  flex: 1 0 auto;
+
+  button {
+    width: 50%;
+  }
+}
+.rate_content {
+  flex: 1 0 auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
   img {
     width: rem(50);
     height: rem(50);
@@ -45,36 +37,18 @@
     font-size: rem(24);
   }
   input {
-    width: 100%;
-    height: 100%;
     background-color: transparent;
-    padding: 20px;
+    padding: 0 20px;
+    height: rem(40);
+    width: 100%;
   }
   label {
     height: rem(40);
-    width: 50%;
+    width: 80%;
     background-color: $color_light_orange;
     border-radius: 20px;
   }
-  button {
-    width: 50%;
-  }
-
-  @keyframes fade-in {
-    0% {
-      transform: scale(0.2);
-    }
-
-    100% {
-      transform: scale(1);
-    }
-  }
-
-  @media only screen and (max-width: 950px) {
-    width: 95%;
-  }
 }
-
 .rating {
   position: relative;
   display: flex;
@@ -124,12 +98,8 @@
 }
 .rated {
   opacity: 1;
+  cursor: pointer;
   & ~ .stars {
     opacity: 1;
   }
-}
-.dismiss {
-  position: absolute;
-  top: 20px;
-  right: 20px;
 }

@@ -12,26 +12,32 @@ import CustomIcon from "../CustomIcon";
 import Ingredients from "../Ingredients";
 import Reviews from "../Reviews";
 import RateProduct from "../RateProduct";
+import CustomModal from "../CustomModal";
+import AddFavourite from "../AddFovourite";
 
 import style from "./SingleProduct.module.scss";
 
 const SingleProduct = () => {
   const navigation = useNavigate();
+  const onClickBack = () => navigation(-1);
   const { id } = useParams();
 
   const [isLoading, setLoading] = useState(true);
   const [singleProduct, setProduct] = useState(false);
   const [activeSize, setActiveSize] = useState([]);
   const [specialOrder, setSpecialOrder] = useState([]);
-  const [rateProduct, setRate] = useState(false);
+  const [rateModal, setRateModal] = useState(false);
+  const [addFavouriteModal, setaAdFavouriteModal] = useState(false);
 
+  const onRateThisProduct = () => setRateModal(!rateModal);
   const getSpecialOrder = (order) => setSpecialOrder(order);
   const onActiveSizeChange = (index) =>
     setActiveSize(singleProduct.sizes[index]);
-  const onClickBack = () => navigation(-1);
-  const onAddToFavourites = () =>
-    alert(`Has been added to Favourites: ${singleProduct.id}`);
-  const onRateProduct = () => setRate(!rateProduct);
+
+  const onAddToFavourites = () => {
+    setaAdFavouriteModal(!addFavouriteModal);
+    console.log(`Has been added to Favourites: ${singleProduct.id}`);
+  };
 
   const getSingleProduct = async () => {
     setLoading(true);
@@ -69,14 +75,18 @@ const SingleProduct = () => {
       <div className={style.product_right}>
         <h2> {singleProduct.title}</h2>
         <Rating rating={singleProduct.rating} />
-        {rateProduct && <RateProduct toggle={onRateProduct} />}
+
         <div className={style.informers}>
           <CustomIcon
             type={"favourite"}
             icon={"favourites"}
             action={onAddToFavourites}
           />
-          <CustomIcon type={"ratings"} icon={"rating"} action={onRateProduct} />
+          <CustomIcon
+            type={"ratings"}
+            icon={"rating"}
+            action={onRateThisProduct}
+          />
           <CustomIcon type={"attention"} icon={"error"} />
           {singleProduct.isVegitarian && (
             <CustomIcon type={"vegitarian"} icon={"salad"} />
@@ -96,6 +106,20 @@ const SingleProduct = () => {
           getSpecialOrder={getSpecialOrder}
           specialOrder={specialOrder}
         />
+        <CustomModal visible={rateModal} handleModal={onRateThisProduct}>
+          <RateProduct toggle={onRateThisProduct} />
+        </CustomModal>
+        <CustomModal
+          visible={addFavouriteModal}
+          handleModal={onAddToFavourites}
+        >
+          <AddFavourite
+            size={activeSize}
+            title={singleProduct.title}
+            specialOrder={specialOrder}
+            onAddToFavourites={onAddToFavourites}
+          />
+        </CustomModal>
       </div>
     </div>
   );

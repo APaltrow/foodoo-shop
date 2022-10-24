@@ -1,6 +1,5 @@
 import React from "react";
 import CustomButton from "../CustomButton";
-
 import { useRef } from "react";
 
 import style from "./SpecialOrder.module.scss";
@@ -29,16 +28,9 @@ const SpecialOrder = ({
   };
 
   return (
-    <div className={style.special_modal}>
-      <form className={style.modal_area} ref={formRef} onSubmit={handleForm}>
-        <h3>Special order</h3>
-        <CustomButton
-          text={"reset"}
-          icon={"reset"}
-          type={"service"}
-          action={reset}
-        />
-
+    <form className={style.special_order} ref={formRef} onSubmit={handleForm}>
+      <h3>Special order</h3>
+      <div className={style.ingredients}>
         {ingredients.map((ingredient) => (
           <div className={style.ingredient} key={ingredient}>
             <input
@@ -53,17 +45,10 @@ const SpecialOrder = ({
             <label htmlFor={ingredient}>{ingredient}</label>
           </div>
         ))}
-
-        <CustomButton text={"apply"} icon={"checkmark"} action={exclude} />
-
-        <CustomButton
-          type={"delete"}
-          text={"cancel"}
-          icon={"dismiss"}
-          action={handleModal}
-        />
-      </form>
-    </div>
+      </div>
+      <CustomButton text={"apply"} icon={"checkmark"} action={exclude} />
+      <CustomButton text={"reset"} icon={"reset"} action={reset} />
+    </form>
   );
 };
 
