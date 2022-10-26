@@ -11,6 +11,11 @@ $color_darken_red: rgba(250, 88, 88, 1);
 $color_light_white: rgba(255, 255, 255, 1);
 $color_EX_darken_orange: rgba(254, 129, 22, 1);
 $color_EX_light_orange: rgba(254, 129, 22, 0.5);
+$color_modal: rgba(
+  $color: #bc7503,
+  $alpha: 0.5,
+);
+
 //=====FONTS
 $font_large: rem(20);
 $font_mid: rem(18);

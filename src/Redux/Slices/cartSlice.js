@@ -3,15 +3,26 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   totalCount: 0,
   totalCost: 0,
+  discount: 0,
   products: [],
 };
 
 const calculateTotals = (state) => {
   state.totalCount = state.products.reduce((res, val) => res + val.count, 0);
-  state.totalCost = state.products.reduce(
-    (res, val) => res + val.activeSize.price * val.count,
-    0
-  );
+  state.discount = state.products
+    .reduce((res, val) => res + val.activeSize.savedOnDiscount * val.count, 0)
+    .toFixed(2);
+  state.totalCost = state.products
+    .reduce(
+      (res, val) =>
+        res +
+        (val.activeSize.discountedPrice
+          ? val.activeSize.discountedPrice
+          : val.activeSize.price) *
+          val.count,
+      0
+    )
+    .toFixed(2);
 };
 
 export const cartSlice = createSlice({
@@ -19,10 +30,9 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addProducts: (state, action) => {
+      console.log(action);
       const item = state.products.filter(
-        (item) =>
-          item.id === action.payload.id &&
-          item.activeSize.size === action.payload.activeSize.size
+        (item) => item.lot_id === action.payload.lot_id
       );
 
       item.length > 0
@@ -33,34 +43,22 @@ export const cartSlice = createSlice({
     },
     plusProduct: (state, action) => {
       const item = state.products.filter(
-        (item) =>
-          item.id === action.payload.id &&
-          item.activeSize.size === action.payload.activeSize.size
+        (item) => item.lot_id === action.payload.lot_id
       );
       item[0].count++;
       calculateTotals(state);
     },
     minusProduct: (state, action) => {
       const item = state.products.filter(
-        (item) =>
-          item.id === action.payload.id &&
-          item.activeSize.size === action.payload.activeSize.size
+        (item) => item.lot_id === action.payload.lot_id
       );
       item[0].count--;
       calculateTotals(state);
     },
     removeProduct: (state, action) => {
-      const checkItem = (item) => {
-        if (item.id !== action.payload.id) {
-          return item;
-        } else if (item.activeSize.size !== action.payload.activeSize.size) {
-          return item;
-        } else {
-          return false;
-        }
-      };
-
-      const products = state.products.filter(checkItem);
+      const products = state.products.filter(
+        (item) => item.lot_id !== action.payload.lot_id
+      );
       state.products = [...products];
 
       calculateTotals(state);
@@ -69,6 +67,7 @@ export const cartSlice = createSlice({
       state.products = [];
       state.totalCost = 0;
       state.totalCount = 0;
+      state.discount = 0;
     },
   },
 });

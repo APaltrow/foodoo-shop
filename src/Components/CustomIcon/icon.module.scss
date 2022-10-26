@@ -114,3 +114,27 @@
   background-color: $color_darken_orange;
   box-shadow: $boxshadow_big;
 }
+
+.discount {
+  @include iconCreator(35, $color_darken_red, lighten($color_darken_red, 30));
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  svg {
+    transform: translatex(5px);
+    transform: translatey(3px);
+  }
+  &:hover {
+    &::after {
+      position: absolute;
+      bottom: -20px;
+      content: "Discounted";
+      min-width: 50px;
+
+      text-align: center;
+      font-size: 10px;
+      font-weight: bold;
+      background-color: transparent;
+    }
+  }
+}

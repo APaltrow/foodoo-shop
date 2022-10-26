@@ -36,7 +36,7 @@
 
     &:hover {
       cursor: pointer;
-      background-color: $color_light_red;
+      background-color: wheat;
 
       color: $color_darken_red;
       text-decoration: line-through;
@@ -50,12 +50,6 @@
   }
   input {
     display: none;
-  }
-  button {
-    width: 50%;
-    height: 40px;
-    font-size: 14px;
-    padding: 5px;
   }
 
   input[type="checkbox"]:checked + label {
@@ -72,7 +66,7 @@
       font-size: 14px;
       font-weight: bold;
       background-color: $color_darken_red;
-      color: white;
+      color: wheat;
       border-radius: 50%;
       text-align: center;
     }

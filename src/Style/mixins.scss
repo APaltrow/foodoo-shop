@@ -154,3 +154,33 @@
   $result: math.div($px, 16) + rem;
   @return $result;
 }
+
+@mixin modal {
+  position: fixed;
+  background-color: $color_modal;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+@mixin modal-content {
+  position: relative;
+  padding: 20px;
+  width: 50%;
+  height: 80%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: $boxshadow_big;
+  border-radius: 20px;
+  background: radial-gradient($color_light_orange, $color_EX_darken_orange);
+}

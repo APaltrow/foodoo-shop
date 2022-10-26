@@ -9,7 +9,8 @@ import CartItem from "../Cart_Item";
 import style from "./CartItemsCatalog.module.scss";
 
 function CartItems() {
-  const { totalCount, totalCost, products } = useSelector(getCartState);
+  const { totalCount, totalCost, products, discount } =
+    useSelector(getCartState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onClickBack = () => navigate(-1);
@@ -35,13 +36,14 @@ function CartItems() {
       </div>
       <div className={style.total}>
         <span>
-          <strong>Total Cost :</strong> $ {totalCost}
-        </span>
-        <span>
           <strong>Total :</strong> {totalCount}
         </span>
         <span>
-          <strong>Discount :</strong> 0
+          <strong>Total Cost :</strong> $ {totalCost}
+        </span>
+
+        <span>
+          <strong>Discount :</strong> $ {discount}
         </span>
       </div>
       <div className={style.cartItems_btns}>

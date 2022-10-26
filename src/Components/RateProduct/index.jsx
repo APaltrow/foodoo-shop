@@ -5,7 +5,7 @@ import CustomButton from "../CustomButton";
 
 import style from "./RateProduct.module.scss";
 
-const RateProduct = ({ toggle }) => {
+const RateProduct = ({ handleModal }) => {
   const [rating, setRating] = useState(0);
   const [status, setStatus] = useState(RATING_STATUSES[0]);
 
@@ -19,7 +19,7 @@ const RateProduct = ({ toggle }) => {
   }, [rating]);
 
   const onRateNow = () => {
-    toggle();
+    handleModal(false);
   };
 
   const getRating = (rating) => {

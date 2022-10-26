@@ -2,6 +2,10 @@ import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addProducts } from "../../Redux/Slices/cartSlice";
+import { useGenerateLotID } from "../../Helpers/useGenerateLotID";
+import { useDiscount } from "../../Helpers/useDiscount";
 
 import IMG from "../IMG";
 import Rating from "../Rating";
@@ -18,9 +22,13 @@ import AddFavourite from "../AddFovourite";
 import style from "./SingleProduct.module.scss";
 
 const SingleProduct = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigate();
   const onClickBack = () => navigation(-1);
+
   const { id } = useParams();
+  const { lotID } = useGenerateLotID();
+  const { calculatedActiveSize } = useDiscount();
 
   const [isLoading, setLoading] = useState(true);
   const [singleProduct, setProduct] = useState(false);
@@ -29,15 +37,11 @@ const SingleProduct = () => {
   const [rateModal, setRateModal] = useState(false);
   const [addFavouriteModal, setaAdFavouriteModal] = useState(false);
 
-  const onRateThisProduct = () => setRateModal(!rateModal);
   const getSpecialOrder = (order) => setSpecialOrder(order);
-  const onActiveSizeChange = (index) =>
-    setActiveSize(singleProduct.sizes[index]);
+  const onActiveSizeChange = (sizeActive) => setActiveSize(sizeActive);
 
-  const onAddToFavourites = () => {
-    setaAdFavouriteModal(!addFavouriteModal);
-    console.log(`Has been added to Favourites: ${singleProduct.id}`);
-  };
+  const onRateThisProduct = (vis) => setRateModal(vis);
+  const onAddToFavourites = (vis) => setaAdFavouriteModal(vis);
 
   const getSingleProduct = async () => {
     setLoading(true);
@@ -46,17 +50,39 @@ const SingleProduct = () => {
         `https://633577edea0de5318a142d98.mockapi.io/items/${id}`
       );
       setProduct(data);
-      setActiveSize(data.sizes[0]);
+      setActiveSize(calculatedActiveSize(data.sizes[0], data.discount));
     } catch (error) {
       console.log(error.message);
     } finally {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     getSingleProduct();
   }, []);
+
+  //id, title, activePrice, activeSize, specialOrder
+  const lot_id = lotID(
+    singleProduct.id,
+    singleProduct.title,
+    activeSize.price,
+    activeSize.size,
+    specialOrder
+  );
+  // console.log(lot_id);
+  const item = {
+    title: singleProduct.title,
+    id: singleProduct.id,
+    lot_id: lot_id,
+    imgURL: singleProduct.imgURL,
+    activeSize,
+    specialOrder,
+    count: 1,
+  };
+  const onAddProduct = () => {
+    // console.log(item);
+    dispatch(addProducts(item));
+  };
 
   return isLoading ? (
     <Loader />
@@ -69,7 +95,11 @@ const SingleProduct = () => {
 
         <div className={style.btns}>
           <CustomButton icon={"return"} text={"Go Back"} action={onClickBack} />
-          <CustomButton icon={"plus"} text={"Add to cart"} />
+          <CustomButton
+            icon={"plus"}
+            text={"Add to cart"}
+            action={onAddProduct}
+          />
         </div>
       </div>
       <div className={style.product_right}>
@@ -80,19 +110,30 @@ const SingleProduct = () => {
           <CustomIcon
             type={"favourite"}
             icon={"favourites"}
-            action={onAddToFavourites}
+            action={() => onAddToFavourites(true)}
           />
           <CustomIcon
             type={"ratings"}
             icon={"rating"}
-            action={onRateThisProduct}
+            action={() => onRateThisProduct(true)}
           />
           <CustomIcon type={"attention"} icon={"error"} />
           {singleProduct.isVegitarian && (
             <CustomIcon type={"vegitarian"} icon={"salad"} />
           )}
         </div>
+
         <p>{singleProduct.description}</p>
+
+        {singleProduct.discount && (
+          <div className={style.discount}>
+            <CustomIcon icon={"discount"} type={"discount"} />
+            <span>
+              Product is on discount
+              <strong> - {singleProduct.discount} % </strong>
+            </span>
+          </div>
+        )}
 
         <Sizes
           {...singleProduct}
@@ -107,7 +148,7 @@ const SingleProduct = () => {
           specialOrder={specialOrder}
         />
         <CustomModal visible={rateModal} handleModal={onRateThisProduct}>
-          <RateProduct toggle={onRateThisProduct} />
+          <RateProduct handleModal={onRateThisProduct} />
         </CustomModal>
         <CustomModal
           visible={addFavouriteModal}

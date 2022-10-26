@@ -14,7 +14,7 @@ const SpecialOrder = ({
 
   const handleForm = (e) => {
     e.preventDefault();
-    handleModal();
+    handleModal(false);
   };
   const exclude = () => {
     const excludedIngredients = [];
@@ -24,6 +24,7 @@ const SpecialOrder = ({
     getSpecialOrder(excludedIngredients);
   };
   const reset = () => {
+    formRef.current.reset();
     getSpecialOrder([]);
   };
 
@@ -33,16 +34,16 @@ const SpecialOrder = ({
       <div className={style.ingredients}>
         {ingredients.map((ingredient) => (
           <div className={style.ingredient} key={ingredient}>
-            <input
-              type="checkbox"
-              name={ingredient}
-              id={ingredient}
-              defaultChecked={specialOrder.find(
+            <input type="checkbox" name={ingredient} id={ingredient} />
+
+            <label
+              htmlFor={ingredient}
+              defaultChecked={specialOrder.filter(
                 (excluded) => excluded === ingredient
               )}
-            />
-
-            <label htmlFor={ingredient}>{ingredient}</label>
+            >
+              {ingredient}
+            </label>
           </div>
         ))}
       </div>

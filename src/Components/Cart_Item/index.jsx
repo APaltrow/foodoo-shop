@@ -11,17 +11,25 @@ import {
 import style from "./CartItem.module.scss";
 
 function CartItem({ data }) {
-  const { imgURL, title, activeSize, id, count } = data;
+  const {
+    imgURL,
+    title,
+    activeSize,
+    id,
+    lot_id,
+    count,
+    specialOrder,
+    savedOnDiscount,
+  } = data;
   const dispatch = useDispatch();
 
-  const item = { id, activeSize };
   const onRemoveItem = () => {
     if (window.confirm("Are you sure you want to remove the item?")) {
-      dispatch(removeProduct(item));
+      dispatch(removeProduct({ lot_id }));
     }
   };
-  const onPlusItem = () => dispatch(plusProduct(item));
-  const onMinusItem = () => dispatch(minusProduct(item));
+  const onPlusItem = () => dispatch(plusProduct({ lot_id }));
+  const onMinusItem = () => dispatch(minusProduct({ lot_id }));
 
   return (
     <div className={style.cart_item}>
@@ -31,8 +39,24 @@ function CartItem({ data }) {
         <div className={style.cart_item_description_title}>
           <h3>{title}</h3>
           <span>{activeSize.size}</span>
+          <div>
+            <strong className={activeSize.discountedPrice && style.discount}>
+              $ {activeSize.price}
+            </strong>
+            {activeSize.discountedPrice && (
+              <strong> $ {activeSize.discountedPrice}</strong>
+            )}
+          </div>
         </div>
       </div>
+      {specialOrder && (
+        <div className={style.cart_item_specialOreder}>
+          Special order
+          {specialOrder.map((orderS, i) => (
+            <span key={i + 55}>{orderS}</span>
+          ))}
+        </div>
+      )}
       <div className={style.cart_item_setting}>
         <CustomButton
           text={"-"}
@@ -43,7 +67,7 @@ function CartItem({ data }) {
         <strong>{count}</strong>
 
         <CustomButton text={"+"} type={"service"} action={onPlusItem} />
-        <strong>${activeSize.price}</strong>
+
         <CustomButton icon={"delete"} type={"delete"} action={onRemoveItem} />
       </div>
     </div>

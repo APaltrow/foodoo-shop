@@ -8,13 +8,19 @@ import Sizes from "../Sizes";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProducts, getCartState } from "../../Redux/Slices/cartSlice";
+import { useGenerateLotID } from "../../Helpers/useGenerateLotID";
+import { useDiscount } from "../../Helpers/useDiscount";
 
 import style from "./DishCard_Item.module.scss";
 
 function DishCardItem({ data }) {
   const { imgURL, title, sizes, price, id, rating, discount } = data;
-  const [activeSize, setActiveSize] = useState(sizes[0]);
+  const { calculatedActiveSize } = useDiscount();
+  const [activeSize, setActiveSize] = useState(
+    calculatedActiveSize(sizes[0], discount)
+  );
   const [productCount, setProductCount] = useState(0);
+  const { lotID } = useGenerateLotID();
 
   const getCartProducts = useSelector(getCartState).products;
   const getProductCount = () => {
@@ -30,9 +36,16 @@ function DishCardItem({ data }) {
 
   const dispatch = useDispatch();
 
-  const onActiveSizeChange = (size) => setActiveSize(sizes[size]);
-
-  const item = { title, id, imgURL, activeSize, count: 1 };
+  const onActiveSizeChange = (size) => setActiveSize(size);
+  const lot_id = lotID(id, title, activeSize.price, activeSize.size, []);
+  const item = {
+    title,
+    id,
+    lot_id,
+    imgURL,
+    activeSize,
+    count: 1,
+  };
   const onAddProduct = () => dispatch(addProducts(item));
 
   return (

@@ -14,7 +14,7 @@ const Ingredients = ({
 }) => {
   const [isVisibleModal, setModal] = useState(false);
 
-  const handleModal = () => setModal(!isVisibleModal);
+  const handleModal = (vis) => setModal(vis);
 
   return (
     <div className={style.ingredients}>
@@ -48,7 +48,10 @@ const Ingredients = ({
             <strong>Weight:</strong> {activeSize.weight} `g
           </span>
 
-          <CustomButton text={"special order"} action={handleModal} />
+          <CustomButton
+            text={"special order"}
+            action={() => handleModal(true)}
+          />
         </div>
       </div>
       <CustomModal visible={isVisibleModal} handleModal={handleModal}>
