@@ -1,11 +1,17 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { addProducts } from "../../Redux/Slices/cartSlice";
 import { useGenerateLotID } from "../../Helpers/useGenerateLotID";
 import { useDiscount } from "../../Helpers/useDiscount";
+import {
+  setSingleProduct,
+  getSingleProductState,
+  setActiveSize,
+  setSpecialOrder,
+} from "../../Redux/Slices/singleProductSlice";
 
 import IMG from "../IMG";
 import Rating from "../Rating";
@@ -18,30 +24,32 @@ import Reviews from "../Reviews";
 import RateProduct from "../RateProduct";
 import CustomModal from "../CustomModal";
 import AddFavourite from "../AddFovourite";
+import Discount from "../Discount";
 
 import style from "./SingleProduct.module.scss";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
-  const navigation = useNavigate();
-  const onClickBack = () => navigation(-1);
-
   const { id } = useParams();
   const { lotID } = useGenerateLotID();
   const { calculatedActiveSize } = useDiscount();
 
+  const { activeSize, specialOrder } = useSelector(getSingleProductState);
+  const {
+    title,
+    rating,
+    imgURL,
+    description,
+    ingredients,
+    isVegitarian,
+    reviews,
+    sizes,
+    discount,
+  } = useSelector(getSingleProductState).singleProduct;
   const [isLoading, setLoading] = useState(true);
-  const [singleProduct, setProduct] = useState(false);
-  const [activeSize, setActiveSize] = useState([]);
-  const [specialOrder, setSpecialOrder] = useState([]);
+
   const [rateModal, setRateModal] = useState(false);
   const [addFavouriteModal, setaAdFavouriteModal] = useState(false);
-
-  const getSpecialOrder = (order) => setSpecialOrder(order);
-  const onActiveSizeChange = (sizeActive) => setActiveSize(sizeActive);
-
-  const onRateThisProduct = (vis) => setRateModal(vis);
-  const onAddToFavourites = (vis) => setaAdFavouriteModal(vis);
 
   const getSingleProduct = async () => {
     setLoading(true);
@@ -49,8 +57,11 @@ const SingleProduct = () => {
       const { data } = await axios.get(
         `https://633577edea0de5318a142d98.mockapi.io/items/${id}`
       );
-      setProduct(data);
-      setActiveSize(calculatedActiveSize(data.sizes[0], data.discount));
+      dispatch(setSingleProduct(data));
+
+      dispatch(
+        setActiveSize(calculatedActiveSize(data.sizes[0], data.discount))
+      );
     } catch (error) {
       console.log(error.message);
     } finally {
@@ -61,26 +72,23 @@ const SingleProduct = () => {
     getSingleProduct();
   }, []);
 
-  //id, title, activePrice, activeSize, specialOrder
-  const lot_id = lotID(
-    singleProduct.id,
-    singleProduct.title,
-    activeSize.price,
-    activeSize.size,
-    specialOrder
-  );
-  // console.log(lot_id);
+  const getSpecialOrder = (order) => dispatch(setSpecialOrder(order));
+  const onActiveSizeChange = (sizeActive) =>
+    dispatch(setActiveSize(sizeActive));
+
+  const onRateThisProduct = (vis) => setRateModal(vis);
+  const onAddToFavourites = (vis) => setaAdFavouriteModal(vis);
+
   const item = {
-    title: singleProduct.title,
-    id: singleProduct.id,
-    lot_id: lot_id,
-    imgURL: singleProduct.imgURL,
+    title,
+    id,
+    lot_id: lotID(id, activeSize.size, specialOrder),
+    imgURL,
     activeSize,
     specialOrder,
     count: 1,
   };
   const onAddProduct = () => {
-    // console.log(item);
     dispatch(addProducts(item));
   };
 
@@ -89,12 +97,12 @@ const SingleProduct = () => {
   ) : (
     <div className={style.product_container}>
       <div className={style.product_left}>
-        <IMG type="big" {...singleProduct} />
+        <IMG type="big" id={id} imgURL={imgURL} title={title} />
         <div> Slider bar</div>
-        <Reviews reviews={singleProduct.reviews} />
+        <Reviews reviews={reviews} />
 
         <div className={style.btns}>
-          <CustomButton icon={"return"} text={"Go Back"} action={onClickBack} />
+          <CustomButton type={"goBack"} />
           <CustomButton
             icon={"plus"}
             text={"Add to cart"}
@@ -103,8 +111,9 @@ const SingleProduct = () => {
         </div>
       </div>
       <div className={style.product_right}>
-        <h2> {singleProduct.title}</h2>
-        <Rating rating={singleProduct.rating} />
+        <h2> {title}</h2>
+
+        <Rating rating={rating} />
 
         <div className={style.informers}>
           <CustomIcon
@@ -118,31 +127,22 @@ const SingleProduct = () => {
             action={() => onRateThisProduct(true)}
           />
           <CustomIcon type={"attention"} icon={"error"} />
-          {singleProduct.isVegitarian && (
-            <CustomIcon type={"vegitarian"} icon={"salad"} />
-          )}
+          {isVegitarian && <CustomIcon type={"vegitarian"} icon={"salad"} />}
         </div>
 
-        <p>{singleProduct.description}</p>
+        <p>{description}</p>
 
-        {singleProduct.discount && (
-          <div className={style.discount}>
-            <CustomIcon icon={"discount"} type={"discount"} />
-            <span>
-              Product is on discount
-              <strong> - {singleProduct.discount} % </strong>
-            </span>
-          </div>
-        )}
+        <Discount discount={discount} />
 
         <Sizes
-          {...singleProduct}
+          sizes={sizes}
           activeSize={activeSize}
+          discount={discount}
           action={onActiveSizeChange}
         />
 
         <Ingredients
-          ingredients={singleProduct.ingredients}
+          ingredients={ingredients}
           activeSize={activeSize}
           getSpecialOrder={getSpecialOrder}
           specialOrder={specialOrder}
@@ -156,7 +156,7 @@ const SingleProduct = () => {
         >
           <AddFavourite
             size={activeSize}
-            title={singleProduct.title}
+            title={title}
             specialOrder={specialOrder}
             onAddToFavourites={onAddToFavourites}
           />

@@ -4,6 +4,7 @@ import Rating from "../Rating";
 import Count from "../Count";
 import IMG from "../IMG";
 import Sizes from "../Sizes";
+import Discount from "../Discount";
 
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,11 +17,11 @@ import style from "./DishCard_Item.module.scss";
 function DishCardItem({ data }) {
   const { imgURL, title, sizes, price, id, rating, discount } = data;
   const { calculatedActiveSize } = useDiscount();
+  const { lotID } = useGenerateLotID();
   const [activeSize, setActiveSize] = useState(
     calculatedActiveSize(sizes[0], discount)
   );
   const [productCount, setProductCount] = useState(0);
-  const { lotID } = useGenerateLotID();
 
   const getCartProducts = useSelector(getCartState).products;
   const getProductCount = () => {
@@ -37,11 +38,11 @@ function DishCardItem({ data }) {
   const dispatch = useDispatch();
 
   const onActiveSizeChange = (size) => setActiveSize(size);
-  const lot_id = lotID(id, title, activeSize.price, activeSize.size, []);
+
   const item = {
     title,
     id,
-    lot_id,
+    lot_id: lotID(id, activeSize.size, []),
     imgURL,
     activeSize,
     count: 1,
@@ -50,17 +51,8 @@ function DishCardItem({ data }) {
 
   return (
     <div className={style.dish_card}>
-      {discount && (
-        <div className={style.discount}>
-          <strong>
-            {discount}
-            <span>%</span>
-          </strong>
-          <span>Discount!</span>
-        </div>
-      )}
       <IMG {...data} type={"mid"} />
-
+      <Discount discount={discount} type={"small"} />
       <div className={style.description}>
         <h3>{title}</h3>
         {rating && <Rating rating={rating} />}
@@ -72,13 +64,12 @@ function DishCardItem({ data }) {
           action={onActiveSizeChange}
         />
 
-        {productCount > 0 && <Count data={productCount} />}
-
         <CustomButton
           action={onAddProduct}
           icon={"plus"}
           text={"Add to cart"}
         />
+        {productCount > 0 && <Count data={productCount} />}
       </div>
     </div>
   );

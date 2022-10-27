@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDiscount } from "../../Helpers/useDiscount";
+import CustomIcon from "../CustomIcon";
 
 import style from "./Sizes.module.scss";
 
@@ -29,11 +30,15 @@ const Sizes = ({ sizes, activeSize, action, discount }) => {
               aSize.price === size.price ? style.price : style.not_visible
             }
           >
-            <span className={discount && style.actual_price}>
-              $ {aSize.price}
+            <div className={style.actual_price}>
+              {discount ? aSize.discountedPrice : aSize.price}
+            </div>
+            {discount && (
+              <div className={style.discounted_price}>{aSize.price}</div>
+            )}
+            <span>
+              <CustomIcon type={"small"} icon={"price"} />
             </span>
-            {discount && <span>$ {aSize.discountedPrice}</span>}
-            <div className={style.price_tick}></div>
           </div>
           {size.size}
         </div>

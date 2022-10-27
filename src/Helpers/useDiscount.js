@@ -1,8 +1,7 @@
 export const useDiscount = () => {
   const calculatedActiveSize = (activeS, discount) => {
     const initialPrice = activeS.price;
-    console.log(discount);
-    //console.log(activeS);
+
     if (discount) {
       return {
         ...activeS,

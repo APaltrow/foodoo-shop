@@ -14,25 +14,7 @@
   display: flex;
   justify-content: space-around;
 }
-.discount {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  margin: 10px 0;
-  background-color: lighten($color_light_red, 10);
-  span {
-    color: $color_darken_red;
-    font-size: rem(14);
-    font-style: italic;
-  }
-  strong {
-    font-size: rem(20);
-    color: $color_darken_red;
-  }
-}
+
 .informers {
   position: absolute;
   top: 10px;
@@ -59,7 +41,7 @@
   box-shadow: $boxshadow_big;
   flex: 1;
 }
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 980px) {
   .product_container {
     flex-direction: column;
     .btns {

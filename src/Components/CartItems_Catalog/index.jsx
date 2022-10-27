@@ -1,10 +1,9 @@
 import React from "react";
-import CustomButton from "../CustomButton";
 import { useSelector, useDispatch } from "react-redux";
 import { getCartState, clearCart } from "../../Redux/Slices/cartSlice";
-import { useNavigate } from "react-router-dom";
 
 import CartItem from "../Cart_Item";
+import CustomButton from "../CustomButton";
 
 import style from "./CartItemsCatalog.module.scss";
 
@@ -12,8 +11,6 @@ function CartItems() {
   const { totalCount, totalCost, products, discount } =
     useSelector(getCartState);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const onClickBack = () => navigate(-1);
 
   const onClearCart = () => {
     window.confirm("Are you sure you want to clear your orders?") &&
@@ -47,7 +44,7 @@ function CartItems() {
         </span>
       </div>
       <div className={style.cartItems_btns}>
-        <CustomButton icon={"return"} text={"go back"} action={onClickBack} />
+        <CustomButton type={"goBack"} />
         <CustomButton icon={"wallet"} text={"check out"} />
       </div>
     </div>

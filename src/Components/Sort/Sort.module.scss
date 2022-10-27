@@ -3,19 +3,14 @@
 
 .root {
   position: relative;
+  width: rem(200);
+  height: rem(40);
+  margin: 0 auto;
 
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 20px;
-
-  width: rem(300);
-  margin: 0 auto;
-  color: $color_darken_brown;
-
-  svg {
-    fill: $color_darken_brown;
-  }
+  fill: $color_darken_brown;
 
   strong {
     color: $color_darken_brown;

@@ -3,8 +3,9 @@
 
 .dish_card {
   position: relative;
-  width: rem(280);
-  height: rem(400);
+  width: rem(310);
+  height: rem(450);
+  padding-bottom: 20px;
   background-color: $color_light_whiteHeader;
   border-radius: 10px;
   box-shadow: $boxshadow_big;

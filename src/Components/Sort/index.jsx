@@ -32,7 +32,6 @@ function Sort() {
       <strong onClick={toggle} ref={ref}>
         {sort[sortBy].name}
       </strong>
-
       {isVisible && <Dropdown data={sort} getId={onSortByChange} />}
     </div>
   );

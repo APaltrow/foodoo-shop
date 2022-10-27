@@ -38,7 +38,7 @@
 
 .content_active {
   @include modal-content;
-
+  height: 70%;
   z-index: 20;
   animation: fade-in 0.3s linear;
   @keyframes fade-in {

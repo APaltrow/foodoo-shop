@@ -1,15 +1,15 @@
 export const useGenerateLotID = () => {
   //ID for non special orders
-  const lotID = (id, title, activePrice, activeSize, specialOrder) => {
+  const lotID = (id, activeSize, specialOrder) => {
     //console.log(activePrice);
     if (specialOrder.length) {
       const order =
         specialOrder.length > 1
           ? [...specialOrder].sort().join("*")
           : [...specialOrder].join("*");
-      return `${id}+${title}+${activePrice}+${activeSize}+${order}`;
+      return `${id}+${activeSize}+${order}`;
     } else {
-      return `${id}+${title}+${activePrice}+${activeSize}`;
+      return `${id}+${activeSize}`;
     }
   };
 
