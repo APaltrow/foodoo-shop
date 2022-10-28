@@ -3,8 +3,9 @@
 
 .cart_item {
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
-  min-width: 50%;
+  min-width: 60%;
 
   padding: 10px;
   background-color: $color_light_whiteHeader;
@@ -21,10 +22,10 @@
     &_title {
       display: flex;
       flex-direction: column;
+      gap: 10px;
 
       min-width: 100px;
       span {
-        margin-bottom: 10px;
         background-color: $color_darken_orange;
         text-align: center;
         border-radius: 10px;
@@ -41,46 +42,67 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 10px;
-
-    width: 180px;
+    gap: 20px;
 
     strong {
       text-align: center;
-      min-width: 40px;
+      min-width: 20px;
     }
   }
   .cart_item_specialOreder {
+    position: relative;
     min-width: 150px;
     margin: 5px;
     padding: 5px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 5px;
 
     font-weight: bold;
+  }
+  .specialOrder_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 
+    input {
+      display: none;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    input[type="checkbox"]:checked + label {
+      svg {
+        transform: rotate(180deg);
+      }
+      .specialOrder_list {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+  .specialOrder_list {
+    width: 100%;
+    display: none;
     span {
       font-size: 12px;
       text-decoration: line-through;
       color: $color_darken_red;
     }
   }
-  @media only screen and (max-width: 980px) {
-    min-width: 80%;
+
+  @media only screen and (max-width: 950px) {
+    width: 95%;
   }
   @media only screen and (max-width: 680px) {
-    flex-direction: column;
-    min-width: 95%;
+    flex-wrap: wrap;
 
-    &_description {
-      align-items: center;
-    }
-    .cart_item_specialOreder {
-      margin-left: 120px;
-    }
     &_setting {
-      width: 100%;
+      width: 95%;
       justify-content: center;
       align-items: center;
     }

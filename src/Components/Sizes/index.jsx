@@ -31,10 +31,14 @@ const Sizes = ({ sizes, activeSize, action, discount }) => {
             }
           >
             <div className={style.actual_price}>
-              {discount ? aSize.discountedPrice : aSize.price}
+              {discount
+                ? aSize.discountedPrice.toFixed(2)
+                : aSize.price.toFixed(2)}
             </div>
             {discount && (
-              <div className={style.discounted_price}>{aSize.price}</div>
+              <div className={style.discounted_price}>
+                {aSize.price.toFixed(2)}
+              </div>
             )}
             <span>
               <CustomIcon type={"small"} icon={"price"} />

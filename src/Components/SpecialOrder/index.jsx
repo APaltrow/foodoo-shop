@@ -1,6 +1,6 @@
 import React from "react";
 import CustomButton from "../CustomButton";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 import style from "./SpecialOrder.module.scss";
 
@@ -28,6 +28,11 @@ const SpecialOrder = ({
     getSpecialOrder([]);
   };
 
+  useEffect(() => {
+    return () => {
+      getSpecialOrder([]);
+    };
+  }, []);
   return (
     <form className={style.special_order} ref={formRef} onSubmit={handleForm}>
       <h3>Special order</h3>

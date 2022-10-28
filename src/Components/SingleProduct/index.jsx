@@ -29,10 +29,10 @@ import Discount from "../Discount";
 import style from "./SingleProduct.module.scss";
 
 const SingleProduct = () => {
-  const dispatch = useDispatch();
   const { id } = useParams();
   const { lotID } = useGenerateLotID();
   const { calculatedActiveSize } = useDiscount();
+  const dispatch = useDispatch();
 
   const { activeSize, specialOrder } = useSelector(getSingleProductState);
   const {
@@ -79,16 +79,16 @@ const SingleProduct = () => {
   const onRateThisProduct = (vis) => setRateModal(vis);
   const onAddToFavourites = (vis) => setaAdFavouriteModal(vis);
 
-  const item = {
-    title,
-    id,
-    lot_id: lotID(id, activeSize.size, specialOrder),
-    imgURL,
-    activeSize,
-    specialOrder,
-    count: 1,
-  };
   const onAddProduct = () => {
+    const item = {
+      title,
+      id,
+      lot_id: lotID(id, activeSize.size, specialOrder),
+      imgURL,
+      activeSize,
+      specialOrder,
+      count: 1,
+    };
     dispatch(addProducts(item));
   };
 

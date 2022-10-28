@@ -1,11 +1,11 @@
 export const useDiscount = () => {
   const calculatedActiveSize = (activeS, discount) => {
-    const initialPrice = activeS.price;
+    const initialPrice = +activeS.price.toFixed(2);
 
     if (discount) {
       return {
         ...activeS,
-        price: +initialPrice.toFixed(2),
+        price: initialPrice,
         discountedPrice: +(
           initialPrice -
           (initialPrice / 100) * discount
@@ -15,7 +15,7 @@ export const useDiscount = () => {
     } else {
       return {
         ...activeS,
-        price: +initialPrice.toFixed(2),
+        price: initialPrice,
         discountedPrice: null,
         savedOnDiscount: null,
       };

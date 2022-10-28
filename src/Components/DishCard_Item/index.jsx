@@ -45,6 +45,7 @@ function DishCardItem({ data }) {
     lot_id: lotID(id, activeSize.size, []),
     imgURL,
     activeSize,
+    specialOrder: [],
     count: 1,
   };
   const onAddProduct = () => dispatch(addProducts(item));

@@ -1,6 +1,7 @@
 import React from "react";
 import IMG from "../IMG";
 import CustomButton from "../CustomButton";
+import CustomIcon from "../CustomIcon";
 import { useDispatch } from "react-redux";
 import {
   removeProduct,
@@ -11,16 +12,7 @@ import {
 import style from "./CartItem.module.scss";
 
 function CartItem({ data }) {
-  const {
-    imgURL,
-    title,
-    activeSize,
-    id,
-    lot_id,
-    count,
-    specialOrder,
-    savedOnDiscount,
-  } = data;
+  const { imgURL, title, activeSize, id, lot_id, count, specialOrder } = data;
   const dispatch = useDispatch();
 
   const onRemoveItem = () => {
@@ -34,29 +26,37 @@ function CartItem({ data }) {
   return (
     <div className={style.cart_item}>
       <div className={style.cart_item_description}>
-        <IMG {...data} type={"small"} />
+        <IMG id={id} title={title} imgURL={imgURL} type={"small"} />
 
         <div className={style.cart_item_description_title}>
           <h3>{title}</h3>
           <span>{activeSize.size}</span>
           <div>
             <strong className={activeSize.discountedPrice && style.discount}>
-              $ {activeSize.price}
+              $ {activeSize.price.toFixed(2)}
             </strong>
             {activeSize.discountedPrice && (
-              <strong> $ {activeSize.discountedPrice}</strong>
+              <strong> $ {activeSize.discountedPrice.toFixed(2)}</strong>
             )}
           </div>
         </div>
       </div>
-      {specialOrder && (
+      {specialOrder.length ? (
         <div className={style.cart_item_specialOreder}>
           Special order
-          {specialOrder.map((orderS, i) => (
-            <span key={i + 55}>{orderS}</span>
-          ))}
+          <div className={style.specialOrder_header}>
+            <input type={"checkbox"} id={lot_id} />
+            <label htmlFor={lot_id}>
+              <CustomIcon type={"small"} icon={"arrow"} />
+              <div className={style.specialOrder_list}>
+                {specialOrder.map((orderS, i) => (
+                  <span key={i + 55}>{orderS}</span>
+                ))}
+              </div>
+            </label>
+          </div>
         </div>
-      )}
+      ) : null}
       <div className={style.cart_item_setting}>
         <CustomButton
           text={"-"}

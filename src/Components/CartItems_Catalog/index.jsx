@@ -20,12 +20,6 @@ function CartItems() {
   return (
     <div className={style.cartItems}>
       <h2>Cart</h2>
-      <CustomButton
-        icon={"delete"}
-        type={"delete"}
-        text={"Remove all"}
-        action={onClearCart}
-      />
       <div className={style.cartItems_container}>
         {products.map((item, i) => (
           <CartItem data={item} key={item.id + i} />
@@ -45,6 +39,12 @@ function CartItems() {
       </div>
       <div className={style.cartItems_btns}>
         <CustomButton type={"goBack"} />
+        <CustomButton
+          icon={"delete"}
+          type={"delete"}
+          text={"Remove all"}
+          action={onClearCart}
+        />
         <CustomButton icon={"wallet"} text={"check out"} />
       </div>
     </div>
