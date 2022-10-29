@@ -6,11 +6,9 @@ import { useInput } from "../../Helpers/useInput";
 
 import style from "./CustomInput.module.scss";
 
-const CustomInput = ({ type, placeholder, name, onInputChange }) => {
+const CustomInput = ({ type, placeholder, name }) => {
   const { value, isDirty, onChange, onBlur, isError } = useInput(
-    inputValidations[type],
-    onInputChange,
-    name
+    inputValidations[type]
   );
 
   return (
@@ -18,6 +16,7 @@ const CustomInput = ({ type, placeholder, name, onInputChange }) => {
       <label className={style.label}>
         <div className={style.icon}> {generateIcon(name)}</div>
         <input
+          defaultChecked={!isError}
           className={
             isDirty && isError ? style.custom_input_invalid : style.custom_input
           }

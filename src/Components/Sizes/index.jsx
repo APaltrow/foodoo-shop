@@ -1,21 +1,12 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { useDiscount } from "../../Helpers/useDiscount";
 import CustomIcon from "../CustomIcon";
 
 import style from "./Sizes.module.scss";
 
 const Sizes = ({ sizes, activeSize, action, discount }) => {
-  const { calculatedActiveSize } = useDiscount();
-  const [aSize, setASize] = useState(activeSize);
-
   const onActiveSizeChange = (index) => {
-    setASize(() => calculatedActiveSize(sizes[index], discount));
+    action(sizes[index]);
   };
-
-  useEffect(() => {
-    action(aSize);
-  }, [aSize]);
 
   return (
     <div className={style.sizes}>
@@ -27,17 +18,17 @@ const Sizes = ({ sizes, activeSize, action, discount }) => {
         >
           <div
             className={
-              aSize.price === size.price ? style.price : style.not_visible
+              activeSize.price === size.price ? style.price : style.not_visible
             }
           >
             <div className={style.actual_price}>
               {discount
-                ? aSize.discountedPrice.toFixed(2)
-                : aSize.price.toFixed(2)}
+                ? activeSize.discountedPrice.toFixed(2)
+                : activeSize.price.toFixed(2)}
             </div>
             {discount && (
               <div className={style.discounted_price}>
-                {aSize.price.toFixed(2)}
+                {activeSize.price.toFixed(2)}
               </div>
             )}
             <span>

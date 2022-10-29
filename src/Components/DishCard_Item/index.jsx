@@ -15,14 +15,15 @@ import { useDiscount } from "../../Helpers/useDiscount";
 import style from "./DishCard_Item.module.scss";
 
 function DishCardItem({ data }) {
-  const { imgURL, title, sizes, price, id, rating, discount } = data;
+  const { imgURL, title, sizes, id, rating, discount } = data;
   const { calculatedActiveSize } = useDiscount();
   const { lotID } = useGenerateLotID();
+  const dispatch = useDispatch();
   const [activeSize, setActiveSize] = useState(
     calculatedActiveSize(sizes[0], discount)
   );
-  const [productCount, setProductCount] = useState(0);
 
+  const [productCount, setProductCount] = useState(0);
   const getCartProducts = useSelector(getCartState).products;
   const getProductCount = () => {
     const count = getCartProducts.filter((item) => item.id === id);
@@ -30,15 +31,12 @@ function DishCardItem({ data }) {
       ? setProductCount(0)
       : setProductCount(count.reduce((res, val) => res + val.count, 0));
   };
-
   useEffect(() => {
     getProductCount();
   }, [getCartProducts]);
 
-  const dispatch = useDispatch();
-
-  const onActiveSizeChange = (size) => setActiveSize(size);
-
+  const onActiveSizeChange = (size) =>
+    setActiveSize(calculatedActiveSize(size, discount));
   const item = {
     title,
     id,

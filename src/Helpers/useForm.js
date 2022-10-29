@@ -1,46 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { form_types } from "../constants/FormTypes";
 
 import useAuthentication from "./useAuthentication";
 
 export const useForm = (type) => {
+  const formRef = useRef();
   const [inputs, setInputs] = useState(form_types[type]);
-  const [validInputs, setValidInputs] = useState([]);
+  const [credentials, setCredentials] = useState({});
   const [formValid, setFormValid] = useState(false);
+  const { formError, authenticate, status } = useAuthentication(type);
 
-  const { formError, isLoading, authenticate } = useAuthentication(
-    type,
-    validInputs
-  );
-  const onInputChange = (name, val, error) => {
-    const prevValidInputs = validInputs.filter((input) => input.name !== name);
-    if (error) {
-      setFormValid(false);
-      setValidInputs(prevValidInputs);
-    } else {
-      setValidInputs([...prevValidInputs, { name: name, value: val }]);
-    }
+  const generateCredentials = (validInputsList) => {
+    const credentials = {};
+    validInputsList.map((input) => Object.assign(credentials, input));
+    return credentials;
   };
-  /// registration log
+  const checkIfValidForm = () => {
+    const validInputsList = [];
+    for (let input of formRef.current.elements) {
+      input.defaultChecked &&
+        validInputsList.push({ [input.name]: input.value });
+    }
+    inputs.length === validInputsList.length
+      ? setFormValid(true)
+      : setFormValid(false);
+    setCredentials(generateCredentials(validInputsList));
+  };
+
   const onFormSubmit = (e) => {
     e.preventDefault();
     setFormValid(false);
-    authenticate(validInputs);
-    setFormValid(true);
+    authenticate(credentials);
+    formRef.current.reset();
   };
-
-  useEffect(() => {
-    if (validInputs.length === inputs.length) {
-      setFormValid(true);
-    }
-  }, [validInputs]);
 
   return {
     inputs,
     formValid,
-    onInputChange,
     onFormSubmit,
     formError,
-    isLoading,
+    formRef,
+    checkIfValidForm,
+    status,
   };
 };

@@ -1,89 +1,58 @@
-import React from "react";
 import axios from "axios";
-
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../Redux/Slices/authSlice";
+
+import {
+  getAuthState,
+  setLogin,
+  setUserCredentials,
+  fetchCheckUser,
+  fetchRegisterUser,
+  fetchUpdateAddress,
+} from "../Redux/Slices/authSlice";
 
 const useAuthentication = (type) => {
-  const navigate = useNavigate();
+  const { user, serverData, status, error } = useSelector(getAuthState);
   const dispatch = useDispatch();
 
-  const URL = "https://633577edea0de5318a142d98.mockapi.io/users";
+  const [formError, setError] = useState(error);
 
-  const [formError, setError] = useState(false);
-  const [isLoading, setLoading] = useState(false);
+  const updateAddress = async (credentials) => {
+    const response = await axios.put(
+      `https://633577edea0de5318a142d98.mockapi.io/users/${user.id}`,
+      credentials
+    );
+    console.log(response);
+  };
 
-  const generateCredentials = (validInputs) => {
-    const credentials = {};
-    validInputs.map((input) => (credentials[input.name] = input.value));
-    return credentials;
-  };
-  const check = async (credentials) => {
-    try {
-      const { data } = await axios.get(`${URL}?email=${credentials.email}`);
-      return data;
-    } catch (error) {
-      setError(error.message);
-      return "failed";
-    } finally {
-      setLoading(false);
-    }
-  };
-  const register = async (data, credentials) => {
-    if (data.length) {
-      setError("Such email already exists");
-    } else {
-      try {
-        const responded = await axios.post(
-          "https://633577edea0de5318a142d98.mockapi.io/users",
-          credentials
+  const authenticate = async (credentials) => {
+    await dispatch(setUserCredentials(credentials));
+    const { payload } = await dispatch(fetchCheckUser(credentials));
+
+    switch (type) {
+      case "registration":
+        if (payload.length) {
+          setError("Please try a different Email");
+        } else {
+          dispatch(fetchRegisterUser(credentials));
+        }
+        break;
+      case "login":
+        dispatch(setLogin());
+        break;
+      case "delivery_address":
+        dispatch(
+          fetchUpdateAddress({ id: user.id, address: { ...credentials } })
         );
-        navigate("/login");
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
+        break;
+      default:
+        return null;
     }
   };
 
-  const login = (data, credentials) => {
-    if (
-      data.length &&
-      data[0].password === credentials.password &&
-      data[0].email === credentials.email
-    ) {
-      dispatch(setUser(data[0]));
-      navigate("/");
-    } else {
-      setError("Incorrect credentials");
-    }
-  };
-
-  const authenticate = async (validInputs) => {
-    setLoading(true);
-    const credentials = await generateCredentials(validInputs);
-    const data = await check(credentials);
-
-    if (data === "failed") {
-      setLoading(false);
-    } else {
-      switch (type) {
-        case "registration":
-          register(data, credentials);
-          break;
-        case "login":
-          login(data, credentials);
-          break;
-        case "delivery_address":
-          break;
-        default:
-          setLoading(false);
-      }
-    }
-  };
+  useEffect(() => {
+    setError(error);
+  }, [error]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -93,8 +62,8 @@ const useAuthentication = (type) => {
 
   return {
     formError,
-    isLoading,
     authenticate,
+    status,
   };
 };
 

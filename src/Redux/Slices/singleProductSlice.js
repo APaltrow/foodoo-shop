@@ -1,11 +1,31 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import { useDiscount } from "../../Helpers/useDiscount";
+
+const Discount = (size, discount) => {
+  const { calculatedActiveSize } = useDiscount();
+  const activeSize = calculatedActiveSize(size, discount);
+
+  return activeSize;
+};
+export const fetchSingleProduct = createAsyncThunk(
+  "singleProduct/fetchSingleProduct",
+  async (id) => {
+    const { data } = await axios.get(
+      `https://633577edea0de5318a142d98.mockapi.io/items/${id}`
+    );
+
+    return data;
+  }
+);
 
 const initialState = {
   singleProduct: {},
   activeSize: {},
   specialOrder: [],
 
-  isLoading: false,
+  status: "",
+  error: "",
 };
 
 export const singleProductSlice = createSlice({
@@ -16,10 +36,34 @@ export const singleProductSlice = createSlice({
       state.singleProduct = action.payload;
     },
     setActiveSize: (state, action) => {
-      state.activeSize = { ...action.payload };
+      state.activeSize = Discount(
+        { ...action.payload },
+        state.singleProduct.discount
+      );
     },
     setSpecialOrder: (state, action) => {
       state.specialOrder = [...action.payload];
+    },
+  },
+  extraReducers: {
+    [fetchSingleProduct.pending]: (state) => {
+      state.status = "pending";
+    },
+    [fetchSingleProduct.fulfilled]: (state, action) => {
+      state.singleProduct = action.payload;
+      state.activeSize = Discount(
+        action.payload.sizes[0],
+        action.payload.discount
+      );
+
+      state.status = "success";
+    },
+    [fetchSingleProduct.rejected]: (state, action) => {
+      state.singleProduct = {};
+      state.activeSize = [];
+      state.error = action.error.message;
+
+      state.status = "error";
     },
   },
 });

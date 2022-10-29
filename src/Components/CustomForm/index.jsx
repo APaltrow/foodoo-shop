@@ -13,22 +13,28 @@ const CustomForm = ({ type, title, btn }) => {
   const {
     inputs,
     formValid,
-    onInputChange,
     onFormSubmit,
     formError,
-    isLoading,
+    formRef,
+    checkIfValidForm,
+    status,
   } = useForm(type);
 
   return (
-    <form className={style.form} onSubmit={onFormSubmit}>
+    <form
+      className={style.form}
+      onSubmit={onFormSubmit}
+      ref={formRef}
+      onKeyUp={checkIfValidForm}
+    >
       <Icon type="big" icon="logo" />
       <h1>{title}</h1>
 
-      {isLoading && <Loader />}
+      {status === "pending" && <Loader />}
       {formError && <Error error={formError} />}
 
       {inputs.map((input) => (
-        <CustomInput {...input} key={input.id} onInputChange={onInputChange} />
+        <CustomInput {...input} key={input.id} />
       ))}
 
       <CustomButton text={btn} disabled={!formValid} />
