@@ -138,3 +138,7 @@
     }
   }
 }
+.settings {
+  @include iconCreator(80, $color_darken_brown, transparent);
+  padding: 0;
+}

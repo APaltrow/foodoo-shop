@@ -20,6 +20,9 @@
     text-transform: uppercase;
     text-shadow: $boxshadow_big;
   }
+  h3 {
+    margin: rem(10) 0px;
+  }
 
   button {
     min-width: 100%;

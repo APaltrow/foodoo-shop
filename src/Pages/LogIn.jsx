@@ -10,7 +10,11 @@ function LogIn() {
   if (isAuth) {
     return <Navigate to="/" />;
   } else {
-    return <CustomForm type={"login"} title={"login"} btn={"login"} />;
+    return (
+      <>
+        <CustomForm type={"login"} title={"login"} btn={"login"} />
+      </>
+    );
   }
 }
 

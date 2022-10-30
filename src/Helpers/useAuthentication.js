@@ -4,46 +4,79 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   getAuthState,
-  setLogin,
-  setUserCredentials,
+  setUser,
   fetchCheckUser,
   fetchRegisterUser,
   fetchUpdateAddress,
+  fetchEditProfile,
+  fetchChangePassword,
 } from "../Redux/Slices/authSlice";
 
 const useAuthentication = (type) => {
-  const { user, serverData, status, error } = useSelector(getAuthState);
+  const { user, status, error } = useSelector(getAuthState);
   const dispatch = useDispatch();
 
   const [formError, setError] = useState(error);
 
-  const updateAddress = async (credentials) => {
-    const response = await axios.put(
-      `https://633577edea0de5318a142d98.mockapi.io/users/${user.id}`,
-      credentials
-    );
-    console.log(response);
+  const login = async (credentials) => {
+    const { payload } = await dispatch(fetchCheckUser(credentials));
+    if (
+      payload.length &&
+      payload[0].password === credentials.password &&
+      payload[0].email === credentials.email
+    ) {
+      dispatch(setUser(payload[0]));
+    } else {
+      setError("Incorrect credentials");
+    }
+  };
+  const register = async (credentials) => {
+    const { payload } = await dispatch(fetchCheckUser(credentials));
+    if (payload.length) {
+      setError("Please try a different Email");
+    } else {
+      dispatch(fetchRegisterUser(credentials));
+    }
+  };
+  const updateAddress = (credentials) => {
+    dispatch(fetchUpdateAddress({ id: user.id, address: { ...credentials } }));
+  };
+  const editProfile = (credentials) => {
+    dispatch(fetchEditProfile({ id: user.id, profile: credentials }));
   };
 
-  const authenticate = async (credentials) => {
-    await dispatch(setUserCredentials(credentials));
-    const { payload } = await dispatch(fetchCheckUser(credentials));
+  const changePassword = (credentials) => {
+    if (
+      credentials["old_password"] === user.password &&
+      credentials["new_password"] === credentials["new_repeat_password"]
+    ) {
+      dispatch(
+        fetchChangePassword({
+          id: user.id,
+          password: { password: credentials["new_password"] },
+        })
+      );
+    } else {
+      setError("Credentials do not match");
+    }
+  };
 
+  const authenticate = (credentials) => {
     switch (type) {
       case "registration":
-        if (payload.length) {
-          setError("Please try a different Email");
-        } else {
-          dispatch(fetchRegisterUser(credentials));
-        }
+        register(credentials);
         break;
       case "login":
-        dispatch(setLogin());
+        login(credentials);
         break;
       case "delivery_address":
-        dispatch(
-          fetchUpdateAddress({ id: user.id, address: { ...credentials } })
-        );
+        updateAddress(credentials);
+        break;
+      case "edit_profile":
+        editProfile(credentials);
+        break;
+      case "change_password":
+        changePassword(credentials);
         break;
       default:
         return null;

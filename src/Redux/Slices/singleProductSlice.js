@@ -18,6 +18,19 @@ export const fetchSingleProduct = createAsyncThunk(
     return data;
   }
 );
+export const fetchRateProduct = createAsyncThunk(
+  "singleProduct/fetchRateProduct",
+
+  async (params) => {
+    const { id, reviews } = params;
+    const { data } = await axios.put(
+      `https://633577edea0de5318a142d98.mockapi.io/items/${id}`,
+      { reviews: reviews }
+    );
+
+    return data;
+  }
+);
 
 const initialState = {
   singleProduct: {},
@@ -63,6 +76,17 @@ export const singleProductSlice = createSlice({
       state.activeSize = [];
       state.error = action.error.message;
 
+      state.status = "error";
+    },
+    [fetchRateProduct.pending]: (state) => {
+      state.status = "pending";
+    },
+    [fetchRateProduct.fulfilled]: (state, action) => {
+      state.singleProduct = action.payload;
+      state.status = "success";
+    },
+    [fetchRateProduct.rejected]: (state, action) => {
+      state.error = action.error.message;
       state.status = "error";
     },
   },

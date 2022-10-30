@@ -22,8 +22,28 @@ export const fetchUpdateAddress = createAsyncThunk(
   async (credentials) => {
     const { id, address } = credentials;
     const updatedAddress = { address: { ...address } };
-    console.log(credentials);
+
     const { data } = await axios.put(`${URL}/${id}`, updatedAddress);
+
+    return data;
+  }
+);
+export const fetchEditProfile = createAsyncThunk(
+  "auth/fetchEditProfile",
+  async (credentials) => {
+    const { id, profile } = credentials;
+
+    const { data } = await axios.put(`${URL}/${id}`, profile);
+
+    return data;
+  }
+);
+export const fetchChangePassword = createAsyncThunk(
+  "auth/fetchChangePassword",
+  async (credentials) => {
+    const { id, password } = credentials;
+
+    const { data } = await axios.put(`${URL}/${id}`, password);
 
     return data;
   }
@@ -33,8 +53,6 @@ const initialState = {
   user: {},
   isAuth: false,
 
-  userCredentials: {},
-  serverData: [],
   status: "",
   error: "",
 };
@@ -47,43 +65,22 @@ export const authSlice = createSlice({
       state.user = action.payload;
       state.isAuth = true;
     },
-    setLogin: (state) => {
-      if (
-        state.serverData.length &&
-        state.serverData[0].password === state.userCredentials.password &&
-        state.serverData[0].email === state.userCredentials.email
-      ) {
-        state.user = state.serverData[0];
-        state.isAuth = true;
-      } else {
-        state.error = "Incorrect credentials";
-      }
-    },
-    setUserCredentials: (state, action) => {
-      state.userCredentials = action.payload;
-    },
     setLogOut: (state) => {
       state.user = {};
       state.isAuth = false;
-
-      state.userCredentials = {};
-      state.serverData = [];
       state.status = "";
       state.error = "";
     },
   },
   extraReducers: {
     [fetchCheckUser.pending]: (state) => {
-      state.serverData = [];
       state.status = "pending";
     },
-    [fetchCheckUser.fulfilled]: (state, action) => {
-      state.serverData = action.payload;
+    [fetchCheckUser.fulfilled]: (state) => {
       state.status = "success";
     },
     [fetchCheckUser.rejected]: (state, action) => {
       state.error = action.error.message;
-      state.serverData = [];
       state.status = "error";
     },
     [fetchRegisterUser.pending]: (state) => {
@@ -92,18 +89,12 @@ export const authSlice = createSlice({
     [fetchRegisterUser.fulfilled]: (state, action) => {
       state.user = action.payload;
       state.isAuth = true;
-
-      state.userCredentials = {};
-      state.serverData = [];
       state.status = "success";
       state.error = "";
     },
     [fetchRegisterUser.rejected]: (state, action) => {
       state.user = {};
       state.isAuth = false;
-
-      state.userCredentials = {};
-      state.serverData = [];
       state.status = "error";
       state.error = action.error.message;
     },
@@ -112,16 +103,37 @@ export const authSlice = createSlice({
     },
     [fetchUpdateAddress.fulfilled]: (state, action) => {
       state.user = action.payload;
-      state.userCredentials = {};
-      state.serverData = [];
 
       state.status = "success";
       state.error = "";
     },
     [fetchUpdateAddress.rejected]: (state, action) => {
-      state.userCredentials = {};
-      state.serverData = [];
+      state.status = "error";
+      state.error = action.error.message;
+    },
+    [fetchEditProfile.pending]: (state) => {
+      state.status = "pending";
+    },
+    [fetchEditProfile.fulfilled]: (state, action) => {
+      state.user = action.payload;
 
+      state.status = "success";
+      state.error = "";
+    },
+    [fetchEditProfile.rejected]: (state, action) => {
+      state.status = "error";
+      state.error = action.error.message;
+    },
+    [fetchChangePassword.pending]: (state) => {
+      state.status = "pending";
+    },
+    [fetchChangePassword.fulfilled]: (state, action) => {
+      state.user = action.payload;
+
+      state.status = "success";
+      state.error = "";
+    },
+    [fetchChangePassword.rejected]: (state, action) => {
       state.status = "error";
       state.error = action.error.message;
     },
@@ -130,12 +142,7 @@ export const authSlice = createSlice({
 
 export const getAuthState = (state) => state.authSlice;
 
-export const {
-  setUser,
-  setUserCredentials,
-
-  setLogin,
-  setLogOut,
-} = authSlice.actions;
+export const { setUser, setUserCredentials, setRegister, setLogin, setLogOut } =
+  authSlice.actions;
 
 export default authSlice.reducer;

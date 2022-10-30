@@ -120,3 +120,24 @@
     background-color: hsl(39, 20%, 90%);
   }
 }
+@media only screen and (max-width: 900px) {
+  .dishCard_skeleton_big {
+    width: 98%;
+    flex-direction: column;
+  }
+  .big_left {
+    width: 98%;
+    margin: 0 auto;
+    &_item_1 {
+      height: 30vh;
+    }
+    &_item_2 {
+      padding: 5px;
+      gap: 10px;
+    }
+  }
+  .big_right {
+    width: 98%;
+    margin: 0 auto;
+  }
+}

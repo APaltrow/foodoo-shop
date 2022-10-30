@@ -28,7 +28,11 @@ const CustomForm = ({ type, title, btn }) => {
       onKeyUp={checkIfValidForm}
     >
       <Icon type="big" icon="logo" />
-      <h1>{title}</h1>
+      {type === "login" || type === "registration" ? (
+        <h1>{title}</h1>
+      ) : (
+        <h3>{title}</h3>
+      )}
 
       {status === "pending" && <Loader />}
       {formError && <Error error={formError} />}

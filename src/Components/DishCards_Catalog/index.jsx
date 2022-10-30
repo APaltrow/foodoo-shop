@@ -44,8 +44,13 @@ function DishCardsCatalog() {
 
   useEffect(() => {
     getDishCards();
-    dispatch(setTotalPages(dishCards.length));
   }, [activeCategory, sortBy, isASC, searchValue, sortByProperty]);
+
+  useEffect(() => {
+    if (dishCards.length) {
+      dispatch(setTotalPages(dishCards.length));
+    }
+  }, [dishCards]);
 
   if (status === "error") return <Error error={error} />;
   if (dishCards.length < 1 && status === "success") return <NotFound />;

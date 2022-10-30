@@ -1,13 +1,22 @@
 import { RATING_STATUSES } from "../../constants/RatingStatuses";
 import { generateIcon } from "../Icons/Icons";
 import { useState, useEffect } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getSingleProductState,
+  fetchRateProduct,
+} from "../../Redux/Slices/singleProductSlice";
 import CustomButton from "../CustomButton";
 
 import style from "./RateProduct.module.scss";
 
 const RateProduct = ({ handleModal }) => {
+  const { reviews, id } = useSelector(getSingleProductState).singleProduct;
+  const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
   const [status, setStatus] = useState(RATING_STATUSES[0]);
+  const [ratingComment, setRatingComment] = useState("");
 
   const getRatingStatus = () => {
     rating > 0 && rating < 3 && setStatus(RATING_STATUSES[1]);
@@ -19,9 +28,13 @@ const RateProduct = ({ handleModal }) => {
   }, [rating]);
 
   const onRateNow = () => {
+    const rewiews = [{ rating: rating, comment: ratingComment }, ...reviews];
+    dispatch(fetchRateProduct({ id: id, reviews: rewiews }));
     handleModal(false);
   };
-
+  const getRatingComment = (e) => {
+    setRatingComment(e.target.value);
+  };
   const getRating = (rating) => {
     setRating(rating);
   };
@@ -70,6 +83,8 @@ const RateProduct = ({ handleModal }) => {
         </div>
         <label htmlFor="comment">
           <input
+            onChange={(e) => getRatingComment(e)}
+            value={ratingComment}
             type={"text"}
             id="comment"
             placeholder="Comment ..."

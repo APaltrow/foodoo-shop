@@ -31,7 +31,7 @@ export const useForm = (type) => {
     e.preventDefault();
     setFormValid(false);
     authenticate(credentials);
-    formRef.current.reset();
+    setFormValid(true);
   };
 
   return {

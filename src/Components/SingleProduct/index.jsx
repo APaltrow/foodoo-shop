@@ -58,7 +58,9 @@ const SingleProduct = () => {
   const onActiveSizeChange = (sizeActive) =>
     dispatch(setActiveSize(sizeActive));
 
-  const onRateThisProduct = (vis) => setRateModal(vis);
+  const onRateThisProduct = (vis) => {
+    setRateModal(vis);
+  };
   const onAddToFavourites = (vis) => setaAdFavouriteModal(vis);
 
   const onAddProduct = () => {
