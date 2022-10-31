@@ -36,9 +36,13 @@
     display: flex;
     justify-content: space-around;
     gap: 20px;
+
+    button {
+      width: 150px;
+    }
   }
 
-  @media only screen and (max-width: 750px) {
+  @media only screen and (max-width: 850px) {
     &_btns {
       flex-direction: column-reverse;
       justify-content: center;

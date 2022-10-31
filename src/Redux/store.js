@@ -5,6 +5,7 @@ import dishCards from "./Slices/dishCards";
 import cartSlice from "./Slices/cartSlice";
 import authSlice from "./Slices/authSlice";
 import singleProductSlice from "./Slices/singleProductSlice";
+import orderSlice from "./Slices/orderSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,5 +14,6 @@ export const store = configureStore({
     cartSlice: cartSlice,
     authSlice: authSlice,
     singleProductSlice: singleProductSlice,
+    orderSlice: orderSlice,
   },
 });

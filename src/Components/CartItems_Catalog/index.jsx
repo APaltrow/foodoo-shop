@@ -7,7 +7,7 @@ import CustomButton from "../CustomButton";
 
 import style from "./CartItemsCatalog.module.scss";
 
-function CartItems() {
+const CartItems = ({ checkout }) => {
   const { totalCount, totalCost, products, discount } =
     useSelector(getCartState);
   const dispatch = useDispatch();
@@ -15,6 +15,9 @@ function CartItems() {
   const onClearCart = () => {
     window.confirm("Are you sure you want to clear your orders?") &&
       dispatch(clearCart());
+  };
+  const onCheckout = () => {
+    checkout(true);
   };
 
   return (
@@ -45,10 +48,10 @@ function CartItems() {
           text={"Remove all"}
           action={onClearCart}
         />
-        <CustomButton icon={"wallet"} text={"check out"} />
+        <CustomButton icon={"wallet"} text={"check out"} action={onCheckout} />
       </div>
     </div>
   );
-}
+};
 
 export default CartItems;
