@@ -1,5 +1,7 @@
+import Orders from "../Components/Orders";
+
 const MyOrders = () => {
-  return <div>MY ORDERS</div>;
+  return <Orders />;
 };
 
 export default MyOrders;

@@ -29,6 +29,8 @@ const Checkout = ({ onCancel }) => {
   const { order, status, error } = useSelector(getOrderState);
   const [paymentType, setPaymentType] = useState("cash");
 
+  const [toast, setToast] = useState(false);
+
   const recipient = `${firstname} ${lastname}, ${phone} `;
   const deliveryAddress = `${address.city}, ${address.street} ${address["house-number"]}`;
   const orderId = Date.now();
@@ -55,11 +57,15 @@ const Checkout = ({ onCancel }) => {
     setPaymentType(type);
   };
   const onCancelOrder = () => {
-    dispatch(setCancelOrder());
-    onCancel(false);
+    if (window.confirm("Are you sure to cancel the order?")) {
+      dispatch(setCancelOrder());
+      onCancel(false);
+    }
   };
   const onSubmitOrder = () => {
-    dispatch(fetchOrder(order));
+    if (window.confirm("Are you sure to confirm the order?")) {
+      dispatch(fetchOrder(order));
+    }
   };
   useEffect(() => {
     dispatch(
@@ -77,18 +83,26 @@ const Checkout = ({ onCancel }) => {
   useEffect(() => {
     if (status === "success") {
       dispatch(clearCart());
-      navigate("/my-orders");
+      setToast(true);
+      setTimeout(() => {
+        navigate("/my-orders");
+      }, 1050);
     }
   }, [status]);
 
   return (
     <div className={style.container}>
       <div className={style.header}>
-        <img src={checoutimg} alt="wallet picture" />
+        <img src={checoutimg} alt="wallet" />
         <h3>Checkout</h3>
       </div>
       {error && <Error error={error} />}
       {status === "pending" && <Loader />}
+      {toast && (
+        <div className={style.toast}>
+          <CustomIcon icon={"checkmark"} type="small" /> Successfully
+        </div>
+      )}
 
       <div className={style.content}>
         <div className={style.item}>
@@ -101,9 +115,7 @@ const Checkout = ({ onCancel }) => {
           Order check :
           <input type="checkbox" id="order-list" />
           <label htmlFor="order-list">
-            <p>
-              <CustomIcon icon="arrow" type="small" />
-            </p>
+            <CustomIcon icon="arrow" type="small" />
             <ul>
               {order?.ordercheck
                 ? order.ordercheck.map((item, i) => (

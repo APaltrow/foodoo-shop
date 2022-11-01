@@ -43,7 +43,9 @@ function CartItem({ data }) {
       </div>
       {specialOrder.length ? (
         <div className={style.cart_item_specialOreder}>
-          Special order
+          <div className={style.cart_item_specialOreder_title}>
+            Special order <CustomIcon icon={"error"} type={"small"} />
+          </div>
           <div className={style.specialOrder_header}>
             <input type={"checkbox"} id={lot_id} />
             <label htmlFor={lot_id}>

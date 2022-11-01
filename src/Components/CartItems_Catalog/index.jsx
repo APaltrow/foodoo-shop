@@ -29,16 +29,15 @@ const CartItems = ({ checkout }) => {
         ))}
       </div>
       <div className={style.total}>
-        <span>
-          <strong>Total :</strong> {totalCount}
-        </span>
-        <span>
-          <strong>Total Cost :</strong> $ {totalCost}
-        </span>
-
-        <span>
-          <strong>Discount :</strong> $ {discount}
-        </span>
+        <div>
+          Total :<span>{totalCount}</span>
+        </div>
+        <div>
+          Total Cost :<span>$ {totalCost}</span>
+        </div>
+        <div>
+          Discount :<span>$ {discount}</span>
+        </div>
       </div>
       <div className={style.cartItems_btns}>
         <CustomButton type={"goBack"} />

@@ -27,6 +27,17 @@
   box-shadow: $boxshadow_big;
 }
 
+.order-status {
+  height: 80px;
+  width: 80px;
+
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  fill: $color_darken_orange;
+}
 /// custom informers
 
 .favourite {
