@@ -1,0 +1,44 @@
+@import "../../Style/mixins.scss";
+@import "../../Style/variables.scss";
+
+.toast {
+  position: fixed;
+  right: -250px;
+  top: 20%;
+  width: 250px;
+  height: 40px;
+  padding-left: 20px;
+  z-index: 20;
+
+  color: $color_darken_green;
+
+  font-weight: bold;
+
+  border-left: 10px solid $color_darken_green;
+  border-radius: 5px 20px 20px 5px;
+  background-color: rgba($color: $color_light_green, $alpha: 0.8);
+
+  animation: toast-fadein 1s ease;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  svg {
+    fill: $color_darken_green;
+  }
+
+  @keyframes toast-fadein {
+    0% {
+      transform: translateX(0px);
+    }
+    30% {
+      transform: translateX(-280px);
+    }
+    80% {
+      transform: translateX(-280px);
+    }
+    100% {
+      transform: translateX(0px);
+    }
+  }
+}

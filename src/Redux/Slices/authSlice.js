@@ -71,6 +71,9 @@ export const authSlice = createSlice({
       state.status = "";
       state.error = "";
     },
+    setAuthStatus: (state) => {
+      state.status = "";
+    },
   },
   extraReducers: {
     [fetchCheckUser.pending]: (state) => {
@@ -87,8 +90,6 @@ export const authSlice = createSlice({
       state.status = "pending";
     },
     [fetchRegisterUser.fulfilled]: (state, action) => {
-      state.user = action.payload;
-      state.isAuth = true;
       state.status = "success";
       state.error = "";
     },
@@ -142,7 +143,13 @@ export const authSlice = createSlice({
 
 export const getAuthState = (state) => state.authSlice;
 
-export const { setUser, setUserCredentials, setRegister, setLogin, setLogOut } =
-  authSlice.actions;
+export const {
+  setUser,
+  setAuthStatus,
+  setUserCredentials,
+  setRegister,
+  setLogin,
+  setLogOut,
+} = authSlice.actions;
 
 export default authSlice.reducer;

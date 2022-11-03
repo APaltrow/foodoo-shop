@@ -7,6 +7,7 @@ import { getAuthState } from "../../Redux/Slices/authSlice";
 import {
   getOrderState,
   setOrder,
+  setStatus,
   setCancelOrder,
   fetchOrder,
 } from "../../Redux/Slices/orderSlice";
@@ -16,6 +17,7 @@ import CustomIcon from "../CustomIcon";
 import checoutimg from "../../assets/checkout.png";
 import Error from "../Error";
 import Loader from "../Loader";
+import NotificationToast from "../NotificationToast";
 
 import style from "./Checkout.module.scss";
 
@@ -29,11 +31,11 @@ const Checkout = ({ onCancel }) => {
   const { order, status, error } = useSelector(getOrderState);
   const [paymentType, setPaymentType] = useState("cash");
 
-  const [toast, setToast] = useState(false);
-
   const recipient = `${firstname} ${lastname}, ${phone} `;
   const deliveryAddress = `${address.city}, ${address.street} ${address["house-number"]}`;
   const orderId = Date.now();
+  const date = new Date();
+  const orderDate = `${date.getDate()}/${date.getMonth()}, ${date.getFullYear()}`;
 
   const getOrder = useCallback(() => {
     const ordercheck = [];
@@ -77,17 +79,22 @@ const Checkout = ({ onCancel }) => {
         paymentType,
         ordercheck: getOrder(),
         totalCost,
+        orderDate,
+        orderStatus: "pending",
       })
     );
   }, [paymentType, totalCost, products, address, firstname, lastname, phone]);
   useEffect(() => {
     if (status === "success") {
       dispatch(clearCart());
-      setToast(true);
       setTimeout(() => {
         navigate("/my-orders");
       }, 1050);
     }
+
+    return () => {
+      dispatch(setStatus());
+    };
   }, [status]);
 
   return (
@@ -98,11 +105,10 @@ const Checkout = ({ onCancel }) => {
       </div>
       {error && <Error error={error} />}
       {status === "pending" && <Loader />}
-      {toast && (
-        <div className={style.toast}>
-          <CustomIcon icon={"checkmark"} type="small" /> Successfully
-        </div>
-      )}
+      <NotificationToast
+        message={"successfully"}
+        listen={status === "success" ? true : false}
+      />
 
       <div className={style.content}>
         <div className={style.item}>

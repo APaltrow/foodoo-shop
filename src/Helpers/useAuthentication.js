@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import {
   getAuthState,
@@ -15,6 +16,7 @@ import {
 const useAuthentication = (type) => {
   const { user, status, error } = useSelector(getAuthState);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [formError, setError] = useState(error);
 
@@ -35,7 +37,10 @@ const useAuthentication = (type) => {
     if (payload.length) {
       setError("Please try a different Email");
     } else {
-      dispatch(fetchRegisterUser(credentials));
+      await dispatch(fetchRegisterUser(credentials));
+      setTimeout(() => {
+        navigate("/login");
+      }, 500);
     }
   };
   const updateAddress = (credentials) => {

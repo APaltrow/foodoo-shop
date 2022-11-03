@@ -1,6 +1,14 @@
 @import "../../Style/mixins.scss";
 @import "../../Style/variables.scss";
 
+.non_active {
+  opacity: 0.5;
+}
+.notification {
+  z-index: 10;
+
+  width: 100%;
+}
 .pending_order {
   position: relative;
   margin: 0 auto;

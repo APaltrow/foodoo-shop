@@ -4,8 +4,12 @@ import CustomInput from "../CustomInput";
 import Error from "../Error";
 import Icon from "../CustomIcon";
 import Loader from "../Loader";
+import NotificationToast from "../NotificationToast";
 import { Link } from "react-router-dom";
 import { useForm } from "../../Helpers/useForm";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { setAuthStatus } from "../../Redux/Slices/authSlice";
 
 import style from "./CustomForm.module.scss";
 
@@ -19,43 +23,59 @@ const CustomForm = ({ type, title, btn }) => {
     checkIfValidForm,
     status,
   } = useForm(type);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(setAuthStatus());
+    };
+  }, []);
 
   return (
-    <form
-      className={style.form}
-      onSubmit={onFormSubmit}
-      ref={formRef}
-      onKeyUp={checkIfValidForm}
-    >
-      <Icon type="big" icon="logo" />
-      {type === "login" || type === "registration" ? (
-        <h1>{title}</h1>
-      ) : (
-        <h3>{title}</h3>
-      )}
+    <>
+      {type === "registration" ? (
+        <NotificationToast
+          listen={status === "success" ? true : false}
+          message={"Success"}
+        />
+      ) : null}
 
-      {status === "pending" && <Loader />}
-      {formError && <Error error={formError} />}
+      <form
+        className={style.form}
+        onSubmit={onFormSubmit}
+        ref={formRef}
+        onKeyUp={checkIfValidForm}
+      >
+        <Icon type="big" icon="logo" />
+        {type === "login" || type === "registration" ? (
+          <h1>{title}</h1>
+        ) : (
+          <h3>{title}</h3>
+        )}
 
-      {inputs.map((input) => (
-        <CustomInput {...input} key={input.id} />
-      ))}
+        {status === "pending" && <Loader />}
+        {formError && <Error error={formError} />}
 
-      <CustomButton text={btn} disabled={!formValid} />
+        {inputs.map((input) => (
+          <CustomInput {...input} key={input.id} />
+        ))}
 
-      {type === "login" && (
-        <div className={style.hint}>
-          Do not have an account yet?
-          <Link to={"/registration"}> Register</Link>
-        </div>
-      )}
-      {type === "registration" && (
-        <div className={style.hint}>
-          If you have an account, try to
-          <Link to={"/login"}> Login</Link>
-        </div>
-      )}
-    </form>
+        <CustomButton text={btn} disabled={!formValid} />
+
+        {type === "login" && (
+          <div className={style.hint}>
+            Do not have an account yet?
+            <Link to={"/registration"}> Register</Link>
+          </div>
+        )}
+        {type === "registration" && (
+          <div className={style.hint}>
+            If you have an account, try to
+            <Link to={"/login"}> Login</Link>
+          </div>
+        )}
+      </form>
+    </>
   );
 };
 

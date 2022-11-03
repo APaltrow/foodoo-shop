@@ -13,6 +13,7 @@ import RateProduct from "../RateProduct";
 import CustomModal from "../CustomModal";
 import AddFavourite from "../AddFovourite";
 import Discount from "../Discount";
+import NotificationToast from "../NotificationToast";
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -53,6 +54,7 @@ const SingleProduct = () => {
 
   const [rateModal, setRateModal] = useState(false);
   const [addFavouriteModal, setaAdFavouriteModal] = useState(false);
+  const [toast, setToast] = useState(false);
 
   const getSpecialOrder = (order) => dispatch(setSpecialOrder(order));
   const onActiveSizeChange = (sizeActive) =>
@@ -74,6 +76,10 @@ const SingleProduct = () => {
       count: 1,
     };
     dispatch(addProducts(item));
+    setToast(true);
+    setTimeout(() => {
+      setToast(false);
+    }, 50);
   };
 
   if (status === "error") return <Error error={error} />;
@@ -81,6 +87,7 @@ const SingleProduct = () => {
   if (status === "success")
     return (
       <div className={style.product_container}>
+        <NotificationToast message={"Added !"} listen={toast} />
         <div className={style.product_left}>
           <IMG type="big" id={id} imgURL={imgURL} title={title} />
           <div> Slider bar</div>

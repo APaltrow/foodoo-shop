@@ -6,15 +6,18 @@ import CustomForm from "../Components/CustomForm";
 import Error from "../Components/Error";
 import CustomButton from "../Components/CustomButton";
 import CustomIcon from "../Components/CustomIcon";
+import NotificationToast from "../Components/NotificationToast";
 
 import style from "./Settings.module.scss";
 
 const Settings = () => {
   const { address, email, password, firstname, lastname, phone } =
     useSelector(getAuthState).user;
+  const { status } = useSelector(getAuthState);
 
   const [emailVisible, setEmailVisible] = useState(false);
   const [active, setActive] = useState("");
+
   // 'password' , 'address', 'profile'
   const onModifyProfile = (formName) => {
     formName === active ? setActive("") : setActive(formName);
@@ -26,6 +29,10 @@ const Settings = () => {
 
   return (
     <div className={style.settings_container}>
+      <NotificationToast
+        listen={status === "success" ? true : false}
+        message={"Updated !"}
+      />
       <div className={style.settings_header}>
         <CustomIcon icon="settings" type="small" />
         <h3>Profile settings</h3>
