@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/foodoo-shop/static/css/main.237e39a2.css",
-    "main.js": "/foodoo-shop/static/js/main.a6d0aea9.js",
+    "main.css": "/foodoo-shop/static/css/main.0eab5da3.css",
+    "main.js": "/foodoo-shop/static/js/main.e6a05ecc.js",
     "static/media/emptyBasket.png": "/foodoo-shop/static/media/emptyBasket.5d7daea22ae84e9e4ea0.png",
     "static/media/Excellent.png": "/foodoo-shop/static/media/Excellent.f14099f22ba673c60584.png",
     "static/media/Bad.png": "/foodoo-shop/static/media/Bad.83da6782016e407ad365.png",
@@ -9,11 +9,11 @@
     "static/media/checkout.png": "/foodoo-shop/static/media/checkout.364f2052c67f0a5e04cf.png",
     "static/media/Rate.png": "/foodoo-shop/static/media/Rate.2672166ba4223a081c99.png",
     "index.html": "/foodoo-shop/index.html",
-    "main.237e39a2.css.map": "/foodoo-shop/static/css/main.237e39a2.css.map",
-    "main.a6d0aea9.js.map": "/foodoo-shop/static/js/main.a6d0aea9.js.map"
+    "main.0eab5da3.css.map": "/foodoo-shop/static/css/main.0eab5da3.css.map",
+    "main.e6a05ecc.js.map": "/foodoo-shop/static/js/main.e6a05ecc.js.map"
   },
   "entrypoints": [
-    "static/css/main.237e39a2.css",
-    "static/js/main.a6d0aea9.js"
+    "static/css/main.0eab5da3.css",
+    "static/js/main.e6a05ecc.js"
   ]
 }
