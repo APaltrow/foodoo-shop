@@ -11,6 +11,7 @@ import {
   setCancelOrder,
   fetchOrder,
 } from "../../Redux/Slices/orderSlice";
+import { useDate } from "../../Helpers/useDate";
 
 import CustomButton from "../CustomButton";
 import CustomIcon from "../CustomIcon";
@@ -33,9 +34,7 @@ const Checkout = ({ onCancel }) => {
 
   const recipient = `${firstname} ${lastname}, ${phone} `;
   const deliveryAddress = `${address.city}, ${address.street} ${address["house-number"]}`;
-  const orderId = Date.now();
-  const date = new Date();
-  const orderDate = `${date.getDate()}/${date.getMonth()}, ${date.getFullYear()}`;
+  const { idWithDate, date } = useDate();
 
   const getOrder = useCallback(() => {
     const ordercheck = [];
@@ -73,13 +72,13 @@ const Checkout = ({ onCancel }) => {
     dispatch(
       setOrder({
         uid: id,
-        orderId,
+        orderId: idWithDate,
         recipient,
         deliveryAddress,
         paymentType,
         ordercheck: getOrder(),
         totalCost,
-        orderDate,
+        orderDate: date,
         orderStatus: "pending",
       })
     );

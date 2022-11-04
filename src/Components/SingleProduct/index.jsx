@@ -47,7 +47,6 @@ const SingleProduct = () => {
     description,
     ingredients,
     isVegitarian,
-    reviews,
     sizes,
     discount,
   } = useSelector(getSingleProductState).singleProduct;
@@ -79,7 +78,7 @@ const SingleProduct = () => {
     setToast(true);
     setTimeout(() => {
       setToast(false);
-    }, 50);
+    }, 500);
   };
 
   if (status === "error") return <Error error={error} />;
@@ -91,7 +90,7 @@ const SingleProduct = () => {
         <div className={style.product_left}>
           <IMG type="big" id={id} imgURL={imgURL} title={title} />
           <div> Slider bar</div>
-          <Reviews reviews={reviews} />
+          <Reviews />
 
           <div className={style.btns}>
             <CustomButton type={"goBack"} />

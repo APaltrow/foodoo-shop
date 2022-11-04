@@ -7,16 +7,20 @@ import {
   getSingleProductState,
   fetchRateProduct,
 } from "../../Redux/Slices/singleProductSlice";
+import { getAuthState } from "../../Redux/Slices/authSlice";
+import { useDate } from "../../Helpers/useDate";
 import CustomButton from "../CustomButton";
 
 import style from "./RateProduct.module.scss";
 
 const RateProduct = ({ handleModal }) => {
+  const { uid, firstname } = useSelector(getAuthState).user;
   const { reviews, id } = useSelector(getSingleProductState).singleProduct;
   const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
   const [status, setStatus] = useState(RATING_STATUSES[0]);
   const [ratingComment, setRatingComment] = useState("");
+  const { date, idWithDate } = useDate();
 
   const getRatingStatus = () => {
     rating > 0 && rating < 3 && setStatus(RATING_STATUSES[1]);
@@ -28,7 +32,17 @@ const RateProduct = ({ handleModal }) => {
   }, [rating]);
 
   const onRateNow = () => {
-    const rewiews = [{ rating: rating, comment: ratingComment }, ...reviews];
+    const rewiews = [
+      {
+        uid,
+        ratingId: idWithDate,
+        rating: rating,
+        comment: ratingComment,
+        commenter: firstname,
+        timestamp: date,
+      },
+      ...reviews,
+    ];
     dispatch(fetchRateProduct({ id: id, reviews: rewiews }));
     handleModal(false);
   };
@@ -96,7 +110,7 @@ const RateProduct = ({ handleModal }) => {
         icon={"rocket"}
         text={"Rate now"}
         action={onRateNow}
-        disabled={rating < 1 && true}
+        disabled={rating < 1 || !ratingComment ? true : false}
       />
     </div>
   );
