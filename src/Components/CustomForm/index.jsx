@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "../../Helpers/useForm";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { setAuthStatus } from "../../Redux/Slices/authSlice";
+import { setAuthStatus, fetchLogedInUser } from "../../Redux/Slices/authSlice";
 
 import style from "./CustomForm.module.scss";
 
@@ -24,6 +24,11 @@ const CustomForm = ({ type, title, btn }) => {
     status,
   } = useForm(type);
   const dispatch = useDispatch();
+
+  const onLoginWithDemo = () => {
+    localStorage.setItem("userId", "5");
+    dispatch(fetchLogedInUser("5"));
+  };
 
   useEffect(() => {
     return () => {
@@ -73,6 +78,12 @@ const CustomForm = ({ type, title, btn }) => {
             If you have an account, try to
             <Link to={"/login"}> Login</Link>
           </div>
+        )}
+        {type === "login" && (
+          <CustomButton
+            text={"login with demo account"}
+            action={onLoginWithDemo}
+          />
         )}
       </form>
     </>

@@ -9,6 +9,13 @@ export const fetchCheckUser = createAsyncThunk(
     return data;
   }
 );
+export const fetchLogedInUser = createAsyncThunk(
+  "auth/fetchLogedInUser",
+  async (uid) => {
+    const { data } = await axios.get(`${URL}?id=${uid}`);
+    return data;
+  }
+);
 export const fetchRegisterUser = createAsyncThunk(
   "auth/fetchRegisterUser",
   async (credentials) => {
@@ -64,8 +71,10 @@ export const authSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
       state.isAuth = true;
+      localStorage.setItem("userId", action.payload.id);
     },
     setLogOut: (state) => {
+      localStorage.clear();
       state.user = {};
       state.isAuth = false;
       state.status = "";
@@ -135,6 +144,20 @@ export const authSlice = createSlice({
       state.error = "";
     },
     [fetchChangePassword.rejected]: (state, action) => {
+      state.status = "error";
+      state.error = action.error.message;
+    },
+    [fetchLogedInUser.pending]: (state) => {
+      state.status = "pending";
+    },
+    [fetchLogedInUser.fulfilled]: (state, action) => {
+      state.user = action.payload[0];
+      state.isAuth = true;
+
+      state.status = "";
+      state.error = "";
+    },
+    [fetchLogedInUser.rejected]: (state, action) => {
       state.status = "error";
       state.error = action.error.message;
     },

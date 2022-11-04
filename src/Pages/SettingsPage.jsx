@@ -57,7 +57,7 @@ const Settings = () => {
           Phone: <span>{phone}</span>
         </div>
       </div>
-      {address.city ? (
+      {address && address.city ? (
         <address>
           Delivery Address:
           <span>

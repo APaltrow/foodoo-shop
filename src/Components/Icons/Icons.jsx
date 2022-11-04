@@ -673,7 +673,7 @@ export const generateIcon = (iconName) => {
     case "delivery":
       return (
         <svg
-          enable-background="new 0 0 64 64"
+          enableBackground="new 0 0 64 64"
           height="100%"
           id="Layer_1"
           viewBox="0 0 64 64"
@@ -750,37 +750,37 @@ export const generateIcon = (iconName) => {
               d="   M46.861,33.307c0,0,6.555,0.693,8.139,6.693"
               fill="#E0995E"
               stroke="#F5CF87"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-miterlimit="10"
-              stroke-width="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeMiterlimit="10"
+              strokeWidth="4"
             />
             <path
               d="   M33.929,42c0,0-1.286-10-11.571-10S9.5,42,9.5,42h28.333l11.417-7.561"
               fill="#E0995E"
               stroke="#F5CF87"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-miterlimit="10"
-              stroke-width="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeMiterlimit="10"
+              strokeWidth="4"
             />
             <path
               d="   M9.5,42c0,0,4.571-11,14.857-11s9.571,11,9.571,11H9.5z"
               fill="#E0995E"
               stroke="#F5CF87"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-miterlimit="10"
-              stroke-width="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeMiterlimit="10"
+              strokeWidth="4"
             />
             <path
               d="   M13.357,29.429h18c0,0,0.643,9.321,7.81,9.321c8.666,0,13.905-13.436-6.667-25.75h-3.107"
               fill="none"
               stroke="#F5CF87"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-miterlimit="10"
-              stroke-width="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeMiterlimit="10"
+              strokeWidth="4"
             />
           </g>
         </svg>

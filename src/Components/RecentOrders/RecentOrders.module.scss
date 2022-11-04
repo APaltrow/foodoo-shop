@@ -76,6 +76,18 @@
       font-size: rem(12);
       font-weight: bold;
       color: $color_darken_red;
+      text-decoration: line-through;
     }
+  }
+}
+@media only screen and (max-width: 550px) {
+  .recent_orders {
+    h3 {
+      font-size: rem(16);
+    }
+    font-size: rem(14);
+  }
+  .check_list {
+    width: 100%;
   }
 }

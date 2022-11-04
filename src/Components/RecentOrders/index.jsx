@@ -26,7 +26,7 @@ const RecentOrders = ({ ordersList }) => {
         <tbody>
           {ordersList.length
             ? ordersList.map((order, i) => (
-                <tr key={order.orderId} onClick={() => onViewOrder(i)}>
+                <tr key={order.orderId + i + 1} onClick={() => onViewOrder(i)}>
                   <td>{order.orderDate}</td>
                   <td>{order.orderId}</td>
                   <td>{order.deliveryAddress}</td>
@@ -66,8 +66,8 @@ const RecentOrders = ({ ordersList }) => {
         </div>
         {viewOrder && (
           <ul className={style.check_list}>
-            {viewOrder.ordercheck.map((item) => (
-              <li>
+            {viewOrder.ordercheck.map((item, i) => (
+              <li key={item.title + item.orderId + i}>
                 {`${item.title}, ${item.size}, x${item.count} ...$${item.price} /`}
                 <span>{`${item.specialOrder}`}</span>
               </li>
