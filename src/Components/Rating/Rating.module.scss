@@ -24,7 +24,8 @@
   position: relative;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-end;
+  height: 15px;
   gap: 5px;
   svg {
     height: rem(10);

@@ -32,36 +32,38 @@
     position: relative;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
     border-bottom: 1px solid $color_darken_brown;
     padding-bottom: 5px;
     font-size: rem(14);
     font-style: italic;
 
+    .editComment {
+      width: 100%;
+      padding: 10px 0px;
+      display: flex;
+      flex-direction: column;
+    }
     input {
       background-color: $color_light_orange;
-      width: 100%;
+      min-width: 90%;
       height: 30px;
-      padding: 10px 20px;
-      padding-right: 40px;
+      padding: 5px 10px;
       border-radius: 20px;
-      margin: 10px 0px;
+
       font-style: italic;
       &:focus {
+        background-color: lighten(blue, 45);
         border: 1px solid $color_darken_brown;
         box-shadow: $boxshadow_big;
       }
     }
     .submitEdit {
-      position: absolute;
-      right: 10px;
-      top: 30px;
-      div {
-        padding: 0;
-        width: 25px;
-        height: 25px;
-        fill: $color_darken_green;
+      span {
+        height: 20px;
+        width: 50px;
+        font-size: 10px;
       }
     }
 
@@ -80,15 +82,15 @@
       align-items: flex-start;
 
       span {
-        margin-top: 5px;
+        margin-top: 10px;
       }
     }
     .timestamp {
       position: absolute;
       height: 20px;
       width: 60px;
-      top: 5px;
-      right: 55px;
+      top: -5px;
+      right: 0;
       font-size: rem(10);
       line-height: 20px;
       font-weight: bold;
@@ -100,8 +102,8 @@
         position: absolute;
         height: 25px;
         width: 25px;
-        right: -50px;
-        top: -5px;
+        right: 70px;
+
         &:hover {
           background-color: $color_light_orange;
           transform: scale(1.2);
@@ -115,12 +117,11 @@
 
       span {
         position: absolute;
-
         right: 10px;
         div {
           height: 25px;
           width: 25px;
-          margin-right: 10px;
+          margin-right: 20px;
           svg {
             transform: scale(0.8);
           }

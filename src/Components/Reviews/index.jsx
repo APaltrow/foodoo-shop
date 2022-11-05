@@ -7,14 +7,18 @@ import {
   fetchRateProduct,
 } from "../../Redux/Slices/singleProductSlice";
 import CustomIcon from "../CustomIcon";
+import CustomButton from "../CustomButton";
 import Rating from "../Rating";
+import Loader from "../Loader";
 
 import style from "./Reviews.module.scss";
 
 const Reviews = () => {
   const dispatch = useDispatch();
+
   const { uid } = useSelector(getAuthState).user;
   const { reviews, id } = useSelector(getSingleProductState).singleProduct;
+  const { status } = useSelector(getSingleProductState);
   const [editComment, setEditComment] = useState({
     ratingId: null,
     editValue: "",
@@ -59,6 +63,7 @@ const Reviews = () => {
   return (
     <div className={style.reviews}>
       <h3>Reviews</h3>
+      {status === "pending-rate" && <Loader />}
       {reviews.length &&
         reviews.map((review, index) => (
           <div className={style.reviews_single} key={index}>
@@ -70,34 +75,32 @@ const Reviews = () => {
               <Rating rating={review.rating} type={"small"} />
 
               {editComment.ratingId === review.ratingId ? (
-                <>
-                  {editComment.editValue ? (
-                    <span className={style.submitEdit}>
-                      <CustomIcon
-                        type={"small"}
-                        icon={"checkmark"}
-                        action={() => onConfirmEdit(review.ratingId)}
-                      />
-                    </span>
-                  ) : null}
+                <div className={style.editComment}>
                   <input
+                    autoFocus={true}
                     type="text"
                     autoComplete="off"
                     value={editComment.editValue}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       onEditComment({
                         id: review.ratingId,
                         value: e.target.value,
-                      })
-                    }
+                      });
+                    }}
                   />
-                </>
+                  <span className={style.submitEdit}>
+                    <CustomButton
+                      type={"service"}
+                      text={"apply"}
+                      action={() => onConfirmEdit(review.ratingId)}
+                    />
+                  </span>
+                </div>
               ) : (
                 <span>{review.comment}</span>
               )}
             </div>
             <span className={style.timestamp}>
-              {review.timestamp ? review.timestamp : `Recently`}
               {uid === review.uid ? (
                 <>
                   {editComment.ratingId === null ? (
@@ -134,6 +137,7 @@ const Reviews = () => {
                   />
                 </>
               ) : null}
+              {review.timestamp ? review.timestamp : `Recently`}
             </span>
           </div>
         ))}

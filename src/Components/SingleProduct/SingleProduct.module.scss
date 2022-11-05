@@ -23,6 +23,7 @@
   gap: 10px;
 }
 .product_left {
+  width: 500px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -44,6 +45,9 @@
 @media only screen and (max-width: 980px) {
   .product_container {
     flex-direction: column;
+    .product_left {
+      width: 100%;
+    }
     .btns {
       gap: 5px;
       position: fixed;

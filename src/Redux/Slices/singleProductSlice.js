@@ -79,10 +79,10 @@ export const singleProductSlice = createSlice({
       state.status = "error";
     },
     [fetchRateProduct.pending]: (state) => {
-      state.status = "pending";
+      state.status = "pending-rate";
     },
     [fetchRateProduct.fulfilled]: (state, action) => {
-      state.singleProduct = action.payload;
+      state.singleProduct.reviews = action.payload.reviews;
       state.status = "success";
     },
     [fetchRateProduct.rejected]: (state, action) => {

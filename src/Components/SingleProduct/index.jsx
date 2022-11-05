@@ -14,6 +14,7 @@ import CustomModal from "../CustomModal";
 import AddFavourite from "../AddFovourite";
 import Discount from "../Discount";
 import NotificationToast from "../NotificationToast";
+import Slider from "../Slider";
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -83,13 +84,14 @@ const SingleProduct = () => {
 
   if (status === "error") return <Error error={error} />;
   if (status === "pending") return <DishCardSkeleton type="big" />;
-  if (status === "success")
+  if (status === "success" || status === "pending-rate") {
     return (
       <div className={style.product_container}>
         <NotificationToast message={"Added !"} listen={toast} />
         <div className={style.product_left}>
-          <IMG type="big" id={id} imgURL={imgURL} title={title} />
-          <div> Slider bar</div>
+          {/*<IMG type="big" id={id} imgURL={imgURL} title={title} />*/}
+          <Slider imgURL={imgURL} />
+
           <Reviews />
 
           <div className={style.btns}>
@@ -155,6 +157,7 @@ const SingleProduct = () => {
         </div>
       </div>
     );
+  }
 };
 
 export default SingleProduct;
