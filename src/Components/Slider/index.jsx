@@ -1,26 +1,13 @@
 import { useEffect } from "react";
 import { useState, useRef } from "react";
+import { SLIDER_TYPES } from "../../constants/SliderTypes";
 import CustomIcon from "../CustomIcon";
 
 import style from "./Slider.module.scss";
 
-const Slider = ({ imgURL }) => {
+const Slider = ({ imgURL, category }) => {
   const ref = useRef();
-  const items = [
-    { url: imgURL },
-    {
-      url: "https://images.pexels.com/photos/2180876/pexels-photo-2180876.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      url: "https://images.pexels.com/photos/1552642/pexels-photo-1552642.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      url: "https://images.pexels.com/photos/8471703/pexels-photo-8471703.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      url: "https://images.pexels.com/photos/3731423/pexels-photo-3731423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-  ];
+  const items = [{ url: imgURL }, ...SLIDER_TYPES[category]];
   const [active, setActive] = useState(0);
   const [offset, setOffset] = useState(0);
   const changeActive = (img) => {
@@ -55,7 +42,7 @@ const Slider = ({ imgURL }) => {
           className={style.slider_item}
           ref={ref}
           style={{
-            right: `${offset}px`,
+            transform: `translateX(-${offset}px)`,
           }}
         >
           {items.map((img, i) => (
@@ -64,7 +51,7 @@ const Slider = ({ imgURL }) => {
         </div>
       </div>
       <div className={style.switch}>
-        <div className={style.prev}>
+        <div className={active === 0 ? style.prev_dis : style.prev}>
           <CustomIcon
             type="small"
             icon="next"

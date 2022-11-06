@@ -1,12 +1,5 @@
-import Slider from "../Components/Slider";
-
 const Favourites = () => {
-  return (
-    <>
-      <Slider />
-      <div> FAVOURITES PAGE</div>
-    </>
-  );
+  return <div> FAVOURITES PAGE</div>;
 };
 
 export default Favourites;

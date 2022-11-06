@@ -4,7 +4,7 @@ import CustomInput from "../CustomInput";
 import Error from "../Error";
 import Icon from "../CustomIcon";
 import Loader from "../Loader";
-import NotificationToast from "../NotificationToast";
+
 import { Link } from "react-router-dom";
 import { useForm } from "../../Helpers/useForm";
 import { useDispatch } from "react-redux";
@@ -30,21 +30,8 @@ const CustomForm = ({ type, title, btn }) => {
     dispatch(fetchLogedInUser("5"));
   };
 
-  useEffect(() => {
-    return () => {
-      dispatch(setAuthStatus());
-    };
-  }, []);
-
   return (
     <>
-      {type === "registration" ? (
-        <NotificationToast
-          listen={status === "success" ? true : false}
-          message={"Success"}
-        />
-      ) : null}
-
       <form
         className={style.form}
         onSubmit={onFormSubmit}

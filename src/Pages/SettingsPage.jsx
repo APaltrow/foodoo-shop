@@ -13,7 +13,6 @@ import style from "./Settings.module.scss";
 const Settings = () => {
   const { address, email, password, firstname, lastname, phone } =
     useSelector(getAuthState).user;
-  const { status } = useSelector(getAuthState);
 
   const [emailVisible, setEmailVisible] = useState(false);
   const [active, setActive] = useState("");
@@ -29,10 +28,7 @@ const Settings = () => {
 
   return (
     <div className={style.settings_container}>
-      <NotificationToast
-        listen={status === "success" ? true : false}
-        message={"Updated !"}
-      />
+      <NotificationToast message={"Updated !"} />
       <div className={style.settings_header}>
         <CustomIcon icon="settings" type="small" />
         <h3>Profile settings</h3>
