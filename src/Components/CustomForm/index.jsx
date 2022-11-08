@@ -6,10 +6,9 @@ import Icon from "../CustomIcon";
 import Loader from "../Loader";
 
 import { Link } from "react-router-dom";
-import { useForm } from "../../Helpers/useForm";
+import { useForm } from "../../Hooks/useForm";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { setAuthStatus, fetchLogedInUser } from "../../Redux/Slices/authSlice";
+import { fetchLogedInUser } from "../../Redux/Slices/authSlice";
 
 import style from "./CustomForm.module.scss";
 

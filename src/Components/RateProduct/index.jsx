@@ -8,7 +8,7 @@ import {
   fetchRateProduct,
 } from "../../Redux/Slices/singleProductSlice";
 import { getAuthState } from "../../Redux/Slices/authSlice";
-import { useDate } from "../../Helpers/useDate";
+import { useDate } from "../../Hooks/useDate";
 import CustomButton from "../CustomButton";
 import CustomModal from "../CustomModal";
 import CustomIcon from "../CustomIcon";

@@ -1,4 +1,4 @@
-export const form_types = {
+export const FORM_TYPES = {
   login: [
     {
       id: "email01_login",

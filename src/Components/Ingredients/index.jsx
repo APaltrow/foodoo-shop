@@ -18,21 +18,19 @@ const Ingredients = ({
 
   return (
     <div className={style.ingredients}>
-      <div className={style.clips}>
-        <h3>Ingredients</h3>
-      </div>
+      <h3>Ingredients</h3>
 
       <div>
         {ingredients.map((item, index) => (
           <div className={style.single_ingredient} key={index}>
-            <strong
+            <b
               className={
                 specialOrder.find((excluded) => excluded === item) &&
                 style.excluded
               }
             >
               {item}
-            </strong>
+            </b>
             <span>
               {Math.ceil(activeSize.weight / (ingredients.length + index))}
               'g
@@ -42,12 +40,11 @@ const Ingredients = ({
 
         <div className={style.clips_bot}>
           <span>
-            <strong>Nutrition:</strong> {activeSize.nutrition} `kkal
+            <b>Nutrition:</b> {activeSize.nutrition} `kkal
           </span>
           <span>
-            <strong>Weight:</strong> {activeSize.weight} `g
+            <b>Weight:</b> {activeSize.weight} `g
           </span>
-
           <CustomButton
             text={"special order"}
             action={() => handleModal(true)}

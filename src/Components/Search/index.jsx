@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "../CustomIcon";
 
-import { useSearch } from "../../Helpers/useSearch";
+import { useSearch } from "../../Hooks/useSearch";
 
 import style from "./Search.module.scss";
 
@@ -13,7 +13,7 @@ function Search() {
     <label htmlFor="search" className={style.search} ref={ref}>
       <Icon type={"mid"} icon={"search"} action={toggle} />
 
-      {isVisible && (
+      {isVisible || value ? (
         <input
           className={style.input}
           onChange={handleChange}
@@ -23,7 +23,7 @@ function Search() {
           placeholder="Search..."
           autoComplete="off"
         />
-      )}
+      ) : null}
 
       {value && (
         <span>

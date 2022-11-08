@@ -29,11 +29,15 @@
     margin: 20px 0;
   }
   @media only screen and (max-width: 650px) {
-    h1 {
-      font-size: rem(28);
+    h2 {
+      font-size: rem(24);
     }
     p {
-      font-size: rem(16);
+      font-size: rem(14);
+    }
+    .empty_cart_img {
+      height: 40vw;
+      width: 40vw;
     }
   }
 }

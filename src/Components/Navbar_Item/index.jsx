@@ -10,14 +10,14 @@ import {
 import style from "./NavbarItem.module.scss";
 
 function NavbarItem() {
-  const { activeCategory, navigation } = useSelector(getSortCategoryState);
+  const { activeCategory, NAVIGATION } = useSelector(getSortCategoryState);
   const dispatch = useDispatch();
 
   const setActiveCategory = (i) => dispatch(setSortCategory(i));
 
   return (
     <ul className={style.wrapper}>
-      {navigation.map((item, index) => (
+      {NAVIGATION.map((item, index) => (
         <li
           key={item.name}
           className={activeCategory === index ? style.item_active : style.item}

@@ -9,13 +9,15 @@ import {
 
 export const useSearch = () => {
   const { searchValue } = useSelector(getSortCategoryState);
-  const [value, setValue] = useState(searchValue);
+  const [value, setValue] = useState("");
   const [debValue] = useDebounce(value, 600);
   const [isVisible, ref, toggle] = useToggle();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setSearchValue(debValue));
+    if (searchValue !== value) {
+      dispatch(setSearchValue(debValue));
+    }
   }, [debValue]);
 
   const handleChange = (event) => setValue(event.target.value);

@@ -12,7 +12,8 @@ function Dropdown({ data, getId }) {
     <ul className={style.root}>
       {data.map((item, index) => (
         <li key={item.name} id={index} onClick={handleClick}>
-          {generateIcon(item.icon)} {item.name}
+          {generateIcon(item.icon)}
+          {item.name}
         </li>
       ))}
     </ul>

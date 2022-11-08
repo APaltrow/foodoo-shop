@@ -27,8 +27,13 @@ const NotificationToast = ({ message }) => {
       setToasts((prev) => [...prev, id]);
       handleToast(id);
     }
-    setMount(true);
   }, [totalCount, address, email, password, firstname, lastname, phone]);
+
+  useEffect(() => {
+    if (!mount) {
+      setMount(true);
+    }
+  }, []);
 
   return toasts.length ? (
     <div className={style.toast_container}>

@@ -14,15 +14,14 @@
     position: absolute;
     right: 10%;
   }
-}
-
-.input {
-  height: 40px;
-
-  padding: 0 40px 0 25px;
-  transform: translatex(-20px);
-  border-radius: 15px;
-  background-color: $color_light_orange;
-  border: 1px solid $color_darken_brown;
-  color: $color_darken_brown;
+  .input {
+    height: 40px;
+    width: 200px;
+    padding: 0 40px;
+    transform: translatex(-20px);
+    border-radius: 15px;
+    background-color: $color_light_orange;
+    border: 1px solid $color_darken_brown;
+    color: $color_darken_brown;
+  }
 }

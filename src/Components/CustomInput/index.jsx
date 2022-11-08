@@ -1,14 +1,14 @@
 import React from "react";
 import Error from "../Error";
 import { generateIcon } from "../Icons/Icons";
-import { inputValidations } from "../../constants/Constants";
-import { useInput } from "../../Helpers/useInput";
+import { INPUT_VALIDATIONS } from "../../constants/InputValidations";
+import { useInput } from "../../Hooks/useInput";
 
 import style from "./CustomInput.module.scss";
 
 const CustomInput = ({ type, placeholder, name }) => {
   const { value, isDirty, onChange, onBlur, isError } = useInput(
-    inputValidations[type]
+    INPUT_VALIDATIONS[type]
   );
 
   return (

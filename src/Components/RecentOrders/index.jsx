@@ -50,10 +50,18 @@ const RecentOrders = ({ ordersList }) => {
       <CustomModal visible={viewOrder ? true : false} handleModal={handleModal}>
         <h3>{viewOrder.recipient}</h3>
         <div>
-          <div> Deliver at : {viewOrder.deliveryAddress}</div>
-          <div> Order ID : {viewOrder.orderId}</div>
-          <div> Date : {viewOrder.orderDate}</div>
-          <div> Payment : {viewOrder.paymentType}</div>
+          <div>
+            <b>Deliver at :</b> {viewOrder.deliveryAddress}
+          </div>
+          <div>
+            <b>Order ID :</b> {viewOrder.orderId}
+          </div>
+          <div>
+            <b>Date :</b> {viewOrder.orderDate}
+          </div>
+          <div>
+            <b>Payment :</b> {viewOrder.paymentType}
+          </div>
           <div
             className={
               viewOrder.orderStatus === "pending"
@@ -61,7 +69,7 @@ const RecentOrders = ({ ordersList }) => {
                 : style.status_done
             }
           >
-            Status : {viewOrder.orderStatus}
+            <b>Status :</b> {viewOrder.orderStatus}
           </div>
         </div>
         {viewOrder && (
@@ -69,12 +77,14 @@ const RecentOrders = ({ ordersList }) => {
             {viewOrder.ordercheck.map((item, i) => (
               <li key={item.title + item.orderId + i}>
                 {`${item.title}, ${item.size}, x${item.count} ...$${item.price} /`}
-                <span>{`${item.specialOrder}`}</span>
+                <small>{`${item.specialOrder}`}</small>
               </li>
             ))}
           </ul>
         )}
-        <div> Total due : ${viewOrder.totalCost}</div>
+        <div>
+          <b>Total due :</b> $ {viewOrder.totalCost}
+        </div>
       </CustomModal>
     </div>
   );

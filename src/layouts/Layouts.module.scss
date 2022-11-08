@@ -68,9 +68,25 @@
 }
 
 .footer {
-  height: 50px;
-  margin-top: 10px;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  text-align: center;
+  gap: 10px;
+  min-height: 50px;
+
   background-color: $color_light_whiteHeader;
+
+  b {
+    font-size: rem(14);
+  }
+  span {
+    font-size: rem(12);
+    font-weight: bold;
+    font-style: italic;
+    color: $color_darken_red;
+  }
+  @media only screen and (max-width: 450px) {
+    flex-direction: column;
+  }
 }

@@ -3,8 +3,8 @@ import { generateIcon } from "../Icons/Icons";
 
 import style from "./Rating.module.scss";
 
-function Rating({ rating, type }) {
-  return (
+const Rating = ({ rating, type }) => {
+  return rating ? (
     <div className={type ? style[type] : style.rating}>
       {[...new Array(rating)].map((_, i) => (
         <span key={i}>{generateIcon("star")}</span>
@@ -15,7 +15,7 @@ function Rating({ rating, type }) {
         ))}
       </div>
     </div>
-  );
-}
+  ) : null;
+};
 
 export default Rating;

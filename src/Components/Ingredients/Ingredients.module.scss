@@ -11,20 +11,15 @@
 
   background-color: $color_darken_orange;
   h3 {
-    line-height: 2;
+    padding: 10px 10px;
   }
 }
-.clips {
+.clips_bot {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
   padding: 5px 10px;
-  &_bot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    padding: 5px 10px;
-  }
 }
 
 .single_ingredient {

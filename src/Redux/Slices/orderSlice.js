@@ -1,15 +1,16 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const URL = "https://633577edea0de5318a142d98.mockapi.io/orders";
+
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { ORDERS_URL } from "../../constants/Urls";
 
 export const fetchOrder = createAsyncThunk("auth/fetchOrder", async (order) => {
-  const { data } = await axios.post(URL, order);
+  const { data } = await axios.post(ORDERS_URL, order);
   return data;
 });
 export const fetchOrdersList = createAsyncThunk(
   "auth/fetchOrdersList",
   async (id) => {
-    const { data } = await axios.get(`${URL}?uid=${id}`);
+    const { data } = await axios.get(`${ORDERS_URL}?uid=${id}`);
     return data;
   }
 );
@@ -17,7 +18,7 @@ export const fetchDeliveredOrder = createAsyncThunk(
   "auth/fetchDeliveredOrder",
   async (order) => {
     const { id } = order;
-    const { data } = await axios.put(`${URL}/${id}`, order);
+    const { data } = await axios.put(`${ORDERS_URL}/${id}`, order);
     return data;
   }
 );

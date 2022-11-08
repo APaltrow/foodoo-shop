@@ -9,11 +9,30 @@
   flex: 1 0 auto;
   row-gap: 5vh;
   color: $color_darken_brown;
+  h2 {
+    font-size: rem(28);
+  }
+  p {
+    font-size: rem(16);
+  }
   &_icon {
+    height: 30vh;
+    width: 30vh;
     svg {
-      height: 30vh;
-      width: 30vh;
       fill: $color_darken_brown;
     }
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  h2 {
+    font-size: rem(24);
+  }
+  p {
+    font-size: rem(14);
+  }
+  .not_found_icon {
+    height: 30vw;
+    width: 30vw;
   }
 }

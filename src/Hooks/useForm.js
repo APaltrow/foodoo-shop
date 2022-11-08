@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
-import { form_types } from "../constants/FormTypes";
+import { FORM_TYPES } from "../constants/FormTypes";
 
 import useAuthentication from "./useAuthentication";
 
 export const useForm = (type) => {
   const formRef = useRef();
-  const [inputs, setInputs] = useState(form_types[type]);
+  const [inputs, setInputs] = useState(FORM_TYPES[type]);
   const [credentials, setCredentials] = useState({});
   const [formValid, setFormValid] = useState(false);
   const { formError, authenticate, status } = useAuthentication(type);
@@ -29,9 +29,11 @@ export const useForm = (type) => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    setFormValid(false);
-    authenticate(credentials);
-    setFormValid(true);
+    if (formValid) {
+      setFormValid(false);
+      authenticate(credentials);
+      setFormValid(true);
+    }
   };
 
   return {

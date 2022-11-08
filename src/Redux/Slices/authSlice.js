@@ -1,25 +1,26 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const URL = "https://633577edea0de5318a142d98.mockapi.io/users";
+
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { USERS_URL } from "../../constants/Urls";
 
 export const fetchCheckUser = createAsyncThunk(
   "auth/fetchCheckUser",
   async (credentials) => {
-    const { data } = await axios.get(`${URL}?email=${credentials.email}`);
+    const { data } = await axios.get(`${USERS_URL}?email=${credentials.email}`);
     return data;
   }
 );
 export const fetchLogedInUser = createAsyncThunk(
   "auth/fetchLogedInUser",
   async (uid) => {
-    const { data } = await axios.get(`${URL}?id=${uid}`);
+    const { data } = await axios.get(`${USERS_URL}?id=${uid}`);
     return data;
   }
 );
 export const fetchRegisterUser = createAsyncThunk(
   "auth/fetchRegisterUser",
   async (credentials) => {
-    const { data } = await axios.post(URL, credentials);
+    const { data } = await axios.post(USERS_URL, credentials);
 
     return data;
   }
@@ -30,7 +31,7 @@ export const fetchUpdateAddress = createAsyncThunk(
     const { id, address } = credentials;
     const updatedAddress = { address: { ...address } };
 
-    const { data } = await axios.put(`${URL}/${id}`, updatedAddress);
+    const { data } = await axios.put(`${USERS_URL}/${id}`, updatedAddress);
 
     return data;
   }
@@ -40,7 +41,7 @@ export const fetchEditProfile = createAsyncThunk(
   async (credentials) => {
     const { id, profile } = credentials;
 
-    const { data } = await axios.put(`${URL}/${id}`, profile);
+    const { data } = await axios.put(`${USERS_URL}/${id}`, profile);
 
     return data;
   }
@@ -50,7 +51,7 @@ export const fetchChangePassword = createAsyncThunk(
   async (credentials) => {
     const { id, password } = credentials;
 
-    const { data } = await axios.put(`${URL}/${id}`, password);
+    const { data } = await axios.put(`${USERS_URL}/${id}`, password);
 
     return data;
   }

@@ -1,19 +1,12 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useDiscount } from "../../Helpers/useDiscount";
 
-const Discount = (size, discount) => {
-  const { calculatedActiveSize } = useDiscount();
-  const activeSize = calculatedActiveSize(size, discount);
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { ITEMS_URL } from "../../constants/Urls";
 
-  return activeSize;
-};
 export const fetchSingleProduct = createAsyncThunk(
   "singleProduct/fetchSingleProduct",
   async (id) => {
-    const { data } = await axios.get(
-      `https://633577edea0de5318a142d98.mockapi.io/items/${id}`
-    );
+    const { data } = await axios.get(`${ITEMS_URL}/${id}`);
 
     return data;
   }
@@ -23,10 +16,9 @@ export const fetchRateProduct = createAsyncThunk(
 
   async (params) => {
     const { id, reviews } = params;
-    const { data } = await axios.put(
-      `https://633577edea0de5318a142d98.mockapi.io/items/${id}`,
-      { reviews: reviews }
-    );
+    const { data } = await axios.put(`${ITEMS_URL}/${id}`, {
+      reviews: reviews,
+    });
 
     return data;
   }
@@ -34,8 +26,6 @@ export const fetchRateProduct = createAsyncThunk(
 
 const initialState = {
   singleProduct: {},
-  activeSize: {},
-  specialOrder: [],
 
   status: "",
   error: "",
@@ -48,15 +38,6 @@ export const singleProductSlice = createSlice({
     setSingleProduct: (state, action) => {
       state.singleProduct = action.payload;
     },
-    setActiveSize: (state, action) => {
-      state.activeSize = Discount(
-        { ...action.payload },
-        state.singleProduct.discount
-      );
-    },
-    setSpecialOrder: (state, action) => {
-      state.specialOrder = [...action.payload];
-    },
   },
   extraReducers: {
     [fetchSingleProduct.pending]: (state) => {
@@ -64,10 +45,6 @@ export const singleProductSlice = createSlice({
     },
     [fetchSingleProduct.fulfilled]: (state, action) => {
       state.singleProduct = action.payload;
-      state.activeSize = Discount(
-        action.payload.sizes[0],
-        action.payload.discount
-      );
 
       state.status = "success";
     },
@@ -94,7 +71,6 @@ export const singleProductSlice = createSlice({
 
 export const getSingleProductState = (state) => state.singleProductSlice;
 
-export const { setSingleProduct, setActiveSize, setSpecialOrder } =
-  singleProductSlice.actions;
+export const { setSingleProduct } = singleProductSlice.actions;
 
 export default singleProductSlice.reducer;

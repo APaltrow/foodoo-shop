@@ -1,8 +1,8 @@
-import React from "react";
+import { useEffect } from "react";
 import { generateIcon } from "../Icons/Icons";
 import { useDispatch } from "react-redux";
 import { setActivePage } from "../../Redux/Slices/sortCategory";
-import { usePaggination } from "../../Helpers/usePaggination";
+import { usePaggination } from "../../Hooks/usePaggination";
 
 import style from "./Paggination.module.scss";
 
@@ -14,8 +14,10 @@ function Paggination({ totalPages, activePage }) {
     activePage,
   });
 
-  React.useEffect(() => {
-    dispatch(setActivePage(active));
+  useEffect(() => {
+    if (active !== activePage) {
+      dispatch(setActivePage(active));
+    }
   }, [active]);
 
   return (

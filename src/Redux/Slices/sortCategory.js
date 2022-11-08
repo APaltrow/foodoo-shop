@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { navigation, sort } from "../../constants/Constants";
+import { SORT } from "../../constants/Sort";
+import { NAVIGATION } from "../../constants/Navigation";
 
 const initialState = {
   activeCategory: 0,
@@ -8,8 +9,8 @@ const initialState = {
   searchValue: "",
   activePage: 1,
   totalPages: 0,
-  navigation,
-  sort,
+  NAVIGATION,
+  SORT,
 };
 
 export const sortCategorySlice = createSlice({

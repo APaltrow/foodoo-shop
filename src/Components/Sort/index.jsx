@@ -1,7 +1,7 @@
 import React from "react";
 import Dropdown from "../Dropdown";
 import { generateIcon } from "../Icons/Icons";
-import { useToggle } from "../../Helpers/useToggle";
+import { useToggle } from "../../Hooks/useToggle";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setSortBy,
@@ -12,7 +12,7 @@ import {
 import style from "./Sort.module.scss";
 
 function Sort() {
-  const { isASC, sort, sortBy } = useSelector(getSortCategoryState);
+  const { isASC, SORT, sortBy } = useSelector(getSortCategoryState);
   const [isVisible, ref, toggle] = useToggle();
 
   const dispatch = useDispatch();
@@ -30,9 +30,9 @@ function Sort() {
       </label>
       <span> Sort by ... </span>
       <strong onClick={toggle} ref={ref}>
-        {sort[sortBy].name}
+        {SORT[sortBy].name}
       </strong>
-      {isVisible && <Dropdown data={sort} getId={onSortByChange} />}
+      {isVisible && <Dropdown data={SORT} getId={onSortByChange} />}
     </div>
   );
 }

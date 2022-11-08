@@ -8,7 +8,7 @@ const Sizes = ({ sizes, activeSize, action, discount }) => {
     action(sizes[index]);
   };
 
-  return (
+  return sizes.length > 0 ? (
     <div className={style.sizes}>
       {sizes.map((size, index) => (
         <div
@@ -39,7 +39,7 @@ const Sizes = ({ sizes, activeSize, action, discount }) => {
         </div>
       ))}
     </div>
-  );
+  ) : null;
 };
 
 export default Sizes;

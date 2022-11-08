@@ -5,7 +5,7 @@ import emptyBasket from "../../assets/emptyBasket.png";
 
 import style from "./EmptyCart.module.scss";
 
-function EmptyCart() {
+const EmptyCart = () => {
   return (
     <div className={style.empty_cart}>
       <h2>Your cart is empty</h2>
@@ -18,6 +18,6 @@ function EmptyCart() {
       <CustomButton type={"goBack"} />
     </div>
   );
-}
+};
 
 export default EmptyCart;

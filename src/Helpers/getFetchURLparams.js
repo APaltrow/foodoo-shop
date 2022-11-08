@@ -1,5 +1,4 @@
-const baseURL = "https://633577edea0de5318a142d98.mockapi.io";
-const section = "items";
+import { BASE_URL } from "../constants/Urls";
 
 // generate Fetch URL parameters
 // pages and limits are not included since there is no proper backend
@@ -25,7 +24,7 @@ export const getFetchURLparams = (
     }
   }
 
-  const items = new URL(section, baseURL);
+  const items = new URL("items", BASE_URL);
   items.search = param.toString();
 
   return items.toString();
