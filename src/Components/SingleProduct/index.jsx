@@ -39,7 +39,7 @@ const SingleProduct = ({ singleProduct }) => {
 
   return (
     <div className={style.product_container}>
-      <NotificationToast message={"Added !"} />
+      <NotificationToast message={"Added !"} type="cart" />
       <div className={style.product_left}>
         <Slider imgURL={imgURL} category={category} />
 

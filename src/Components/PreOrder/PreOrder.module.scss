@@ -1,0 +1,81 @@
+@import "../../Style/mixins.scss";
+@import "../../Style/Variables.scss";
+
+.pre_order {
+  display: flex;
+  align-items: center;
+
+  flex-direction: raw;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-height: 40px;
+
+  b {
+    margin-left: 20px;
+  }
+}
+.pre_order_section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.conf {
+  padding: 0px 20px;
+  color: $color_darken_red;
+  font-weight: bold;
+}
+.switch {
+  position: relative;
+  height: 20px;
+  width: 60px;
+  background-color: $color_light_orange;
+  border: 1px solid $color_darken_brown;
+  border-radius: 20px;
+  padding: 1px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+.switch_btn {
+  height: 15px;
+  width: 15px;
+  background-color: $color_darken_brown;
+  border-radius: 20px;
+
+  &_active {
+    height: 15px;
+    width: 15px;
+    background-color: $color_darken_orange;
+    border-radius: 20px;
+    transform: scale(1.5) translate(26px);
+    border: 1px solid $color_darken_brown;
+    box-shadow: $boxshadow_big;
+  }
+}
+.pre_order_time {
+  display: flex;
+  gap: 5px;
+}
+@media only screen and (max-width: 610px) {
+  .pre_order {
+    margin: auto;
+    width: 60%;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .pre_order_time {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .pre_order {
+    width: 100%;
+  }
+  .pre_order_time {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}

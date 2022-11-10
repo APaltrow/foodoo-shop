@@ -28,7 +28,7 @@ const Settings = () => {
 
   return (
     <div className={style.settings_container}>
-      <NotificationToast message={"Updated !"} />
+      <NotificationToast message={"Updated !"} type="profile" />
       <div className={style.settings_header}>
         <CustomIcon icon="settings" type="small" />
         <h3>Profile settings</h3>

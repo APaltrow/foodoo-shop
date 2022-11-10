@@ -24,7 +24,18 @@ export const fetchDeliveredOrder = createAsyncThunk(
 );
 
 const initialState = {
-  order: {},
+  order: {
+    uid: "",
+    orderId: "",
+    recipient: "",
+    deliveryAddress: "",
+    paymentType: "",
+    ordercheck: "",
+    totalCost: "",
+    orderDate: "",
+    orderStatus: "",
+    preorder: "",
+  },
   ordersList: [],
 
   status: "",
@@ -39,6 +50,14 @@ export const orderSlice = createSlice({
       state.order = { ...action.payload };
       state.status = "";
       state.error = "";
+    },
+    setPreOrder: (state, action) => {
+      state.order.preorder = action.payload;
+      if (action.payload) {
+        state.order.orderStatus = "preorder";
+      } else {
+        state.order.orderStatus = "pending";
+      }
     },
     setCancelOrder: (state) => {
       state.order = {};
@@ -105,6 +124,7 @@ export const orderSlice = createSlice({
 
 export const getOrderState = (state) => state.orderSlice;
 
-export const { setOrder, setStatus, setCancelOrder } = orderSlice.actions;
+export const { setOrder, setPreOrder, setStatus, setCancelOrder } =
+  orderSlice.actions;
 
 export default orderSlice.reducer;

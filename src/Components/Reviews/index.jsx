@@ -64,7 +64,7 @@ const Reviews = () => {
     <div className={style.reviews}>
       <h3>Reviews</h3>
       {status === "pending-rate" && <Loader />}
-      {reviews.length &&
+      {reviews.length ? (
         reviews.map((review, index) => (
           <div className={style.reviews_single} key={index}>
             <div className={style.commenter}>
@@ -140,7 +140,10 @@ const Reviews = () => {
               {review.timestamp ? review.timestamp : `Recently`}
             </span>
           </div>
-        ))}
+        ))
+      ) : (
+        <span>There are no reviews so far ...</span>
+      )}
     </div>
   );
 };

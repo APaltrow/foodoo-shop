@@ -18,8 +18,9 @@ export const useForm = (type) => {
   const checkIfValidForm = () => {
     const validInputsList = [];
     for (let input of formRef.current.elements) {
-      input.defaultChecked &&
+      if (input.getAttribute("data-valid") === "true") {
         validInputsList.push({ [input.name]: input.value });
+      }
     }
     inputs.length === validInputsList.length
       ? setFormValid(true)

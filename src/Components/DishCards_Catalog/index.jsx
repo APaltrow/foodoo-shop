@@ -59,7 +59,7 @@ const DishCardsCatalog = () => {
     return (
       <div className={style.dishCards}>
         <div className={style.dishCards_container}>
-          <NotificationToast message={"Added !"} />
+          <NotificationToast message={"Added !"} type="cart" />
 
           {status === "pending"
             ? [1, 2, 3, 4].map((_, i) => (

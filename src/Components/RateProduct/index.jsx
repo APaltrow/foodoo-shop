@@ -16,28 +16,23 @@ import CustomIcon from "../CustomIcon";
 import style from "./RateProduct.module.scss";
 
 const RateProduct = () => {
+  const dispatch = useDispatch();
+  const { date, idWithDate } = useDate();
   const { uid, firstname } = useSelector(getAuthState).user;
   const { reviews, id } = useSelector(getSingleProductState).singleProduct;
-  const dispatch = useDispatch();
-  const [rating, setRating] = useState(0);
+
   const [status, setStatus] = useState(RATING_STATUSES[0]);
+
+  const [rating, setRating] = useState(0);
   const [ratingComment, setRatingComment] = useState("");
-  const { date, idWithDate } = useDate();
   const [rateModal, setRateModal] = useState(false);
 
-  const onRateThisProduct = (vis) => {
-    setRateModal(vis);
-  };
-
+  const onRateThisProduct = (vis) => setRateModal(vis);
   const getRatingStatus = () => {
     rating > 0 && rating < 3 && setStatus(RATING_STATUSES[1]);
     rating >= 3 && rating < 5 && setStatus(RATING_STATUSES[2]);
     rating === 5 && setStatus(RATING_STATUSES[3]);
   };
-  useEffect(() => {
-    getRatingStatus();
-  }, [rating]);
-
   const onRateNow = () => {
     const rewiews = [
       {
@@ -59,6 +54,17 @@ const RateProduct = () => {
   const getRating = (rating) => {
     setRating(rating);
   };
+
+  useEffect(() => {
+    getRatingStatus();
+  }, [rating]);
+  useEffect(() => {
+    if (!rateModal) {
+      setStatus(RATING_STATUSES[0]);
+      setRating(0);
+      setRatingComment("");
+    }
+  }, [rateModal]);
   return (
     <>
       <CustomModal visible={rateModal} handleModal={onRateThisProduct}>
@@ -67,6 +73,7 @@ const RateProduct = () => {
           <div className={style.rate_content}>
             <img src={status.rating} alt="rate" />
             <p>{status.msg}</p>
+
             <div className={style.rating}>
               <span
                 className={rating === 5 ? style.rated : style.stars}
@@ -104,13 +111,14 @@ const RateProduct = () => {
                 ))}
               </div>
             </div>
+
             <label htmlFor="comment">
               <input
                 onChange={(e) => getRatingComment(e)}
                 value={ratingComment}
                 type={"text"}
                 id="comment"
-                placeholder="Comment ..."
+                placeholder="Leave a comment ..."
                 autoComplete="off"
               />
             </label>

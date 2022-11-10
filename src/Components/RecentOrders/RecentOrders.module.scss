@@ -64,8 +64,9 @@
 
   padding: 5px 10px;
   border-radius: 10px;
-  margin: 5px 0;
+  margin: 10px 0;
   font-style: italic;
+
   li {
     min-height: 20px;
     line-height: 20px;
@@ -79,6 +80,7 @@
     }
   }
 }
+
 @media only screen and (max-width: 550px) {
   .recent_orders {
     h3 {

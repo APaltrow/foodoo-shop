@@ -16,7 +16,7 @@ const CustomInput = ({ type, placeholder, name }) => {
       <label className={style.label}>
         <div className={style.icon}> {generateIcon(name)}</div>
         <input
-          defaultChecked={!isError}
+          data-valid={!isError}
           className={
             isDirty && isError ? style.custom_input_invalid : style.custom_input
           }

@@ -19,6 +19,7 @@ import checoutimg from "../../assets/checkout.png";
 import Error from "../Error";
 import Loader from "../Loader";
 import NotificationToast from "../NotificationToast";
+import PreOrder from "../PreOrder";
 
 import style from "./Checkout.module.scss";
 
@@ -80,6 +81,7 @@ const Checkout = ({ onCancel }) => {
         totalCost,
         orderDate: date,
         orderStatus: "pending",
+        preorder: order?.preorder ? order.preorder : false,
       })
     );
   }, [paymentType, totalCost, products, address, firstname, lastname, phone]);
@@ -104,10 +106,7 @@ const Checkout = ({ onCancel }) => {
       </div>
       {error && <Error error={error} />}
       {status === "pending" && <Loader />}
-      <NotificationToast
-        message={"successfully"}
-        listen={status === "success" ? true : false}
-      />
+      <NotificationToast message={"successfully"} />
 
       <div className={style.content}>
         <div className={style.item}>
@@ -139,6 +138,7 @@ const Checkout = ({ onCancel }) => {
             </ul>
           </label>
         </div>
+        <PreOrder />
 
         <div className={style.item}>
           Payment :
