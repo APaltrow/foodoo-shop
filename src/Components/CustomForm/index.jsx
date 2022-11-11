@@ -37,7 +37,9 @@ const CustomForm = ({ type, title, btn }) => {
         ref={formRef}
         onKeyUp={checkIfValidForm}
       >
-        <Icon type="big" icon="logo" />
+        {type === "login" || type === "registration" ? (
+          <Icon type="big" icon="logo" />
+        ) : null}
         {type === "login" || type === "registration" ? (
           <h1>{title}</h1>
         ) : (

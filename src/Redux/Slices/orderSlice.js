@@ -29,12 +29,13 @@ const initialState = {
     orderId: "",
     recipient: "",
     deliveryAddress: "",
-    paymentType: "",
+    paymentType: "cash",
     ordercheck: "",
     totalCost: "",
     orderDate: "",
-    orderStatus: "",
-    preorder: "",
+    paymentStatus: false,
+    orderStatus: "pending",
+    preorder: false,
   },
   ordersList: [],
 
@@ -51,6 +52,12 @@ export const orderSlice = createSlice({
       state.status = "";
       state.error = "";
     },
+    setPaymentType: (state, action) => {
+      state.order.paymentType = action.payload;
+    },
+    setPaymentStatus: (state, action) => {
+      state.order.paymentStatus = action.payload;
+    },
     setPreOrder: (state, action) => {
       state.order.preorder = action.payload;
       if (action.payload) {
@@ -60,7 +67,19 @@ export const orderSlice = createSlice({
       }
     },
     setCancelOrder: (state) => {
-      state.order = {};
+      state.order = {
+        uid: "",
+        orderId: "",
+        recipient: "",
+        deliveryAddress: "",
+        paymentType: "cash",
+        ordercheck: "",
+        totalCost: "",
+        orderDate: "",
+        orderStatus: "pending",
+        paymentStatus: false,
+        preorder: false,
+      };
       state.status = "";
       state.error = "";
     },
@@ -124,7 +143,13 @@ export const orderSlice = createSlice({
 
 export const getOrderState = (state) => state.orderSlice;
 
-export const { setOrder, setPreOrder, setStatus, setCancelOrder } =
-  orderSlice.actions;
+export const {
+  setOrder,
+  setPaymentType,
+  setPaymentStatus,
+  setPreOrder,
+  setStatus,
+  setCancelOrder,
+} = orderSlice.actions;
 
 export default orderSlice.reducer;

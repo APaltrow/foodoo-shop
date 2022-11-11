@@ -1,10 +1,9 @@
 import CustomSelect from "../CustomSelect";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getOrderState, setPreOrder } from "../../Redux/Slices/orderSlice";
 
 import style from "./PreOrder.module.scss";
-import { useEffect } from "react";
 
 const PreOrder = () => {
   const dispatch = useDispatch();
@@ -28,9 +27,9 @@ const PreOrder = () => {
   }, [data]);
 
   return (
-    <div className={style.pre_order}>
+    <section className={style.pre_order}>
       <div className={style.pre_order_section}>
-        <b>Pre-order :</b>
+        <h4>Pre-order :</h4>
         <div className={style.switch} onClick={getPreorder}>
           <div
             className={preorder ? style.switch_btn_active : style.switch_btn}
@@ -51,7 +50,7 @@ const PreOrder = () => {
           {`Deliver at: ${preorder.hours}:00 ${preorder.dayPart}`}
         </small>
       ) : null}
-    </div>
+    </section>
   );
 };
 

@@ -11,3 +11,13 @@
   @include buttonCreator(30, 30, $color_EX_darken_orange);
   font-size: rem(20);
 }
+
+.active {
+  @include buttonCreator(40, 150, $color_darken_brown);
+  padding-left: 10px;
+  background-color: $color_darken_brown;
+  fill: lighten($color_darken_brown, 50);
+  span {
+    color: lighten($color_darken_brown, 50);
+  }
+}

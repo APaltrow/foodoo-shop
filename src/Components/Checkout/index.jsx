@@ -20,6 +20,7 @@ import Error from "../Error";
 import Loader from "../Loader";
 import NotificationToast from "../NotificationToast";
 import PreOrder from "../PreOrder";
+import PaymentType from "../PaymentType";
 
 import style from "./Checkout.module.scss";
 
@@ -31,7 +32,6 @@ const Checkout = ({ onCancel }) => {
     useSelector(getAuthState).user;
 
   const { order, status, error } = useSelector(getOrderState);
-  const [paymentType, setPaymentType] = useState("cash");
 
   const recipient = `${firstname} ${lastname}, ${phone} `;
   const deliveryAddress = `${address.city}, ${address.street} ${address["house-number"]}`;
@@ -55,9 +55,6 @@ const Checkout = ({ onCancel }) => {
     return ordercheck;
   }, [products]);
 
-  const onPaymentChange = (type) => {
-    setPaymentType(type);
-  };
   const onCancelOrder = () => {
     if (window.confirm("Are you sure to cancel the order?")) {
       dispatch(setCancelOrder());
@@ -76,15 +73,16 @@ const Checkout = ({ onCancel }) => {
         orderId: idWithDate,
         recipient,
         deliveryAddress,
-        paymentType,
+        paymentType: order?.paymentType || "cash",
         ordercheck: getOrder(),
         totalCost,
         orderDate: date,
-        orderStatus: "pending",
-        preorder: order?.preorder ? order.preorder : false,
+        paymentStatus: order?.paymentStatus || false,
+        orderStatus: order?.orderStatus || "pending",
+        preorder: order?.preorder || false,
       })
     );
-  }, [paymentType, totalCost, products, address, firstname, lastname, phone]);
+  }, [totalCost, products, address, firstname, lastname, phone]);
   useEffect(() => {
     if (status === "success") {
       dispatch(clearCart());
@@ -140,27 +138,7 @@ const Checkout = ({ onCancel }) => {
         </div>
         <PreOrder />
 
-        <div className={style.item}>
-          Payment :
-          <div className={style.payment}>
-            <span
-              className={paymentType === "cash" ? style.active : ""}
-              onClick={() => onPaymentChange("cash")}
-            >
-              <CustomIcon type="small" icon={"cash"} />
-              Cash on delivery
-            </span>
-
-            <span
-              className={paymentType === "card" ? style.active : ""}
-              onClick={() => onPaymentChange("card")}
-            >
-              <CustomIcon type="small" icon={"card"} />
-              Card
-            </span>
-          </div>
-          {paymentType === "card" && <div>Please enter the card details</div>}
-        </div>
+        <PaymentType fname={firstname} lname={lastname} />
 
         <div className={style.item}>
           Total due: <span>$ {totalCost}</span>
