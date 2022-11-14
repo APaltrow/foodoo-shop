@@ -1,15 +1,18 @@
 @import "../../Style/mixins.scss";
 @import "../../Style/variables.scss";
 
-.cart {
+.nav_cart {
   display: flex;
   justify-content: center;
+  position: relative;
 
   min-height: rem(50);
   font-size: rem(16);
   font-weight: 500;
+
+  @include informer("cart");
 }
-.pricetag {
+.nav_cart_pricetag {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,7 +26,7 @@
 .none {
   display: none;
 }
-.count {
+.nav_cart_count {
   background-color: $color_darken_brown;
   width: 100%;
   color: wheat;
@@ -31,7 +34,7 @@
   padding-right: 20px;
   border-radius: 0 0 10px;
 }
-.cost {
+.nav_cart_cost {
   border: 1px solid $color_darken_brown;
   width: 100%;
   padding-left: 20px;

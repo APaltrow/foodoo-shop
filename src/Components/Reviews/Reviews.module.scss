@@ -18,10 +18,16 @@
   &::-webkit-scrollbar {
     display: none;
   }
-  h3 {
-    padding-top: 10px;
+  &_header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
     border-bottom: 1px solid $color_darken_brown;
     background-color: white;
+    padding: 10px 0px;
     position: sticky;
     top: 0;
 

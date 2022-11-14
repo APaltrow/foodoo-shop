@@ -4,11 +4,12 @@ import CustomSelect from "../CustomSelect";
 import Error from "../Error";
 
 import { useSelector, useDispatch } from "react-redux";
+
 import {
-  getOrderState,
+  getCheckoutState,
   setPaymentType,
   setPaymentStatus,
-} from "../../Redux/Slices/orderSlice";
+} from "../../Redux/Slices/checkoutSlice";
 import { useRef, useState, useEffect } from "react";
 
 import style from "./PaymenType.module.scss";
@@ -19,7 +20,7 @@ const PaymentType = ({ fname, lname }) => {
   const [validCredentials, setValidCredentials] = useState(false);
   const [credentialsError, setCredentialsError] = useState(false);
 
-  const { paymentType, paymentStatus } = useSelector(getOrderState).order;
+  const { paymentType, paymentStatus } = useSelector(getCheckoutState).order;
 
   const onFormChange = (e) => {
     e.preventDefault();

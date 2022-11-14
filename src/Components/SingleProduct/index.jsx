@@ -87,6 +87,8 @@ const SingleProduct = ({ singleProduct }) => {
           size={activeSize}
           title={title}
           specialOrder={specialOrder}
+          imgURL={imgURL}
+          id={id}
         />
       </div>
     </div>

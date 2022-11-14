@@ -1,16 +1,18 @@
-import { useState, useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getCartState, clearCart } from "../../Redux/Slices/cartSlice";
 import { getAuthState } from "../../Redux/Slices/authSlice";
+
 import {
-  getOrderState,
+  getCheckoutState,
   setOrder,
-  setStatus,
-  setCancelOrder,
   fetchOrder,
-} from "../../Redux/Slices/orderSlice";
+  setCancelOrder,
+  setStatus,
+} from "../../Redux/Slices/checkoutSlice";
+
 import { useDate } from "../../Hooks/useDate";
 
 import CustomButton from "../CustomButton";
@@ -18,7 +20,6 @@ import CustomIcon from "../CustomIcon";
 import checoutimg from "../../assets/checkout.png";
 import Error from "../Error";
 import Loader from "../Loader";
-import NotificationToast from "../NotificationToast";
 import PreOrder from "../PreOrder";
 import PaymentType from "../PaymentType";
 
@@ -27,15 +28,11 @@ import style from "./Checkout.module.scss";
 const Checkout = ({ onCancel }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { idWithDate, date } = useDate();
   const { totalCost, products } = useSelector(getCartState);
   const { address, firstname, lastname, phone, id } =
     useSelector(getAuthState).user;
-
-  const { order, status, error } = useSelector(getOrderState);
-
-  const recipient = `${firstname} ${lastname}, ${phone} `;
-  const deliveryAddress = `${address.city}, ${address.street} ${address["house-number"]}`;
-  const { idWithDate, date } = useDate();
+  const { order, status, error } = useSelector(getCheckoutState);
 
   const getOrder = useCallback(() => {
     const ordercheck = [];
@@ -71,28 +68,31 @@ const Checkout = ({ onCancel }) => {
       setOrder({
         uid: id,
         orderId: idWithDate,
-        recipient,
-        deliveryAddress,
+        recipient: `${firstname} ${lastname}, tel. ${phone} `,
+        deliveryAddress: `${address.city}, ${address.street} ${address["house-number"]}`,
         paymentType: order?.paymentType || "cash",
         ordercheck: getOrder(),
         totalCost,
         orderDate: date,
-        paymentStatus: order?.paymentStatus || false,
+        paymentStatus: order?.paymentStatus || null,
         orderStatus: order?.orderStatus || "pending",
-        preorder: order?.preorder || false,
+        preorder: order?.preorder || null,
       })
     );
   }, [totalCost, products, address, firstname, lastname, phone]);
   useEffect(() => {
     if (status === "success") {
-      dispatch(clearCart());
       setTimeout(() => {
         navigate("/my-orders");
+        dispatch(clearCart());
+        dispatch(setCancelOrder());
       }, 1050);
     }
 
     return () => {
-      dispatch(setStatus());
+      if (status === "success") {
+        dispatch(setStatus());
+      }
     };
   }, [status]);
 
@@ -104,14 +104,20 @@ const Checkout = ({ onCancel }) => {
       </div>
       {error && <Error error={error} />}
       {status === "pending" && <Loader />}
-      <NotificationToast message={"successfully"} />
 
       <div className={style.content}>
         <div className={style.item}>
-          Recipient :<span> {recipient}</span>
+          Recipient :<span> {`${firstname} ${lastname}, tel. ${phone} `}</span>
         </div>
         <div className={style.item}>
-          Deliver at :{address.city ? <span>{deliveryAddress}</span> : ""}
+          Deliver at :
+          {address.city ? (
+            <span>{`${address.city}, ${address.street} ${address["house-number"]}`}</span>
+          ) : (
+            <Error
+              error={"Looks like you have not submitted any address yet"}
+            />
+          )}
         </div>
         <div className={style.item}>
           Order check :
@@ -136,8 +142,8 @@ const Checkout = ({ onCancel }) => {
             </ul>
           </label>
         </div>
-        <PreOrder />
 
+        <PreOrder />
         <PaymentType fname={firstname} lname={lastname} />
 
         <div className={style.item}>
@@ -150,7 +156,13 @@ const Checkout = ({ onCancel }) => {
         <CustomButton
           text={"submit order"}
           action={onSubmitOrder}
-          disabled={status === "pending" ? true : false}
+          disabled={
+            status === "pending" ||
+            (order.paymentType === "card" &&
+              order.paymentStatus !== "Payed successfully")
+              ? true
+              : false
+          }
         />
       </div>
     </div>

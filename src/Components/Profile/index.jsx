@@ -15,7 +15,7 @@ function Profile() {
   const getId = (id) => navigate(`/${SETTINGS[id].route}`);
 
   return (
-    <div className={style.profile} onClick={toggle} ref={ref}>
+    <div className={style.nav_profile} onClick={toggle} ref={ref}>
       <Icon type={"mid"} icon={"profile"} />
 
       {isVisible && <Dropdown data={SETTINGS} getId={getId} />}

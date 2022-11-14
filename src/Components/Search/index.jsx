@@ -25,11 +25,7 @@ function Search() {
         />
       ) : null}
 
-      {value && (
-        <span>
-          <Icon type={"small"} icon={"dismiss"} action={onDismiss} />
-        </span>
-      )}
+      {value && <Icon type={"small"} icon={"dismiss"} action={onDismiss} />}
     </label>
   );
 }

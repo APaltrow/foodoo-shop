@@ -62,7 +62,11 @@ const Reviews = () => {
 
   return (
     <div className={style.reviews}>
-      <h3>Reviews</h3>
+      <div className={style.reviews_header}>
+        <h3>Reviews</h3>
+        <CustomIcon type={"small"} icon="reviews" />
+      </div>
+
       {status === "pending-rate" && <Loader />}
       {reviews.length ? (
         reviews.map((review, index) => (

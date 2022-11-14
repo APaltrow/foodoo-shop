@@ -3,7 +3,7 @@ import React from "react";
 import Icon from "../CustomIcon";
 import style from "./Logo.module.scss";
 
-function Logo() {
+const Logo = () => {
   return (
     <div className={style.logo}>
       <Icon type={"big"} icon={"logo"} />
@@ -13,6 +13,6 @@ function Logo() {
       </div>
     </div>
   );
-}
+};
 
 export default Logo;

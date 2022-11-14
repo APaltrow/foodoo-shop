@@ -1,13 +1,17 @@
 import CustomSelect from "../CustomSelect";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getOrderState, setPreOrder } from "../../Redux/Slices/orderSlice";
+
+import {
+  getCheckoutState,
+  setPreOrder,
+} from "../../Redux/Slices/checkoutSlice";
 
 import style from "./PreOrder.module.scss";
 
 const PreOrder = () => {
   const dispatch = useDispatch();
-  const { order } = useSelector(getOrderState);
+  const { order } = useSelector(getCheckoutState);
   const preorder = order?.preorder;
   const [data, setData] = useState({});
 

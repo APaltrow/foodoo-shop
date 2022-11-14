@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchAddFavourites } from "../../Redux/Slices/favouritesSlice";
+import { getAuthState } from "../../Redux/Slices/authSlice";
 
 import CustomButton from "../CustomButton";
 import CustomIcon from "../CustomIcon";
@@ -6,12 +9,22 @@ import CustomModal from "../CustomModal";
 
 import style from "./AddFavourite.module.scss";
 
-const AddFavourite = ({ title, specialOrder, size }) => {
+const AddFavourite = ({ title, specialOrder, size, imgURL, id }) => {
+  const dispatch = useDispatch();
+  const { uid } = useSelector(getAuthState).user;
   const [favModal, setFavModal] = useState(false);
-  const onAddToFavourites = (vis) => setFavModal(vis);
+  const onAddToFavourites = (vis) => {
+    dispatch(
+      fetchAddFavourites({
+        uid,
+        favourites: { title, specialOrder, size, imgURL, id },
+      })
+    );
+    setFavModal(false);
+  };
   return (
     <>
-      <CustomModal visible={favModal} handleModal={onAddToFavourites}>
+      <CustomModal visible={favModal} handleModal={setFavModal}>
         <div className={style.favourite_container}>
           <h3>Add to favourites</h3>
           <div className={style.wrapper}>
@@ -39,7 +52,7 @@ const AddFavourite = ({ title, specialOrder, size }) => {
         <CustomIcon
           type={"favourite"}
           icon={"favourites"}
-          action={() => onAddToFavourites(true)}
+          action={() => setFavModal(true)}
         />
       </span>
     </>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import CustomButton from "../CustomButton";
 import SpecialOrder from "../SpecialOrder";
 import CustomModal from "../CustomModal";
+import CustomIcon from "../CustomIcon";
 
 import style from "./Ingredients.module.scss";
 
@@ -18,7 +19,10 @@ const Ingredients = ({
 
   return (
     <div className={style.ingredients}>
-      <h3>Ingredients</h3>
+      <div className={style.ingredients_header}>
+        <h3>Ingredients</h3>
+        <CustomIcon icon={"ingredients"} type="small" />
+      </div>
 
       <div>
         {ingredients.map((item, index) => (
@@ -46,6 +50,7 @@ const Ingredients = ({
             <b>Weight:</b> {activeSize.weight} `g
           </span>
           <CustomButton
+            icon={"special-order"}
             text={"special order"}
             action={() => handleModal(true)}
           />

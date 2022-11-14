@@ -24,7 +24,7 @@
 .content_wrapper {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  min-width: 100%;
   min-height: calc(100vh - 170px);
   flex: 1 0 auto;
 }
@@ -35,14 +35,24 @@
   justify-content: space-between;
   box-shadow: $boxshadow_small;
   padding: 10px;
-  row-gap: 10px;
+  gap: 10px;
   .profile_wrapper {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    flex: 1 0;
-    column-gap: rem(10);
-    min-width: rem(300);
+    flex: 1 0 auto;
+    gap: 10px;
+    min-width: rem(250);
+
+    .nav_logout {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include informer("log out");
+    }
   }
 
   @media only screen and (max-width: 630px) {

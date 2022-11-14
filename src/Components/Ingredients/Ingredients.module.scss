@@ -10,8 +10,13 @@
   border-radius: 20px;
 
   background-color: $color_darken_orange;
-  h3 {
-    padding: 10px 10px;
+  &_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h3 {
+      padding: 10px 10px;
+    }
   }
 }
 .clips_bot {

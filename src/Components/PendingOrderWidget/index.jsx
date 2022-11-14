@@ -1,21 +1,22 @@
 import CustomIcon from "../CustomIcon";
 import Error from "../Error";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   fetchDeliveredOrder,
-  setCancelOrder,
-  setStatus,
+  getOrderState,
 } from "../../Redux/Slices/orderSlice";
 
 import style from "./PendingOrder.module.scss";
 
-const PendingOrderWidget = ({ order }) => {
+const PendingOrderWidget = () => {
   const dispatch = useDispatch();
+  const { pendingOrder } = useSelector(getOrderState);
+
   const [timer, setTimer] = useState(0);
 
   useEffect(() => {
-    if (order && order.orderStatus === "pending") {
+    if (pendingOrder) {
       const count = () => {
         if (timer < 50) {
           setTimer(timer + 1);
@@ -25,23 +26,20 @@ const PendingOrderWidget = ({ order }) => {
         count();
       }, 1000);
     }
-  }, [timer, order]);
+  }, [timer, pendingOrder]);
   useEffect(() => {
     if (timer === 50) {
       setTimer(0);
       alert("Your order is Delivered!");
-      dispatch(fetchDeliveredOrder({ ...order, orderStatus: "delivered" }));
-      dispatch(setCancelOrder());
+      dispatch(
+        fetchDeliveredOrder({ ...pendingOrder, orderStatus: "delivered" })
+      );
     }
-
-    return () => {
-      dispatch(setStatus());
-    };
   }, [timer]);
 
   return (
     <>
-      <div className={order ? "" : style.non_active}>
+      <div className={pendingOrder ? "" : style.non_active}>
         <div className={style.pending_order}>
           <div className={style.slider}>
             <div
@@ -55,7 +53,7 @@ const PendingOrderWidget = ({ order }) => {
             <span
               className={timer >= 15 ? style.wrapper_active : style.wrapper}
             ></span>
-            {order && timer > 0 && timer <= 14 ? (
+            {pendingOrder && timer > 0 && timer <= 14 ? (
               <span className={style.spinner}></span>
             ) : null}
             {timer >= 15 && (
@@ -109,7 +107,7 @@ const PendingOrderWidget = ({ order }) => {
               </strong>
             ) : null}
           </div>
-          {order && (
+          {pendingOrder && (
             <>
               {timer < 48 && <p>Order might take up to 30 min ...</p>}
               {timer >= 48 && <p>Order is delivered, enjoy your meal !</p>}
@@ -117,7 +115,7 @@ const PendingOrderWidget = ({ order }) => {
           )}
         </div>
       </div>
-      {!order && (
+      {!pendingOrder && (
         <div className={style.notification}>
           <Error error={"There are no pending orders..."} />
         </div>

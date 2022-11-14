@@ -9,11 +9,11 @@ function Cart() {
   const { totalCount, totalCost } = useSelector(getCartState);
 
   return (
-    <div className={style.cart}>
+    <div className={style.nav_cart}>
       <Icon type={"mid"} icon={"cart"} />
-      <div className={totalCount ? style.pricetag : style.none}>
-        <div className={style.cost}>$ {totalCost} </div>
-        <div className={style.count}>{totalCount}</div>
+      <div className={totalCount ? style.nav_cart_pricetag : style.none}>
+        <div className={style.nav_cart_cost}>$ {totalCost} </div>
+        <div className={style.nav_cart_count}>{totalCount}</div>
       </div>
     </div>
   );

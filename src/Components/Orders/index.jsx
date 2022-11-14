@@ -1,5 +1,4 @@
 import CustomIcon from "../CustomIcon";
-import NotFound from "../NotFound";
 import PendingOrderWidget from "../PendingOrderWidget";
 import RecentOrders from "../RecentOrders";
 
@@ -12,7 +11,7 @@ import style from "./Orders.module.scss";
 
 const Orders = () => {
   const dispatch = useDispatch();
-  const { ordersList, order } = useSelector(getOrderState);
+  const { ordersList } = useSelector(getOrderState);
   const { id } = useSelector(getAuthState).user;
 
   useEffect(() => {
@@ -25,11 +24,8 @@ const Orders = () => {
         <CustomIcon type={"small"} icon={"orders"} />
         <h3> My orders</h3>
       </div>
-      {false && <NotFound />}
 
-      <PendingOrderWidget
-        order={order !== undefined && order.orderId ? order : false}
-      />
+      <PendingOrderWidget />
 
       <RecentOrders ordersList={ordersList} />
     </div>

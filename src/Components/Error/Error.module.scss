@@ -3,14 +3,17 @@
 
 .error {
   min-height: 30px;
+  padding: 0px 10px;
+
   display: flex;
   justify-content: center;
   align-items: center;
-
   gap: 10px;
+
   font-size: rem(14);
   font-weight: 500;
   color: $color_darken_red;
+
   svg {
     width: rem(20);
     height: rem(20);

@@ -8,6 +8,10 @@
 
   min-width: rem(300);
   cursor: pointer;
+  & div:nth-child(1) {
+    position: relative;
+    @include informer("go home");
+  }
 
   &_text {
     display: flex;

@@ -1,5 +1,8 @@
 @import "../../Style/mixins.scss";
+@import "../../Style/variables.scss";
 
-.profile {
+.nav_profile {
   position: relative;
+
+  @include informer("profile");
 }

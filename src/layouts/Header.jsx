@@ -28,7 +28,9 @@ function Header() {
         </NavLink>
 
         <Profile />
-        <Icon type="small" icon="logout" action={handleLogout} />
+        <div className={style.nav_logout}>
+          <Icon type="small" icon="logout" action={handleLogout} />
+        </div>
       </div>
     </header>
   );

@@ -21,7 +21,7 @@ function Paggination({ totalPages, activePage }) {
   }, [active]);
 
   return (
-    <div className={style.root}>
+    <aside className={style.root}>
       <div className={style.root_prev} onClick={previous}>
         {generateIcon("next")}
       </div>
@@ -41,7 +41,7 @@ function Paggination({ totalPages, activePage }) {
       <div className={style.root_next} onClick={next}>
         {generateIcon("next")}
       </div>
-    </div>
+    </aside>
   );
 }
 
