@@ -15,6 +15,7 @@ export const useProduct = ({
   isVegitarian,
   sizes,
   discount,
+  mySpecialOrder,
 }) => {
   // Hooks here
   const dispatch = useDispatch();
@@ -25,7 +26,9 @@ export const useProduct = ({
   const [activeSize, setActiveSize] = useState(
     calculatedActiveSize(sizes[0], discount)
   );
-  const [specialOrder, setSpecialOrder] = useState([]);
+  const [specialOrder, setSpecialOrder] = useState(
+    mySpecialOrder ? mySpecialOrder : []
+  );
 
   // manipulation functions
   const onActiveSizeChange = (size) =>

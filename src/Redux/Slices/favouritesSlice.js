@@ -18,6 +18,14 @@ export const fetchFavourites = createAsyncThunk(
     return data;
   }
 );
+export const fetchDeleteFavourites = createAsyncThunk(
+  "favourites/fetchDeleteFavourites",
+  async (favId) => {
+    const { data } = await axios.delete(`${FAVOURITES_URL}/${favId}`);
+
+    return data;
+  }
+);
 
 const initialState = {
   favourites: [],
@@ -52,12 +60,29 @@ export const favouritesSlice = createSlice({
       state.favourites = [];
     },
     [fetchFavourites.fulfilled]: (state, action) => {
-      state.favourites = action.payload.map(
-        (favourite) => favourite.favourites
-      );
+      state.favourites = action.payload.map((favourite) => ({
+        ...favourite.favourites,
+        favId: favourite.id,
+      }));
       state.status = "success";
     },
     [fetchFavourites.rejected]: (state, action) => {
+      state.favourites = [];
+      state.error = action.error.message;
+
+      state.status = "error";
+    },
+    [fetchDeleteFavourites.pending]: (state) => {
+      state.status = "pending";
+    },
+    [fetchDeleteFavourites.fulfilled]: (state, action) => {
+      state.favourites = state.favourites.filter(
+        (fav) => fav.favId !== action.payload.id
+      );
+
+      state.status = "success";
+    },
+    [fetchDeleteFavourites.rejected]: (state, action) => {
       state.favourites = [];
       state.error = action.error.message;
 
