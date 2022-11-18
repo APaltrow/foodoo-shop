@@ -5,7 +5,7 @@ import CustomButton from "../CustomButton";
 
 import style from "./NotFound.module.scss";
 
-function NotFound({ page }) {
+const NotFound = ({ page }) => {
   return (
     <div className={style.not_found}>
       {page && <h2>NOT FOUND</h2>}
@@ -15,6 +15,6 @@ function NotFound({ page }) {
       {page && <CustomButton type={"goBack"} />}
     </div>
   );
-}
+};
 
 export default NotFound;

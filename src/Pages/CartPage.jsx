@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { getCartState } from "../Redux/Slices/cartSlice";
+
 import EmptyCart from "../Components/EmptyCart";
 import CartItems from "../Components/CartItems_Catalog";
 import Checkout from "../Components/Checkout";

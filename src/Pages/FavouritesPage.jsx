@@ -27,7 +27,7 @@ const Favourites = () => {
       <NotificationToast message={"In the cart !"} type={"cart"} />
       <PageLayout
         title={"My Favourites"}
-        icon={"favourites"}
+        img={"favourites"}
         type={favourites.length && status === "success" ? "catalog" : "list"}
       >
         {status === "pending" && <Loader />}

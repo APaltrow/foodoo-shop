@@ -32,26 +32,28 @@ const PreOrder = () => {
 
   return (
     <section className={style.pre_order}>
-      <div className={style.pre_order_section}>
-        <h4>Pre-order :</h4>
-        <div className={style.switch} onClick={getPreorder}>
+      <div className={style.pre_order_header}>
+        <h4>Pre-order </h4>
+        <button className={style.switch} onClick={getPreorder}>
           <div
             className={preorder ? style.switch_btn_active : style.switch_btn}
           ></div>
-        </div>
+        </button>
       </div>
       {preorder && (
         <div className={style.pre_order_time}>
-          <CustomSelect type={"hours"} getData={showData} />
-          <CustomSelect type={"dayPart"} getData={showData} />
+          <div className={style.pre_order_day}>
+            <CustomSelect type={"hours"} getData={showData} />
+            <CustomSelect type={"dayPart"} getData={showData} />
+          </div>
           <CustomSelect type={"calendar"} getData={showData} />
         </div>
       )}
       {preorder ? (
-        <small className={style.conf}>
-          {`Deliver on: ${preorder.calendar} `}
+        <small className={style.pre_order_confirmation}>
+          {`Deliver on : ${preorder.calendar} `}
           <br />
-          {`Deliver at: ${preorder.hours}:00 ${preorder.dayPart}`}
+          {`Deliver at : ${preorder.hours}:00 ${preorder.dayPart}`}
         </small>
       ) : null}
     </section>

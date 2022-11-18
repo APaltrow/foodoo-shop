@@ -2,6 +2,7 @@ import React from "react";
 import IMG from "../IMG";
 import CustomButton from "../CustomButton";
 import CustomIcon from "../CustomIcon";
+
 import { useDispatch } from "react-redux";
 import {
   removeProduct,
@@ -12,19 +13,20 @@ import {
 import style from "./CartItem.module.scss";
 
 function CartItem({ data }) {
-  const { imgURL, title, activeSize, id, lot_id, count, specialOrder } = data;
   const dispatch = useDispatch();
 
+  const { imgURL, title, activeSize, id, lot_id, count, specialOrder } = data;
+
+  const onPlusItem = () => dispatch(plusProduct({ lot_id }));
+  const onMinusItem = () => dispatch(minusProduct({ lot_id }));
   const onRemoveItem = () => {
-    if (window.confirm("Are you sure you want to remove the item?")) {
+    if (window.confirm("Are you sure you want to remove the product?")) {
       dispatch(removeProduct({ lot_id }));
     }
   };
-  const onPlusItem = () => dispatch(plusProduct({ lot_id }));
-  const onMinusItem = () => dispatch(minusProduct({ lot_id }));
 
   return (
-    <div className={style.cart_item}>
+    <section className={style.cart_item}>
       <div className={style.cart_item_description}>
         <IMG id={id} title={title} imgURL={imgURL} type={"small"} />
 
@@ -32,11 +34,11 @@ function CartItem({ data }) {
           <h3>{title}</h3>
           <span>{activeSize.size}</span>
           <div>
-            <strong className={activeSize.discountedPrice && style.discount}>
+            <b className={activeSize.discountedPrice && style.discount}>
               $ {activeSize.price.toFixed(2)}
-            </strong>
+            </b>
             {activeSize.discountedPrice && (
-              <strong> $ {activeSize.discountedPrice.toFixed(2)}</strong>
+              <b> $ {activeSize.discountedPrice.toFixed(2)}</b>
             )}
           </div>
         </div>
@@ -59,20 +61,21 @@ function CartItem({ data }) {
           </div>
         </div>
       ) : null}
-      <div className={style.cart_item_setting}>
+      <div className={style.cart_item_buttons}>
         <CustomButton
           text={"-"}
           type={"service"}
           disabled={count <= 1 ? true : false}
           action={onMinusItem}
         />
-        <strong>{count}</strong>
+
+        <b>{count}</b>
 
         <CustomButton text={"+"} type={"service"} action={onPlusItem} />
 
         <CustomButton icon={"delete"} type={"delete"} action={onRemoveItem} />
       </div>
-    </div>
+    </section>
   );
 }
 export default CartItem;

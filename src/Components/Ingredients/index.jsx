@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+
 import CustomButton from "../CustomButton";
 import SpecialOrder from "../SpecialOrder";
 import CustomModal from "../CustomModal";
@@ -18,7 +19,7 @@ const Ingredients = ({
   const handleModal = (vis) => setModal(vis);
 
   return (
-    <div className={style.ingredients}>
+    <section className={style.ingredients}>
       <div className={style.ingredients_header}>
         <h3>Ingredients</h3>
         <CustomIcon icon={"ingredients"} type="small" />
@@ -64,7 +65,7 @@ const Ingredients = ({
           handleModal={handleModal}
         />
       </CustomModal>
-    </div>
+    </section>
   );
 };
 

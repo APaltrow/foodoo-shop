@@ -13,7 +13,7 @@ const AddFavourite = ({ title, specialOrder, size, imgURL, id }) => {
   const dispatch = useDispatch();
   const { uid } = useSelector(getAuthState).user;
   const [favModal, setFavModal] = useState(false);
-  const onAddToFavourites = (vis) => {
+  const onAddToFavourites = () => {
     dispatch(
       fetchAddFavourites({
         uid,
@@ -25,7 +25,7 @@ const AddFavourite = ({ title, specialOrder, size, imgURL, id }) => {
   return (
     <>
       <CustomModal visible={favModal} handleModal={setFavModal}>
-        <div className={style.favourite_container}>
+        <section className={style.favourite_container}>
           <h3>Add to favourites</h3>
           <div className={style.wrapper}>
             <CustomIcon type={"small"} icon={"favourites"} />
@@ -43,9 +43,9 @@ const AddFavourite = ({ title, specialOrder, size, imgURL, id }) => {
           <CustomButton
             icon={"checkmark"}
             text={"Sure!"}
-            action={() => onAddToFavourites(false)}
+            action={onAddToFavourites}
           />
-        </div>
+        </section>
       </CustomModal>
 
       <span className={style.favourite_btn}>

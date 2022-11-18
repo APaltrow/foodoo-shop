@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+
 import CustomIcon from "../CustomIcon";
 
 import style from "./ScrollTop.module.scss";

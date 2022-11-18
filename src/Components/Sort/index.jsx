@@ -1,5 +1,5 @@
 import React from "react";
-import Dropdown from "../Dropdown";
+
 import { generateIcon } from "../Icons/Icons";
 import { useToggle } from "../../Hooks/useToggle";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,9 +9,11 @@ import {
   getSortCategoryState,
 } from "../../Redux/Slices/sortCategory";
 
+import Dropdown from "../Dropdown";
+
 import style from "./Sort.module.scss";
 
-function Sort() {
+const Sort = () => {
   const { isASC, SORT, sortBy } = useSelector(getSortCategoryState);
   const [isVisible, ref, toggle] = useToggle();
 
@@ -29,12 +31,12 @@ function Sort() {
         {generateIcon("arrow")}
       </label>
       <span> Sort by ... </span>
-      <strong onClick={toggle} ref={ref}>
+      <b onClick={toggle} ref={ref}>
         {SORT[sortBy].name}
-      </strong>
+      </b>
       {isVisible && <Dropdown data={SORT} getId={onSortByChange} />}
     </div>
   );
-}
+};
 
 export default Sort;

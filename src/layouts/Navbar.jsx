@@ -5,7 +5,7 @@ import Sort from "../Components/Sort";
 
 import style from "./Layouts.module.scss";
 
-function Navbar() {
+const Navbar = () => {
   return (
     <nav className={style.navbar}>
       <div className={style.items}>
@@ -15,6 +15,6 @@ function Navbar() {
       <Sort />
     </nav>
   );
-}
+};
 
 export default Navbar;

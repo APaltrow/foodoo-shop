@@ -4,13 +4,15 @@ import { getCartState, clearCart } from "../../Redux/Slices/cartSlice";
 
 import CartItem from "../Cart_Item";
 import CustomButton from "../CustomButton";
+import PageLayout from "../../layouts/PageLayout";
 
 import style from "./CartItemsCatalog.module.scss";
 
 const CartItems = ({ checkout }) => {
+  const dispatch = useDispatch();
+
   const { totalCount, totalCost, products, discount } =
     useSelector(getCartState);
-  const dispatch = useDispatch();
 
   const onClearCart = () => {
     window.confirm("Are you sure you want to clear your orders?") &&
@@ -21,25 +23,24 @@ const CartItems = ({ checkout }) => {
   };
 
   return (
-    <div className={style.cartItems}>
-      <h2>Cart</h2>
-      <div className={style.cartItems_container}>
+    <PageLayout img={"basket"} title="Cart" type="list">
+      <section className={style.cartItems_container}>
         {products.map((item, i) => (
           <CartItem data={item} key={item.id + i} />
         ))}
-      </div>
-      <div className={style.total}>
-        <div>
-          Total :<span>{totalCount}</span>
-        </div>
-        <div>
-          Total Cost :<span>$ {totalCost}</span>
-        </div>
-        <div>
+      </section>
+      <section className={style.cart_totals}>
+        <p>
+          Total products:<span>{totalCount}</span>
+        </p>
+        <p>
+          Total cost :<span>$ {totalCost}</span>
+        </p>
+        <p>
           Discount :<span>$ {discount}</span>
-        </div>
-      </div>
-      <div className={style.cartItems_btns}>
+        </p>
+      </section>
+      <section className={style.cart_buttons}>
         <CustomButton type={"goBack"} />
         <CustomButton
           icon={"delete"}
@@ -48,8 +49,8 @@ const CartItems = ({ checkout }) => {
           action={onClearCart}
         />
         <CustomButton icon={"wallet"} text={"check out"} action={onCheckout} />
-      </div>
-    </div>
+      </section>
+    </PageLayout>
   );
 };
 

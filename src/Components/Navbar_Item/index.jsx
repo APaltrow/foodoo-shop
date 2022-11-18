@@ -9,7 +9,7 @@ import {
 
 import style from "./NavbarItem.module.scss";
 
-function NavbarItem() {
+const NavbarItem = () => {
   const { activeCategory, NAVIGATION } = useSelector(getSortCategoryState);
   const dispatch = useDispatch();
 
@@ -29,6 +29,6 @@ function NavbarItem() {
       ))}
     </ul>
   );
-}
+};
 
 export default NavbarItem;

@@ -16,6 +16,7 @@
   overflow: auto;
 
   &_prev {
+    background-color: transparent;
     border-radius: 50%;
     flex: 0 0 auto;
     transform: rotateY(180deg);
@@ -28,6 +29,7 @@
     }
   }
   &_next {
+    background-color: transparent;
     width: rem(30);
     height: rem(30);
     fill: $color_darken_brown;

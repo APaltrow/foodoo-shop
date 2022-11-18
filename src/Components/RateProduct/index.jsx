@@ -65,6 +65,7 @@ const RateProduct = () => {
       setRatingComment("");
     }
   }, [rateModal]);
+
   return (
     <>
       <CustomModal visible={rateModal} handleModal={onRateThisProduct}>

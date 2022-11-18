@@ -22,12 +22,12 @@ function Paggination({ totalPages, activePage }) {
 
   return (
     <aside className={style.root}>
-      <div className={style.root_prev} onClick={previous}>
+      <button className={style.root_prev} onClick={previous}>
         {generateIcon("next")}
-      </div>
+      </button>
 
       {pgList.map((_, index) => (
-        <div
+        <button
           key={index}
           className={
             activePage === index + 1 ? style.root_item_active : style.root_item
@@ -35,12 +35,12 @@ function Paggination({ totalPages, activePage }) {
           onClick={() => changeActive(index + 1)}
         >
           {index + 1}
-        </div>
+        </button>
       ))}
 
-      <div className={style.root_next} onClick={next}>
+      <button className={style.root_next} onClick={next}>
         {generateIcon("next")}
-      </div>
+      </button>
     </aside>
   );
 }

@@ -37,7 +37,7 @@ const Slider = ({ imgURL, category }) => {
 
   return (
     <>
-      <div className={style.slider_container}>
+      <section className={style.slider_container}>
         <div
           className={style.slider_item}
           ref={ref}
@@ -49,32 +49,32 @@ const Slider = ({ imgURL, category }) => {
             <img src={img.url} alt={`img ${i}`} key={i} />
           ))}
         </div>
-      </div>
-      <div className={style.switch}>
-        <div className={active === 0 ? style.prev_dis : style.prev}>
+      </section>
+      <aside className={style.switch}>
+        <button className={active === 0 ? style.prev_disabled : style.prev}>
           <CustomIcon
             type="small"
             icon="next"
             action={() => changeActive(active - 1)}
           />
-        </div>
+        </button>
         {items.map((item, i) => (
-          <span
+          <button
             key={i + 3}
             className={
               active === i ? style.switch_item_active : style.switch_item
             }
             onClick={() => changeActive(i)}
-          ></span>
+          ></button>
         ))}
-        <div className={style.next}>
+        <button className={style.next}>
           <CustomIcon
             type="small"
             icon="next"
             action={() => changeActive(active + 1)}
           />
-        </div>
-      </div>
+        </button>
+      </aside>
     </>
   );
 };

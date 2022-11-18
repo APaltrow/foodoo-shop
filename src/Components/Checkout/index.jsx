@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCartState, clearCart } from "../../Redux/Slices/cartSlice";
 import { getAuthState } from "../../Redux/Slices/authSlice";
-
 import {
   getCheckoutState,
   setOrder,
@@ -17,11 +16,11 @@ import { useDate } from "../../Hooks/useDate";
 
 import CustomButton from "../CustomButton";
 import CustomIcon from "../CustomIcon";
-import checoutimg from "../../assets/checkout.png";
 import Error from "../Error";
 import Loader from "../Loader";
 import PreOrder from "../PreOrder";
 import PaymentType from "../PaymentType";
+import PageLayout from "../../layouts/PageLayout";
 
 import style from "./Checkout.module.scss";
 
@@ -97,75 +96,78 @@ const Checkout = ({ onCancel }) => {
   }, [status]);
 
   return (
-    <div className={style.container}>
-      <div className={style.header}>
-        <img src={checoutimg} alt="wallet" />
-        <h3>Checkout</h3>
-      </div>
-      {error && <Error error={error} />}
-      {status === "pending" && <Loader />}
+    <PageLayout img={"wallet"} title={"Checkout"} type={"list"}>
+      <div className={style.checkout_container}>
+        {error && <Error error={error} />}
+        {status === "pending" && <Loader />}
 
-      <div className={style.content}>
-        <div className={style.item}>
-          Recipient :<span> {`${firstname} ${lastname}, tel. ${phone} `}</span>
-        </div>
-        <div className={style.item}>
-          Deliver at :
-          {address.city ? (
-            <span>{`${address.city}, ${address.street} ${address["house-number"]}`}</span>
-          ) : (
-            <Error
-              error={"Looks like you have not submitted any address yet"}
-            />
-          )}
-        </div>
-        <div className={style.item}>
-          Order check :
-          <input type="checkbox" id="order-list" />
-          <label htmlFor="order-list">
-            <CustomIcon icon="arrow" type="small" />
-            <ul>
-              {order?.ordercheck
-                ? order.ordercheck.map((item, i) => (
-                    <li key={i}>
-                      {`${item.title}, 
+        <div className={style.checkout_content}>
+          <div className={style.checkout_item}>
+            Recipient :
+            <span> {`${firstname} ${lastname}, tel. ${phone} `}</span>
+          </div>
+          <div className={style.checkout_item}>
+            Deliver at :
+            {address.city ? (
+              <span>{`${address.city}, ${address.street} ${address["house-number"]}`}</span>
+            ) : (
+              <Error
+                error={"Looks like you have not submitted any address yet"}
+              />
+            )}
+          </div>
+          <div className={style.checkout_item}>
+            Order check :
+            <input type="checkbox" id="order-list" />
+            <label htmlFor="order-list">
+              <CustomIcon icon="arrow" type="small" />
+              <ul>
+                {order?.ordercheck
+                  ? order.ordercheck.map((item, i) => (
+                      <li key={i}>
+                        {`${item.title}, 
                 ${item.size} x${item.count} /                 
                 ...$ ${item.price.toFixed(2)} `}
-                      {item.specialOrder ? (
-                        <span>{item.specialOrder}</span>
-                      ) : (
-                        ""
-                      )}
-                    </li>
-                  ))
-                : null}
-            </ul>
-          </label>
+                        {item.specialOrder ? (
+                          <span>{item.specialOrder}</span>
+                        ) : (
+                          ""
+                        )}
+                      </li>
+                    ))
+                  : null}
+              </ul>
+            </label>
+          </div>
+
+          <PreOrder />
+          <PaymentType fname={firstname} lname={lastname} />
+
+          <div className={style.checkout_item}>
+            Total due: <span>$ {totalCost}</span>
+          </div>
         </div>
 
-        <PreOrder />
-        <PaymentType fname={firstname} lname={lastname} />
-
-        <div className={style.item}>
-          Total due: <span>$ {totalCost}</span>
+        <div className={style.checkout_buttons}>
+          <CustomButton
+            text={"cancel"}
+            type={"delete"}
+            action={onCancelOrder}
+          />
+          <CustomButton
+            text={"submit order"}
+            action={onSubmitOrder}
+            disabled={
+              status === "pending" ||
+              (order.paymentType === "card" &&
+                order.paymentStatus !== "Payed successfully")
+                ? true
+                : false
+            }
+          />
         </div>
       </div>
-
-      <div className={style.btns}>
-        <CustomButton text={"cancel"} type={"delete"} action={onCancelOrder} />
-        <CustomButton
-          text={"submit order"}
-          action={onSubmitOrder}
-          disabled={
-            status === "pending" ||
-            (order.paymentType === "card" &&
-              order.paymentStatus !== "Payed successfully")
-              ? true
-              : false
-          }
-        />
-      </div>
-    </div>
+    </PageLayout>
   );
 };
 

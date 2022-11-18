@@ -206,3 +206,24 @@
     }
   }
 }
+
+@mixin line-item {
+  position: relative;
+  min-height: 50px;
+  padding: 5px 20px;
+  line-height: 40px;
+  flex: 1 0 auto;
+
+  background-color: $color_light_orange;
+  box-shadow: $boxshadow_big;
+  border-radius: 20px;
+
+  font-size: rem(14);
+  font-weight: bold;
+  span {
+    margin-left: 10px;
+    font-size: rem(16);
+    font-weight: 400;
+    font-style: italic;
+  }
+}

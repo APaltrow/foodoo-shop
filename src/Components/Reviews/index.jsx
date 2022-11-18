@@ -61,7 +61,7 @@ const Reviews = () => {
   };
 
   return (
-    <div className={style.reviews}>
+    <section className={style.reviews}>
       <div className={style.reviews_header}>
         <h3>Reviews</h3>
         <CustomIcon type={"small"} icon="reviews" />
@@ -148,7 +148,7 @@ const Reviews = () => {
       ) : (
         <span>There are no reviews so far ...</span>
       )}
-    </div>
+    </section>
   );
 };
 

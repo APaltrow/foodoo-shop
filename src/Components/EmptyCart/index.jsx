@@ -1,7 +1,8 @@
 import React from "react";
 
 import CustomButton from "../CustomButton";
-import emptyBasket from "../../assets/emptyBasket.png";
+
+import { IMG_URL } from "../../constants/ImgURL";
 
 import style from "./EmptyCart.module.scss";
 
@@ -9,10 +10,10 @@ const EmptyCart = () => {
   return (
     <div className={style.empty_cart}>
       <h2>Your cart is empty</h2>
-      <p>Woow, Looks like you have not ordered anything yet...</p>
+      <p>Woow, looks like you have not ordered anything yet...</p>
 
       <div className={style.empty_cart_img}>
-        <img src={emptyBasket} alt="Empty Cart" />
+        <img src={IMG_URL["cart"]} alt="Empty Cart" />
       </div>
 
       <CustomButton type={"goBack"} />

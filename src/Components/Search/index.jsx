@@ -5,7 +5,7 @@ import { useSearch } from "../../Hooks/useSearch";
 
 import style from "./Search.module.scss";
 
-function Search() {
+const Search = () => {
   const { value, isVisible, ref, toggle, handleChange, onDismiss } =
     useSearch();
 
@@ -28,6 +28,6 @@ function Search() {
       {value && <Icon type={"small"} icon={"dismiss"} action={onDismiss} />}
     </label>
   );
-}
+};
 
 export default Search;

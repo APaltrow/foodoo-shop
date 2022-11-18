@@ -1,79 +1,68 @@
 @import "../../Style/variables.scss";
 @import "../../Style/mixins.scss";
 
-.cartItems {
-  margin: 0 auto;
+.cartItems_container {
+  width: 100%;
+  min-height: 100%;
+  padding: 10px 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
   flex: 1 0 auto;
-  width: 100%;
-  height: 100%;
-  h2 {
-    margin-top: 10px;
-  }
+  gap: 15px;
+}
 
-  &_container {
-    display: flex;
+.cart_totals {
+  margin: 0 auto;
+  width: 60%;
+  min-height: 30px;
+  padding: 5px 20px;
+  line-height: 30px;
+
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+
+  background-color: $color_light_orange;
+  box-shadow: $boxshadow_big;
+  border-radius: 20px;
+
+  font-size: rem(14);
+  font-weight: bold;
+  span {
+    margin: 0 10px;
+    font-size: rem(16);
+    font-weight: 400;
+    font-style: italic;
+  }
+}
+
+.cart_buttons {
+  width: 60%;
+  margin: 10px auto;
+
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+
+  button {
+    width: 150px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .cart_totals {
     flex-direction: column;
-    align-items: center;
-    flex: 1 0 auto;
-    gap: 15px;
-    width: 100%;
-    padding: 10px 0;
   }
-
-  .total {
-    width: 60%;
-    min-height: 30px;
-    padding: 5px 20px;
-    line-height: 30px;
-
-    display: flex;
+  .cart_buttons {
+    flex-direction: column-reverse;
     justify-content: center;
-    gap: 5px;
-
-    background-color: $color_light_orange;
-    box-shadow: $boxshadow_big;
-    border-radius: 20px;
-
-    font-size: rem(14);
-    font-weight: bold;
-    span {
-      margin: 0 10px;
-      font-size: rem(16);
-      font-weight: 400;
-      font-style: italic;
-    }
+    align-items: center;
   }
-
-  &_btns {
-    width: 60%;
-    margin: 10px auto;
-
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-
-    button {
-      width: 150px;
-    }
-  }
-
-  @media only screen and (max-width: 850px) {
-    .total {
-      flex-direction: column;
-    }
-    &_btns {
-      flex-direction: column-reverse;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-  @media only screen and (max-width: 500px) {
-    .total {
-      width: 90%;
-    }
+}
+@media only screen and (max-width: 500px) {
+  .cart_totals {
+    width: 90%;
   }
 }

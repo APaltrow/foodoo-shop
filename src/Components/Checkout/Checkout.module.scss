@@ -1,44 +1,11 @@
 @import "../../Style/mixins.scss";
 @import "../../Style/variables.scss";
 
-.container {
-  width: 100%;
-  min-height: 60%;
-  padding: 10px;
-  flex: 1 0 auto;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-
-  button {
-    width: 150px;
-  }
-
-  .header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    img {
-      width: 40px;
-      height: 40px;
-
-      animation: checkout-anim 3s linear infinite alternate;
-
-      @keyframes checkout-anim {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(45deg);
-        }
-      }
-    }
-  }
+.checkout_container {
+  width: 70%;
+  margin: 0 auto;
 }
-
-.content {
+.checkout_content {
   min-width: 50%;
   min-height: 50%;
   flex: 1 0 auto;
@@ -47,25 +14,10 @@
   flex-direction: column;
   gap: 10px;
 }
-.item {
-  position: relative;
+
+.checkout_item {
   width: 100%;
-  min-height: 50px;
-  padding: 5px 20px;
-  line-height: 40px;
-
-  background-color: $color_light_orange;
-  box-shadow: $boxshadow_big;
-  border-radius: 20px;
-
-  font-size: rem(14);
-  font-weight: bold;
-  span {
-    margin-left: 10px;
-    font-size: rem(16);
-    font-weight: 400;
-    font-style: italic;
-  }
+  @include line-item;
 
   ul {
     display: none;
@@ -86,10 +38,9 @@
     ul {
       display: block;
     }
-    p {
-      svg {
-        transform: rotate(180deg);
-      }
+
+    svg {
+      transform: rotate(180deg);
     }
   }
 
@@ -106,67 +57,24 @@
     }
   }
 }
-.payment {
-  width: 100%;
-  display: flex;
-  gap: 30px;
 
-  span {
-    min-width: 200px;
-    margin-bottom: 10px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-
-    border: 1px solid $color_darken_brown;
-    border-radius: 20px;
-    box-shadow: $boxshadow_big;
-    cursor: pointer;
-
-    font-size: rem(12);
-    text-transform: uppercase;
-    font-style: normal;
-    &:hover {
-      background-color: lighten($color_darken_brown, 40);
-    }
-  }
-  .active {
-    background-color: $color_darken_brown;
-    color: $color_light_orange;
-
-    transform: scale(1.1);
-    svg {
-      fill: $color_light_orange;
-    }
-    &:hover {
-      background-color: $color_darken_brown;
-    }
-  }
-}
-
-.btns {
+.checkout_buttons {
   margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content: center;
   gap: 20px;
+
+  button {
+    width: 150px;
+  }
 }
 
 @media only screen and (max-width: 610px) {
-  .payment {
-    flex-direction: column;
-    gap: 10px;
-
-    span {
-      width: 150px;
-    }
-  }
-  .content {
+  .checkout_container {
     width: 100%;
   }
-  .btns {
+  .checkout_buttons {
     flex-direction: column-reverse;
     align-items: center;
   }

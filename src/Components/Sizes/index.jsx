@@ -9,9 +9,9 @@ const Sizes = ({ sizes, activeSize, action, discount }) => {
   };
 
   return sizes.length > 0 ? (
-    <div className={style.sizes}>
+    <aside className={style.sizes}>
       {sizes.map((size, index) => (
-        <div
+        <button
           key={index}
           onClick={() => onActiveSizeChange(index)}
           className={style.size}
@@ -36,9 +36,9 @@ const Sizes = ({ sizes, activeSize, action, discount }) => {
             </span>
           </div>
           {size.size}
-        </div>
+        </button>
       ))}
-    </div>
+    </aside>
   ) : null;
 };
 

@@ -104,6 +104,7 @@
 
 .page_wrapper {
   width: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,14 +116,48 @@
     gap: 20px;
 
     margin: 10px 0px;
+    &_img {
+      width: 50px;
+      height: 50px;
+
+      animation: img-animation 5s linear infinite alternate;
+
+      @keyframes img-animation {
+        0% {
+          transform: scale(1);
+        }
+        10% {
+          transform: scale(1.5);
+        }
+        25% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1);
+        }
+        75% {
+          transform: scale(1);
+        }
+        85% {
+          transform: scale(1.3) rotate(45deg);
+        }
+        100% {
+          transform: scale(0.8) rotate(-45deg);
+        }
+      }
+    }
   }
 
   .list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    width: 100%;
+    min-height: 60vh;
     padding: 0px 10px;
     margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    gap: 20px;
   }
   .catalog {
     margin-bottom: 20px;

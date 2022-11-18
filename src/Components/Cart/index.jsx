@@ -5,7 +5,7 @@ import { getCartState } from "../../Redux/Slices/cartSlice";
 
 import style from "./Cart.module.scss";
 
-function Cart() {
+const Cart = () => {
   const { totalCount, totalCost } = useSelector(getCartState);
 
   return (
@@ -17,6 +17,6 @@ function Cart() {
       </div>
     </div>
   );
-}
+};
 
 export default Cart;

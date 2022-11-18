@@ -1,6 +1,6 @@
-import CustomIcon from "../CustomIcon";
 import PendingOrderWidget from "../PendingOrderWidget";
 import RecentOrders from "../RecentOrders";
+import PageLayout from "../../layouts/PageLayout";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,16 +19,11 @@ const Orders = () => {
   }, []);
 
   return (
-    <div className={style.container}>
-      <div className={style.header}>
-        <CustomIcon type={"small"} icon={"orders"} />
-        <h3> My orders</h3>
-      </div>
-
+    <PageLayout img={"orders"} title={"My orders"} type={"list"}>
       <PendingOrderWidget />
 
       <RecentOrders ordersList={ordersList} />
-    </div>
+    </PageLayout>
   );
 };
 
