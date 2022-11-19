@@ -18,20 +18,7 @@ $color_modal: rgba(
 $color_darken_green: rgb(1, 136, 1);
 $color_light_green: lighten($color_darken_green, 30);
 
-//=====FONTS
-$font_large: rem(20);
-$font_mid: rem(18);
-$font_small: rem(16);
-
-/// SIZES
-$size_40: 40px;
-$size_60: 60px;
-$size_150: 150px;
-$size_250: 250px;
-$size_300: 300px;
+//=== box shadow scheem
 
 $boxshadow_big: -5px 5px 10px rgba(0, 0, 0, 0.3);
 $boxshadow_small: 0px 2px 5px rgba(0, 0, 0, 0.3);
-
-/// Media queries
-$medium_screen: 1250px;

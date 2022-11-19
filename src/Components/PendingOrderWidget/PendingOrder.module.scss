@@ -12,32 +12,34 @@
   position: relative;
   margin: 0 auto;
   width: 80%;
-  min-height: 50px;
+  min-height: rem(50);
 
   display: flex;
   justify-content: space-between;
 
   .slider {
-    margin: 0 auto;
-    width: 100%;
-    padding: 3px;
-    height: 20px;
     position: absolute;
-    top: 70px;
-    background-color: $color_darken_brown;
-    border-radius: 10px;
+    top: rem(70);
 
+    width: 100%;
+    height: rem(20);
+
+    margin: 0 auto;
+    padding: rem(3);
+
+    background-color: $color_darken_brown;
+    border-radius: rem(10);
     box-shadow: $boxshadow_big;
   }
   .slider_bar {
-    border-radius: 10px;
+    border-radius: rem(10);
     background: $color_gradient;
     height: 90%;
   }
 
   p {
     position: absolute;
-    bottom: -25px;
+    bottom: rem(-25);
     left: 40%;
     color: $color_darken_red;
     font-style: italic;
@@ -52,23 +54,24 @@
   flex-direction: column;
   align-items: center;
 
-  font-size: 14px;
+  font-size: rem(14);
   font-weight: bold;
 
   div {
-    z-index: 5;
-    margin: 20px 0px;
-    padding: 5px;
-    width: 80px;
-    height: 80px;
-
     position: relative;
+
+    width: rem(80);
+    height: rem(80);
+
+    z-index: 5;
+    margin: rem(20) 0;
+    padding: rem(5);
   }
   span {
     div {
       transform: rotate(25deg);
-      padding-top: 20px;
-      padding-left: 20px;
+      padding-top: rem(20);
+      padding-left: rem(20);
     }
     svg {
       transform: scale(2.7);
@@ -79,41 +82,43 @@
 
   strong {
     position: absolute;
-    top: -50px;
-    left: -60px;
+    top: rem(-50);
+    left: rem(-60);
     svg {
-      fill: green;
-      width: 30px;
-      height: 30px;
+      fill: $color_darken_green;
+      width: rem(30);
+      height: rem(30);
     }
   }
 }
 
 .wrapper {
   position: absolute;
-  width: 100px;
-  height: 100px;
   top: 20%;
-  border: 5px solid $color_darken_brown;
+
+  width: rem(100);
+  height: rem(100);
+
+  border: rem(5) solid $color_darken_brown;
+  border-radius: 50%;
   background-color: $color_darken_brown;
 
   z-index: 1;
-
-  border-radius: 50%;
 }
 .wrapper_active {
   position: absolute;
-  width: 100px;
-  height: 100px;
   top: 20%;
+
+  width: rem(100);
+  height: rem(100);
+
   border: 2px solid $color_darken_brown;
+  border-radius: 50%;
   background-color: $color_darken_brown;
   background: $color_gradient;
   z-index: 1;
 
   box-shadow: $boxshadow_big;
-
-  border-radius: 50%;
 }
 .item_active {
   position: relative;
@@ -121,7 +126,7 @@
   flex-direction: column;
   align-items: center;
 
-  font-size: 14px;
+  font-size: rem(14);
   font-weight: bold;
 
   svg {
@@ -129,13 +134,14 @@
   }
 
   div {
-    z-index: 5;
-    margin: 20px 0px;
-    padding: 5px;
-    width: 80px;
-    height: 80px;
-
     position: relative;
+    width: rem(80);
+    height: rem(80);
+
+    margin: rem(20) 0;
+    padding: rem(5);
+
+    z-index: 5;
   }
   span {
     div {
@@ -144,35 +150,36 @@
     svg {
       transform: scale(2);
       position: absolute;
-      top: 50px;
-      left: 55px;
+      top: rem(50);
+      left: rem(55);
       z-index: 10;
     }
   }
   strong {
     position: absolute;
-    top: -50px;
-    left: -60px;
+    top: rem(-50);
+    left: rem(-60);
     svg {
-      fill: green;
-      width: 30px;
-      height: 30px;
+      fill: $color_darken_green;
+      width: rem(30);
+      height: rem(30);
     }
   }
 }
 
 .spinner {
   position: absolute;
-  width: 120px;
-  height: 120px;
   top: 14%;
-  border-bottom: 5px solid $color_darken_red;
-  border-top: 5px solid $color_darken_red;
-  background-color: transparent;
-  // background: $color_gradient;
-  z-index: 10;
 
+  width: rem(120);
+  height: rem(120);
+
+  border-bottom: rem(5) solid $color_darken_red;
+  border-top: rem(5) solid $color_darken_red;
   border-radius: 50%;
+  background-color: transparent;
+
+  z-index: 10;
 
   animation: spiner 3s linear infinite alternate;
 }
@@ -186,13 +193,13 @@
   }
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: rem(650)) {
   .pending_order {
     width: 99%;
 
     .slider {
       width: 88%;
-      margin-left: 20px;
+      margin-left: rem(20);
     }
     p {
       left: 10%;

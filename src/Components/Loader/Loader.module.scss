@@ -5,12 +5,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: rem(20);
 
   fill: $color_darken_red;
 
   svg {
-    height: 30px;
+    height: rem(30);
     animation: loader 0.8s linear infinite;
   }
 

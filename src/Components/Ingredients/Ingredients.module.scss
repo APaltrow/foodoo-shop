@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: center;
 
-  border-radius: 20px;
+  border-radius: rem(20);
 
   background-color: $color_darken_orange;
   &_header {
@@ -15,7 +15,7 @@
     align-items: center;
     justify-content: center;
     h3 {
-      padding: 10px 10px;
+      padding: rem(10) rem(10);
     }
   }
 }
@@ -23,30 +23,30 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 10px;
-  padding: 5px 10px;
+  gap: rem(10);
+  padding: rem(5) rem(10);
 }
 
 .single_ingredient {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
+  font-size: rem(14);
   background-color: $color_light_orange;
-  padding: 10px 30px;
+  padding: rem(10) rem(30);
   border-bottom: 1px solid $color_darken_brown;
 }
 .excluded {
   text-decoration: line-through;
-  font-size: 12px;
+  font-size: rem(12);
   color: $color_darken_red;
   &::before {
     content: "-";
     position: absolute;
-    left: 15px;
-    width: 15px;
-    height: 15px;
-    line-height: 15px;
-    font-size: 14px;
+    left: rem(15);
+    width: rem(15);
+    height: rem(15);
+    line-height: rem(15);
+    font-size: rem(14);
     font-weight: bold;
     background-color: $color_darken_red;
     color: white;
@@ -56,7 +56,7 @@
   }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: rem(480)) {
   .clips_bot {
     flex-direction: column;
   }

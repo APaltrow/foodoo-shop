@@ -51,7 +51,7 @@
     }
   }
 
-  @media only screen and (max-width: 950px) {
+  @media only screen and (max-width: rem(950)) {
     width: 90%;
   }
 }
@@ -71,6 +71,6 @@
 }
 .dismiss {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: rem(20);
+  right: rem(20);
 }

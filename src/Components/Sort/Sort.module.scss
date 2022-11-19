@@ -3,20 +3,22 @@
 
 .root {
   position: relative;
+
   width: rem(200);
   height: rem(40);
   margin: 0 auto;
 
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: rem(20);
+
   fill: $color_darken_brown;
 
   b {
     color: $color_darken_brown;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: $font_mid;
+    font-size: rem(16);
     text-shadow: $boxshadow_small;
     &:hover {
       cursor: pointer;
@@ -27,11 +29,14 @@
   }
 
   label {
-    background-color: $color_darken_orange;
     width: rem(30);
     height: rem(30);
-    border-radius: 10px;
+
     flex: 0 0 auto;
+
+    background-color: $color_darken_orange;
+    border-radius: rem(10);
+
     &:hover {
       cursor: pointer;
       box-shadow: $boxshadow_big;

@@ -1,7 +1,11 @@
-import { RATING_STATUSES } from "../../constants/RatingStatuses";
-import { generateIcon } from "../Icons/Icons";
 import { useState, useEffect } from "react";
 
+import CustomButton from "../CustomButton";
+import CustomModal from "../CustomModal";
+import CustomIcon from "../CustomIcon";
+
+import { RATING_STATUSES } from "../../constants/RatingStatuses";
+import { generateIcon } from "../Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getSingleProductState,
@@ -9,9 +13,6 @@ import {
 } from "../../Redux/Slices/singleProductSlice";
 import { getAuthState } from "../../Redux/Slices/authSlice";
 import { useDate } from "../../Hooks/useDate";
-import CustomButton from "../CustomButton";
-import CustomModal from "../CustomModal";
-import CustomIcon from "../CustomIcon";
 
 import style from "./RateProduct.module.scss";
 

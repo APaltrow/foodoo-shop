@@ -1,5 +1,7 @@
 import React from "react";
+
 import Error from "../Error";
+
 import { generateIcon } from "../Icons/Icons";
 import { INPUT_VALIDATIONS } from "../../constants/InputValidations";
 import { useInput } from "../../Hooks/useInput";

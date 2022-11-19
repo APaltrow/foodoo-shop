@@ -12,24 +12,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 280px;
-  margin: 5px auto;
+  min-width: rem(280);
+  margin: rem(5) auto;
 
   svg {
     position: absolute;
-    right: 10px;
+    right: rem(10);
 
-    fill: green;
-    height: 25px;
-    width: 25px;
+    fill: $color_darken_green;
+    height: rem(25);
+    width: rem(25);
   }
 }
 
 .custom_input {
-  height: 40px;
+  height: rem(40);
   min-width: 100%;
-  padding: 0 50px;
-  border-radius: 10px;
+  padding: 0 rem(50);
+  border-radius: rem(10);
   box-shadow: $boxshadow_small;
   &:focus {
     background-color: lighten(blue, 45);
@@ -39,13 +39,13 @@
   }
 
   &_invalid {
-    height: 40px;
+    height: rem(40);
     min-width: 100%;
-    padding-left: 50px;
-    border-radius: 10px;
+    padding-left: rem(50);
+    border-radius: rem(10);
 
     box-shadow: $boxshadow_small;
-    outline: 2px solid red;
+    outline: 2px solid $color_darken_red;
     &:focus {
       background-color: lighten(blue, 45);
       &::placeholder {
@@ -57,10 +57,10 @@
 .icon {
   svg {
     position: absolute;
-    left: 10px;
+    left: rem(10);
     bottom: 10%;
-    height: 30px;
-    width: 30px;
+    height: rem(30);
+    width: rem(30);
     margin: 0;
     fill: $color_darken_brown;
   }

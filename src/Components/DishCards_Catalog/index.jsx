@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import DishCardItem from "../DishCard_Item";
 import DishCardSkeleton from "../DIshCard_Skeleton";
@@ -7,7 +7,6 @@ import NotFound from "../NotFound";
 import Error from "../Error";
 import NotificationToast from "../NotificationToast";
 
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getSortCategoryState,

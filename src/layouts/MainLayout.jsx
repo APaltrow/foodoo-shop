@@ -1,7 +1,9 @@
 import React from "react";
+
 import Footer from "./Footer";
 import Header from "./Header";
 import ScrollTop from "../Components/ScrollTop";
+
 import { getAuthState } from "../Redux/Slices/authSlice";
 import { useSelector } from "react-redux";
 

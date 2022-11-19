@@ -1,3 +1,5 @@
+import { useRef, useState, useEffect } from "react";
+
 import CustomButton from "../CustomButton";
 import CustomInput from "../CustomInput";
 import CustomSelect from "../CustomSelect";
@@ -10,15 +12,16 @@ import {
   setPaymentType,
   setPaymentStatus,
 } from "../../Redux/Slices/checkoutSlice";
-import { useRef, useState, useEffect } from "react";
 
 import style from "./PaymenType.module.scss";
 
 const PaymentType = ({ fname, lname }) => {
   const dispatch = useDispatch();
   const paymentFormRef = useRef();
+
   const [validCredentials, setValidCredentials] = useState(false);
   const [credentialsError, setCredentialsError] = useState(false);
+  const [timer, setTimer] = useState(0);
 
   const { paymentType, paymentStatus } = useSelector(getCheckoutState).order;
 
@@ -51,8 +54,6 @@ const PaymentType = ({ fname, lname }) => {
   const onPaymentChange = (pType) => {
     dispatch(setPaymentType(pType));
   };
-
-  const [timer, setTimer] = useState(0);
 
   useEffect(() => {
     if (paymentStatus === "Processing") {

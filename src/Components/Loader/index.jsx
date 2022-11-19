@@ -1,4 +1,5 @@
 import React from "react";
+
 import { generateIcon } from "../Icons/Icons";
 
 import style from "./Loader.module.scss";

@@ -22,14 +22,14 @@
 
   background-color: $color_darken_brown;
   border-radius: 50%;
-  padding: 5px 8px;
+  padding: rem(5) rem(8);
   fill: lighten($color_darken_brown, 30);
   box-shadow: $boxshadow_big;
 }
 
 .order-status {
-  height: 80px;
-  width: 80px;
+  height: rem(80);
+  width: rem(80);
 
   border-radius: 50%;
   display: flex;
@@ -42,21 +42,21 @@
 
 .favourite {
   @include iconCreator(35, $color_darken_red, lighten($color_darken_red, 30));
-  padding: 5px;
-  border-radius: 10px;
+  padding: rem(5);
+  border-radius: rem(10);
   svg {
-    transform: translatex(5px);
-    transform: translatey(3px);
+    transform: translatex(rem(5));
+    transform: translatey(rem(3));
   }
   &:hover {
     &::after {
       position: absolute;
       top: 130%;
       content: "Add to Favourites";
-      min-width: 50px;
+      min-width: rem(50);
 
       text-align: center;
-      font-size: 10px;
+      font-size: rem(10);
       font-weight: bold;
       background-color: transparent;
     }
@@ -68,18 +68,18 @@
     $color_EX_darken_orange,
     lighten($color_EX_darken_orange, 40)
   );
-  padding: 5px;
-  border-radius: 10px;
+  padding: rem(5);
+  border-radius: rem(10);
 
   &:hover {
     &::after {
       position: absolute;
       top: 130%;
       content: "Rate this product!";
-      min-width: 50px;
+      min-width: rem(50);
 
       text-align: center;
-      font-size: 10px;
+      font-size: rem(10);
       font-weight: bold;
       background-color: transparent;
     }
@@ -87,16 +87,16 @@
 }
 .attention {
   @include iconCreator(35, $color_darken_orange, $color_light_orange);
-  padding: 5px;
+  padding: rem(5);
   &:hover {
     &::after {
       position: absolute;
       top: 130%;
       content: "Allergic sensitive";
-      min-width: 50px;
+      min-width: rem(50);
 
       text-align: center;
-      font-size: 10px;
+      font-size: rem(10);
       font-weight: bold;
       background-color: transparent;
     }
@@ -104,16 +104,16 @@
 }
 .vegitarian {
   @include iconCreator(35, green, lighten(green, 30));
-  padding: 5px;
+  padding: rem(5);
   &:hover {
     &::after {
       position: absolute;
       top: 130%;
       content: "Vegitarian";
-      min-width: 50px;
+      min-width: rem(50);
 
       text-align: center;
-      font-size: 10px;
+      font-size: rem(10);
       font-weight: bold;
       background-color: transparent;
     }
@@ -127,22 +127,22 @@
 
 .discount {
   @include iconCreator(35, $color_darken_red, lighten($color_darken_red, 30));
-  padding: 5px;
-  border-radius: 10px;
+  padding: rem(5);
+  border-radius: rem(10);
   border: none;
   svg {
-    transform: translatex(5px);
-    transform: translatey(3px);
+    transform: translatex(rem(5));
+    transform: translatey(rem(3));
   }
   &:hover {
     &::after {
       position: absolute;
-      bottom: -20px;
+      bottom: rem(-20);
       content: "Discounted";
-      min-width: 50px;
+      min-width: rem(50);
 
       text-align: center;
-      font-size: 10px;
+      font-size: rem(10);
       font-weight: bold;
       background-color: transparent;
     }

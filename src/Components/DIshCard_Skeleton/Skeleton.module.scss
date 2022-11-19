@@ -2,10 +2,10 @@
 @import "../../Style/mixins.scss";
 
 .dishCard_skeleton_mid {
-  min-width: 280px;
-  height: 400px;
+  min-width: rem(280);
+  height: rem(400);
   background-color: $color_light_whiteHeader;
-  border-radius: 10px;
+  border-radius: rem(10);
   box-shadow: $boxshadow_big;
   display: flex;
 
@@ -22,33 +22,33 @@
 
   .description {
     width: 70%;
-    margin-top: 10px;
+    margin-top: rem(10);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: rem(15);
     flex: 1 0 auto;
   }
   .fields {
     animation: skeleton-loading 1s linear infinite alternate;
     display: flex;
     width: 100%;
-    height: 20px;
-    border-radius: 20px;
+    height: rem(20);
+    border-radius: rem(20);
   }
 
   .btn {
     animation: skeleton-loading 1s linear infinite alternate;
     width: 80%;
-    height: 30px;
-    border-radius: 20px;
+    height: rem(30);
+    border-radius: rem(20);
   }
 }
 
 .dishCard_skeleton_big {
   display: flex;
-  gap: 20px;
-  margin: 10px auto;
+  gap: rem(20);
+  margin: rem(10) auto;
   width: 98%;
   height: 100%;
   flex: 1 0 auto;
@@ -56,31 +56,31 @@
 .big_left {
   width: 36%;
   min-height: 75vh;
-  border-radius: 10px;
+  border-radius: rem(10);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: rem(20);
 
   &_item_1 {
     width: 100%;
-    height: 350px;
+    height: rem(350);
     animation: skeleton-loading 1s linear infinite alternate;
-    border-radius: 10px;
+    border-radius: rem(10);
   }
   &_item_2 {
     width: 100%;
     flex: 1 0 auto;
     background-color: white;
-    border-radius: 10px;
+    border-radius: rem(10);
     display: flex;
-    padding: 20px;
+    padding: rem(20);
     justify-content: space-around;
 
     &_btns {
-      border-radius: 20px;
+      border-radius: rem(20);
       align-self: flex-end;
-      width: 150px;
-      height: 40px;
+      width: rem(150);
+      height: rem(40);
       animation: skeleton-loading 1s linear infinite alternate;
     }
   }
@@ -88,26 +88,26 @@
 .big_right {
   width: 64%;
   height: 85vh;
-  border-radius: 10px;
+  border-radius: rem(10);
   background-color: white;
-  padding: 10px;
+  padding: rem(10);
   display: flex;
   flex-direction: column;
 
-  gap: 20px;
+  gap: rem(20);
 
   &_item {
     width: 99%;
-    height: 40px;
+    height: rem(40);
     animation: skeleton-loading 1s linear infinite alternate;
-    border-radius: 20px;
+    border-radius: rem(20);
   }
   &_item_bot {
     width: 99%;
-    height: 400px;
+    height: rem(400);
 
-    border-radius: 20px;
-    margin-top: 40px;
+    border-radius: rem(20);
+    margin-top: rem(40);
     animation: skeleton-loading 1s linear infinite alternate;
   }
 }
@@ -120,7 +120,7 @@
     background-color: hsl(39, 20%, 90%);
   }
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: rem(900)) {
   .dishCard_skeleton_big {
     width: 98%;
     flex-direction: column;
@@ -132,8 +132,8 @@
       height: 30vh;
     }
     &_item_2 {
-      padding: 5px;
-      gap: 10px;
+      padding: rem(5);
+      gap: rem(10);
     }
   }
   .big_right {

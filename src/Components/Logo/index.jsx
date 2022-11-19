@@ -1,6 +1,7 @@
 import React from "react";
 
 import Icon from "../CustomIcon";
+
 import style from "./Logo.module.scss";
 
 const Logo = () => {

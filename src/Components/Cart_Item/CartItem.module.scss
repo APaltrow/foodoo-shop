@@ -7,31 +7,31 @@
   justify-content: space-between;
   min-width: 60%;
 
-  padding: 10px;
+  padding: rem(10);
   background-color: $color_light_whiteHeader;
-  border-radius: 10px;
+  border-radius: rem(10);
   box-shadow: $boxshadow_big;
 
   &_description {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: rem(20);
 
-    min-width: 250px;
+    min-width: rem(250);
 
     &_title {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: rem(10);
 
-      min-width: 100px;
+      min-width: rem(100);
       span {
         background-color: $color_darken_orange;
         text-align: center;
-        border-radius: 10px;
+        border-radius: rem(10);
       }
       .discount {
-        font-size: 14px;
+        font-size: rem(14);
         color: $color_darken_red;
         text-decoration: line-through;
       }
@@ -42,29 +42,29 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 20px;
-    margin-top: 10px;
+    gap: rem(20);
+    margin-top: rem(10);
 
     b {
       text-align: center;
-      min-width: 20px;
+      min-width: rem(20);
     }
   }
   .cart_item_specialOreder {
     position: relative;
-    min-width: 150px;
+    min-width: rem(150);
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: rem(5);
 
     font-weight: bold;
   }
   .cart_item_specialOreder_title {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: rem(5);
 
     div {
       cursor: default;
@@ -79,7 +79,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: rem(10);
 
     input {
       display: none;
@@ -103,16 +103,16 @@
     width: 100%;
     display: none;
     span {
-      font-size: 12px;
+      font-size: rem(12);
       text-decoration: line-through;
       color: $color_darken_red;
     }
   }
 
-  @media only screen and (max-width: 950px) {
+  @media only screen and (max-width: rem(950)) {
     width: 95%;
   }
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: rem(680)) {
     flex-wrap: wrap;
 
     &_buttons {
@@ -121,7 +121,7 @@
       align-items: center;
     }
   }
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: rem(500)) {
     .cart_item_specialOreder {
       width: 100%;
       align-self: center;

@@ -7,7 +7,7 @@ import NotFoundPage from "./Pages/NotFoundPage";
 import ProductPage from "./Pages/ProductPage";
 import MainLayout from "./layouts/MainLayout";
 import AuthRequired from "./Pages/AuthRequired";
-import Settings from "./Pages/SettingsPage";
+import ProfileSettings from "./Pages/SettingsPage";
 import MyOrders from "./Pages/MyOrdersPage";
 import Favourites from "./Pages/FavouritesPage";
 
@@ -22,7 +22,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="cart" element={<CartPage />} />
             <Route path="product/:id" element={<ProductPage />} />
-            <Route path="settings" element={<Settings />} />
+            <Route path="settings" element={<ProfileSettings />} />
             <Route path="favourites" element={<Favourites />} />
             <Route path="my-orders" element={<MyOrders />} />
           </Route>

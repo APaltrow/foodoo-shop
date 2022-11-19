@@ -11,8 +11,10 @@ import style from "./AddFavourite.module.scss";
 
 const AddFavourite = ({ title, specialOrder, size, imgURL, id }) => {
   const dispatch = useDispatch();
+
   const { uid } = useSelector(getAuthState).user;
   const [favModal, setFavModal] = useState(false);
+
   const onAddToFavourites = () => {
     dispatch(
       fetchAddFavourites({
@@ -32,7 +34,7 @@ const AddFavourite = ({ title, specialOrder, size, imgURL, id }) => {
             <p>Are you sure you would like to add ?</p>
             <h3>{title}</h3>
             <p>
-              {size.size}, $ {size.price}
+              {size.size}, $ {size.price.toFixed(2)}
             </p>
             <div className={style.special_excluded}>
               {specialOrder.map((item, i) => (
@@ -48,7 +50,7 @@ const AddFavourite = ({ title, specialOrder, size, imgURL, id }) => {
         </section>
       </CustomModal>
 
-      <span className={style.favourite_btn}>
+      <span className={style.favourite_button}>
         <CustomIcon
           type={"favourite"}
           icon={"favourites"}

@@ -2,22 +2,25 @@
 @import "../../Style/variables.scss";
 
 .sizes {
+  height: rem(80);
+  margin-top: rem(10);
+
   display: flex;
   align-items: flex-end;
-  gap: 5px;
-  height: rem(80);
-  margin-top: 10px;
+  gap: rem(5);
 }
 .size {
   position: relative;
-  background-color: $color_darken_orange;
 
   height: rem(30);
   min-width: rem(85);
   line-height: rem(30);
+
   text-align: center;
 
-  border-radius: 5px;
+  background-color: $color_darken_orange;
+  border-radius: rem(5);
+
   &:hover {
     cursor: pointer;
   }
@@ -25,49 +28,54 @@
 
 .price {
   position: absolute;
+  top: -200%;
+
+  min-width: 100%;
+  height: rem(50);
+  padding: rem(5);
+
   display: flex;
   flex-direction: column;
 
-  min-width: 100%;
-  height: 50px;
-  padding: 5px;
-  top: -200%;
-
   background-color: $color_light_orange;
   box-shadow: $boxshadow_big;
-  border-radius: 20px;
+  border-radius: rem(20);
 
   span {
     position: absolute;
+    right: rem(-5);
+    bottom: 0;
+
+    opacity: 0.9;
     z-index: 1;
 
     transform: rotate(10deg);
-    right: -5px;
-    bottom: 0;
-    opacity: 0.9;
   }
 }
 .actual_price {
-  z-index: 2;
   flex: 2;
-  text-align: center;
 
+  text-align: center;
   font-size: rem(16);
   font-weight: bold;
+
+  z-index: 2;
 }
 .discounted_price {
-  z-index: 2;
   position: absolute;
   top: 45%;
   left: 25%;
+
   flex: 1;
 
   border-radius: 50%;
 
-  font-size: 12px;
+  font-size: rem(12);
   text-decoration: line-through;
   color: $color_darken_red;
   font-weight: bold;
+
+  z-index: 2;
 }
 
 .not_visible {

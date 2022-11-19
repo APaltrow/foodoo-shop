@@ -2,60 +2,69 @@
 @import "../Style/mixins.scss";
 
 .wrapper_main {
-  background: $color_gradient;
-  padding: 10px 0px;
   width: 100%;
   min-height: 100vh;
+  padding: rem(10) 0;
+
+  background: $color_gradient;
 }
 .content {
   width: 98%;
-  min-height: calc(100vh - 20px);
-  margin: 0px auto;
+  min-height: calc(100vh - rem(20));
+  margin: 0 auto;
 
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
 
-  border-radius: 10px;
+  border-radius: rem(10);
   overflow: auto;
   box-shadow: $boxshadow_big;
   background-color: $color_transparent_BG;
 }
 .content_wrapper {
+  min-width: 100%;
+  min-height: calc(100vh - rem(170));
+
   display: flex;
   flex-direction: column;
-  min-width: 100%;
-  min-height: calc(100vh - 170px);
   flex: 1 0 auto;
 }
 .header {
-  background-color: $color_light_whiteHeader;
+  padding: rem(10);
+
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: rem(10);
+
+  background-color: $color_light_whiteHeader;
   box-shadow: $boxshadow_small;
-  padding: 10px;
-  gap: 10px;
+
   .profile_wrapper {
+    min-width: rem(250);
+
     display: flex;
     justify-content: flex-end;
     align-items: center;
     flex: 1 0 auto;
-    gap: 10px;
-    min-width: rem(250);
+    gap: rem(10);
 
     .nav_logout {
       position: relative;
-      width: 50px;
-      height: 50px;
+
+      width: rem(50);
+      height: rem(50);
+
       display: flex;
       justify-content: center;
       align-items: center;
+
       @include informer("log out");
     }
   }
 
-  @media only screen and (max-width: 630px) {
+  @media only screen and (max-width: rem(630)) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -66,25 +75,30 @@
 }
 
 .navbar {
+  min-height: rem(130);
+  padding: rem(10);
+
   background-color: $color_light_whiteHeader;
   box-shadow: $boxshadow_small;
-  min-height: rem(130);
-  padding: 10px;
+
   .items {
     display: flex;
-    column-gap: 10px;
+    column-gap: rem(10);
+
     overflow-x: auto;
   }
 }
 
 .footer {
-  margin-top: 10px;
   min-width: 100%;
+  min-height: rem(50);
+
+  margin-top: rem(10);
+
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  min-height: 50px;
+  gap: rem(10);
 
   background-color: $color_light_whiteHeader;
 
@@ -97,7 +111,7 @@
     font-style: italic;
     color: $color_darken_red;
   }
-  @media only screen and (max-width: 450px) {
+  @media only screen and (max-width: rem(450)) {
     flex-direction: column;
   }
 }
@@ -105,20 +119,22 @@
 .page_wrapper {
   width: 100%;
   min-height: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .page_header {
+    margin: rem(10) 0;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: rem(20);
 
-    margin: 10px 0px;
     &_img {
-      width: 50px;
-      height: 50px;
+      width: rem(50);
+      height: rem(50);
 
       animation: img-animation 5s linear infinite alternate;
 
@@ -151,35 +167,35 @@
   .list {
     width: 100%;
     min-height: 60vh;
-    padding: 0px 10px;
-    margin-bottom: 20px;
+    padding: 0 rem(10);
+    margin-bottom: rem(20);
 
     display: flex;
     flex-direction: column;
     flex: 1 0 auto;
-    gap: 20px;
+    gap: rem(20);
   }
   .catalog {
-    margin-bottom: 20px;
+    margin-bottom: rem(20);
+
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    grid-column-gap: 30px;
-    grid-row-gap: 30px;
+    grid-column-gap: rem(30);
+    grid-row-gap: rem(30);
 
-    margin-bottom: 10px;
+    @media only screen and (max-width: rem(1350)) {
+      padding: 0 rem(20);
 
-    @media only screen and (max-width: 1350px) {
       grid-template-columns: repeat(3, 1fr);
-      padding: 0 20px;
       grid-column-gap: auto;
       grid-row-gap: auto;
     }
 
-    @media only screen and (max-width: 1150px) {
+    @media only screen and (max-width: rem(1150)) {
       grid-template-columns: repeat(2, 1fr);
     }
-    @media only screen and (max-width: 680px) {
+    @media only screen and (max-width: rem(680)) {
       grid-template-columns: repeat(1, 1fr);
     }
   }

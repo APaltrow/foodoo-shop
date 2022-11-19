@@ -1,6 +1,7 @@
-import { useEffect } from "react";
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+
 import { SLIDER_TYPES } from "../../constants/SliderTypes";
+
 import CustomIcon from "../CustomIcon";
 
 import style from "./Slider.module.scss";
@@ -10,9 +11,11 @@ const Slider = ({ imgURL, category }) => {
   const items = [{ url: imgURL }, ...SLIDER_TYPES[category]];
   const [active, setActive] = useState(0);
   const [offset, setOffset] = useState(0);
+
   const changeActive = (img) => {
     img <= items.length - 1 && img >= 0 ? setActive(img) : setActive(0);
   };
+
   const calculateOffset = () => {
     if (active === 0) {
       setOffset(0);

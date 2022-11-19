@@ -6,7 +6,7 @@ import { usePaggination } from "../../Hooks/usePaggination";
 
 import style from "./Paggination.module.scss";
 
-function Paggination({ totalPages, activePage }) {
+const Paggination = ({ totalPages, activePage }) => {
   const dispatch = useDispatch();
 
   const [active, pgList, changeActive, previous, next] = usePaggination({
@@ -43,6 +43,6 @@ function Paggination({ totalPages, activePage }) {
       </button>
     </aside>
   );
-}
+};
 
 export default Paggination;

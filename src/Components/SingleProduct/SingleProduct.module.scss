@@ -2,61 +2,68 @@
 @import "../../Style/variables.scss";
 
 .product_container {
-  display: flex;
-  gap: 20px;
-  margin: 10px auto;
   width: 98%;
   height: 100%;
+  margin: rem(10) auto;
+
+  display: flex;
   flex: 1 0 auto;
+  gap: rem(20);
 }
 .btns {
   width: 100%;
+
   display: flex;
   justify-content: space-around;
 }
 
 .informers {
   position: absolute;
-  top: 10px;
-  right: 100px;
-  padding-right: 60px;
+  top: rem(10);
+  right: rem(100);
+  padding-right: rem(60);
 
   display: flex;
-  gap: 10px;
+  gap: rem(10);
 }
 .product_left {
-  width: 500px;
+  width: rem(500);
+
   display: flex;
-  align-items: center;
-  gap: 10px;
   flex-direction: column;
+  align-items: center;
+
+  gap: rem(10);
 }
 
 .product_right {
   position: relative;
+
+  padding: rem(10) rem(10);
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
-  padding: 10px 10px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: $boxshadow_big;
   flex: 1;
+  gap: rem(10);
+
+  background-color: white;
+  border-radius: rem(10);
+  box-shadow: $boxshadow_big;
 }
-@media only screen and (max-width: 980px) {
+@media only screen and (max-width: rem(980)) {
   .product_container {
     flex-direction: column;
     .product_left {
       width: 100%;
     }
     .btns {
-      gap: 5px;
+      gap: rem(5);
       position: fixed;
-      bottom: 20px;
+      bottom: rem(20);
       z-index: 10;
       background-color: rgba($color: #bc7503, $alpha: 0.4);
-      height: 50px;
+      height: rem(50);
       align-items: center;
       button {
         background-color: $color_darken_orange;
@@ -64,11 +71,11 @@
     }
   }
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: rem(500)) {
   .informers {
     position: relative;
     top: 0;
     left: 0;
-    margin-bottom: 30px;
+    margin-bottom: rem(30);
   }
 }

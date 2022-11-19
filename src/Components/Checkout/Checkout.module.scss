@@ -12,7 +12,7 @@
 
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: rem(10);
 }
 
 .checkout_item {
@@ -21,13 +21,13 @@
 
   ul {
     display: none;
-    margin-bottom: 10px;
+    margin-bottom: rem(10);
   }
   label {
     div {
       position: absolute;
-      top: 10px;
-      right: 20px;
+      top: rem(10);
+      right: rem(20);
     }
   }
 
@@ -45,8 +45,8 @@
   }
 
   li {
-    min-height: 25px;
-    line-height: 25px;
+    min-height: rem(25);
+    line-height: rem(25);
     font-style: italic;
     border-bottom: 1px dashed $color_darken_brown;
     span {
@@ -59,18 +59,18 @@
 }
 
 .checkout_buttons {
-  margin-top: 20px;
+  margin-top: rem(20);
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: rem(20);
 
   button {
-    width: 150px;
+    width: rem(150);
   }
 }
 
-@media only screen and (max-width: 610px) {
+@media only screen and (max-width: rem(610)) {
   .checkout_container {
     width: 100%;
   }

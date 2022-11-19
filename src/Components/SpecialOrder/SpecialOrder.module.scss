@@ -2,37 +2,37 @@
 @import "../../Style/variables.scss";
 
 .special_order {
+  width: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: rem(10);
   flex: 1 0 auto;
 
-  width: 100%;
-
   text-shadow: $boxshadow_big;
-
-  border-radius: 10px;
+  border-radius: rem(10);
 
   .ingredients {
     width: 80%;
-    flex: 1 0 auto;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex: 1 0 auto;
   }
 
   .ingredient {
     position: relative;
-    display: flex;
 
     width: 100%;
-    height: 30px;
-    line-height: 30px;
+    height: rem(30);
+    line-height: rem(30);
     padding-left: 10%;
+
+    display: flex;
 
     &:hover {
       cursor: pointer;
@@ -45,8 +45,9 @@
 
   label {
     width: 100%;
-    cursor: pointer;
     padding-left: 5%;
+
+    cursor: pointer;
   }
   input {
     display: none;
@@ -60,15 +61,18 @@
       position: absolute;
       top: 20%;
       left: 0;
-      width: 20px;
-      height: 20px;
-      line-height: 20px;
-      font-size: 14px;
+
+      width: rem(20);
+      height: rem(20);
+      line-height: rem(20);
+
+      font-size: rem(14);
       font-weight: bold;
+      text-align: center;
+
       background-color: $color_darken_red;
       color: wheat;
       border-radius: 50%;
-      text-align: center;
     }
   }
 }

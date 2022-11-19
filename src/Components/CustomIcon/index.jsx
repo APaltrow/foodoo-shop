@@ -1,5 +1,7 @@
 import React from "react";
+
 import { generateIcon } from "../Icons/Icons";
+
 import style from "./icon.module.scss";
 
 const Icon = ({ type, icon, action }) => {

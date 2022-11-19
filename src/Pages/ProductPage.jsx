@@ -1,4 +1,5 @@
 import React from "react";
+
 import SingleProduct from "../Components/SingleProduct";
 import Error from "../Components/Error";
 import DishCardSkeleton from "../Components/DIshCard_Skeleton";

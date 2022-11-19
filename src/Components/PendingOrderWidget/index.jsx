@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
+
 import CustomIcon from "../CustomIcon";
 import Error from "../Error";
-import { useState, useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchDeliveredOrder,
@@ -39,7 +41,7 @@ const PendingOrderWidget = () => {
 
   return (
     <>
-      <div className={pendingOrder ? "" : style.non_active}>
+      <section className={pendingOrder ? "" : style.non_active}>
         <div className={style.pending_order}>
           <div className={style.slider}>
             <div
@@ -114,7 +116,7 @@ const PendingOrderWidget = () => {
             </>
           )}
         </div>
-      </div>
+      </section>
       {!pendingOrder && (
         <div className={style.notification}>
           <Error error={"There are no pending orders..."} />

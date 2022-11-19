@@ -1,4 +1,5 @@
 import React from "react";
+
 import Rating from "../Rating";
 import CustomButton from "../CustomButton";
 import Sizes from "../Sizes";
@@ -40,29 +41,29 @@ const SingleProduct = ({ singleProduct }) => {
   return (
     <div className={style.product_container}>
       <NotificationToast message={"Added !"} type="cart" />
-      <div className={style.product_left}>
+      <section className={style.product_left}>
         <Slider imgURL={imgURL} category={category} />
 
         <Reviews />
 
-        <div className={style.btns}>
+        <aside className={style.btns}>
           <CustomButton type={"goBack"} />
           <CustomButton
             icon={"plus"}
             text={"Add to cart"}
             action={onAddProduct}
           />
-        </div>
-      </div>
-      <div className={style.product_right}>
+        </aside>
+      </section>
+      <section className={style.product_right}>
         <h2> {title}</h2>
         <Rating rating={rating} />
 
-        <div className={style.informers}>
+        <aside className={style.informers}>
           <CustomIcon type={"attention"} icon={"error"} />
           {isVegitarian && <CustomIcon type={"vegitarian"} icon={"salad"} />}
           <Count id={id} />
-        </div>
+        </aside>
 
         <p>{description}</p>
 
@@ -90,7 +91,7 @@ const SingleProduct = ({ singleProduct }) => {
           imgURL={imgURL}
           id={id}
         />
-      </div>
+      </section>
     </div>
   );
 };

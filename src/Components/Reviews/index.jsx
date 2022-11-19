@@ -1,11 +1,12 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 import { getAuthState } from "../../Redux/Slices/authSlice";
 import {
   getSingleProductState,
   fetchRateProduct,
 } from "../../Redux/Slices/singleProductSlice";
+
 import CustomIcon from "../CustomIcon";
 import CustomButton from "../CustomButton";
 import Rating from "../Rating";

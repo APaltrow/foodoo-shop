@@ -51,7 +51,7 @@ const FavouritesItem = ({ favourite }) => {
         </div>
       ) : null}
 
-      <div className={style.controllers}>
+      <div className={style.favourites_buttons}>
         <CustomIcon
           type="mid"
           icon="favourites"

@@ -4,13 +4,13 @@
 .root {
   position: absolute;
   top: 115%;
-  right: 20px;
+  right: rem(20);
 
   min-width: rem(200);
   font-size: 0px;
   list-style: none;
 
-  border-radius: 10px;
+  border-radius: rem(10);
 
   display: flex;
   flex-direction: column;
@@ -25,11 +25,11 @@
     min-width: 100%;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: rem(20);
     flex: 1 0;
     font-size: rem(16);
     line-height: rem(40);
-    padding-left: 20px;
+    padding-left: rem(20);
 
     background-color: $color_light_orange;
     color: $color_darken_brown;
@@ -46,8 +46,8 @@
   }
 }
 
-@media screen and (max-width: 630px) {
+@media screen and (max-width: rem(630)) {
   .root {
-    right: -10px;
+    right: rem(-10);
   }
 }

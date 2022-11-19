@@ -8,15 +8,16 @@
 
   min-width: rem(300);
   cursor: pointer;
+
   & div:nth-child(1) {
     position: relative;
-    @include informer("go home");
+    @include informer("home");
   }
 
   &_text {
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
+    margin-left: rem(10);
 
     h1 {
       font-size: rem(32);

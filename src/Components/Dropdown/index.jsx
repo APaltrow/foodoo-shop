@@ -1,9 +1,10 @@
 import React from "react";
+
 import { generateIcon } from "../Icons/Icons";
 
 import style from "./Dropdown.module.scss";
 
-function Dropdown({ data, getId }) {
+const Dropdown = ({ data, getId }) => {
   const handleClick = (i) => {
     getId(i.target.id);
   };
@@ -18,6 +19,6 @@ function Dropdown({ data, getId }) {
       ))}
     </ul>
   );
-}
+};
 
 export default Dropdown;

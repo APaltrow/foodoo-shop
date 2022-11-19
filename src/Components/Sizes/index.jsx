@@ -1,4 +1,5 @@
 import React from "react";
+
 import CustomIcon from "../CustomIcon";
 
 import style from "./Sizes.module.scss";

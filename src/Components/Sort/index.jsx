@@ -14,10 +14,10 @@ import Dropdown from "../Dropdown";
 import style from "./Sort.module.scss";
 
 const Sort = () => {
-  const { isASC, SORT, sortBy } = useSelector(getSortCategoryState);
+  const dispatch = useDispatch();
   const [isVisible, ref, toggle] = useToggle();
 
-  const dispatch = useDispatch();
+  const { isASC, SORT, sortBy } = useSelector(getSortCategoryState);
 
   const onOrderChange = () => dispatch(setIsASC(!isASC));
   const onSortByChange = (id) => dispatch(setSortBy(id));

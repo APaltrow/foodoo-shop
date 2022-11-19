@@ -7,12 +7,12 @@
   align-items: center;
   text-align: center;
   flex: 1 0 auto;
-  gap: 10px;
+  gap: rem(10);
 
   min-width: rem(300);
   min-height: rem(60);
 
-  padding: 0 20px;
+  padding: 0 rem(20);
   overflow: auto;
 
   &_prev {
@@ -56,7 +56,7 @@
     background-color: $color_darken_brown;
     color: wheat;
   }
-  @media only screen and (max-width: 690px) {
+  @media only screen and (max-width: rem(690)) {
     max-width: rem(300);
     flex-wrap: wrap;
   }

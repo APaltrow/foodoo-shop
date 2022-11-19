@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: rem(10);
   flex: 1;
 
   .wrapper {
@@ -14,7 +14,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: rem(20);
     flex: 1 0 auto;
     h3 {
       font-size: rem(24);
@@ -33,14 +33,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: rem(5);
   span {
     text-decoration: line-through;
     color: $color_darken_red;
   }
 }
 
-.favourite_btn {
+.favourite_button {
   position: absolute;
-  right: 60px;
+  right: rem(60);
 }

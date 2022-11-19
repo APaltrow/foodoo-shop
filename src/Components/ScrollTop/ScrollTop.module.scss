@@ -2,8 +2,10 @@
   position: fixed;
   bottom: 15%;
   right: 20px;
+
   z-index: 5;
   transform: rotate(-45deg);
+
   animation: showUP 0.3s ease-in-out;
   svg {
     animation: scrollTop 2s linear infinite;

@@ -1,6 +1,8 @@
 import React from "react";
+
 import Dropdown from "../Dropdown";
 import Icon from "../CustomIcon";
+
 import { SETTINGS } from "../../constants/Settings";
 
 import { useNavigate } from "react-router-dom";

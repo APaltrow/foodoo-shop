@@ -1,5 +1,7 @@
 import React from "react";
+
 import { generateIcon } from "../Icons/Icons";
+
 import style from "./Error.module.scss";
 
 const Error = ({ error }) => {

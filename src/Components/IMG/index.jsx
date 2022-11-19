@@ -1,7 +1,8 @@
 import React from "react";
-import style from "./IMG.module.scss";
 
 import { useNavigate } from "react-router-dom";
+
+import style from "./IMG.module.scss";
 
 const IMG = ({ id, imgURL, title, type }) => {
   const navigate = useNavigate();

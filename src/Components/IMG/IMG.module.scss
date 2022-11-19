@@ -2,9 +2,9 @@
 @import "../../Style/variables.scss";
 
 .small {
-  min-width: 100px;
-  height: 70px;
-  border-radius: 5px;
+  min-width: rem(100);
+  height: rem(70);
+  border-radius: rem(5);
   overflow: hidden;
   img {
     min-width: 100%;
@@ -28,7 +28,7 @@
 
   background-color: rgba(0, 0, 0, 0.6);
   color: wheat;
-  font-size: 14px;
+  font-size: rem(14);
   font-style: italic;
   font-weight: bold;
   letter-spacing: 1px;
@@ -57,9 +57,9 @@
 }
 
 .big {
-  min-width: 500px;
-  height: 350px;
-  border-radius: 5px;
+  min-width: rem(500);
+  height: rem(350);
+  border-radius: rem(5);
   overflow: hidden;
 
   img {
@@ -69,7 +69,7 @@
     object-position: 50% 60%;
   }
 }
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: rem(950)) {
   .big {
     min-width: 90vw;
     height: 50vw;

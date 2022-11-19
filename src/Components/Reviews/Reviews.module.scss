@@ -3,62 +3,73 @@
 
 .reviews {
   position: relative;
+
+  height: rem(150);
+  width: 100%;
+  padding: 0 rem(15);
+
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  height: 150px;
-  width: 100%;
-  padding: 0 15px;
-  background-color: white;
   flex: 1 0 auto;
+  gap: rem(10);
 
+  background-color: white;
   box-shadow: $boxshadow_big;
-  border-radius: 20px;
+  border-radius: rem(20);
   overflow: scroll;
+
   &::-webkit-scrollbar {
     display: none;
   }
   &_header {
+    position: sticky;
+    top: 0;
+
     width: 100%;
+    padding: rem(10) 0;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: rem(20);
 
     border-bottom: 1px solid $color_darken_brown;
     background-color: white;
-    padding: 10px 0px;
-    position: sticky;
-    top: 0;
 
     z-index: 2;
   }
 
   &_single {
     position: relative;
+
+    padding-bottom: rem(5);
+
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 20px;
+    gap: rem(20);
+
     border-bottom: 1px solid $color_darken_brown;
-    padding-bottom: 5px;
     font-size: rem(14);
     font-style: italic;
 
     .editComment {
       width: 100%;
-      padding: 10px 0px;
+      padding: rem(10) 0;
+
       display: flex;
       flex-direction: column;
     }
     input {
-      background-color: $color_light_orange;
       min-width: 90%;
-      height: 30px;
-      padding: 5px 10px;
-      border-radius: 20px;
+      height: rem(30);
+      padding: rem(5) rem(10);
+
+      background-color: $color_light_orange;
+      border-radius: rem(20);
 
       font-style: italic;
+
       &:focus {
         background-color: lighten(blue, 45);
         border: 1px solid $color_darken_brown;
@@ -67,48 +78,54 @@
     }
     .submitEdit {
       span {
-        height: 20px;
-        width: 50px;
-        font-size: 10px;
+        height: rem(20);
+        width: rem(50);
+
+        font-size: rem(10);
       }
     }
 
     .commenter {
+      width: rem(80);
+
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 5px;
-      width: 80px;
+      gap: rem(5);
     }
 
     &_comment {
       width: 100%;
+
       display: flex;
       flex-direction: column;
       align-items: flex-start;
 
       span {
-        margin-top: 10px;
+        margin-top: rem(10);
       }
     }
     .timestamp {
       position: absolute;
-      height: 20px;
-      width: 60px;
-      top: -5px;
+      top: rem(-5);
       right: 0;
+
+      height: rem(20);
+      width: rem(60);
+
       font-size: rem(10);
-      line-height: 20px;
+      line-height: rem(20);
       font-weight: bold;
       text-align: center;
       background-color: $color_light_orange;
-      border-radius: 10px;
+      border-radius: rem(10);
 
       div {
         position: absolute;
-        height: 25px;
-        width: 25px;
-        right: 70px;
+        right: rem(70);
+
+        height: rem(25);
+        width: rem(25);
 
         &:hover {
           background-color: $color_light_orange;
@@ -117,17 +134,19 @@
       }
 
       svg {
-        height: 20px;
-        width: 20px;
+        height: rem(20);
+        width: rem(20);
       }
 
       span {
         position: absolute;
-        right: 10px;
+        right: rem(10);
+
         div {
-          height: 25px;
-          width: 25px;
-          margin-right: 20px;
+          height: rem(25);
+          width: rem(25);
+
+          margin-right: rem(20);
           svg {
             transform: scale(0.8);
           }

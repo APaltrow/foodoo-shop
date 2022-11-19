@@ -4,34 +4,34 @@
 .cartItems_container {
   width: 100%;
   min-height: 100%;
-  padding: 10px 0;
+  padding: rem(10) 0;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 1 0 auto;
-  gap: 15px;
+  gap: rem(15);
 }
 
 .cart_totals {
   margin: 0 auto;
   width: 60%;
-  min-height: 30px;
-  padding: 5px 20px;
-  line-height: 30px;
+  min-height: rem(30);
+  padding: rem(5) rem(20);
+  line-height: rem(30);
 
   display: flex;
   justify-content: center;
-  gap: 5px;
+  gap: rem(5);
 
   background-color: $color_light_orange;
   box-shadow: $boxshadow_big;
-  border-radius: 20px;
+  border-radius: rem(20);
 
   font-size: rem(14);
   font-weight: bold;
   span {
-    margin: 0 10px;
+    margin: 0 rem(10);
     font-size: rem(16);
     font-weight: 400;
     font-style: italic;
@@ -40,18 +40,18 @@
 
 .cart_buttons {
   width: 60%;
-  margin: 10px auto;
+  margin: rem(10) auto;
 
   display: flex;
   justify-content: space-around;
-  gap: 20px;
+  gap: rem(20);
 
   button {
-    width: 150px;
+    width: rem(150);
   }
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: rem(850)) {
   .cart_totals {
     flex-direction: column;
   }
@@ -61,7 +61,7 @@
     align-items: center;
   }
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: rem(500)) {
   .cart_totals {
     width: 90%;
   }

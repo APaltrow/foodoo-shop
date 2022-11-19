@@ -1,6 +1,4 @@
-import React from "react";
-
-import { useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 
 import CustomButton from "../CustomButton";
 

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import FavouritesItem from "../Components/Favourites_Item";
 import NotificationToast from "../Components/NotificationToast";
 import Loader from "../Components/Loader";
@@ -11,7 +13,6 @@ import {
   getFavouritesState,
 } from "../Redux/Slices/favouritesSlice";
 import { getAuthState } from "../Redux/Slices/authSlice";
-import { useEffect } from "react";
 
 const Favourites = () => {
   const { uid } = useSelector(getAuthState).user;
