@@ -1,17 +1,29 @@
 {
   "files": {
-    "main.css": "/foodoo-shop/static/css/main.46ecd67a.css",
-    "main.js": "/foodoo-shop/static/js/main.fa32bdb2.js",
+    "main.css": "/foodoo-shop/static/css/main.eff68b9c.css",
+    "main.js": "/foodoo-shop/static/js/main.d558b7b3.js",
+    "Cart.js": "/foodoo-shop/static/js/Cart.6fc0d04f.chunk.js",
+    "Product.js": "/foodoo-shop/static/js/Product.38698b81.chunk.js",
+    "Favourites.js": "/foodoo-shop/static/js/Favourites.2bb80729.chunk.js",
+    "ProfileSettings.js": "/foodoo-shop/static/js/ProfileSettings.7ba61722.chunk.js",
+    "MyOrders.js": "/foodoo-shop/static/js/MyOrders.24cde999.chunk.js",
+    "Registration.js": "/foodoo-shop/static/js/Registration.15f0cb2f.chunk.js",
     "static/media/Excellent.png": "/foodoo-shop/static/media/Excellent.f14099f22ba673c60584.png",
     "static/media/Bad.png": "/foodoo-shop/static/media/Bad.83da6782016e407ad365.png",
     "static/media/Mid.png": "/foodoo-shop/static/media/Mid.e21920ed9707af991add.png",
     "static/media/Rate.png": "/foodoo-shop/static/media/Rate.2672166ba4223a081c99.png",
     "index.html": "/foodoo-shop/index.html",
-    "main.46ecd67a.css.map": "/foodoo-shop/static/css/main.46ecd67a.css.map",
-    "main.fa32bdb2.js.map": "/foodoo-shop/static/js/main.fa32bdb2.js.map"
+    "main.eff68b9c.css.map": "/foodoo-shop/static/css/main.eff68b9c.css.map",
+    "main.d558b7b3.js.map": "/foodoo-shop/static/js/main.d558b7b3.js.map",
+    "Cart.6fc0d04f.chunk.js.map": "/foodoo-shop/static/js/Cart.6fc0d04f.chunk.js.map",
+    "Product.38698b81.chunk.js.map": "/foodoo-shop/static/js/Product.38698b81.chunk.js.map",
+    "Favourites.2bb80729.chunk.js.map": "/foodoo-shop/static/js/Favourites.2bb80729.chunk.js.map",
+    "ProfileSettings.7ba61722.chunk.js.map": "/foodoo-shop/static/js/ProfileSettings.7ba61722.chunk.js.map",
+    "MyOrders.24cde999.chunk.js.map": "/foodoo-shop/static/js/MyOrders.24cde999.chunk.js.map",
+    "Registration.15f0cb2f.chunk.js.map": "/foodoo-shop/static/js/Registration.15f0cb2f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.46ecd67a.css",
-    "static/js/main.fa32bdb2.js"
+    "static/css/main.eff68b9c.css",
+    "static/js/main.d558b7b3.js"
   ]
 }

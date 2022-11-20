@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[150],{2959:function(t,e,s){s.r(e);s(2791);var i=s(9604),n=s(7689),r=s(2549),u=s(9434),a=s(184);e.default=function(){return(0,u.v9)(r.oH).isAuth?(0,a.jsx)(n.Fg,{to:"/"}):(0,a.jsx)(i.yV,{type:"registration",title:"Registration",btn:"Register"})}}}]);
+//# sourceMappingURL=Registration.15f0cb2f.chunk.js.map

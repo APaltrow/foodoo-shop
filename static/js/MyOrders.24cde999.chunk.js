@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[178],{1316:function(e,s,r){r.r(s);var t=r(9604),n=r(2919),p=r(184);s.default=function(){return(0,p.jsxs)(n.Xg,{img:"orders",title:"My orders",type:"list",children:[(0,p.jsx)(t.VN,{}),(0,p.jsx)(t.D_,{})]})}}}]);
+//# sourceMappingURL=MyOrders.24cde999.chunk.js.map
