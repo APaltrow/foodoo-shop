@@ -16,7 +16,7 @@ import {
 } from "../Redux/Slices/favouritesSlice";
 import { getAuthState } from "../Redux/Slices/authSlice";
 
-export const Favourites = () => {
+const Favourites = () => {
   const { uid } = useSelector(getAuthState).user;
   const { favourites, status, error } = useSelector(getFavouritesState);
   const dispatch = useDispatch();
@@ -47,3 +47,5 @@ export const Favourites = () => {
     </>
   );
 };
+
+export default Favourites;

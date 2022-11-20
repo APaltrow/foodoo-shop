@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 import { getAuthState } from "../Redux/Slices/authSlice";
 import { useSelector } from "react-redux";
 
-export const Registration = () => {
+const Registration = () => {
   const { isAuth } = useSelector(getAuthState);
 
   if (isAuth) return <Navigate to="/" />;
@@ -14,3 +14,5 @@ export const Registration = () => {
     <CustomForm type={"registration"} title={"Registration"} btn={"Register"} />
   );
 };
+
+export default Registration;

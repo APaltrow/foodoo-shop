@@ -10,7 +10,7 @@ import {
   fetchSingleProduct,
 } from "../Redux/Slices/singleProductSlice";
 
-export const ProductPage = () => {
+const ProductPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -25,3 +25,4 @@ export const ProductPage = () => {
     return <SingleProduct singleProduct={singleProduct} />;
   }
 };
+export default ProductPage;

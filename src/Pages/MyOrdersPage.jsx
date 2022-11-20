@@ -2,7 +2,7 @@ import { RecentOrders, PendingOrderWidget } from "../Components";
 
 import { PageLayout } from "../layouts";
 
-export const MyOrders = () => {
+const MyOrders = () => {
   return (
     <PageLayout img={"orders"} title={"My orders"} type={"list"}>
       <PendingOrderWidget />
@@ -11,3 +11,5 @@ export const MyOrders = () => {
     </PageLayout>
   );
 };
+
+export default MyOrders;
