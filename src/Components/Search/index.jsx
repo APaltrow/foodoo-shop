@@ -1,18 +1,18 @@
 import React from "react";
 
-import Icon from "../CustomIcon";
+import { CustomIcon } from "../../Components";
 
 import { useSearch } from "../../Hooks/useSearch";
 
 import style from "./Search.module.scss";
 
-const Search = () => {
+export const Search = () => {
   const { value, isVisible, ref, toggle, handleChange, onDismiss } =
     useSearch();
 
   return (
     <label htmlFor="search" className={style.search} ref={ref}>
-      <Icon type={"mid"} icon={"search"} action={toggle} />
+      <CustomIcon type={"mid"} icon={"search"} action={toggle} />
 
       {isVisible || value ? (
         <input
@@ -26,9 +26,9 @@ const Search = () => {
         />
       ) : null}
 
-      {value && <Icon type={"small"} icon={"dismiss"} action={onDismiss} />}
+      {value && (
+        <CustomIcon type={"small"} icon={"dismiss"} action={onDismiss} />
+      )}
     </label>
   );
 };
-
-export default Search;

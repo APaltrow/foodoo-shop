@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import CustomSelect from "../CustomSelect";
+import { CustomSelect } from "../../Components";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -11,7 +11,7 @@ import {
 
 import style from "./PreOrder.module.scss";
 
-const PreOrder = () => {
+export const PreOrder = () => {
   const dispatch = useDispatch();
 
   const { order } = useSelector(getCheckoutState);
@@ -62,5 +62,3 @@ const PreOrder = () => {
     </section>
   );
 };
-
-export default PreOrder;

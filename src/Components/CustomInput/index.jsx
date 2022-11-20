@@ -1,6 +1,6 @@
 import React from "react";
 
-import Error from "../Error";
+import { Error } from "../../Components";
 
 import { generateIcon } from "../Icons/Icons";
 import { INPUT_VALIDATIONS } from "../../constants/InputValidations";
@@ -8,7 +8,7 @@ import { useInput } from "../../Hooks/useInput";
 
 import style from "./CustomInput.module.scss";
 
-const CustomInput = ({ type, placeholder, name }) => {
+export const CustomInput = ({ type, placeholder, name }) => {
   const { value, isDirty, onChange, onBlur, isError } = useInput(
     INPUT_VALIDATIONS[type]
   );
@@ -37,5 +37,3 @@ const CustomInput = ({ type, placeholder, name }) => {
     </div>
   );
 };
-
-export default CustomInput;

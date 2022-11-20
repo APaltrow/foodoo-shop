@@ -1,10 +1,10 @@
 import React from "react";
 
-import CustomIcon from "../CustomIcon";
+import { CustomIcon } from "../../Components";
 
 import style from "./Sizes.module.scss";
 
-const Sizes = ({ sizes, activeSize, action, discount }) => {
+export const Sizes = ({ sizes, activeSize, action, discount }) => {
   const onActiveSizeChange = (index) => {
     action(sizes[index]);
   };
@@ -42,5 +42,3 @@ const Sizes = ({ sizes, activeSize, action, discount }) => {
     </aside>
   ) : null;
 };
-
-export default Sizes;

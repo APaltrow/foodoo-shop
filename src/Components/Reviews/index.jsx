@@ -7,14 +7,11 @@ import {
   fetchRateProduct,
 } from "../../Redux/Slices/singleProductSlice";
 
-import CustomIcon from "../CustomIcon";
-import CustomButton from "../CustomButton";
-import Rating from "../Rating";
-import Loader from "../Loader";
+import { Rating, Loader, CustomIcon, CustomButton } from "../../Components";
 
 import style from "./Reviews.module.scss";
 
-const Reviews = () => {
+export const Reviews = () => {
   const dispatch = useDispatch();
 
   const { uid } = useSelector(getAuthState).user;
@@ -152,5 +149,3 @@ const Reviews = () => {
     </section>
   );
 };
-
-export default Reviews;

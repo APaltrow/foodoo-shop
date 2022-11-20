@@ -4,7 +4,7 @@ import { generateIcon } from "../Icons/Icons";
 
 import style from "./Rating.module.scss";
 
-const Rating = ({ rating, type }) => {
+export const Rating = ({ rating, type }) => {
   return rating ? (
     <div className={type ? style[type] : style.rating}>
       {[...new Array(rating)].map((_, i) => (
@@ -18,5 +18,3 @@ const Rating = ({ rating, type }) => {
     </div>
   ) : null;
 };
-
-export default Rating;

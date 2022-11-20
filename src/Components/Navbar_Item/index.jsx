@@ -9,7 +9,7 @@ import {
 
 import style from "./NavbarItem.module.scss";
 
-const NavbarItem = () => {
+export const NavbarItem = () => {
   const { activeCategory, NAVIGATION } = useSelector(getSortCategoryState);
   const dispatch = useDispatch();
 
@@ -30,5 +30,3 @@ const NavbarItem = () => {
     </ul>
   );
 };
-
-export default NavbarItem;

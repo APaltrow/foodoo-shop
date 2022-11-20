@@ -1,9 +1,8 @@
 import React from "react";
-import IMG from "../IMG";
-import CustomButton from "../CustomButton";
-import CustomIcon from "../CustomIcon";
-
 import { useDispatch } from "react-redux";
+
+import { IMG, CustomIcon, CustomButton } from "../../Components";
+
 import {
   removeProduct,
   plusProduct,
@@ -12,7 +11,7 @@ import {
 
 import style from "./CartItem.module.scss";
 
-function CartItem({ data }) {
+export const CartItem = ({ data }) => {
   const dispatch = useDispatch();
 
   const { imgURL, title, activeSize, id, lot_id, count, specialOrder } = data;
@@ -77,5 +76,4 @@ function CartItem({ data }) {
       </div>
     </section>
   );
-}
-export default CartItem;
+};

@@ -1,11 +1,10 @@
 import React from "react";
-import NavbarItem from "../Components/Navbar_Item";
-import Search from "../Components/Search";
-import Sort from "../Components/Sort";
+
+import { Sort, Search, NavbarItem } from "../Components";
 
 import style from "./Layouts.module.scss";
 
-const Navbar = () => {
+export const Navbar = () => {
   return (
     <nav className={style.navbar}>
       <div className={style.items}>
@@ -16,5 +15,3 @@ const Navbar = () => {
     </nav>
   );
 };
-
-export default Navbar;

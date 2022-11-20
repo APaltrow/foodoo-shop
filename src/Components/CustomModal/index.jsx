@@ -1,8 +1,8 @@
-import CustomIcon from "../CustomIcon";
+import { CustomIcon } from "../../Components";
 
 import style from "./CustomModal.module.scss";
 
-const CustomModal = ({ children, visible, handleModal }) => {
+export const CustomModal = ({ children, visible, handleModal }) => {
   return (
     <div
       className={visible ? style.modal_active : style.modal_closed}
@@ -25,5 +25,3 @@ const CustomModal = ({ children, visible, handleModal }) => {
     </div>
   );
 };
-
-export default CustomModal;

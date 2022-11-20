@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 
-import FavouritesItem from "../Components/Favourites_Item";
-import NotificationToast from "../Components/NotificationToast";
-import Loader from "../Components/Loader";
-import Error from "../Components/Error";
-import PageLayout from "../layouts/PageLayout";
-import NotFound from "../Components/NotFound";
+import { PageLayout } from "../layouts";
+import {
+  NotificationToast,
+  NotFound,
+  Loader,
+  FavouritesItem,
+  Error,
+} from "../Components";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -14,7 +16,7 @@ import {
 } from "../Redux/Slices/favouritesSlice";
 import { getAuthState } from "../Redux/Slices/authSlice";
 
-const Favourites = () => {
+export const Favourites = () => {
   const { uid } = useSelector(getAuthState).user;
   const { favourites, status, error } = useSelector(getFavouritesState);
   const dispatch = useDispatch();
@@ -45,5 +47,3 @@ const Favourites = () => {
     </>
   );
 };
-
-export default Favourites;

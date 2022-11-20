@@ -1,9 +1,9 @@
 import React from "react";
 
-import Navbar from "../layouts/Navbar";
-import DishCardsCatalog from "../Components/DishCards_Catalog";
+import { Navbar } from "../layouts";
+import { DishCardsCatalog } from "../Components";
 
-const Home = () => {
+export const Home = () => {
   return (
     <>
       <Navbar />
@@ -11,5 +11,3 @@ const Home = () => {
     </>
   );
 };
-
-export default Home;

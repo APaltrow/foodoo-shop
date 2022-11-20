@@ -1,10 +1,10 @@
 import React, { useRef, useEffect } from "react";
 
-import CustomButton from "../CustomButton";
+import { CustomButton } from "../../Components";
 
 import style from "./SpecialOrder.module.scss";
 
-const SpecialOrder = ({
+export const SpecialOrder = ({
   ingredients,
   getSpecialOrder,
   handleModal,
@@ -57,5 +57,3 @@ const SpecialOrder = ({
     </form>
   );
 };
-
-export default SpecialOrder;

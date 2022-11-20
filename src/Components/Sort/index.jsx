@@ -9,11 +9,11 @@ import {
   getSortCategoryState,
 } from "../../Redux/Slices/sortCategory";
 
-import Dropdown from "../Dropdown";
+import { Dropdown } from "../../Components";
 
 import style from "./Sort.module.scss";
 
-const Sort = () => {
+export const Sort = () => {
   const dispatch = useDispatch();
   const [isVisible, ref, toggle] = useToggle();
 
@@ -38,5 +38,3 @@ const Sort = () => {
     </div>
   );
 };
-
-export default Sort;

@@ -3,11 +3,9 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { getCartState } from "../Redux/Slices/cartSlice";
 
-import EmptyCart from "../Components/EmptyCart";
-import CartItems from "../Components/CartItems_Catalog";
-import Checkout from "../Components/Checkout";
+import { EmptyCart, Checkout, CartItems } from "../Components";
 
-const CartPage = () => {
+export const CartPage = () => {
   const { totalCount } = useSelector(getCartState);
   const [isCheckout, setCheckout] = useState(false);
 
@@ -18,5 +16,3 @@ const CartPage = () => {
     <>{totalCount ? <CartItems checkout={setCheckout} /> : <EmptyCart />}</>
   );
 };
-
-export default CartPage;

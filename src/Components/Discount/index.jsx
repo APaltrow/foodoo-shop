@@ -1,8 +1,8 @@
-import CustomIcon from "../CustomIcon";
+import { CustomIcon } from "../../Components";
 
 import style from "./Discount.module.scss";
 
-const Discount = ({ discount, type }) => {
+export const Discount = ({ discount, type }) => {
   return discount ? (
     <button className={type ? style[type] : style.discount}>
       <CustomIcon icon={"discount"} type={"discount"} />
@@ -13,5 +13,3 @@ const Discount = ({ discount, type }) => {
     </button>
   ) : null;
 };
-
-export default Discount;

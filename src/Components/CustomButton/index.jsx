@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import style from "./CustomButton.module.scss";
 
-const CustomButton = ({ id, type, text, action, icon, disabled }) => {
+export const CustomButton = ({ id, type, text, action, icon, disabled }) => {
   const navigation = useNavigate();
   const onClickBack = () => navigation(-1);
 
@@ -28,5 +28,3 @@ const CustomButton = ({ id, type, text, action, icon, disabled }) => {
     </button>
   );
 };
-
-export default CustomButton;

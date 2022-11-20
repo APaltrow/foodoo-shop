@@ -1,9 +1,12 @@
 import React from "react";
-import CustomButton from "../CustomButton";
-import CustomInput from "../CustomInput";
-import Error from "../Error";
-import Icon from "../CustomIcon";
-import Loader from "../Loader";
+
+import {
+  Loader,
+  Error,
+  CustomInput,
+  CustomIcon,
+  CustomButton,
+} from "../../Components";
 
 import { Link } from "react-router-dom";
 import { useForm } from "../../Hooks/useForm";
@@ -12,7 +15,7 @@ import { fetchLogedInUser } from "../../Redux/Slices/authSlice";
 
 import style from "./CustomForm.module.scss";
 
-const CustomForm = ({ type, title, btn }) => {
+export const CustomForm = ({ type, title, btn }) => {
   const {
     inputs,
     formValid,
@@ -38,7 +41,7 @@ const CustomForm = ({ type, title, btn }) => {
         onKeyUp={checkIfValidForm}
       >
         {type === "login" || type === "registration" ? (
-          <Icon type="big" icon="logo" />
+          <CustomIcon type="big" icon="logo" />
         ) : null}
         {type === "login" || type === "registration" ? (
           <h1>{title}</h1>
@@ -77,5 +80,3 @@ const CustomForm = ({ type, title, btn }) => {
     </>
   );
 };
-
-export default CustomForm;

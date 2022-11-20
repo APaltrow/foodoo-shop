@@ -2,7 +2,7 @@ import React from "react";
 
 import style from "./Skeleton.module.scss";
 
-const DishCardSkeleton = ({ type }) => {
+export const DishCardSkeleton = ({ type }) => {
   if (type === "big")
     return (
       <div className={style.dishCard_skeleton_big}>
@@ -39,5 +39,3 @@ const DishCardSkeleton = ({ type }) => {
       </div>
     );
 };
-
-export default DishCardSkeleton;

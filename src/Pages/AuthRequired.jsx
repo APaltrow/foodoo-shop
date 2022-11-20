@@ -5,7 +5,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 import { getAuthState, fetchLogedInUser } from "../Redux/Slices/authSlice";
 
-const AuthRequired = () => {
+export const AuthRequired = () => {
   const dispatch = useDispatch();
 
   const { isAuth } = useSelector(getAuthState);
@@ -23,5 +23,3 @@ const AuthRequired = () => {
 
   return <Outlet />;
 };
-
-export default AuthRequired;

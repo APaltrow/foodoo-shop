@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-import CustomIcon from "../CustomIcon";
+import { CustomIcon } from "../../Components";
 
 import style from "./ScrollTop.module.scss";
 
-const ScrollTop = () => {
+export const ScrollTop = () => {
   const [scrollTop, setScrollTop] = useState(false);
 
   const scrollUP = () => {
@@ -28,5 +28,3 @@ const ScrollTop = () => {
     )
   );
 };
-
-export default ScrollTop;

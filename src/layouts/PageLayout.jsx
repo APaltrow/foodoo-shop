@@ -1,12 +1,12 @@
 import { IMG_URL } from "../constants/ImgURL";
 
-import CustomIcon from "../Components/CustomIcon";
+import { CustomIcon } from "../Components";
 
 import style from "./Layouts.module.scss";
 
 // type 'catalog' or 'list'
 
-const PageLayout = ({ children, icon, img, title, type }) => {
+export const PageLayout = ({ children, icon, img, title, type }) => {
   return (
     <div className={style.page_wrapper}>
       <div className={style.page_header}>
@@ -20,5 +20,3 @@ const PageLayout = ({ children, icon, img, title, type }) => {
     </div>
   );
 };
-
-export default PageLayout;

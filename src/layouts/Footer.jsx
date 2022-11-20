@@ -1,9 +1,9 @@
 import React from "react";
-import CustomIcon from "../Components/CustomIcon";
+import { CustomIcon } from "../Components/";
 
 import style from "./Layouts.module.scss";
 
-function Footer() {
+export const Footer = () => {
   return (
     <footer className={style.footer}>
       <b>FOODOO © 2022</b>
@@ -13,6 +13,4 @@ function Footer() {
       </a>
     </footer>
   );
-}
-
-export default Footer;
+};

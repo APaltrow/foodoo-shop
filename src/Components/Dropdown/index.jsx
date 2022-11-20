@@ -4,7 +4,7 @@ import { generateIcon } from "../Icons/Icons";
 
 import style from "./Dropdown.module.scss";
 
-const Dropdown = ({ data, getId }) => {
+export const Dropdown = ({ data, getId }) => {
   const handleClick = (i) => {
     getId(i.target.id);
   };
@@ -20,5 +20,3 @@ const Dropdown = ({ data, getId }) => {
     </ul>
   );
 };
-
-export default Dropdown;

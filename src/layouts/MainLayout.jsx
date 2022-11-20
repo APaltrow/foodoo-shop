@@ -1,15 +1,14 @@
 import React from "react";
 
-import Footer from "./Footer";
-import Header from "./Header";
-import ScrollTop from "../Components/ScrollTop";
+import { Footer, Header } from "../layouts";
+import { ScrollTop } from "../Components";
 
 import { getAuthState } from "../Redux/Slices/authSlice";
 import { useSelector } from "react-redux";
 
 import style from "./Layouts.module.scss";
 
-const MainLayout = ({ children }) => {
+export const MainLayout = ({ children }) => {
   const { isAuth } = useSelector(getAuthState);
 
   return (
@@ -25,5 +24,3 @@ const MainLayout = ({ children }) => {
     </div>
   );
 };
-
-export default MainLayout;

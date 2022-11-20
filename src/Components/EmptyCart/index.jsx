@@ -1,12 +1,12 @@
 import React from "react";
 
-import CustomButton from "../CustomButton";
+import { CustomButton } from "../../Components";
 
 import { IMG_URL } from "../../constants/ImgURL";
 
 import style from "./EmptyCart.module.scss";
 
-const EmptyCart = () => {
+export const EmptyCart = () => {
   return (
     <div className={style.empty_cart}>
       <h2>Your cart is empty</h2>
@@ -20,5 +20,3 @@ const EmptyCart = () => {
     </div>
   );
 };
-
-export default EmptyCart;

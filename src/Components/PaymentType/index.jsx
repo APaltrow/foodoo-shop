@@ -1,10 +1,5 @@
 import { useRef, useState, useEffect } from "react";
 
-import CustomButton from "../CustomButton";
-import CustomInput from "../CustomInput";
-import CustomSelect from "../CustomSelect";
-import Error from "../Error";
-
 import { useSelector, useDispatch } from "react-redux";
 
 import {
@@ -13,9 +8,16 @@ import {
   setPaymentStatus,
 } from "../../Redux/Slices/checkoutSlice";
 
+import {
+  Error,
+  CustomSelect,
+  CustomInput,
+  CustomButton,
+} from "../../Components";
+
 import style from "./PaymenType.module.scss";
 
-const PaymentType = ({ fname, lname }) => {
+export const PaymentType = ({ fname, lname }) => {
   const dispatch = useDispatch();
   const paymentFormRef = useRef();
 
@@ -135,5 +137,3 @@ const PaymentType = ({ fname, lname }) => {
     </section>
   );
 };
-
-export default PaymentType;

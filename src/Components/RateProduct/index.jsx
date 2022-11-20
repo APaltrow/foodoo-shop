@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import CustomButton from "../CustomButton";
-import CustomModal from "../CustomModal";
-import CustomIcon from "../CustomIcon";
+import { CustomModal, CustomIcon, CustomButton } from "../../Components";
 
 import { RATING_STATUSES } from "../../constants/RatingStatuses";
 import { generateIcon } from "../Icons/Icons";
-import { useDispatch, useSelector } from "react-redux";
 import {
   getSingleProductState,
   fetchRateProduct,
@@ -16,7 +14,7 @@ import { useDate } from "../../Hooks/useDate";
 
 import style from "./RateProduct.module.scss";
 
-const RateProduct = () => {
+export const RateProduct = () => {
   const dispatch = useDispatch();
   const { date, idWithDate } = useDate();
   const { uid, firstname } = useSelector(getAuthState).user;
@@ -143,5 +141,3 @@ const RateProduct = () => {
     </>
   );
 };
-
-export default RateProduct;

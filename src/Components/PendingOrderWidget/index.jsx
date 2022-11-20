@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
-import CustomIcon from "../CustomIcon";
-import Error from "../Error";
+import { Error, CustomIcon } from "../../Components";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,7 +10,7 @@ import {
 
 import style from "./PendingOrder.module.scss";
 
-const PendingOrderWidget = () => {
+export const PendingOrderWidget = () => {
   const dispatch = useDispatch();
   const { pendingOrder } = useSelector(getOrderState);
 
@@ -125,5 +124,3 @@ const PendingOrderWidget = () => {
     </>
   );
 };
-
-export default PendingOrderWidget;

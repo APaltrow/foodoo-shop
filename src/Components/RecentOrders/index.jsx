@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrderState, fetchOrdersList } from "../../Redux/Slices/orderSlice";
 import { getAuthState } from "../../Redux/Slices/authSlice";
 
-import Error from "../Error";
-import CustomModal from "../CustomModal";
+import { Error, CustomModal } from "../../Components";
 
 import style from "./RecentOrders.module.scss";
 
-const RecentOrders = () => {
+export const RecentOrders = () => {
   const dispatch = useDispatch();
 
   const { ordersList } = useSelector(getOrderState);
@@ -116,5 +115,3 @@ const RecentOrders = () => {
     </section>
   );
 };
-
-export default RecentOrders;

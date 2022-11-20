@@ -1,11 +1,11 @@
 import React from "react";
 import { generateIcon } from "../Icons/Icons";
 
-import CustomButton from "../CustomButton";
+import { CustomButton } from "../../Components";
 
 import style from "./NotFound.module.scss";
 
-const NotFound = ({ page }) => {
+export const NotFound = ({ page }) => {
   return (
     <div className={style.not_found}>
       {page && <h2>NOT FOUND</h2>}
@@ -16,5 +16,3 @@ const NotFound = ({ page }) => {
     </div>
   );
 };
-
-export default NotFound;

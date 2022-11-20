@@ -1,8 +1,8 @@
-import PendingOrderWidget from "../Components/PendingOrderWidget";
-import RecentOrders from "../Components/RecentOrders";
-import PageLayout from "../layouts/PageLayout";
+import { RecentOrders, PendingOrderWidget } from "../Components";
 
-const MyOrders = () => {
+import { PageLayout } from "../layouts";
+
+export const MyOrders = () => {
   return (
     <PageLayout img={"orders"} title={"My orders"} type={"list"}>
       <PendingOrderWidget />
@@ -11,5 +11,3 @@ const MyOrders = () => {
     </PageLayout>
   );
 };
-
-export default MyOrders;

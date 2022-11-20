@@ -1,7 +1,6 @@
 import React from "react";
 
-import Dropdown from "../Dropdown";
-import Icon from "../CustomIcon";
+import { Dropdown, CustomIcon } from "../../Components";
 
 import { SETTINGS } from "../../constants/Settings";
 
@@ -10,7 +9,7 @@ import { useToggle } from "../../Hooks/useToggle";
 
 import style from "./Profile.module.scss";
 
-function Profile() {
+export const Profile = () => {
   const [isVisible, ref, toggle] = useToggle();
 
   const navigate = useNavigate();
@@ -18,11 +17,9 @@ function Profile() {
 
   return (
     <div className={style.nav_profile} onClick={toggle} ref={ref}>
-      <Icon type={"mid"} icon={"profile"} />
+      <CustomIcon type={"mid"} icon={"profile"} />
 
       {isVisible && <Dropdown data={SETTINGS} getId={getId} />}
     </div>
   );
-}
-
-export default Profile;
+};

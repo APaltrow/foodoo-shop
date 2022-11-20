@@ -1,16 +1,19 @@
 import { useProduct } from "../../Hooks/useProduct";
 
 import React from "react";
-import CustomButton from "../CustomButton";
-import Rating from "../Rating";
-import Count from "../Count";
-import IMG from "../IMG";
-import Sizes from "../Sizes";
-import Discount from "../Discount";
+
+import {
+  Sizes,
+  Rating,
+  IMG,
+  Discount,
+  CustomButton,
+  Count,
+} from "../../Components";
 
 import style from "./DishCard_Item.module.scss";
 
-const DishCardItem = ({ data }) => {
+export const DishCardItem = ({ data }) => {
   const {
     id,
     title,
@@ -50,5 +53,3 @@ const DishCardItem = ({ data }) => {
     </section>
   );
 };
-
-export default DishCardItem;

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import style from "./IMG.module.scss";
 
-const IMG = ({ id, imgURL, title, type }) => {
+export const IMG = ({ id, imgURL, title, type }) => {
   const navigate = useNavigate();
   const onIMGClick = () => type === "mid" && navigate(`product/${id}`);
 
@@ -15,5 +15,3 @@ const IMG = ({ id, imgURL, title, type }) => {
     </div>
   );
 };
-
-export default IMG;

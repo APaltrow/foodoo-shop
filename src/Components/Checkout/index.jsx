@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
+
 import { getCartState, clearCart } from "../../Redux/Slices/cartSlice";
 import { getAuthState } from "../../Redux/Slices/authSlice";
 import {
@@ -14,17 +14,19 @@ import {
 
 import { useDate } from "../../Hooks/useDate";
 
-import CustomButton from "../CustomButton";
-import CustomIcon from "../CustomIcon";
-import Error from "../Error";
-import Loader from "../Loader";
-import PreOrder from "../PreOrder";
-import PaymentType from "../PaymentType";
-import PageLayout from "../../layouts/PageLayout";
+import { PageLayout } from "../../layouts";
+import {
+  PreOrder,
+  PaymentType,
+  Loader,
+  Error,
+  CustomIcon,
+  CustomButton,
+} from "../../Components";
 
 import style from "./Checkout.module.scss";
 
-const Checkout = ({ onCancel }) => {
+export const Checkout = ({ onCancel }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { idWithDate, date } = useDate();
@@ -170,5 +172,3 @@ const Checkout = ({ onCancel }) => {
     </PageLayout>
   );
 };
-
-export default Checkout;

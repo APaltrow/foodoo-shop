@@ -1,15 +1,14 @@
-import IMG from "../IMG";
-import CustomButton from "../CustomButton";
-import CustomIcon from "../CustomIcon";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { useProduct } from "../../Hooks/useProduct";
-import { useDispatch } from "react-redux";
 import { fetchDeleteFavourites } from "../../Redux/Slices/favouritesSlice";
-import { useNavigate } from "react-router-dom";
+
+import { IMG, CustomIcon, CustomButton } from "../../Components";
 
 import style from "./FavouritesItem.module.scss";
 
-const FavouritesItem = ({ favourite }) => {
+export const FavouritesItem = ({ favourite }) => {
   const navigate = useNavigate(1);
   const dispatch = useDispatch();
   const { id, imgURL, specialOrder, title, size, favId } = favourite;
@@ -69,5 +68,3 @@ const FavouritesItem = ({ favourite }) => {
     </section>
   );
 };
-
-export default FavouritesItem;

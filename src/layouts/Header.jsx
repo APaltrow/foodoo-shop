@@ -1,9 +1,6 @@
 import React from "react";
 
-import Cart from "../Components/Cart";
-import Profile from "../Components/Profile";
-import Logo from "../Components/Logo";
-import Icon from "../Components/CustomIcon";
+import { Profile, Logo, CustomIcon, Cart } from "../Components";
 
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -11,7 +8,7 @@ import { setLogOut } from "../Redux/Slices/authSlice";
 
 import style from "./Layouts.module.scss";
 
-function Header() {
+export const Header = () => {
   const dispatch = useDispatch();
   const handleLogout = () => {
     window.confirm("Are you sure you would like to log out?") &&
@@ -31,11 +28,9 @@ function Header() {
 
         <Profile />
         <div className={style.nav_logout}>
-          <Icon type="small" icon="logout" action={handleLogout} />
+          <CustomIcon type="small" icon="logout" action={handleLogout} />
         </div>
       </div>
     </header>
   );
-}
-
-export default Header;
+};

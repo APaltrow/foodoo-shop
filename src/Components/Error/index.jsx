@@ -4,7 +4,7 @@ import { generateIcon } from "../Icons/Icons";
 
 import style from "./Error.module.scss";
 
-const Error = ({ error }) => {
+export const Error = ({ error }) => {
   return (
     <div className={style.error}>
       {generateIcon("error")}
@@ -12,5 +12,3 @@ const Error = ({ error }) => {
     </div>
   );
 };
-
-export default Error;

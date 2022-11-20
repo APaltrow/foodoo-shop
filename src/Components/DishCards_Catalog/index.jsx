@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 
-import DishCardItem from "../DishCard_Item";
-import DishCardSkeleton from "../DIshCard_Skeleton";
-import Paggination from "../Paggination";
-import NotFound from "../NotFound";
-import Error from "../Error";
-import NotificationToast from "../NotificationToast";
+import {
+  Paggination,
+  NotificationToast,
+  NotFound,
+  Error,
+  DishCardSkeleton,
+  DishCardItem,
+} from "../../Components";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -20,7 +22,7 @@ import { getFetchURLparams } from "../../Helpers/getFetchURLparams";
 
 import style from "./DishCardsCatalog.module.scss";
 
-const DishCardsCatalog = () => {
+export const DishCardsCatalog = () => {
   const dispatch = useDispatch();
   const {
     activeCategory,
@@ -76,5 +78,3 @@ const DishCardsCatalog = () => {
       </div>
     );
 };
-
-export default DishCardsCatalog;

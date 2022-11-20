@@ -3,14 +3,11 @@ import { useState, useEffect } from "react";
 import { getAuthState } from "../../Redux/Slices/authSlice";
 import { useSelector } from "react-redux";
 
-import CustomForm from "../CustomForm";
-import Error from "../Error";
-import CustomButton from "../CustomButton";
-import CustomIcon from "../CustomIcon";
+import { Error, CustomIcon, CustomForm, CustomButton } from "../../Components";
 
 import style from "./Settings.module.scss";
 
-const Settins = () => {
+export const Settins = () => {
   const { address, email, password, firstname, lastname, phone } =
     useSelector(getAuthState).user;
 
@@ -103,5 +100,3 @@ const Settins = () => {
     </div>
   );
 };
-
-export default Settins;

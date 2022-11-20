@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from "react";
 
 import { SLIDER_TYPES } from "../../constants/SliderTypes";
 
-import CustomIcon from "../CustomIcon";
+import { CustomIcon } from "../../Components";
 
 import style from "./Slider.module.scss";
 
-const Slider = ({ imgURL, category }) => {
+export const Slider = ({ imgURL, category }) => {
   const ref = useRef();
   const items = [{ url: imgURL }, ...SLIDER_TYPES[category]];
   const [active, setActive] = useState(0);
@@ -81,5 +81,3 @@ const Slider = ({ imgURL, category }) => {
     </>
   );
 };
-
-export default Slider;

@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { useToggle } from "../../Hooks/useToggle";
 import { useCalendar } from "../../Hooks/useCalendar";
 import { SELECT_TYPES } from "../../constants/SelectTypes";
-import CustomIcon from "../CustomIcon";
+import { CustomIcon } from "../../Components";
 
 import style from "./CustomSelect.module.scss";
 
 // TYPE : calendar, year, hours dayPart
 //Calendar, day, month, year
 
-const CustomSelect = ({ type, getData }) => {
+export const CustomSelect = ({ type, getData }) => {
   const [isVisible, ref, toggle] = useToggle();
   const {
     date,
@@ -96,5 +96,3 @@ const CustomSelect = ({ type, getData }) => {
     </section>
   );
 };
-
-export default CustomSelect;

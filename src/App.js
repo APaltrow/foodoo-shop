@@ -1,19 +1,22 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home";
-import CartPage from "./Pages/CartPage";
-import LogIn from "./Pages/LogIn";
-import Registration from "./Pages/Registration";
-import NotFoundPage from "./Pages/NotFoundPage";
-import ProductPage from "./Pages/ProductPage";
-import MainLayout from "./layouts/MainLayout";
-import AuthRequired from "./Pages/AuthRequired";
-import ProfileSettings from "./Pages/SettingsPage";
-import MyOrders from "./Pages/MyOrdersPage";
-import Favourites from "./Pages/FavouritesPage";
+
+import { MainLayout } from "./layouts";
+import {
+  Home,
+  CartPage,
+  Favourites,
+  ProfileSettings,
+  Registration,
+  LogIn,
+  NotFoundPage,
+  ProductPage,
+  MyOrders,
+  AuthRequired,
+} from "./Pages";
 
 import style from "./App.module.scss";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <MainLayout>
@@ -34,6 +37,6 @@ function App() {
       </MainLayout>
     </div>
   );
-}
+};
 
 export default App;

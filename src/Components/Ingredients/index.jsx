@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 
-import CustomButton from "../CustomButton";
-import SpecialOrder from "../SpecialOrder";
-import CustomModal from "../CustomModal";
-import CustomIcon from "../CustomIcon";
+import {
+  SpecialOrder,
+  CustomModal,
+  CustomIcon,
+  CustomButton,
+} from "../../Components";
 
 import style from "./Ingredients.module.scss";
 
-const Ingredients = ({
+export const Ingredients = ({
   ingredients,
   activeSize,
   getSpecialOrder,
@@ -67,5 +69,3 @@ const Ingredients = ({
     </section>
   );
 };
-
-export default Ingredients;

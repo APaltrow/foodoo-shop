@@ -1,10 +1,10 @@
 import { useNotification } from "../../Hooks/useNotification";
 
-import CustomIcon from "../CustomIcon";
+import { CustomIcon } from "../../Components";
 
 import style from "./NotificationToast.module.scss";
 
-const NotificationToast = ({ message, type }) => {
+export const NotificationToast = ({ message, type }) => {
   const { toasts } = useNotification({ type });
 
   return toasts.length ? (
@@ -18,5 +18,3 @@ const NotificationToast = ({ message, type }) => {
     </div>
   ) : null;
 };
-
-export default NotificationToast;

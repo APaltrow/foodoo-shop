@@ -1,20 +1,18 @@
 import React from "react";
-import Icon from "../CustomIcon";
+import { CustomIcon } from "../../Components";
 import { useNavigate } from "react-router-dom";
 import { useCurrentProductCount } from "../../Hooks/useCurrentProductCount";
 
 import style from "./Count.module.scss";
 
-const Count = ({ id }) => {
+export const Count = ({ id }) => {
   const { productCount } = useCurrentProductCount(id);
   const navigate = useNavigate();
 
   return productCount ? (
     <div className={style.count} onClick={() => navigate("/cart")}>
-      <Icon icon={"cart"} type={"count"} />
+      <CustomIcon icon={"cart"} type={"count"} />
       <span> {productCount}</span>
     </div>
   ) : null;
 };
-
-export default Count;

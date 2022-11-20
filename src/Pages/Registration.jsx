@@ -1,12 +1,12 @@
 import React from "react";
 
-import CustomForm from "../Components/CustomForm";
+import { CustomForm } from "../Components";
 
 import { Navigate } from "react-router-dom";
 import { getAuthState } from "../Redux/Slices/authSlice";
 import { useSelector } from "react-redux";
 
-const Registration = () => {
+export const Registration = () => {
   const { isAuth } = useSelector(getAuthState);
 
   if (isAuth) return <Navigate to="/" />;
@@ -14,5 +14,3 @@ const Registration = () => {
     <CustomForm type={"registration"} title={"Registration"} btn={"Register"} />
   );
 };
-
-export default Registration;

@@ -1,23 +1,25 @@
 import React from "react";
 
-import Rating from "../Rating";
-import CustomButton from "../CustomButton";
-import Sizes from "../Sizes";
-import CustomIcon from "../CustomIcon";
-import Ingredients from "../Ingredients";
-import Reviews from "../Reviews";
-import RateProduct from "../RateProduct";
-import AddFavourite from "../AddFovourite";
-import Discount from "../Discount";
-import NotificationToast from "../NotificationToast";
-import Slider from "../Slider";
-import Count from "../Count";
+import {
+  Slider,
+  Sizes,
+  Reviews,
+  Rating,
+  RateProduct,
+  NotificationToast,
+  Ingredients,
+  Discount,
+  CustomIcon,
+  CustomButton,
+  Count,
+  AddFavourite,
+} from "../../Components";
 
 import { useProduct } from "../../Hooks/useProduct";
 
 import style from "./SingleProduct.module.scss";
 
-const SingleProduct = ({ singleProduct }) => {
+export const SingleProduct = ({ singleProduct }) => {
   const {
     onAddProduct,
     getSpecialOrder,
@@ -95,5 +97,3 @@ const SingleProduct = ({ singleProduct }) => {
     </div>
   );
 };
-
-export default SingleProduct;

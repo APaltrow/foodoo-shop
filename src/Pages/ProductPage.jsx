@@ -1,8 +1,6 @@
 import React from "react";
 
-import SingleProduct from "../Components/SingleProduct";
-import Error from "../Components/Error";
-import DishCardSkeleton from "../Components/DIshCard_Skeleton";
+import { SingleProduct, Error, DishCardSkeleton } from "../Components";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -12,7 +10,7 @@ import {
   fetchSingleProduct,
 } from "../Redux/Slices/singleProductSlice";
 
-const ProductPage = () => {
+export const ProductPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -27,5 +25,3 @@ const ProductPage = () => {
     return <SingleProduct singleProduct={singleProduct} />;
   }
 };
-
-export default ProductPage;

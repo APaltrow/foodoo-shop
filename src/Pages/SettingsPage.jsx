@@ -1,8 +1,8 @@
-import Settins from "../Components/Settings";
-import NotificationToast from "../Components/NotificationToast";
-import PageLayout from "../layouts/PageLayout";
+import { Settins, NotificationToast } from "../Components";
 
-const ProfileSettings = () => {
+import { PageLayout } from "../layouts";
+
+export const ProfileSettings = () => {
   return (
     <PageLayout img="settings" title="Profile settings" type="list">
       <NotificationToast message="Updated !" type="profile" />
@@ -10,5 +10,3 @@ const ProfileSettings = () => {
     </PageLayout>
   );
 };
-
-export default ProfileSettings;
