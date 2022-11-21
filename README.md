@@ -4,7 +4,7 @@ _See project live :_ **[FooDoo-shop.com](https://apaltrow.github.io/foodoo-shop/
 
 ---
 
-![](src/assets/attention1.png) **Attention!**
+![](src/assets/readme-assets/attention1.png) **Attention!**
 
 _`Application contains a registration stage, however, there is`_ **`a demo account available`** _`for your convenience!`_
 
@@ -25,16 +25,16 @@ _Intuitive and user friendly interface delivers the best UX._
 
 ## Tech Stack
 
-| Side             | Tech                     |                                |
-| ---------------- | ------------------------ | ------------------------------ |
-| Front End        | React                    | ![](src/assets/attention1.png) |
-| Styles           | Sass / Scss _(modules)_  | ![](src/assets/attention1.png) |
-| State management | Redux / Tool Kit         | ![](src/assets/attention1.png) |
-| Server requests  | Axios / Redux AsyncThunk |                                |
-| Version control  | Git                      |                                |
-| Back End         | MockApi                  |                                |
-| Deployment       | Github Pages             |                                |
-| Design           | Figma                    |                                |
+| Side             | Tech                     |                                           |
+| ---------------- | ------------------------ | ----------------------------------------- |
+| Front End        | React                    | ![](src/assets/readme-assets/React.png)   |
+| Styles           | Sass / Scss _(modules)_  | ![](src/assets/readme-assets/Sass.png)    |
+| State management | Redux / Tool Kit         | ![](src/assets/readme-assets/Redux.png)   |
+| Server requests  | Axios / Redux AsyncThunk | ![](src/assets/readme-assets/server.png)  |
+| Version control  | Git                      | ![](src/assets/readme-assets/Git.png)     |
+| Back End         | MockApi                  | ![](src/assets/readme-assets/mockapi.png) |
+| Deployment       | Github Pages             | ![](src/assets/readme-assets/Github.png)  |
+| Design           | Figma                    | ![](src/assets/readme-assets/figma.png)   |
 
 ## Detailed Overview
 
