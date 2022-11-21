@@ -33,7 +33,7 @@ _Intuitive and user friendly interface delivers the best UX._
 | Server requests  | Axios / Redux AsyncThunk | ![](src/assets/readme-assets/server.png)  |
 | Version control  | Git                      | ![](src/assets/readme-assets/Git.png)     |
 | Back End         | MockApi                  | ![](src/assets/readme-assets/mockapi.png) |
-| Deployment       | Github Pages             | ![](src/assets/readme-assets/Github.png)  |
+| Deployment       | Github Pages             | ![](src/assets/readme-assets/github.png)  |
 | Design           | Figma                    | ![](src/assets/readme-assets/figma.png)   |
 
 ## Detailed Overview
