@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from "react";
 
 import { Routes, Route } from "react-router-dom";
 
-import { Loader } from "./Components";
+import { PageLoader } from "./Components";
 import { MainLayout } from "./layouts";
 import { Home, LogIn, NotFoundPage, AuthRequired } from "./Pages";
 
@@ -31,7 +31,7 @@ const App = () => {
   return (
     <div className="App">
       <MainLayout>
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<AuthRequired />}>
               <Route index element={<Home />} />

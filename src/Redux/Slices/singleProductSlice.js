@@ -42,6 +42,7 @@ export const singleProductSlice = createSlice({
   extraReducers: {
     [fetchSingleProduct.pending]: (state) => {
       state.status = "pending";
+      state.error = "";
     },
     [fetchSingleProduct.fulfilled]: (state, action) => {
       state.singleProduct = action.payload;
@@ -57,6 +58,7 @@ export const singleProductSlice = createSlice({
     },
     [fetchRateProduct.pending]: (state) => {
       state.status = "pending-rate";
+      state.error = "";
     },
     [fetchRateProduct.fulfilled]: (state, action) => {
       state.singleProduct.reviews = action.payload.reviews;

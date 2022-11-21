@@ -1,5 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
 import { FAVOURITES_URL } from "../../constants/Urls";
 
 export const fetchAddFavourites = createAsyncThunk(
@@ -44,9 +45,10 @@ export const favouritesSlice = createSlice({
   extraReducers: {
     [fetchAddFavourites.pending]: (state) => {
       state.status = "pending";
+      state.error = "";
       state.favourites = [];
     },
-    [fetchAddFavourites.fulfilled]: (state, action) => {
+    [fetchAddFavourites.fulfilled]: (state) => {
       state.status = "success";
     },
     [fetchAddFavourites.rejected]: (state, action) => {
@@ -57,6 +59,7 @@ export const favouritesSlice = createSlice({
     },
     [fetchFavourites.pending]: (state) => {
       state.status = "pending";
+      state.error = "";
       state.favourites = [];
     },
     [fetchFavourites.fulfilled]: (state, action) => {
@@ -74,6 +77,7 @@ export const favouritesSlice = createSlice({
     },
     [fetchDeleteFavourites.pending]: (state) => {
       state.status = "pending";
+      state.error = "";
     },
     [fetchDeleteFavourites.fulfilled]: (state, action) => {
       state.favourites = state.favourites.filter(

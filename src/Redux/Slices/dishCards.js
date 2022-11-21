@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchDishCards = createAsyncThunk(
   "dishCards/fetchDishCards",
@@ -27,6 +27,7 @@ export const dishCardsSlice = createSlice({
   extraReducers: {
     [fetchDishCards.pending]: (state) => {
       state.status = "pending";
+      state.error = "";
       state.dishCards = [];
     },
     [fetchDishCards.fulfilled]: (state, action) => {

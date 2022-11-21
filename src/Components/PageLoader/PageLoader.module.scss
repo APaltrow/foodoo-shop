@@ -1,0 +1,68 @@
+@import "../../Style/mixins.scss";
+@import "../../Style/variables.scss";
+
+.page_loader_wrapper {
+  position: relative;
+
+  width: 100%;
+  min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 auto;
+  gap: 1rem;
+
+  & div:nth-child(1) {
+    position: absolute;
+  }
+}
+
+.page_loader_spinner {
+  position: relative;
+
+  width: rem(150);
+  height: rem(150);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  animation: spinner-rotate 3s ease-in-out infinite;
+
+  & div:nth-child(1) {
+    position: absolute;
+    top: -0.8rem;
+  }
+  & div:nth-child(2) {
+    position: absolute;
+    bottom: -0.8rem;
+  }
+  & div:nth-child(3) {
+    position: absolute;
+    right: -0.8rem;
+    transform: scale(1.4);
+  }
+  & div:nth-child(4) {
+    position: absolute;
+    left: -0.8rem;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes spinner-rotate {
+  0% {
+    transform: rotate(0deg);
+    box-shadow: 0 0 0px $color_darken_red inset;
+  }
+  50% {
+    box-shadow: 0 0 50px $color_darken_red inset;
+  }
+  100% {
+    transform: rotate(360deg);
+    box-shadow: 0 0 0px $color_darken_red inset;
+  }
+}

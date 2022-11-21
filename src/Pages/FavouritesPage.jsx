@@ -4,9 +4,9 @@ import { PageLayout } from "../layouts";
 import {
   NotificationToast,
   NotFound,
-  Loader,
   FavouritesItem,
   Error,
+  PageLoader,
 } from "../Components";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -33,7 +33,7 @@ const Favourites = () => {
         img={"favourites"}
         type={favourites.length && status === "success" ? "catalog" : "list"}
       >
-        {status === "pending" && <Loader />}
+        {status === "pending" && <PageLoader />}
         {error && <Error error={error} />}
         {status === "success" &&
           (favourites.length ? (
@@ -41,7 +41,11 @@ const Favourites = () => {
               <FavouritesItem favourite={favourite} key={index} />
             ))
           ) : (
-            <NotFound />
+            <NotFound
+              message={
+                "Looks like you have not added anything to favourites ..."
+              }
+            />
           ))}
       </PageLayout>
     </>

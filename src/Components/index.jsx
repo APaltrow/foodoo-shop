@@ -15,6 +15,7 @@ export * from "./PreOrder";
 export * from "./PendingOrderWidget";
 export * from "./PaymentType";
 export * from "./Paggination";
+export * from "./PageLoader";
 export * from "./NotificationToast";
 export * from "./NotFound";
 export * from "./Navbar_Item";

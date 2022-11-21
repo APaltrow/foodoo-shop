@@ -55,7 +55,12 @@ export const DishCardsCatalog = () => {
   }, [dishCards]);
 
   if (status === "error") return <Error error={error} />;
-  if (dishCards.length < 1 && status === "success") return <NotFound />;
+  if (dishCards.length < 1 && status === "success")
+    return (
+      <NotFound
+        message={`Could not find '${searchValue}', try something else !`}
+      />
+    );
   if (status === "success" || status === "pending")
     return (
       <div className={style.dishCards}>

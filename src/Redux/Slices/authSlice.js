@@ -88,6 +88,7 @@ export const authSlice = createSlice({
   extraReducers: {
     [fetchCheckUser.pending]: (state) => {
       state.status = "pending";
+      state.error = "";
     },
     [fetchCheckUser.fulfilled]: (state) => {
       state.status = "success";
@@ -98,6 +99,7 @@ export const authSlice = createSlice({
     },
     [fetchRegisterUser.pending]: (state) => {
       state.status = "pending";
+      state.error = "";
     },
     [fetchRegisterUser.fulfilled]: (state, action) => {
       state.status = "success";
@@ -111,6 +113,7 @@ export const authSlice = createSlice({
     },
     [fetchUpdateAddress.pending]: (state) => {
       state.status = "pending";
+      state.error = "";
     },
     [fetchUpdateAddress.fulfilled]: (state, action) => {
       state.user = action.payload;
@@ -124,6 +127,7 @@ export const authSlice = createSlice({
     },
     [fetchEditProfile.pending]: (state) => {
       state.status = "pending";
+      state.error = "";
     },
     [fetchEditProfile.fulfilled]: (state, action) => {
       state.user = action.payload;
@@ -137,6 +141,7 @@ export const authSlice = createSlice({
     },
     [fetchChangePassword.pending]: (state) => {
       state.status = "pending";
+      state.error = "";
     },
     [fetchChangePassword.fulfilled]: (state, action) => {
       state.user = action.payload;
@@ -150,6 +155,7 @@ export const authSlice = createSlice({
     },
     [fetchLogedInUser.pending]: (state) => {
       state.status = "pending";
+      state.error = "";
     },
     [fetchLogedInUser.fulfilled]: (state, action) => {
       state.user = action.payload[0];

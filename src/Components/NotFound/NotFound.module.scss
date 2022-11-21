@@ -2,6 +2,8 @@
 @import "../../Style/mixins.scss";
 
 .not_found {
+  padding: 0 rem(20);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,6 +13,10 @@
   color: $color_darken_brown;
   h2 {
     font-size: rem(28);
+  }
+  h3 {
+    font-size: rem(18);
+    text-align: center;
   }
   p {
     font-size: rem(16);
@@ -27,6 +33,9 @@
 @media only screen and (max-width: rem(550)) {
   h2 {
     font-size: rem(24);
+  }
+  h3 {
+    font-size: rem(16);
   }
   p {
     font-size: rem(14);
