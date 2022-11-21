@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/foodoo-shop/static/css/main.eff68b9c.css",
-    "main.js": "/foodoo-shop/static/js/main.d558b7b3.js",
-    "Cart.js": "/foodoo-shop/static/js/Cart.6fc0d04f.chunk.js",
-    "Product.js": "/foodoo-shop/static/js/Product.38698b81.chunk.js",
-    "Favourites.js": "/foodoo-shop/static/js/Favourites.2bb80729.chunk.js",
-    "ProfileSettings.js": "/foodoo-shop/static/js/ProfileSettings.7ba61722.chunk.js",
-    "MyOrders.js": "/foodoo-shop/static/js/MyOrders.24cde999.chunk.js",
-    "Registration.js": "/foodoo-shop/static/js/Registration.15f0cb2f.chunk.js",
+    "main.css": "/foodoo-shop/static/css/main.f6a22817.css",
+    "main.js": "/foodoo-shop/static/js/main.438dc821.js",
+    "Cart.js": "/foodoo-shop/static/js/Cart.de763ae5.chunk.js",
+    "Product.js": "/foodoo-shop/static/js/Product.2b3c5835.chunk.js",
+    "Favourites.js": "/foodoo-shop/static/js/Favourites.9ea55f5d.chunk.js",
+    "ProfileSettings.js": "/foodoo-shop/static/js/ProfileSettings.05ba8b86.chunk.js",
+    "MyOrders.js": "/foodoo-shop/static/js/MyOrders.1430505f.chunk.js",
+    "Registration.js": "/foodoo-shop/static/js/Registration.427fb6be.chunk.js",
     "static/media/Excellent.png": "/foodoo-shop/static/media/Excellent.f14099f22ba673c60584.png",
     "static/media/Bad.png": "/foodoo-shop/static/media/Bad.83da6782016e407ad365.png",
     "static/media/Mid.png": "/foodoo-shop/static/media/Mid.e21920ed9707af991add.png",
     "static/media/Rate.png": "/foodoo-shop/static/media/Rate.2672166ba4223a081c99.png",
     "index.html": "/foodoo-shop/index.html",
-    "main.eff68b9c.css.map": "/foodoo-shop/static/css/main.eff68b9c.css.map",
-    "main.d558b7b3.js.map": "/foodoo-shop/static/js/main.d558b7b3.js.map",
-    "Cart.6fc0d04f.chunk.js.map": "/foodoo-shop/static/js/Cart.6fc0d04f.chunk.js.map",
-    "Product.38698b81.chunk.js.map": "/foodoo-shop/static/js/Product.38698b81.chunk.js.map",
-    "Favourites.2bb80729.chunk.js.map": "/foodoo-shop/static/js/Favourites.2bb80729.chunk.js.map",
-    "ProfileSettings.7ba61722.chunk.js.map": "/foodoo-shop/static/js/ProfileSettings.7ba61722.chunk.js.map",
-    "MyOrders.24cde999.chunk.js.map": "/foodoo-shop/static/js/MyOrders.24cde999.chunk.js.map",
-    "Registration.15f0cb2f.chunk.js.map": "/foodoo-shop/static/js/Registration.15f0cb2f.chunk.js.map"
+    "main.f6a22817.css.map": "/foodoo-shop/static/css/main.f6a22817.css.map",
+    "main.438dc821.js.map": "/foodoo-shop/static/js/main.438dc821.js.map",
+    "Cart.de763ae5.chunk.js.map": "/foodoo-shop/static/js/Cart.de763ae5.chunk.js.map",
+    "Product.2b3c5835.chunk.js.map": "/foodoo-shop/static/js/Product.2b3c5835.chunk.js.map",
+    "Favourites.9ea55f5d.chunk.js.map": "/foodoo-shop/static/js/Favourites.9ea55f5d.chunk.js.map",
+    "ProfileSettings.05ba8b86.chunk.js.map": "/foodoo-shop/static/js/ProfileSettings.05ba8b86.chunk.js.map",
+    "MyOrders.1430505f.chunk.js.map": "/foodoo-shop/static/js/MyOrders.1430505f.chunk.js.map",
+    "Registration.427fb6be.chunk.js.map": "/foodoo-shop/static/js/Registration.427fb6be.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eff68b9c.css",
-    "static/js/main.d558b7b3.js"
+    "static/css/main.f6a22817.css",
+    "static/js/main.438dc821.js"
   ]
 }

@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[891],{456:function(e,s,t){t.r(s);var p=t(9604),i=t(2919),n=t(184);s.default=function(){return(0,n.jsxs)(i.Xg,{img:"settings",title:"Profile settings",type:"list",children:[(0,n.jsx)(p.pI,{message:"Updated !",type:"profile"}),(0,n.jsx)(p.sK,{})]})}}}]);
-//# sourceMappingURL=ProfileSettings.7ba61722.chunk.js.map
