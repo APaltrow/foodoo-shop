@@ -12,8 +12,6 @@ _`Application contains a registration stage, however, there is`_ **`a demo accou
 
 - At the login page click the **`'LOGIN WITH DEMO ACCOUNT'`** button
 
----
-
 ## About
 
 _Online food store aimed to satisfy E-commerce business & customer's needs
@@ -22,6 +20,8 @@ with full cycle of customer's jorney starting from account creation and ending u
 _Adaptive and responsive design makes the application available on various devices such as desktop PCs, laptops, tablets and mobile phones._
 
 _Intuitive and user friendly interface delivers the best UX._
+
+![](src/assets/readme-assets/FooDooHeading.png)
 
 ## Tech Stack
 
@@ -71,7 +71,7 @@ _Intuitive and user friendly interface delivers the best UX._
 
 - Single dish card with the ability to choose the size of the product and add to cart
 
-- Dinamic indicator of the amount of the product added to the cart
+- Dynamic indicator of the amount of the product added to the cart
 
 - Product image contains a` link to Single Product page`
 
@@ -79,7 +79,7 @@ _Intuitive and user friendly interface delivers the best UX._
 
 - Discount informer with percentage and discount price visualization
 
-- Dinamic `Paggination`
+- Dynamic `Paggination`
 
 ---
 
@@ -87,7 +87,7 @@ _Intuitive and user friendly interface delivers the best UX._
 
 ---
 
-- Adaptive `slider` for product photos visualization with dinamic paggination
+- Adaptive `slider` for product photos visualization with dynamic paggination
 
 - `Product Reviews` section with user's rating and comment
   - Contains details about commenter and date
@@ -101,7 +101,7 @@ _Intuitive and user friendly interface delivers the best UX._
 
 - `Ingredients overview` section
 
-  - Dinamic weight indication for each size separately.
+  - Dynamic weight indication for each size separately.
   - `Special order` option - provides the ability to customize the order _( exclude ingredients )_
 
 - `Add to Favourites` option, allows to add the product of specific size and/or special order indication to your personal favourites list
