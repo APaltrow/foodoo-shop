@@ -55,7 +55,7 @@ _Intuitive and user friendly interface delivers the best UX._
 
 - Demo account available.
 
----
+## ![](src/assets/readme-assets/FormValidation.gif)
 
 2.  _Mane_ : **`Home`** page.
 
