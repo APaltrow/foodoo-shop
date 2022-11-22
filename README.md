@@ -22,6 +22,7 @@ _Adaptive and responsive design makes the application available on various devic
 _Intuitive and user friendly interface delivers the best UX._
 
 ![](src/assets/readme-assets/FooDooHeading.png)
+![](src/assets/readme-assets/responsiveness.png)
 
 ## Tech Stack
 
