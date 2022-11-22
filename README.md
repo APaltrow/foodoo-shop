@@ -57,6 +57,8 @@ _Intuitive and user friendly interface delivers the best UX._
 
 ## ![](src/assets/readme-assets/FormValidation.gif)
 
+## ![](src/assets/readme-assets/Registration.gif)
+
 2.  _Mane_ : **`Home`** page.
 
 ---
