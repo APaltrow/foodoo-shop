@@ -26,7 +26,7 @@ _Intuitive and user friendly interface delivers the best UX._
 
 ## Tech Stack
 
-| Side             | Tech                     |                                           |
+| Side             | Tech                     | Icon                                      |
 | ---------------- | ------------------------ | ----------------------------------------- |
 | Front End        | React                    | ![](src/assets/readme-assets/React.png)   |
 | Styles           | Sass / Scss _(modules)_  | ![](src/assets/readme-assets/Sass.png)    |
@@ -55,9 +55,9 @@ _Intuitive and user friendly interface delivers the best UX._
 
 - Demo account available.
 
-## ![](src/assets/readme-assets/FormValidation.gif)
+## ![](https://lh4.googleusercontent.com/z1Xe3rhdjuzZOIh88cRCOvbtIVFTRQ3A_1Bci2hiYf6NROhAaq0xmoyPTHzYl_jhcNI=w2400)
 
-## ![](src/assets/readme-assets/Registration.gif)
+## ![](https://lh4.googleusercontent.com/dcmX7rHou3heTGCyTfujdFuZZlmDp2wrhSa8fGTqLTDauUk7COg8FHQkjhHb7GN412o=w2400)
 
 2.  _Mane_ : **`Home`** page.
 
@@ -84,6 +84,8 @@ _Intuitive and user friendly interface delivers the best UX._
 
 - Dynamic `Paggination`
 
+## ![](https://lh4.googleusercontent.com/yK9aI8fl1ccg-7zGXzeYIdFOZR6bsCbD4l9yfblysCVho-jzYLkCVu8Q7qS4ohCEUsc=w2400)
+
 ---
 
 3.  **`Single Product`** page.
@@ -91,6 +93,8 @@ _Intuitive and user friendly interface delivers the best UX._
 ---
 
 - Adaptive `slider` for product photos visualization with dynamic paggination
+
+## ![](https://lh4.googleusercontent.com/ZnCpfrajic7IXCyS7ZQoj64LYIO8yGY38B1yo5a5bRKY5gYd2-l3Jx6UHg4uIE0LNbk=w2400)
 
 - `Product Reviews` section with user's rating and comment
   - Contains details about commenter and date
@@ -100,6 +104,8 @@ _Intuitive and user friendly interface delivers the best UX._
   - Allows to rate and comment the product
   - Feedback will be recorded and saved to the Review section.
 
+## ![](https://lh4.googleusercontent.com/Wr6EWwq3XgIY4zokd2LrG_lGlgiTLp60pUjLLcdwd6dIGFHwhRDtMDAKULAl-qmrLlo=w2400)
+
 - Side menu contains informers about the product _( ex. Vegitarian friendly , Allergic sensitive notifiers )_
 
 - `Ingredients overview` section
@@ -107,7 +113,11 @@ _Intuitive and user friendly interface delivers the best UX._
   - Dynamic weight indication for each size separately.
   - `Special order` option - provides the ability to customize the order _( exclude ingredients )_
 
+## ![](https://lh6.googleusercontent.com/oxxkNqLjVUcSGeRSJD_BNiGPa-lWwkNfwEo03986nlXHGUJcMAVlYaeUpoxVBH1w1Jc=w2400)
+
 - `Add to Favourites` option, allows to add the product of specific size and/or special order indication to your personal favourites list
+
+## ![](https://lh6.googleusercontent.com/TQGrsNumgqYmtHHLiiFEnTbbo5-fMNYwKTCQAIyBBRWGD_26STyN8BmLFOtNFMfNu6I=w2400)
 
 ---
 
@@ -115,9 +125,15 @@ _Intuitive and user friendly interface delivers the best UX._
 
 ---
 
+## ![](https://lh5.googleusercontent.com/Jw-x0-XpNbkAiz12IwGxU1RkyZqdXBwMIOMPLBbSFnYFndGy-iz7IVhy6eu68Iooa90=w2400)
+
 - Update / change the Delivery Address.
 
+## ![](https://lh5.googleusercontent.com/ghOBroJgO2aoJ_KlEsudhEuekmm1G6AHHfvpvNzYvT5P9eKQ7OHAUp_Xp0_T26czbqc=w2400)
+
 - Edit the profile information _( first, last name, phone number )_
+
+## ![](https://lh5.googleusercontent.com/EMPjqt25Ewe7uDEyrZdrA2PUKzkUuoCy1ao1SOHDIOfSyePjQG4-A5AET8uUMbJmUI0=w2400)
 
 - Change password
 
@@ -135,6 +151,8 @@ _Intuitive and user friendly interface delivers the best UX._
 
 - Ability to navigate to the Single Product page
 
+## ![](https://lh3.googleusercontent.com/1gpe5bpKJP1R-9AQP_mQWsPU_n20O3WvCsbLGemX0Wfc8D19vVydlhc2AKakpkrEwz8=w2400)
+
 ---
 
 6.  **`Cart`** page.
@@ -151,6 +169,8 @@ _Intuitive and user friendly interface delivers the best UX._
 
   - Totals section contains` info` about the `total amount and cost` as well as the `discount saved` _( if applied )_
 
+## ![](https://lh3.googleusercontent.com/-xm6GlEn_ydCdD8JJ_LRwl6EQzxN5ndc08kFsOakgJ0RSQVzCoUtnSp49b3DxpObyek=w2400)
+
 - Checkout :
 
   - `Confirmation form` with the details about the recipient, delivery address, order check and total due.
@@ -163,6 +183,8 @@ _Intuitive and user friendly interface delivers the best UX._
 
   - Once the order is submitted, it is recorded and forwarded to _'My Orders page'_ automatically
 
+## ![](https://lh3.googleusercontent.com/xTAP0NtPdGgSLDvpgbWzxWQU3I14q0XBWbGm3BfbaUBckpbUyi-Fc94gPl2NQzBzgMQ=w2400)
+
 ---
 
 7.  **`My Orders`** page.
@@ -174,3 +196,9 @@ _Intuitive and user friendly interface delivers the best UX._
 - Provides the ability to track the orders and find the details, see the status of the order
 
 - My Orders section contains the `order processing widget` with animated status tracking if there is a pending order _( is not applied for pre-orders )_
+
+## ![](https://lh4.googleusercontent.com/8BSz8_vbU0R4wUM7dmNMnaZwLKTtAFIixaalN_98WQ-b78VGUWQt6Uc05b7tRIdu9po=w2400)
+
+## ![](https://lh5.googleusercontent.com/f_hfQS6KsZHqFeF_UFrMfv0dWY-6rRkdCryvNPJ9y1G-az2gEn6jSwCcIjqDDoGGLj8=w2400)
+
+## ![](https://lh4.googleusercontent.com/qVKsEYTNnEKHfUE2QA0q9hqZNqAUUa4lp5Od_GT5rVmFDpykPEsU2UIX_x9IQLXGkhY=w2400)
