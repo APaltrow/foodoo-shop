@@ -1,12 +1,29 @@
+import { FC } from "react";
+
 import { IMG_URL } from "../constants/ImgURL";
 
 import { CustomIcon } from "../Components";
 
 import style from "./Layouts.module.scss";
 
-// type 'catalog' or 'list'
+//Possible type : 'catalog' or 'list'
 
-export const PageLayout = ({ children, icon, img, title, type }) => {
+interface IPageLayout {
+  children: any;
+
+  icon?: string;
+  img?: string;
+  title: string;
+  type: string;
+}
+
+export const PageLayout: FC<IPageLayout> = ({
+  children,
+  icon,
+  img,
+  title,
+  type,
+}) => {
   return (
     <div className={style.page_wrapper}>
       <div className={style.page_header}>

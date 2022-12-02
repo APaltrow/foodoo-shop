@@ -1,12 +1,17 @@
-import React from "react";
-import { CustomIcon } from "../../Components";
+import React, { FC } from "react";
+import { CustomIcon } from "..";
 import { useSelector } from "react-redux";
 import { getCartState } from "../../Redux/Slices/cartSlice";
 
 import style from "./Cart.module.scss";
 
-export const Cart = () => {
-  const { totalCount, totalCost } = useSelector(getCartState);
+interface ICart {
+  totalCount: number;
+  totalCost: number;
+}
+
+export const Cart: FC = () => {
+  const { totalCount, totalCost }: ICart = useSelector(getCartState);
 
   return (
     <div className={style.nav_cart}>

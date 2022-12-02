@@ -1,16 +1,30 @@
-import React from "react";
+import React, { FC } from "react";
+
+import { ICartItem } from "..";
 import { useSelector, useDispatch } from "react-redux";
 import { getCartState, clearCart } from "../../Redux/Slices/cartSlice";
 
-import { CustomButton, CartItem } from "../../Components";
+import { CustomButton, CartItem } from "..";
 import { PageLayout } from "../../layouts";
 
 import style from "./CartItemsCatalog.module.scss";
 
-export const CartItems = ({ checkout }) => {
+interface ICartCatalog {
+  checkout: (arg: boolean) => void;
+}
+
+interface ICartProps {
+  totalCount: number;
+  totalCost: number;
+  discount: number;
+
+  products: ICartItem[];
+}
+
+export const CartItems: FC<ICartCatalog> = ({ checkout }) => {
   const dispatch = useDispatch();
 
-  const { totalCount, totalCost, products, discount } =
+  const { totalCount, totalCost, products, discount }: ICartProps =
     useSelector(getCartState);
 
   const onClearCart = () => {

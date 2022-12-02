@@ -1,11 +1,13 @@
-import React from "react";
-import { CustomIcon } from "../../Components";
+import React, { FC } from "react";
+import { CustomIcon } from "..";
 import { useNavigate } from "react-router-dom";
 import { useCurrentProductCount } from "../../Hooks/useCurrentProductCount";
 
 import style from "./Count.module.scss";
 
-export const Count = ({ id }) => {
+type TCountProps = { id: string };
+
+export const Count: FC<TCountProps> = ({ id }) => {
   const { productCount } = useCurrentProductCount(id);
   const navigate = useNavigate();
 

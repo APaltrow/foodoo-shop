@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { Profile, Logo, CustomIcon, Cart } from "../Components";
 
@@ -8,8 +8,9 @@ import { setLogOut } from "../Redux/Slices/authSlice";
 
 import style from "./Layouts.module.scss";
 
-export const Header = () => {
+export const Header: FC = () => {
   const dispatch = useDispatch();
+
   const handleLogout = () => {
     window.confirm("Are you sure you would like to log out?") &&
       dispatch(setLogOut());

@@ -1,9 +1,9 @@
-import React from "react";
-import { CustomIcon } from "../Components/";
+import React, { FC } from "react";
+import { CustomIcon } from "../Components";
 
 import style from "./Layouts.module.scss";
 
-export const Footer = () => {
+export const Footer: FC = () => {
   return (
     <footer className={style.footer}>
       <b>FOODOO © 2022</b>

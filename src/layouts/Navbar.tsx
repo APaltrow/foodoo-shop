@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { Sort, Search, NavbarItem } from "../Components";
 
 import style from "./Layouts.module.scss";
 
-export const Navbar = () => {
+export const Navbar: FC = () => {
   return (
     <nav className={style.navbar}>
       <div className={style.items}>

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 import { useDispatch } from "react-redux";
 
-import { IMG, CustomIcon, CustomButton } from "../../Components";
+import { IMG, CustomIcon, CustomButton } from "..";
 
 import {
   removeProduct,
@@ -11,14 +11,48 @@ import {
 
 import style from "./CartItem.module.scss";
 
-export const CartItem = ({ data }) => {
+type TSpecialOrder = string[] | [];
+
+export interface IActiveSize {
+  discountedPrice: number | null;
+  savedOnDiscount: number | null;
+  nutrition: number;
+  price: number;
+  weight: number;
+  size: string;
+}
+
+export interface ICartItem {
+  id: string;
+  lot_id: string;
+  imgURL: string;
+  title: string;
+  count: number;
+
+  activeSize: IActiveSize;
+  specialOrder: TSpecialOrder;
+}
+
+interface ICartItemProps {
+  data: ICartItem;
+}
+
+export const CartItem: FC<ICartItemProps> = ({ data }) => {
   const dispatch = useDispatch();
 
-  const { imgURL, title, activeSize, id, lot_id, count, specialOrder } = data;
+  const {
+    imgURL,
+    title,
+    activeSize,
+    id,
+    lot_id,
+    count,
+    specialOrder,
+  }: ICartItem = data;
 
-  const onPlusItem = () => dispatch(plusProduct({ lot_id }));
-  const onMinusItem = () => dispatch(minusProduct({ lot_id }));
-  const onRemoveItem = () => {
+  const onPlusItem = (): any => dispatch(plusProduct({ lot_id }));
+  const onMinusItem = (): any => dispatch(minusProduct({ lot_id }));
+  const onRemoveItem = (): any => {
     if (window.confirm("Are you sure you want to remove the product?")) {
       dispatch(removeProduct({ lot_id }));
     }

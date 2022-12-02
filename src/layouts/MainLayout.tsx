@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 
-import { Footer, Header } from "../layouts";
+import { Footer, Header } from ".";
 import { ScrollTop } from "../Components";
 
 import { getAuthState } from "../Redux/Slices/authSlice";
@@ -8,8 +8,14 @@ import { useSelector } from "react-redux";
 
 import style from "./Layouts.module.scss";
 
-export const MainLayout = ({ children }) => {
-  const { isAuth } = useSelector(getAuthState);
+interface IMainLayout {
+  children: any;
+}
+
+type TAuth = { isAuth: boolean };
+
+export const MainLayout: FC<IMainLayout> = ({ children }) => {
+  const { isAuth }: TAuth = useSelector(getAuthState);
 
   return (
     <div className={style.wrapper_main}>

@@ -1,4 +1,4 @@
-export const generateIcon = (iconName) => {
+export const generateIcon = (iconName: string) => {
   let icon = iconName.toLowerCase();
 
   switch (icon) {

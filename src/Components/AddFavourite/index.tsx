@@ -1,14 +1,29 @@
-import { useState } from "react";
+import { useState, FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchAddFavourites } from "../../Redux/Slices/favouritesSlice";
 import { getAuthState } from "../../Redux/Slices/authSlice";
 
-import { CustomModal, CustomIcon, CustomButton } from "../../Components";
+import { CustomModal, CustomIcon, CustomButton } from "..";
+import { IActiveSize } from "..";
 
 import style from "./AddFavourite.module.scss";
 
-export const AddFavourite = ({ title, specialOrder, size, imgURL, id }) => {
+interface IAddFavouriteProps {
+  imgURL: string;
+  id: string;
+  title: string;
+  specialOrder: string[] | [];
+  size: IActiveSize;
+}
+
+export const AddFavourite: FC<IAddFavouriteProps> = ({
+  title,
+  specialOrder,
+  size,
+  imgURL,
+  id,
+}) => {
   const dispatch = useDispatch();
 
   const { uid } = useSelector(getAuthState).user;

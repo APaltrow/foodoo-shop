@@ -1,10 +1,16 @@
-import React from "react";
+import React, { FC } from "react";
 
+import { ISort } from "../../constants/Sort";
 import { generateIcon } from "../Icons/Icons";
 
 import style from "./Dropdown.module.scss";
 
-export const Dropdown = ({ data, getId }) => {
+interface IDropdownProps {
+  data: ISort[];
+  getId: () => void;
+}
+
+export const Dropdown: FC<IDropdownProps> = ({ data, getId }) => {
   const handleClick = (i) => {
     getId(i.target.id);
   };

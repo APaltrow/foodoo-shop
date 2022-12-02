@@ -1,4 +1,8 @@
-export const IMG_URL = {
+interface IURL {
+  [str: string]: string;
+}
+
+export const IMG_URL: IURL = {
   wallet: "https://cdn4.iconfinder.com/data/icons/e-commerce/checkout.png",
   cart: "https://cdn4.iconfinder.com/data/icons/fliraneo/256/cart.png",
   basket:
