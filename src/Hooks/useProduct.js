@@ -33,6 +33,7 @@ export const useProduct = ({
   // manipulation functions
   const onActiveSizeChange = (size) =>
     setActiveSize(calculatedActiveSize(size, discount));
+
   const getSpecialOrder = (order) => setSpecialOrder(order);
 
   const onAddProduct = () => {

@@ -15,6 +15,7 @@ export const useForm = (type) => {
     validInputsList.map((input) => Object.assign(credentials, input));
     return credentials;
   };
+
   const checkIfValidForm = () => {
     const validInputsList = [];
     for (let input of formRef.current.elements) {

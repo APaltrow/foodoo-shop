@@ -17,6 +17,7 @@ export const useNotification = ({ type }) => {
       setToasts((prev) => [...prev.filter((item) => item !== id)]);
     }, 2050);
   };
+
   useEffect(() => {
     if (type === "profile" && mount) {
       const id = Date.now();

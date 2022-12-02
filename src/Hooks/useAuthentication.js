@@ -32,6 +32,7 @@ const useAuthentication = (type) => {
       setError("Incorrect credentials");
     }
   };
+
   const register = async (credentials) => {
     const { payload } = await dispatch(fetchCheckUser(credentials));
     if (payload.length) {
@@ -43,9 +44,11 @@ const useAuthentication = (type) => {
       }, 500);
     }
   };
+
   const updateAddress = (credentials) => {
     dispatch(fetchUpdateAddress({ id: user.id, address: { ...credentials } }));
   };
+
   const editProfile = (credentials) => {
     dispatch(fetchEditProfile({ id: user.id, profile: credentials }));
   };
@@ -100,8 +103,8 @@ const useAuthentication = (type) => {
 
   return {
     formError,
-    authenticate,
     status,
+    authenticate,
   };
 };
 

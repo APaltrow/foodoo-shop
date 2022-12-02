@@ -12,8 +12,9 @@ export const useInput = (validations) => {
   return {
     value,
     isDirty,
+    isError,
+
     onChange,
     onBlur,
-    isError,
   };
 };

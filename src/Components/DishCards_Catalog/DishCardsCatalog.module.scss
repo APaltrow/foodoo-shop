@@ -16,7 +16,7 @@
   grid-column-gap: rem(30);
   grid-row-gap: rem(30);
 
-  margin-bottom: rem(10) x;
+  margin-bottom: rem(10);
 
   @media only screen and (max-width: rem(1350)) {
     grid-template-columns: repeat(3, 1fr);
