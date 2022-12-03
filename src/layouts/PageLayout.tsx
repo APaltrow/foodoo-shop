@@ -8,7 +8,7 @@ import style from "./Layouts.module.scss";
 
 //Possible type : 'catalog' or 'list'
 
-interface IPageLayout {
+interface PageLayoutProps {
   children: any;
 
   icon?: string;
@@ -17,7 +17,7 @@ interface IPageLayout {
   type: string;
 }
 
-export const PageLayout: FC<IPageLayout> = ({
+export const PageLayout: FC<PageLayoutProps> = ({
   children,
   icon,
   img,

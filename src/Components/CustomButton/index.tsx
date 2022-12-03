@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import style from "./CustomButton.module.scss";
 
-interface ICustomButton {
+interface CustomButtonProps {
   id?: string;
   type?: string;
   text?: string;
@@ -15,7 +15,7 @@ interface ICustomButton {
   action?: (id?: string) => void;
 }
 
-export const CustomButton: FC<ICustomButton> = ({
+export const CustomButton: FC<CustomButtonProps> = ({
   id,
   type,
   text,

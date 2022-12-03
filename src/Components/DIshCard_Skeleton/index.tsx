@@ -1,8 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 
 import style from "./Skeleton.module.scss";
 
-export const DishCardSkeleton = ({ type }) => {
+interface DishCardSkeletonProps {
+  type: string;
+}
+
+export const DishCardSkeleton: FC<DishCardSkeletonProps> = ({ type }) => {
   if (type === "big")
     return (
       <div className={style.dishCard_skeleton_big}>
@@ -38,4 +42,6 @@ export const DishCardSkeleton = ({ type }) => {
         </div>
       </div>
     );
+
+  return null;
 };

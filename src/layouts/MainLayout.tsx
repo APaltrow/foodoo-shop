@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 
 import { Footer, Header } from ".";
 import { ScrollTop } from "../Components";
@@ -8,14 +8,24 @@ import { useSelector } from "react-redux";
 
 import style from "./Layouts.module.scss";
 
-interface IMainLayout {
+interface MainLayoutProps {
   children: any;
 }
 
-type TAuth = { isAuth: boolean };
+export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
+  //@ts-ignore
+  const { isAuth } = useSelector(getAuthState);
+  const [scrollTop, setScrollTop] = useState<boolean>(false);
 
-export const MainLayout: FC<IMainLayout> = ({ children }) => {
-  const { isAuth }: TAuth = useSelector(getAuthState);
+  useEffect(() => {
+    const handleSroll = () => {
+      window.scrollY > 200 ? setScrollTop(true) : setScrollTop(false);
+    };
+
+    window.addEventListener("scroll", handleSroll);
+
+    return () => window.removeEventListener("scroll", handleSroll);
+  }, []);
 
   return (
     <div className={style.wrapper_main}>
@@ -23,7 +33,7 @@ export const MainLayout: FC<IMainLayout> = ({ children }) => {
         {isAuth && <Header />}
         <main className={style.content_wrapper}>
           {children}
-          <ScrollTop />
+          {scrollTop && <ScrollTop />}
         </main>
         {isAuth && <Footer />}
       </div>

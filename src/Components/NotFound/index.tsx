@@ -1,11 +1,16 @@
-import React from "react";
+import React, { FC } from "react";
 import { generateIcon } from "../Icons/Icons";
 
-import { CustomButton } from "../../Components";
+import { CustomButton } from "..";
 
 import style from "./NotFound.module.scss";
 
-export const NotFound = ({ page, message }) => {
+interface NotFoundProps {
+  page?: boolean;
+  message?: string;
+}
+
+export const NotFound: FC<NotFoundProps> = ({ page, message }) => {
   return (
     <div className={style.not_found}>
       {page && <h2>NOT FOUND</h2>}

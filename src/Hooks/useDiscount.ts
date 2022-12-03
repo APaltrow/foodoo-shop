@@ -1,6 +1,24 @@
+export interface IActiveSize {
+  size: string;
+  price: number;
+  weight: number;
+  nutrition: number;
+}
+
+interface IActiveSizeWithDiscount extends IActiveSize {
+  price: number;
+  discountedPrice: number | null;
+  savedOnDiscount: number | null;
+}
+
+type CalculationType = (
+  activeS: IActiveSize,
+  discount?: number
+) => IActiveSizeWithDiscount;
+
 export const useDiscount = () => {
-  const calculatedActiveSize = (activeS, discount) => {
-    const initialPrice = +activeS.price.toFixed(2);
+  const calculatedActiveSize: CalculationType = (activeS, discount) => {
+    const initialPrice: number = +activeS.price.toFixed(2);
 
     if (discount) {
       return {

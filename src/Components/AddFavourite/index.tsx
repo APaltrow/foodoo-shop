@@ -9,7 +9,7 @@ import { IActiveSize } from "..";
 
 import style from "./AddFavourite.module.scss";
 
-interface IAddFavouriteProps {
+interface AddFavouriteProps {
   imgURL: string;
   id: string;
   title: string;
@@ -17,7 +17,7 @@ interface IAddFavouriteProps {
   size: IActiveSize;
 }
 
-export const AddFavourite: FC<IAddFavouriteProps> = ({
+export const AddFavourite: FC<AddFavouriteProps> = ({
   title,
   specialOrder,
   size,
@@ -31,6 +31,7 @@ export const AddFavourite: FC<IAddFavouriteProps> = ({
 
   const onAddToFavourites = () => {
     dispatch(
+      // @ts-ignore
       fetchAddFavourites({
         uid,
         favourites: { title, specialOrder, size, imgURL, id },

@@ -13,14 +13,49 @@ import {
   fetchChangePassword,
 } from "../Redux/Slices/authSlice";
 
-const useAuthentication = (type) => {
+type LoginCredentials = {
+  email: string;
+  password: string;
+};
+
+interface RegisterCredentials extends LoginCredentials {
+  firstname: string;
+  lastname: string;
+  phone: string;
+}
+type UpdateAddressCredentials = {
+  city: string;
+  street: string;
+  "house-number": string;
+};
+type EditProfileCredentials = {
+  firstname: string;
+  lastname: string;
+  phone: string;
+};
+type ChangePasswordCredentials = {
+  old_password: string;
+  new_password: string;
+  new_repeat_password: string;
+};
+
+type LoginFN = (credentials: LoginCredentials) => void;
+type RegisterFN = (credentials: RegisterCredentials) => void;
+type UpdateAddressFN = (credentials: UpdateAddressCredentials) => void;
+type EditProfileFN = (credentials: EditProfileCredentials) => void;
+type ChangePasswordFN = (credentials: ChangePasswordCredentials) => void;
+
+type AuthenticateFN = (credentials: any) => void;
+
+const useAuthentication = (type: string) => {
   const { user, status, error } = useSelector(getAuthState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [formError, setError] = useState(error);
 
-  const login = async (credentials) => {
+  const login: LoginFN = async (credentials) => {
+    //@ts-ignore
     const { payload } = await dispatch(fetchCheckUser(credentials));
     if (
       payload.length &&
@@ -33,11 +68,13 @@ const useAuthentication = (type) => {
     }
   };
 
-  const register = async (credentials) => {
+  const register: RegisterFN = async (credentials) => {
+    //@ts-ignore
     const { payload } = await dispatch(fetchCheckUser(credentials));
     if (payload.length) {
       setError("Please try a different Email");
     } else {
+      //@ts-ignore
       await dispatch(fetchRegisterUser(credentials));
       setTimeout(() => {
         navigate("/login");
@@ -45,20 +82,23 @@ const useAuthentication = (type) => {
     }
   };
 
-  const updateAddress = (credentials) => {
+  const updateAddress: UpdateAddressFN = (credentials) => {
+    //@ts-ignore
     dispatch(fetchUpdateAddress({ id: user.id, address: { ...credentials } }));
   };
 
-  const editProfile = (credentials) => {
+  const editProfile: EditProfileFN = (credentials) => {
+    //@ts-ignore
     dispatch(fetchEditProfile({ id: user.id, profile: credentials }));
   };
 
-  const changePassword = (credentials) => {
+  const changePassword: ChangePasswordFN = (credentials) => {
     if (
       credentials["old_password"] === user.password &&
       credentials["new_password"] === credentials["new_repeat_password"]
     ) {
       dispatch(
+        //@ts-ignore
         fetchChangePassword({
           id: user.id,
           password: { password: credentials["new_password"] },
@@ -69,7 +109,7 @@ const useAuthentication = (type) => {
     }
   };
 
-  const authenticate = (credentials) => {
+  const authenticate: AuthenticateFN = (credentials) => {
     switch (type) {
       case "registration":
         register(credentials);
@@ -104,6 +144,7 @@ const useAuthentication = (type) => {
   return {
     formError,
     status,
+
     authenticate,
   };
 };

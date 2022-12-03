@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { generateIcon } from "../Icons/Icons";
 import { useDispatch } from "react-redux";
 import { setActivePage } from "../../Redux/Slices/sortCategory";
@@ -6,13 +6,21 @@ import { usePaggination } from "../../Hooks/usePaggination";
 
 import style from "./Paggination.module.scss";
 
-export const Paggination = ({ totalPages, activePage }) => {
+export interface PagginationProps {
+  totalPages: number;
+  activePage: number;
+}
+
+export const Paggination: FC<PagginationProps> = ({
+  totalPages,
+  activePage,
+}) => {
   const dispatch = useDispatch();
 
-  const [active, pgList, changeActive, previous, next] = usePaggination({
+  const { active, pgList, changeActive, previous, next } = usePaggination({
     totalPages,
     activePage,
-  });
+  } as PagginationProps);
 
   useEffect(() => {
     if (active !== activePage) {

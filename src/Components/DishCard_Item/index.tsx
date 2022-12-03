@@ -1,19 +1,32 @@
+import React, { FC } from "react";
+
 import { useProduct } from "../../Hooks/useProduct";
 
-import React from "react";
-
-import {
-  Sizes,
-  Rating,
-  IMG,
-  Discount,
-  CustomButton,
-  Count,
-} from "../../Components";
+import { Sizes, Rating, IMG, Discount, CustomButton, Count } from "..";
 
 import style from "./DishCard_Item.module.scss";
+import { IActiveSize } from "../../Hooks/useDiscount";
 
-export const DishCardItem = ({ data }) => {
+interface DishCardItemProps {
+  data: {
+    id: string;
+    imgURL: string;
+    title: string;
+    price: number;
+    rating: number;
+    category: number;
+    description: string;
+
+    discount?: number;
+    isVegitarian: boolean;
+
+    ingredients: string[];
+    reviews: object[];
+    sizes: IActiveSize[];
+  };
+}
+
+export const DishCardItem: FC<DishCardItemProps> = ({ data }) => {
   const {
     id,
     title,

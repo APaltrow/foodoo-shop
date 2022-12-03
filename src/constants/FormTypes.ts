@@ -1,4 +1,12 @@
-export const FORM_TYPES = {
+type InputType = {
+  [type: string]: string;
+};
+
+interface FormTypes {
+  [type: string]: InputType[];
+}
+
+export const FORM_TYPES: FormTypes = {
   login: [
     {
       id: "email01_login",

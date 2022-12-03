@@ -5,20 +5,16 @@ import { generateIcon } from "../Icons/Icons";
 
 import style from "./Dropdown.module.scss";
 
-interface IDropdownProps {
+interface DropdownProps {
   data: ISort[];
-  getId: () => void;
+  getId: (index: number) => void;
 }
 
-export const Dropdown: FC<IDropdownProps> = ({ data, getId }) => {
-  const handleClick = (i) => {
-    getId(i.target.id);
-  };
-
+export const Dropdown: FC<DropdownProps> = ({ data, getId }) => {
   return (
     <ul className={style.root}>
       {data.map((item, index) => (
-        <li key={item.name} id={index} onClick={handleClick}>
+        <li key={item.name} onClick={() => getId(index)}>
           {generateIcon(item.icon)}
           {item.name}
         </li>

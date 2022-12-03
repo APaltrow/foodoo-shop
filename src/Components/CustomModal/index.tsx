@@ -1,8 +1,20 @@
-import { CustomIcon } from "../../Components";
+import { FC } from "react";
+
+import { CustomIcon } from "..";
 
 import style from "./CustomModal.module.scss";
 
-export const CustomModal = ({ children, visible, handleModal }) => {
+interface CustomModalProps {
+  children: any;
+  visible: boolean;
+  handleModal: (arg: boolean) => void;
+}
+
+export const CustomModal: FC<CustomModalProps> = ({
+  children,
+  visible,
+  handleModal,
+}) => {
   return (
     <div
       className={visible ? style.modal_active : style.modal_closed}

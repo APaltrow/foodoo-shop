@@ -10,36 +10,37 @@ import { useForm } from "../../Hooks/useForm";
 
 import style from "./CustomForm.module.scss";
 
-interface ICustomFormProps {
+interface CustomFormProps {
   type: string;
   title: string;
   btn: string;
 }
 
-export const CustomForm: FC<ICustomFormProps> = ({ type, title, btn }) => {
+export const CustomForm: FC<CustomFormProps> = ({ type, title, btn }) => {
   const dispatch = useDispatch();
 
   const {
-    checkIfValidForm,
-    onFormSubmit,
-
     inputs,
     formValid,
     formError,
     formRef,
     status,
+
+    checkIfValidForm,
+    onFormSubmit,
   } = useForm(type);
 
   const onLoginWithDemo = () => {
     localStorage.setItem("userId", "5");
+    // @ts-ignore
     dispatch(fetchLogedInUser("5"));
   };
 
   return (
     <form
       className={style.form}
-      onSubmit={onFormSubmit}
       ref={formRef}
+      onSubmit={onFormSubmit}
       onKeyUp={checkIfValidForm}
     >
       {type === "login" || type === "registration" ? (
@@ -55,7 +56,13 @@ export const CustomForm: FC<ICustomFormProps> = ({ type, title, btn }) => {
       {formError && <Error error={formError} />}
 
       {inputs.map((input) => (
-        <CustomInput {...input} key={input.id} />
+        <CustomInput
+          key={input.id}
+          id={input.id}
+          type={input.type}
+          placeholder={input.placeholder}
+          name={input.name}
+        />
       ))}
 
       <CustomButton text={btn} disabled={!formValid} />

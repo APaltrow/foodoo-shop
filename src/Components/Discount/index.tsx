@@ -1,8 +1,15 @@
-import { CustomIcon } from "../../Components";
+import { FC } from "react";
+
+import { CustomIcon } from "..";
 
 import style from "./Discount.module.scss";
 
-export const Discount = ({ discount, type }) => {
+type DiscountProps = {
+  discount?: number;
+  type?: string;
+};
+
+export const Discount: FC<DiscountProps> = ({ discount, type }) => {
   return discount ? (
     <button className={type ? style[type] : style.discount}>
       <CustomIcon icon={"discount"} type={"discount"} />

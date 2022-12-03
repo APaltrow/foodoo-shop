@@ -4,6 +4,28 @@ import { useDiscount } from "./useDiscount";
 import { useGenerateLotID } from "./useGenerateLotID";
 import { addProducts } from "../Redux/Slices/cartSlice";
 
+import { IActiveSize } from "./useDiscount";
+
+interface useProductProps {
+  id: string;
+  imgURL: string;
+  title: string;
+  price: number;
+  rating: number;
+  category: number;
+  description: string;
+  isVegitarian: boolean;
+  discount?: number;
+
+  ingredients: string[];
+  sizes: IActiveSize[];
+  mySpecialOrder?: string[];
+}
+
+type GetSpecOrderType = (order: string[]) => void;
+type ActiveSizeChangeType = (size: IActiveSize) => void;
+type AddProductType = () => void;
+
 export const useProduct = ({
   id,
   title,
@@ -16,7 +38,7 @@ export const useProduct = ({
   sizes,
   discount,
   mySpecialOrder,
-}) => {
+}: useProductProps) => {
   // Hooks here
   const dispatch = useDispatch();
   const { calculatedActiveSize } = useDiscount();
@@ -31,12 +53,12 @@ export const useProduct = ({
   );
 
   // manipulation functions
-  const onActiveSizeChange = (size) =>
+  const onActiveSizeChange: ActiveSizeChangeType = (size) =>
     setActiveSize(calculatedActiveSize(size, discount));
 
-  const getSpecialOrder = (order) => setSpecialOrder(order);
+  const getSpecialOrder: GetSpecOrderType = (order) => setSpecialOrder(order);
 
-  const onAddProduct = () => {
+  const onAddProduct: AddProductType = () => {
     const product = {
       title,
       id,
