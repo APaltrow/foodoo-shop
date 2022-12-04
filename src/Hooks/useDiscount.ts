@@ -5,8 +5,7 @@ export interface IActiveSize {
   nutrition: number;
 }
 
-interface IActiveSizeWithDiscount extends IActiveSize {
-  price: number;
+export interface IActiveSizeWithDiscount extends IActiveSize {
   discountedPrice: number | null;
   savedOnDiscount: number | null;
 }

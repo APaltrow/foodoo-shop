@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { generateIcon } from "../Icons/Icons";
 
 import style from "./Loader.module.scss";
 
-export const Loader = () => {
+export const Loader: FC = () => {
   return (
     <div className={style.loader}>
       <div>{generateIcon("loader")}</div>

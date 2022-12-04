@@ -1,14 +1,28 @@
+import { FC } from "react";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { useProduct } from "../../Hooks/useProduct";
 import { fetchDeleteFavourites } from "../../Redux/Slices/favouritesSlice";
+import { IActiveSizeWithDiscount } from "../../Hooks/useDiscount";
 
-import { IMG, CustomIcon, CustomButton } from "../../Components";
+import { IMG, CustomIcon, CustomButton } from "..";
 
 import style from "./FavouritesItem.module.scss";
 
-export const FavouritesItem = ({ favourite }) => {
+interface FavouritesItemProps {
+  favourite: {
+    id: string;
+    imgURL: string;
+    specialOrder: string[] | [];
+    title: string;
+    size: IActiveSizeWithDiscount;
+    favId: string;
+  };
+}
+
+export const FavouritesItem: FC<FavouritesItemProps> = ({ favourite }) => {
   const navigate = useNavigate(1);
   const dispatch = useDispatch();
   const { id, imgURL, specialOrder, title, size, favId } = favourite;
@@ -16,7 +30,6 @@ export const FavouritesItem = ({ favourite }) => {
   const { onAddProduct } = useProduct({
     id,
     imgURL,
-    specialOrder,
     title,
     sizes: [size],
     mySpecialOrder: specialOrder,
@@ -24,6 +37,7 @@ export const FavouritesItem = ({ favourite }) => {
 
   const onDeleteFavourite = (favId) => {
     window.confirm("Are you sure to delete this Favourite?") &&
+      //@ts-ignore
       dispatch(fetchDeleteFavourites(favId));
   };
 

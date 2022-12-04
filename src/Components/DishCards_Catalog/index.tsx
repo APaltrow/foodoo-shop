@@ -9,7 +9,7 @@ import {
   DishCardItem,
 } from "..";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 import {
   getSortCategoryState,
   setTotalPages,
@@ -22,9 +22,8 @@ import { getFetchURLparams } from "../../Helpers/getFetchURLparams";
 
 import style from "./DishCardsCatalog.module.scss";
 
-//@ts-ignore
 export const DishCardsCatalog: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const {
     activeCategory,
     sortBy,
@@ -33,15 +32,13 @@ export const DishCardsCatalog: FC = () => {
     activePage,
     totalPages,
     SORT,
-  } = useSelector(getSortCategoryState);
-  const { dishCards, status, error } = useSelector(getDishCardsState);
+  } = useAppSelector(getSortCategoryState);
+  const { dishCards, status, error } = useAppSelector(getDishCardsState);
   const sortByProperty = SORT[sortBy].name;
 
   const getDishCards = () => {
     dispatch(
-      //@ts-ignore
       fetchDishCards(
-        //@ts-ignore
         getFetchURLparams(searchValue, activeCategory, sortByProperty, isASC)
       )
     );
@@ -64,6 +61,7 @@ export const DishCardsCatalog: FC = () => {
         message={`Could not find '${searchValue}', try something else !`}
       />
     );
+
   if (status === "success" || status === "pending")
     return (
       <div className={style.dishCards}>
@@ -75,8 +73,7 @@ export const DishCardsCatalog: FC = () => {
                 <DishCardSkeleton key={i} type="mid" />
               ))
             : dishCards
-                .slice(4 * (activePage - 1), activePage * 4)
-                //@ts-ignore                                 // calculating cards to render-0,4 | 4,8 | 8, 12  no proper backend
+                .slice(4 * (activePage - 1), activePage * 4) // calculating cards to render-0,4 | 4,8 | 8, 12  no proper backend
                 .map((item, i) => (
                   <DishCardItem key={i + item.id} data={item} />
                 ))}

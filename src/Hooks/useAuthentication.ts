@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "./storeHooks";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -18,22 +18,22 @@ type LoginCredentials = {
   password: string;
 };
 
-interface RegisterCredentials extends LoginCredentials {
+export interface RegisterCredentials extends LoginCredentials {
   firstname: string;
   lastname: string;
   phone: string;
 }
-type UpdateAddressCredentials = {
+export type UpdateAddressCredentials = {
   city: string;
   street: string;
   "house-number": string;
 };
-type EditProfileCredentials = {
+export type EditProfileCredentials = {
   firstname: string;
   lastname: string;
   phone: string;
 };
-type ChangePasswordCredentials = {
+export type ChangePasswordCredentials = {
   old_password: string;
   new_password: string;
   new_repeat_password: string;
@@ -48,15 +48,14 @@ type ChangePasswordFN = (credentials: ChangePasswordCredentials) => void;
 type AuthenticateFN = (credentials: any) => void;
 
 const useAuthentication = (type: string) => {
-  const { user, status, error } = useSelector(getAuthState);
-  const dispatch = useDispatch();
+  const { user, status, error } = useAppSelector(getAuthState);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [formError, setError] = useState(error);
 
   const login: LoginFN = async (credentials) => {
-    //@ts-ignore
-    const { payload } = await dispatch(fetchCheckUser(credentials));
+    const { payload } = await dispatch(fetchCheckUser(credentials.email));
     if (
       payload.length &&
       payload[0].password === credentials.password &&
@@ -69,12 +68,10 @@ const useAuthentication = (type: string) => {
   };
 
   const register: RegisterFN = async (credentials) => {
-    //@ts-ignore
-    const { payload } = await dispatch(fetchCheckUser(credentials));
+    const { payload } = await dispatch(fetchCheckUser(credentials.email));
     if (payload.length) {
       setError("Please try a different Email");
     } else {
-      //@ts-ignore
       await dispatch(fetchRegisterUser(credentials));
       setTimeout(() => {
         navigate("/login");
@@ -83,12 +80,10 @@ const useAuthentication = (type: string) => {
   };
 
   const updateAddress: UpdateAddressFN = (credentials) => {
-    //@ts-ignore
     dispatch(fetchUpdateAddress({ id: user.id, address: { ...credentials } }));
   };
 
   const editProfile: EditProfileFN = (credentials) => {
-    //@ts-ignore
     dispatch(fetchEditProfile({ id: user.id, profile: credentials }));
   };
 
@@ -98,7 +93,6 @@ const useAuthentication = (type: string) => {
       credentials["new_password"] === credentials["new_repeat_password"]
     ) {
       dispatch(
-        //@ts-ignore
         fetchChangePassword({
           id: user.id,
           password: { password: credentials["new_password"] },

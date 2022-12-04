@@ -4,7 +4,7 @@ import { useDiscount } from "./useDiscount";
 import { useGenerateLotID } from "./useGenerateLotID";
 import { addProducts } from "../Redux/Slices/cartSlice";
 
-import { IActiveSize } from "./useDiscount";
+import { IActiveSize, IActiveSizeWithDiscount } from "./useDiscount";
 
 interface useProductProps {
   id: string;
@@ -21,6 +21,17 @@ interface useProductProps {
   sizes: IActiveSize[];
   mySpecialOrder?: string[];
 }
+
+export type CartItem = {
+  id: string;
+  lot_id: string;
+  title: string;
+  imgURL: string;
+  count: number;
+
+  activeSize: IActiveSizeWithDiscount;
+  specialOrder: string[] | [];
+};
 
 type GetSpecOrderType = (order: string[]) => void;
 type ActiveSizeChangeType = (size: IActiveSize) => void;
@@ -59,7 +70,7 @@ export const useProduct = ({
   const getSpecialOrder: GetSpecOrderType = (order) => setSpecialOrder(order);
 
   const onAddProduct: AddProductType = () => {
-    const product = {
+    const product: CartItem = {
       title,
       id,
       lot_id: lotID(id, activeSize.size, specialOrder),

@@ -1,8 +1,9 @@
+import { FC } from "react";
 import { CustomIcon } from "../CustomIcon";
 
 import style from "./PageLoader.module.scss";
 
-export const PageLoader = () => {
+export const PageLoader: FC = () => {
   return (
     <div className={style.page_loader_wrapper}>
       <CustomIcon icon={"logo"} type={"big"} />

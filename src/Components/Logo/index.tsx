@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 
-import { CustomIcon } from "../../Components";
+import { CustomIcon } from "..";
 
 import style from "./Logo.module.scss";
 
-export const Logo = () => {
+export const Logo: FC = () => {
   return (
     <div className={style.logo}>
       <CustomIcon type={"big"} icon={"logo"} />
