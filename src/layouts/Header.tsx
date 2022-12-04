@@ -3,13 +3,13 @@ import React, { FC } from "react";
 import { Profile, Logo, CustomIcon, Cart } from "../Components";
 
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../Hooks/storeHooks";
 import { setLogOut } from "../Redux/Slices/authSlice";
 
 import style from "./Layouts.module.scss";
 
 export const Header: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleLogout = () => {
     window.confirm("Are you sure you would like to log out?") &&

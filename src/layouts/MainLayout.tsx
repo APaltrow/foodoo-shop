@@ -3,18 +3,17 @@ import React, { FC, useState, useEffect } from "react";
 import { Footer, Header } from ".";
 import { ScrollTop } from "../Components";
 
+import { useAppSelector } from "../Hooks/storeHooks";
 import { getAuthState } from "../Redux/Slices/authSlice";
-import { useSelector } from "react-redux";
 
 import style from "./Layouts.module.scss";
 
 interface MainLayoutProps {
-  children: any;
+  children: React.ReactNode;
 }
 
 export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
-  //@ts-ignore
-  const { isAuth } = useSelector(getAuthState);
+  const { isAuth } = useAppSelector(getAuthState);
   const [scrollTop, setScrollTop] = useState<boolean>(false);
 
   useEffect(() => {

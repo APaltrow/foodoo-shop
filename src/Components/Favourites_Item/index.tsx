@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../Hooks/storeHooks";
 
 import { useProduct } from "../../Hooks/useProduct";
 import { fetchDeleteFavourites } from "../../Redux/Slices/favouritesSlice";
@@ -24,7 +24,7 @@ interface FavouritesItemProps {
 
 export const FavouritesItem: FC<FavouritesItemProps> = ({ favourite }) => {
   const navigate = useNavigate(1);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { id, imgURL, specialOrder, title, size, favId } = favourite;
 
   const { onAddProduct } = useProduct({
@@ -35,9 +35,8 @@ export const FavouritesItem: FC<FavouritesItemProps> = ({ favourite }) => {
     mySpecialOrder: specialOrder,
   });
 
-  const onDeleteFavourite = (favId) => {
+  const onDeleteFavourite = (favId: string) => {
     window.confirm("Are you sure to delete this Favourite?") &&
-      //@ts-ignore
       dispatch(fetchDeleteFavourites(favId));
   };
 

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 
 import { PageLayout } from "../layouts";
 import {
@@ -9,20 +9,22 @@ import {
   PageLoader,
 } from "../Components";
 
-import { useSelector, useDispatch } from "react-redux";
 import {
   fetchFavourites,
   getFavouritesState,
 } from "../Redux/Slices/favouritesSlice";
 import { getAuthState } from "../Redux/Slices/authSlice";
+import { useAppDispatch, useAppSelector } from "../Hooks/storeHooks";
 
-const Favourites = () => {
-  const { uid } = useSelector(getAuthState).user;
-  const { favourites, status, error } = useSelector(getFavouritesState);
-  const dispatch = useDispatch();
+const Favourites: FC = () => {
+  const { uid } = useAppSelector(getAuthState).user;
+  const { favourites, status, error } = useAppSelector(getFavouritesState);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchFavourites(uid));
+    if (uid) {
+      dispatch(fetchFavourites(uid));
+    }
   }, []);
 
   return (

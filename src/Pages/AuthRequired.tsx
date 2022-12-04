@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 
-import { useSelector, useDispatch } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../Hooks/storeHooks";
 
 import { getAuthState, fetchLogedInUser } from "../Redux/Slices/authSlice";
 
-export const AuthRequired = () => {
-  const dispatch = useDispatch();
+export const AuthRequired: FC = () => {
+  const dispatch = useAppDispatch();
 
-  const { isAuth } = useSelector(getAuthState);
+  const { isAuth } = useAppSelector(getAuthState);
 
   useEffect(() => {
     const uid = localStorage.getItem("userId");

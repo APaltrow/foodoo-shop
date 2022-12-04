@@ -9,7 +9,7 @@ import style from "./Layouts.module.scss";
 //Possible type : 'catalog' or 'list'
 
 interface PageLayoutProps {
-  children: any;
+  children: React.ReactNode;
 
   icon?: string;
   img?: string;

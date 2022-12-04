@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../Hooks/storeHooks";
 import { getCartState } from "../Redux/Slices/cartSlice";
 
 import { EmptyCart, Checkout, CartItems } from "../Components";
 
-const CartPage = () => {
-  const { totalCount } = useSelector(getCartState);
+const CartPage: FC = () => {
+  const { totalCount } = useAppSelector(getCartState);
+
   const [isCheckout, setCheckout] = useState(false);
 
   if (isCheckout) {
