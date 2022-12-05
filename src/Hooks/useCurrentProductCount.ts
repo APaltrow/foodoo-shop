@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "./storeHooks";
 import { getCartState } from "../Redux/Slices/cartSlice";
 
-export const useCurrentProductCount = (id) => {
-  const [productCount, setProductCount] = useState(0);
-  const { products } = useSelector(getCartState);
+export const useCurrentProductCount = (id: string) => {
+  const [productCount, setProductCount] = useState<number>(0);
+  const { products } = useAppSelector(getCartState);
 
   const getProductCount = useCallback(() => {
     const count = products.filter((item) => item.id === id);

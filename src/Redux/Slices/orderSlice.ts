@@ -41,7 +41,7 @@ type OrderCheck = {
   specialOrder: string;
 };
 
-type Order = {
+export type Order = {
   id: string;
   uid: string;
   orderId: string;

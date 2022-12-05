@@ -14,7 +14,7 @@ export const fetchOrder = createAsyncThunk<Order, Order>(
   }
 );
 
-type Check = {
+export type Check = {
   title: string;
   count: number;
   size: string;

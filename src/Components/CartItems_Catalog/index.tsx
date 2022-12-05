@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 
-import { ICartItem } from "..";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 import { getCartState, clearCart } from "../../Redux/Slices/cartSlice";
 
 import { CustomButton, CartItem } from "..";
@@ -13,19 +12,11 @@ interface ICartCatalog {
   checkout: (arg: boolean) => void;
 }
 
-interface ICartProps {
-  totalCount: number;
-  totalCost: number;
-  discount: number;
-
-  products: ICartItem[];
-}
-
 export const CartItems: FC<ICartCatalog> = ({ checkout }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { totalCount, totalCost, products, discount }: ICartProps =
-    useSelector(getCartState);
+  const { totalCount, totalCost, products, discount } =
+    useAppSelector(getCartState);
 
   const onClearCart = () => {
     window.confirm("Are you sure you want to clear your orders?") &&

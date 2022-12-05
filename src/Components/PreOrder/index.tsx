@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 
-import { CustomSelect } from "../../Components";
+import { CustomSelect } from "..";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 
 import {
   getCheckoutState,
@@ -11,10 +11,11 @@ import {
 
 import style from "./PreOrder.module.scss";
 
-export const PreOrder = () => {
-  const dispatch = useDispatch();
+//@ts-ignore
+export const PreOrder: FC = () => {
+  const dispatch = useAppDispatch();
+  const { order } = useAppSelector(getCheckoutState);
 
-  const { order } = useSelector(getCheckoutState);
   const preorder = order?.preorder;
   const [data, setData] = useState({});
 

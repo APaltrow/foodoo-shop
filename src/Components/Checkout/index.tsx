@@ -1,6 +1,6 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 
 import { getCartState, clearCart } from "../../Redux/Slices/cartSlice";
 import { getAuthState } from "../../Redux/Slices/authSlice";
@@ -10,6 +10,7 @@ import {
   fetchOrder,
   setCancelOrder,
   setStatus,
+  Check,
 } from "../../Redux/Slices/checkoutSlice";
 
 import { useDate } from "../../Hooks/useDate";
@@ -22,21 +23,28 @@ import {
   Error,
   CustomIcon,
   CustomButton,
-} from "../../Components";
+} from "..";
 
 import style from "./Checkout.module.scss";
 
-export const Checkout = ({ onCancel }) => {
+interface CheckoutProps {
+  onCancel: (arg: boolean) => void;
+}
+
+export const Checkout: FC<CheckoutProps> = ({ onCancel }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+
   const { idWithDate, date } = useDate();
-  const { totalCost, products } = useSelector(getCartState);
+
+  const { totalCost, products } = useAppSelector(getCartState);
+  //@ts-ignore
   const { address, firstname, lastname, phone, id } =
-    useSelector(getAuthState).user;
-  const { order, status, error } = useSelector(getCheckoutState);
+    useAppSelector(getAuthState).user;
+  const { order, status, error } = useAppSelector(getCheckoutState);
 
   const getOrder = useCallback(() => {
-    const ordercheck = [];
+    const ordercheck: Check[] = [];
     products.map((product) =>
       ordercheck.push({
         title: product.title,
@@ -68,7 +76,7 @@ export const Checkout = ({ onCancel }) => {
     dispatch(
       setOrder({
         uid: id,
-        orderId: idWithDate,
+        orderId: `${idWithDate}`,
         recipient: `${firstname} ${lastname}, tel. ${phone} `,
         deliveryAddress: `${address.city}, ${address.street} ${address["house-number"]}`,
         paymentType: order?.paymentType || "cash",
@@ -146,7 +154,7 @@ export const Checkout = ({ onCancel }) => {
           <PaymentType fname={firstname} lname={lastname} />
 
           <div className={style.checkout_item}>
-            Total due: <span>$ {totalCost}</span>
+            Total due: <span>$ {totalCost.toFixed(2)}</span>
           </div>
         </div>
 

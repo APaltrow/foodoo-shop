@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../Hooks/storeHooks";
 
 import { IMG, CustomIcon, CustomButton } from "..";
 
@@ -10,16 +10,17 @@ import {
 } from "../../Redux/Slices/cartSlice";
 
 import style from "./CartItem.module.scss";
+import { IActiveSizeWithDiscount } from "../../Hooks/useDiscount";
 
-type TSpecialOrder = string[] | [];
-
-export interface IActiveSize {
+{
+  /*export interface IActiveSize {
   discountedPrice: number | null;
   savedOnDiscount: number | null;
   nutrition: number;
   price: number;
   weight: number;
   size: string;
+}*/
 }
 
 export interface ICartItem {
@@ -29,8 +30,8 @@ export interface ICartItem {
   title: string;
   count: number;
 
-  activeSize: IActiveSize;
-  specialOrder: TSpecialOrder;
+  activeSize: IActiveSizeWithDiscount;
+  specialOrder: string[];
 }
 
 interface ICartItemProps {
@@ -38,23 +39,15 @@ interface ICartItemProps {
 }
 
 export const CartItem: FC<ICartItemProps> = ({ data }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const {
-    imgURL,
-    title,
-    activeSize,
-    id,
-    lot_id,
-    count,
-    specialOrder,
-  }: ICartItem = data;
+  const { imgURL, title, activeSize, id, lot_id, count, specialOrder } = data;
 
-  const onPlusItem = (): any => dispatch(plusProduct({ lot_id }));
-  const onMinusItem = (): any => dispatch(minusProduct({ lot_id }));
-  const onRemoveItem = (): any => {
+  const onPlusItem = () => dispatch(plusProduct(lot_id));
+  const onMinusItem = () => dispatch(minusProduct(lot_id));
+  const onRemoveItem = () => {
     if (window.confirm("Are you sure you want to remove the product?")) {
-      dispatch(removeProduct({ lot_id }));
+      dispatch(removeProduct(lot_id));
     }
   };
 

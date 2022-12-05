@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import { Loader, Error, CustomInput, CustomIcon, CustomButton } from "..";
 
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../Hooks/storeHooks";
 import { Link } from "react-router-dom";
 
 import { fetchLogedInUser } from "../../Redux/Slices/authSlice";
@@ -17,7 +17,7 @@ interface CustomFormProps {
 }
 
 export const CustomForm: FC<CustomFormProps> = ({ type, title, btn }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const {
     inputs,
@@ -32,7 +32,6 @@ export const CustomForm: FC<CustomFormProps> = ({ type, title, btn }) => {
 
   const onLoginWithDemo = () => {
     localStorage.setItem("userId", "5");
-    // @ts-ignore
     dispatch(fetchLogedInUser("5"));
   };
 

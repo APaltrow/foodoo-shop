@@ -1,23 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
-import { getOrderState, fetchOrdersList } from "../../Redux/Slices/orderSlice";
+import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
+import {
+  getOrderState,
+  fetchOrdersList,
+  Order,
+} from "../../Redux/Slices/orderSlice";
 import { getAuthState } from "../../Redux/Slices/authSlice";
 
-import { Error, CustomModal } from "../../Components";
+import { Error, CustomModal } from "..";
 
 import style from "./RecentOrders.module.scss";
 
-export const RecentOrders = () => {
-  const dispatch = useDispatch();
+export const RecentOrders: FC = () => {
+  const dispatch = useAppDispatch();
 
-  const { ordersList } = useSelector(getOrderState);
-  const { id } = useSelector(getAuthState).user;
+  const { ordersList } = useAppSelector(getOrderState);
+  //@ts-ignore
+  const { id } = useAppSelector(getAuthState).user;
 
-  const [viewOrder, setViewOrder] = useState(false);
+  const [viewOrder, setViewOrder] = useState<Order | boolean>(false);
 
-  const onViewOrder = (index) => setViewOrder(ordersList[index]);
-  const handleModal = (e) => setViewOrder(e);
+  const onViewOrder = (index: number) => setViewOrder(ordersList[index]);
+  const handleModal = (e: boolean) => setViewOrder(e);
 
   useEffect(() => {
     dispatch(fetchOrdersList(id));

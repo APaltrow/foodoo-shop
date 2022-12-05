@@ -1,23 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 
-import {
-  SpecialOrder,
-  CustomModal,
-  CustomIcon,
-  CustomButton,
-} from "../../Components";
+import { SpecialOrder, CustomModal, CustomIcon, CustomButton } from "..";
+import { IActiveSizeWithDiscount } from "../../Hooks/useDiscount";
 
 import style from "./Ingredients.module.scss";
 
-export const Ingredients = ({
+interface IngredientsProps {
+  ingredients: string[];
+  specialOrder: string[];
+  activeSize: IActiveSizeWithDiscount;
+
+  getSpecialOrder: () => void;
+}
+
+export const Ingredients: FC<IngredientsProps> = ({
   ingredients,
   activeSize,
-  getSpecialOrder,
   specialOrder,
-}) => {
-  const [isVisibleModal, setModal] = useState(false);
 
-  const handleModal = (vis) => setModal(vis);
+  getSpecialOrder,
+}) => {
+  const [isVisibleModal, setModal] = useState<boolean>(false);
+
+  const handleModal = (vis: boolean) => setModal(vis);
 
   return (
     <section className={style.ingredients}>

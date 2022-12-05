@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 
-import { Dropdown, CustomIcon } from "../../Components";
+import { Dropdown, CustomIcon } from "..";
 
 import { SETTINGS } from "../../constants/Settings";
 
@@ -9,11 +9,12 @@ import { useToggle } from "../../Hooks/useToggle";
 
 import style from "./Profile.module.scss";
 
-export const Profile = () => {
+// @ts-ignore
+export const Profile: FC = () => {
+  const navigate = useNavigate();
   const [isVisible, ref, toggle] = useToggle();
 
-  const navigate = useNavigate();
-  const getId = (id) => navigate(`/${SETTINGS[id].route}`);
+  const getId = (id: number) => navigate(`/${SETTINGS[id].route}`);
 
   return (
     <div className={style.nav_profile} onClick={toggle} ref={ref}>

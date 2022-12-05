@@ -1,5 +1,5 @@
 import { useState, FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 
 import { fetchAddFavourites } from "../../Redux/Slices/favouritesSlice";
 import { getAuthState } from "../../Redux/Slices/authSlice";
@@ -24,14 +24,14 @@ export const AddFavourite: FC<AddFavouriteProps> = ({
   imgURL,
   id,
 }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { uid } = useSelector(getAuthState).user;
-  const [favModal, setFavModal] = useState(false);
+  const { uid } = useAppSelector(getAuthState).user;
+
+  const [favModal, setFavModal] = useState<boolean>(false);
 
   const onAddToFavourites = () => {
     dispatch(
-      // @ts-ignore
       fetchAddFavourites({
         uid,
         favourites: { title, specialOrder, size, imgURL, id },

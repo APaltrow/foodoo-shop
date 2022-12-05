@@ -1,6 +1,6 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, FC } from "react";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 
 import {
   getCheckoutState,
@@ -8,28 +8,36 @@ import {
   setPaymentStatus,
 } from "../../Redux/Slices/checkoutSlice";
 
-import {
-  Error,
-  CustomSelect,
-  CustomInput,
-  CustomButton,
-} from "../../Components";
+import { Error, CustomSelect, CustomInput, CustomButton } from "..";
 
 import style from "./PaymenType.module.scss";
 
-export const PaymentType = ({ fname, lname }) => {
-  const dispatch = useDispatch();
-  const paymentFormRef = useRef();
+interface PaymentTypeProps {
+  fname: string;
+  lname: string;
+}
 
-  const [validCredentials, setValidCredentials] = useState(false);
-  const [credentialsError, setCredentialsError] = useState(false);
-  const [timer, setTimer] = useState(0);
+type FormType = (e: React.FormEvent<EventTarget>) => void;
 
-  const { paymentType, paymentStatus } = useSelector(getCheckoutState).order;
+export const PaymentType: FC<PaymentTypeProps> = ({ fname, lname }) => {
+  const dispatch = useAppDispatch();
+  const paymentFormRef = useRef<HTMLFormElement>(null);
 
-  const onFormChange = (e) => {
+  const [validCredentials, setValidCredentials] = useState<boolean | string>(
+    false
+  );
+  const [credentialsError, setCredentialsError] = useState<boolean | string>(
+    false
+  );
+  const [timer, setTimer] = useState<number>(0);
+
+  const { paymentType, paymentStatus } = useAppSelector(getCheckoutState).order;
+
+  const onFormChange: FormType = (e) => {
     e.preventDefault();
-    const validCredentials = [];
+
+    const validCredentials: string[] = [];
+    //@ts-ignore
     for (let input of paymentFormRef.current.elements) {
       if (input.getAttribute("name") === "card-number") {
         input.value.length === 16
@@ -42,6 +50,7 @@ export const PaymentType = ({ fname, lname }) => {
           : setCredentialsError(`Cvv should be 3 digits`);
       }
     }
+
     if (validCredentials.length === 2) {
       setValidCredentials(true);
       setCredentialsError(false);
@@ -49,11 +58,13 @@ export const PaymentType = ({ fname, lname }) => {
       setValidCredentials(false);
     }
   };
-  const onProcessPayment = (e) => {
+
+  const onProcessPayment: FormType = (e) => {
     e.preventDefault();
     dispatch(setPaymentStatus("Processing"));
   };
-  const onPaymentChange = (pType) => {
+
+  const onPaymentChange = (pType: string) => {
     dispatch(setPaymentType(pType));
   };
 
@@ -69,6 +80,7 @@ export const PaymentType = ({ fname, lname }) => {
       }, 1000);
     }
   }, [timer, paymentStatus]);
+
   useEffect(() => {
     if (timer === 10) {
       dispatch(setPaymentStatus("Payed successfully"));
@@ -103,7 +115,7 @@ export const PaymentType = ({ fname, lname }) => {
           onSubmit={onProcessPayment}
         >
           <h4>Please process the payment</h4>
-          {credentialsError && <Error error={credentialsError} />}
+          {credentialsError && <Error error={`${credentialsError}`} />}
           <span>{`${fname} ${lname}`}</span>
           <div className={style.card_valid}>
             <b>Valid :</b>
@@ -111,11 +123,17 @@ export const PaymentType = ({ fname, lname }) => {
             <CustomSelect type="year" getData={() => {}} />
           </div>
           <CustomInput
+            id="card-number"
             type={"number"}
             placeholder={"0000 - 0000 - 0000 - 0000"}
             name={"card-number"}
           />
-          <CustomInput type={"number"} placeholder={"cvv"} name={"card-cvv"} />
+          <CustomInput
+            id="card-cvv"
+            type={"number"}
+            placeholder={"CVV"}
+            name={"card-cvv"}
+          />
 
           <CustomButton
             text="pay now"

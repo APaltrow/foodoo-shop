@@ -18,11 +18,13 @@ type LoginCredentials = {
   password: string;
 };
 
-export interface RegisterCredentials extends LoginCredentials {
+export type RegisterCredentials = {
+  email: string;
+  password: string;
   firstname: string;
   lastname: string;
   phone: string;
-}
+};
 export type UpdateAddressCredentials = {
   city: string;
   street: string;
@@ -45,8 +47,7 @@ type UpdateAddressFN = (credentials: UpdateAddressCredentials) => void;
 type EditProfileFN = (credentials: EditProfileCredentials) => void;
 type ChangePasswordFN = (credentials: ChangePasswordCredentials) => void;
 
-type AuthenticateFN = (credentials: any) => void;
-
+//@ts-ignore
 const useAuthentication = (type: string) => {
   const { user, status, error } = useAppSelector(getAuthState);
   const dispatch = useAppDispatch();
@@ -103,7 +104,7 @@ const useAuthentication = (type: string) => {
     }
   };
 
-  const authenticate: AuthenticateFN = (credentials) => {
+  const authenticate = (credentials) => {
     switch (type) {
       case "registration":
         register(credentials);

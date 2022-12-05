@@ -93,23 +93,23 @@ export const cartSlice = createSlice({
 
       calculateTotals(state);
     },
-    plusProduct: (state, action: PayloadAction<CartItem>) => {
+    plusProduct: (state, action: PayloadAction<string>) => {
       const item = state.products.filter(
-        (item) => item.lot_id === action.payload.lot_id
+        (item) => item.lot_id === action.payload
       );
       item[0].count++;
       calculateTotals(state);
     },
-    minusProduct: (state, action: PayloadAction<CartItem>) => {
+    minusProduct: (state, action: PayloadAction<string>) => {
       const item = state.products.filter(
-        (item) => item.lot_id === action.payload.lot_id
+        (item) => item.lot_id === action.payload
       );
       item[0].count--;
       calculateTotals(state);
     },
-    removeProduct: (state, action: PayloadAction<CartItem>) => {
+    removeProduct: (state, action: PayloadAction<string>) => {
       const products = state.products.filter(
-        (item) => item.lot_id !== action.payload.lot_id
+        (item) => item.lot_id !== action.payload
       );
       state.products = [...products];
 

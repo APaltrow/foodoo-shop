@@ -1,11 +1,11 @@
-import { FC } from "react";
+import React, { FC } from "react";
 
 import { CustomIcon } from "..";
 
 import style from "./CustomModal.module.scss";
 
 interface CustomModalProps {
-  children: any;
+  children: React.ReactNode;
   visible: boolean;
   handleModal: (arg: boolean) => void;
 }
@@ -13,6 +13,7 @@ interface CustomModalProps {
 export const CustomModal: FC<CustomModalProps> = ({
   children,
   visible,
+
   handleModal,
 }) => {
   return (

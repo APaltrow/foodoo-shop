@@ -83,4 +83,6 @@ export const DishCardsCatalog: FC = () => {
         )}
       </div>
     );
+
+  return null;
 };

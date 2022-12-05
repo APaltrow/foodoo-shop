@@ -1,15 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import { useToggle } from "../../Hooks/useToggle";
 import { useCalendar } from "../../Hooks/useCalendar";
 import { SELECT_TYPES } from "../../constants/SelectTypes";
-import { CustomIcon } from "../../Components";
+import { CustomIcon } from "..";
 
 import style from "./CustomSelect.module.scss";
 
 // TYPE : calendar, year, hours dayPart
 //Calendar, day, month, year
 
-export const CustomSelect = ({ type, getData }) => {
+//@ts-ignore
+interface SelectProps {
+  type: string;
+  getData: (type: string, credentials: any) => void;
+}
+
+export const CustomSelect: FC<SelectProps> = ({ type, getData }) => {
   const [isVisible, ref, toggle] = useToggle();
   const {
     date,

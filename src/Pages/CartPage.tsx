@@ -8,7 +8,7 @@ import { EmptyCart, Checkout, CartItems } from "../Components";
 const CartPage: FC = () => {
   const { totalCount } = useAppSelector(getCartState);
 
-  const [isCheckout, setCheckout] = useState(false);
+  const [isCheckout, setCheckout] = useState<boolean>(false);
 
   if (isCheckout) {
     return <Checkout onCancel={setCheckout} />;

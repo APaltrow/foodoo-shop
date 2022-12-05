@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect, FC } from "react";
+import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 
-import { CustomModal, CustomIcon, CustomButton } from "../../Components";
+import { CustomModal, CustomIcon, CustomButton } from "..";
 
 import { RATING_STATUSES } from "../../constants/RatingStatuses";
 import { generateIcon } from "../Icons/Icons";
@@ -11,29 +11,32 @@ import {
 } from "../../Redux/Slices/singleProductSlice";
 import { getAuthState } from "../../Redux/Slices/authSlice";
 import { useDate } from "../../Hooks/useDate";
+import { Review } from "../../Redux/Slices/cartSlice";
 
 import style from "./RateProduct.module.scss";
 
-export const RateProduct = () => {
-  const dispatch = useDispatch();
+export const RateProduct: FC = () => {
+  const dispatch = useAppDispatch();
   const { date, idWithDate } = useDate();
-  const { uid, firstname } = useSelector(getAuthState).user;
-  const { reviews, id } = useSelector(getSingleProductState).singleProduct;
+  //@ts-ignore
+  const { uid, firstname } = useAppSelector(getAuthState).user;
+  //@ts-ignore
+  const { reviews, id } = useAppSelector(getSingleProductState).singleProduct;
 
   const [status, setStatus] = useState(RATING_STATUSES[0]);
 
-  const [rating, setRating] = useState(0);
-  const [ratingComment, setRatingComment] = useState("");
-  const [rateModal, setRateModal] = useState(false);
+  const [rating, setRating] = useState<number>(0);
+  const [ratingComment, setRatingComment] = useState<string>("");
+  const [rateModal, setRateModal] = useState<boolean>(false);
 
-  const onRateThisProduct = (vis) => setRateModal(vis);
+  const onRateThisProduct = (vis: boolean) => setRateModal(vis);
   const getRatingStatus = () => {
     rating > 0 && rating < 3 && setStatus(RATING_STATUSES[1]);
     rating >= 3 && rating < 5 && setStatus(RATING_STATUSES[2]);
     rating === 5 && setStatus(RATING_STATUSES[3]);
   };
   const onRateNow = () => {
-    const rewiews = [
+    const rewiews: Review[] = [
       {
         uid,
         ratingId: idWithDate,
@@ -47,16 +50,18 @@ export const RateProduct = () => {
     dispatch(fetchRateProduct({ id: id, reviews: rewiews }));
     onRateThisProduct(false);
   };
-  const getRatingComment = (e) => {
+
+  const getRatingComment = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRatingComment(e.target.value);
   };
-  const getRating = (rating) => {
+  const getRating = (rating: number) => {
     setRating(rating);
   };
 
   useEffect(() => {
     getRatingStatus();
   }, [rating]);
+
   useEffect(() => {
     if (!rateModal) {
       setStatus(RATING_STATUSES[0]);

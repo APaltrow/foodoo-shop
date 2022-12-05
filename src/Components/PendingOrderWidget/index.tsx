@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 
-import { Error, CustomIcon } from "../../Components";
+import { Error, CustomIcon } from "..";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 import {
   fetchDeliveredOrder,
   getOrderState,
@@ -10,11 +10,11 @@ import {
 
 import style from "./PendingOrder.module.scss";
 
-export const PendingOrderWidget = () => {
-  const dispatch = useDispatch();
-  const { pendingOrder } = useSelector(getOrderState);
+export const PendingOrderWidget: FC = () => {
+  const dispatch = useAppDispatch();
+  const { pendingOrder } = useAppSelector(getOrderState);
 
-  const [timer, setTimer] = useState(0);
+  const [timer, setTimer] = useState<number>(0);
 
   useEffect(() => {
     if (pendingOrder) {
@@ -28,11 +28,13 @@ export const PendingOrderWidget = () => {
       }, 1000);
     }
   }, [timer, pendingOrder]);
+
   useEffect(() => {
     if (timer === 50) {
       setTimer(0);
       alert("Your order is Delivered!");
       dispatch(
+        //@ts-ignore
         fetchDeliveredOrder({ ...pendingOrder, orderStatus: "delivered" })
       );
     }

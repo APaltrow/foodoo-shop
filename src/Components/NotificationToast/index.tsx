@@ -1,10 +1,16 @@
+import { FC } from "react";
 import { useNotification } from "../../Hooks/useNotification";
 
-import { CustomIcon } from "../../Components";
+import { CustomIcon } from "..";
 
 import style from "./NotificationToast.module.scss";
 
-export const NotificationToast = ({ message, type }) => {
+interface ToastProps {
+  message: string;
+  type: string;
+}
+
+export const NotificationToast: FC<ToastProps> = ({ message, type }) => {
   const { toasts } = useNotification({ type });
 
   return toasts.length ? (
