@@ -12,11 +12,13 @@ import { Error, CustomModal } from "..";
 
 import style from "./RecentOrders.module.scss";
 
+//@ts-ignore
+
 export const RecentOrders: FC = () => {
   const dispatch = useAppDispatch();
 
   const { ordersList } = useAppSelector(getOrderState);
-  //@ts-ignore
+
   const { id } = useAppSelector(getAuthState).user;
 
   const [viewOrder, setViewOrder] = useState<Order | boolean>(false);
@@ -25,7 +27,7 @@ export const RecentOrders: FC = () => {
   const handleModal = (e: boolean) => setViewOrder(e);
 
   useEffect(() => {
-    dispatch(fetchOrdersList(id));
+    dispatch(fetchOrdersList(`${id}`));
   }, []);
 
   return (
@@ -67,7 +69,7 @@ export const RecentOrders: FC = () => {
         <Error error={"No recent orders found ..."} />
       )}
 
-      <CustomModal visible={viewOrder ? true : false} handleModal={handleModal}>
+      <CustomModal visible={!!viewOrder} handleModal={handleModal}>
         <h3>{viewOrder.recipient}</h3>
         <div>
           <div

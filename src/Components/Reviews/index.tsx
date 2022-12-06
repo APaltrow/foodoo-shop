@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getAuthState } from "../../Redux/Slices/authSlice";
@@ -7,16 +7,19 @@ import {
   fetchRateProduct,
 } from "../../Redux/Slices/singleProductSlice";
 
-import { Rating, Loader, CustomIcon, CustomButton } from "../../Components";
+import { Rating, Loader, CustomIcon, CustomButton } from "..";
 
 import style from "./Reviews.module.scss";
+import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 
-export const Reviews = () => {
-  const dispatch = useDispatch();
+//@ts-ignore
 
-  const { uid } = useSelector(getAuthState).user;
-  const { reviews, id } = useSelector(getSingleProductState).singleProduct;
-  const { status } = useSelector(getSingleProductState);
+export const Reviews: FC = () => {
+  const dispatch = useAppDispatch();
+
+  const { uid } = useAppSelector(getAuthState).user;
+  const { reviews, id } = useAppSelector(getSingleProductState).singleProduct;
+  const { status } = useAppSelector(getSingleProductState);
   const [editComment, setEditComment] = useState({
     ratingId: null,
     editValue: "",

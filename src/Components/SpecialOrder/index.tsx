@@ -1,23 +1,34 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, FC } from "react";
 
-import { CustomButton } from "../../Components";
+import { CustomButton } from "..";
 
 import style from "./SpecialOrder.module.scss";
 
-export const SpecialOrder = ({
+interface SpecialOrderProps {
+  ingredients: string[];
+  specialOrder: string[];
+
+  getSpecialOrder: (arg: string[]) => void;
+  handleModal: (arg: boolean) => void;
+}
+
+//@ts-ignore
+
+export const SpecialOrder: FC<SpecialOrderProps> = ({
   ingredients,
+  specialOrder,
+
   getSpecialOrder,
   handleModal,
-  specialOrder,
 }) => {
-  const formRef = useRef();
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleForm = (e) => {
+  const handleForm = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
     handleModal(false);
   };
   const exclude = () => {
-    const excludedIngredients = [];
+    const excludedIngredients: string[] = [];
     for (let input of formRef.current.elements) {
       input.checked && excludedIngredients.push(input.name);
     }

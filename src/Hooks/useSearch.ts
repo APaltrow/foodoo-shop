@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "./useDebounce";
 import { useToggle } from "./useToggle";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "./storeHooks";
 import {
   setSearchValue,
   getSortCategoryState,
 } from "../Redux/Slices/sortCategory";
 
 export const useSearch = () => {
-  const { searchValue } = useSelector(getSortCategoryState);
-  const [value, setValue] = useState("");
+  const dispatch = useAppDispatch();
+  const { searchValue } = useAppSelector(getSortCategoryState);
+  const [value, setValue] = useState<string>("");
   const [debValue] = useDebounce(value, 600);
   const [isVisible, ref, toggle] = useToggle();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (searchValue !== value) {
@@ -20,7 +20,8 @@ export const useSearch = () => {
     }
   }, [debValue]);
 
-  const handleChange = (event) => setValue(event.target.value);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setValue(event.target.value);
   const onDismiss = () => setValue("");
 
   return {

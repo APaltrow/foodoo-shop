@@ -22,7 +22,7 @@ export const useCalendar = () => {
       setMonth(month - 1);
     }
   };
-  const getDepricated = (index, y, m) => {
+  const getDepricated = (index: number, y: number, m: number) => {
     if (date.getFullYear() > y) {
       return "depricated";
     }

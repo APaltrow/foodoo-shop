@@ -34,7 +34,7 @@ export type CartItem = {
 };
 
 type GetSpecOrderType = (order: string[]) => void;
-type ActiveSizeChangeType = (size: IActiveSize) => void;
+export type ActiveSizeChangeType = (size: IActiveSize) => void;
 type AddProductType = () => void;
 
 export const useProduct = ({

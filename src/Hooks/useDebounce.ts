@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
-export const useDebounce = (value, delay) => {
-  const [debValue, setDebValue] = useState("");
+export const useDebounce = (value: string, delay: number) => {
+  const [debValue, setDebValue] = useState<string>("");
 
   useEffect(() => {
     if (value !== debValue) {
-      if (value === "") {
+      if (!value) {
         setDebValue(value);
       } else {
         const handler = setTimeout(() => {

@@ -1,4 +1,4 @@
-interface InputValidations {
+export interface InputValidations {
   email: {
     isEmpty: string;
     minLength: number;

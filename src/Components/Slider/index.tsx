@@ -1,18 +1,26 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, FC } from "react";
 
 import { SLIDER_TYPES } from "../../constants/SliderTypes";
 
-import { CustomIcon } from "../../Components";
+import { CustomIcon } from "..";
 
 import style from "./Slider.module.scss";
 
-export const Slider = ({ imgURL, category }) => {
-  const ref = useRef();
-  const items = [{ url: imgURL }, ...SLIDER_TYPES[category]];
-  const [active, setActive] = useState(0);
-  const [offset, setOffset] = useState(0);
+interface SliderProps {
+  imgURL: string;
+  category: number;
+}
 
-  const changeActive = (img) => {
+//@ts-ignore
+
+export const Slider: FC<SliderProps> = ({ imgURL, category }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const items = [{ url: imgURL }, ...SLIDER_TYPES[category]];
+
+  const [active, setActive] = useState<number>(0);
+  const [offset, setOffset] = useState<number>(0);
+
+  const changeActive = (img: number) => {
     img <= items.length - 1 && img >= 0 ? setActive(img) : setActive(0);
   };
 

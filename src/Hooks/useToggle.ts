@@ -1,8 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 
-export const useToggle = () => {
-  const [isVisible, setVisible] = useState(false);
-  const ref = useRef();
+//@ts-ignore
+
+type ToggleType = () => [boolean, React.RefObject<HTMLElement>, () => void];
+
+export const useToggle: ToggleType = () => {
+  const [isVisible, setVisible] = useState<boolean>(false);
+  const ref = useRef<HTMLElement>(null);
 
   const toggle = () => setVisible(!isVisible);
 

@@ -1,11 +1,26 @@
-import React from "react";
+import React, { FC } from "react";
 
-import { CustomIcon } from "../../Components";
+import { CustomIcon } from "..";
+import { IActiveSize, IActiveSizeWithDiscount } from "../../Hooks/useDiscount";
+import { ActiveSizeChangeType } from "../../Hooks/useProduct";
 
 import style from "./Sizes.module.scss";
 
-export const Sizes = ({ sizes, activeSize, action, discount }) => {
-  const onActiveSizeChange = (index) => {
+interface SizesProps {
+  discount: number;
+  sizes: IActiveSize[];
+  activeSize: IActiveSizeWithDiscount;
+
+  action: ActiveSizeChangeType;
+}
+
+export const Sizes: FC<SizesProps> = ({
+  discount,
+  sizes,
+  activeSize,
+  action,
+}) => {
+  const onActiveSizeChange = (index: number) => {
     action(sizes[index]);
   };
 

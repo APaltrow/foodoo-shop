@@ -18,7 +18,7 @@ import style from "./RateProduct.module.scss";
 export const RateProduct: FC = () => {
   const dispatch = useAppDispatch();
   const { date, idWithDate } = useDate();
-  //@ts-ignore
+
   const { uid, firstname } = useAppSelector(getAuthState).user;
   //@ts-ignore
   const { reviews, id } = useAppSelector(getSingleProductState).singleProduct;

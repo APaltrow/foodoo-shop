@@ -101,18 +101,19 @@ type Address = {
 };
 
 type User = {
-  uid: string;
-  address: Address | {};
-  id: string;
-  email: string;
-  password: string;
-  firstname: string;
-  lastname: string;
-  phone: string;
+  id: string | null;
+  uid: string | null;
+  email: string | null;
+  password: string | null;
+  firstname: string | null;
+  lastname: string | null;
+  phone: string | null;
+
+  address?: Address | null;
 };
 
 type AuthState = {
-  user: User | {};
+  user: User;
 
   isAuth: boolean;
   status: StatusList;
@@ -120,7 +121,17 @@ type AuthState = {
 };
 
 const initialState: AuthState = {
-  user: {},
+  user: {
+    id: null,
+    uid: null,
+    email: null,
+    password: null,
+    firstname: null,
+    lastname: null,
+    phone: null,
+
+    address: null,
+  },
   isAuth: false,
 
   status: StatusList.IDLE,
@@ -134,11 +145,21 @@ export const authSlice = createSlice({
     setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
       state.isAuth = true;
-      localStorage.setItem("userId", action.payload.id);
+      localStorage.setItem("userId", `${action.payload.id}`);
     },
     setLogOut: (state) => {
       localStorage.clear();
-      state.user = {};
+      state.user = {
+        id: null,
+        uid: null,
+        email: null,
+        password: null,
+        firstname: null,
+        lastname: null,
+        phone: null,
+
+        address: null,
+      };
       state.isAuth = false;
       state.status = StatusList.IDLE;
       state.error = "";

@@ -1,14 +1,22 @@
 import { useState, useEffect } from "react";
+import { InputValidations } from "../constants/InputValidations";
 
-export const useValidation = (value, validations) => {
-  const [isEmpty, setEmpty] = useState(true);
-  const [minLengthError, setMinLengthError] = useState(true);
-  const [maxLengthError, setMaxLengthError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
+type ValidationsType = (
+  value: string,
+  validations: InputValidations
+) => { isError: boolean | string };
 
-  const [isError, setError] = useState(true);
+//@ts-ignore
 
-  useEffect(() => {
+export const useValidation: ValidationsType = (value, validations) => {
+  const [isEmpty, setEmpty] = useState<boolean | string>(true);
+  const [minLengthError, setMinLengthError] = useState<boolean | string>(true);
+  const [maxLengthError, setMaxLengthError] = useState<boolean | string>(false);
+  const [emailError, setEmailError] = useState<boolean | string>(false);
+
+  const [isError, setError] = useState<boolean | string>(true);
+
+  const validate = () => {
     for (const validation in validations) {
       switch (validation) {
         case "isEmpty":
@@ -36,6 +44,9 @@ export const useValidation = (value, validations) => {
           return null;
       }
     }
+  };
+  useEffect(() => {
+    validate();
   }, [value]);
 
   useEffect(() => {

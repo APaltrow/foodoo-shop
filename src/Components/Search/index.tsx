@@ -1,12 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 
-import { CustomIcon } from "../../Components";
+import { CustomIcon } from "..";
 
 import { useSearch } from "../../Hooks/useSearch";
 
 import style from "./Search.module.scss";
 
-export const Search = () => {
+export const Search: FC = () => {
   const { value, isVisible, ref, toggle, handleChange, onDismiss } =
     useSearch();
 

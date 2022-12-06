@@ -38,10 +38,10 @@ export const CartItems: FC<ICartCatalog> = ({ checkout }) => {
           Total products:<span>{totalCount}</span>
         </p>
         <p>
-          Total cost :<span>$ {totalCost}</span>
+          Total cost :<span>$ {totalCost.toFixed(2)}</span>
         </p>
         <p>
-          Discount :<span>$ {discount}</span>
+          Discount :<span>$ {discount.toFixed(2)}</span>
         </p>
       </section>
       <section className={style.cart_buttons}>

@@ -1,26 +1,26 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { generateIcon } from "../Icons/Icons";
 import { useToggle } from "../../Hooks/useToggle";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 import {
   setSortBy,
   setIsASC,
   getSortCategoryState,
 } from "../../Redux/Slices/sortCategory";
 
-import { Dropdown } from "../../Components";
+import { Dropdown } from "..";
 
 import style from "./Sort.module.scss";
 
-export const Sort = () => {
-  const dispatch = useDispatch();
+export const Sort: FC = () => {
+  const dispatch = useAppDispatch();
   const [isVisible, ref, toggle] = useToggle();
 
-  const { isASC, SORT, sortBy } = useSelector(getSortCategoryState);
+  const { isASC, SORT, sortBy } = useAppSelector(getSortCategoryState);
 
   const onOrderChange = () => dispatch(setIsASC(!isASC));
-  const onSortByChange = (id) => dispatch(setSortBy(id));
+  const onSortByChange = (id: number) => dispatch(setSortBy(id));
 
   return (
     <div className={style.root}>

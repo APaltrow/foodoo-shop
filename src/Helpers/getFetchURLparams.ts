@@ -3,7 +3,16 @@ import { BASE_URL } from "../constants/Urls";
 // generate Fetch URL parameters
 // pages and limits are not included since there is no proper backend
 
-export const getFetchURLparams = (
+type URLParamsFN = (
+  searchValue: string,
+  activeCategory: number,
+  sortByProperty: string,
+  isASC: boolean
+) => string;
+
+//@ts-ignore
+
+export const getFetchURLparams: URLParamsFN = (
   searchValue,
   activeCategory,
   sortByProperty,
@@ -16,9 +25,11 @@ export const getFetchURLparams = (
   } else {
     isASC ? param.append("order", "asc") : param.append("order", "desc");
     param.append("sortBy", sortByProperty.toLowerCase());
+
     if (activeCategory === 4) {
       param.append("isVegitarian", "true");
     }
+
     if (activeCategory > 0 && activeCategory < 4) {
       param.append("category", activeCategory);
     }

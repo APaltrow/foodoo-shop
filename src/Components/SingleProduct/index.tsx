@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 
 import {
   Slider,
@@ -13,13 +13,18 @@ import {
   CustomButton,
   Count,
   AddFavourite,
-} from "../../Components";
+} from "..";
 
 import { useProduct } from "../../Hooks/useProduct";
+import { Product } from "../../Redux/Slices/cartSlice";
 
 import style from "./SingleProduct.module.scss";
 
-export const SingleProduct = ({ singleProduct }) => {
+interface SingleProductProps {
+  singleProduct: Product;
+}
+
+export const SingleProduct: FC<SingleProductProps> = ({ singleProduct }) => {
   const {
     onAddProduct,
     getSpecialOrder,
