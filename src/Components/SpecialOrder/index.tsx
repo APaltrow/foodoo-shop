@@ -12,8 +12,6 @@ interface SpecialOrderProps {
   handleModal: (arg: boolean) => void;
 }
 
-//@ts-ignore
-
 export const SpecialOrder: FC<SpecialOrderProps> = ({
   ingredients,
   specialOrder,
@@ -29,14 +27,20 @@ export const SpecialOrder: FC<SpecialOrderProps> = ({
   };
   const exclude = () => {
     const excludedIngredients: string[] = [];
-    for (let input of formRef.current.elements) {
-      input.checked && excludedIngredients.push(input.name);
+    if (formRef.current) {
+      //@ts-ignore
+      for (let input of formRef.current.elements) {
+        input.checked && excludedIngredients.push(input.name);
+      }
     }
+
     getSpecialOrder(excludedIngredients);
   };
   const reset = () => {
-    formRef.current.reset();
-    getSpecialOrder([]);
+    if (formRef.current) {
+      formRef.current.reset();
+      getSpecialOrder([]);
+    }
   };
 
   useEffect(() => {
@@ -55,9 +59,10 @@ export const SpecialOrder: FC<SpecialOrderProps> = ({
 
             <label
               htmlFor={ingredient}
-              defaultChecked={specialOrder.filter(
-                (excluded) => excluded === ingredient
-              )}
+              defaultChecked={
+                specialOrder.filter((excluded) => excluded === ingredient)
+                  .length > 0
+              }
             >
               {ingredient}
             </label>

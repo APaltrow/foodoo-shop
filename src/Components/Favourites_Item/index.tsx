@@ -23,10 +23,12 @@ interface FavouritesItemProps {
 }
 
 export const FavouritesItem: FC<FavouritesItemProps> = ({ favourite }) => {
+  //@ts-ignore
   const navigate = useNavigate(1);
   const dispatch = useAppDispatch();
   const { id, imgURL, specialOrder, title, size, favId } = favourite;
 
+  //@ts-ignore
   const { onAddProduct } = useProduct({
     id,
     imgURL,

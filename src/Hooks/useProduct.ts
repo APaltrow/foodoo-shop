@@ -33,7 +33,7 @@ export type CartItem = {
   specialOrder: string[] | [];
 };
 
-type GetSpecOrderType = (order: string[]) => void;
+export type GetSpecOrderType = (order: string[]) => void;
 export type ActiveSizeChangeType = (size: IActiveSize) => void;
 type AddProductType = () => void;
 

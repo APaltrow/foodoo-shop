@@ -22,10 +22,10 @@ export type Check = {
   specialOrder: string;
 };
 
-type Preorder = {
-  hours: number;
-  dayPart: string;
-  calendar: string;
+export type Preorder = {
+  hours: number | null;
+  dayPart: string | null;
+  calendar: string | null;
 };
 
 type Order = {
@@ -84,7 +84,7 @@ export const checkoutSlice = createSlice({
     setPaymentStatus: (state, action: PayloadAction<string>) => {
       state.order.paymentStatus = action.payload;
     },
-    setPreOrder: (state, action: PayloadAction<Preorder>) => {
+    setPreOrder: (state, action: PayloadAction<Preorder | null>) => {
       state.order.preorder = action.payload;
       if (action.payload) {
         state.order.orderStatus = "preorder";

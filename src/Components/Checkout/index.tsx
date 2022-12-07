@@ -38,7 +38,7 @@ export const Checkout: FC<CheckoutProps> = ({ onCancel }) => {
   const { idWithDate, date } = useDate();
 
   const { totalCost, products } = useAppSelector(getCartState);
-  //@ts-ignore
+
   const { address, firstname, lastname, phone, id } =
     useAppSelector(getAuthState).user;
   const { order, status, error } = useAppSelector(getCheckoutState);
@@ -61,6 +61,14 @@ export const Checkout: FC<CheckoutProps> = ({ onCancel }) => {
     return ordercheck;
   }, [products]);
 
+  const getAddress = (): string => {
+    if (address) {
+      return `${address.city}, ${address.street} ${address["house-number"]}`;
+    }
+
+    return `Delivery address is not specified`;
+  };
+
   const onCancelOrder = () => {
     if (window.confirm("Are you sure to cancel the order?")) {
       dispatch(setCancelOrder());
@@ -78,7 +86,7 @@ export const Checkout: FC<CheckoutProps> = ({ onCancel }) => {
         uid: id,
         orderId: `${idWithDate}`,
         recipient: `${firstname} ${lastname}, tel. ${phone} `,
-        deliveryAddress: `${address.city}, ${address.street} ${address["house-number"]}`,
+        deliveryAddress: getAddress(),
         paymentType: order?.paymentType || "cash",
         ordercheck: getOrder(),
         totalCost,
@@ -89,6 +97,7 @@ export const Checkout: FC<CheckoutProps> = ({ onCancel }) => {
       })
     );
   }, [totalCost, products, address, firstname, lastname, phone]);
+
   useEffect(() => {
     if (status === "success") {
       setTimeout(() => {
@@ -118,8 +127,8 @@ export const Checkout: FC<CheckoutProps> = ({ onCancel }) => {
           </div>
           <div className={style.checkout_item}>
             Deliver at :
-            {address.city ? (
-              <span>{`${address.city}, ${address.street} ${address["house-number"]}`}</span>
+            {address?.city ? (
+              <span>{getAddress()}</span>
             ) : (
               <Error
                 error={"Looks like you have not submitted any address yet"}
@@ -151,7 +160,10 @@ export const Checkout: FC<CheckoutProps> = ({ onCancel }) => {
           </div>
 
           <PreOrder />
-          <PaymentType fname={firstname} lname={lastname} />
+          <PaymentType
+            fname={firstname ? firstname : ""}
+            lname={lastname ? lastname : ""}
+          />
 
           <div className={style.checkout_item}>
             Total due: <span>$ {totalCost.toFixed(2)}</span>

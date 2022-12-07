@@ -7,7 +7,7 @@ import { ActiveSizeChangeType } from "../../Hooks/useProduct";
 import style from "./Sizes.module.scss";
 
 interface SizesProps {
-  discount: number;
+  discount?: number;
   sizes: IActiveSize[];
   activeSize: IActiveSizeWithDiscount;
 
@@ -39,7 +39,7 @@ export const Sizes: FC<SizesProps> = ({
           >
             <div className={style.actual_price}>
               {discount
-                ? activeSize.discountedPrice.toFixed(2)
+                ? activeSize.discountedPrice?.toFixed(2)
                 : activeSize.price.toFixed(2)}
             </div>
             {discount && (

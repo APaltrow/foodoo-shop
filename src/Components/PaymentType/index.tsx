@@ -9,6 +9,7 @@ import {
 } from "../../Redux/Slices/checkoutSlice";
 
 import { Error, CustomSelect, CustomInput, CustomButton } from "..";
+import { SelectTypes } from "..";
 
 import style from "./PaymenType.module.scss";
 
@@ -119,8 +120,8 @@ export const PaymentType: FC<PaymentTypeProps> = ({ fname, lname }) => {
           <span>{`${fname} ${lname}`}</span>
           <div className={style.card_valid}>
             <b>Valid :</b>
-            <CustomSelect type="hours" getData={() => {}} />
-            <CustomSelect type="year" getData={() => {}} />
+            <CustomSelect type={SelectTypes.HOURS} getData={() => {}} />
+            <CustomSelect type={SelectTypes.YEAR} getData={() => {}} />
           </div>
           <CustomInput
             id="card-number"

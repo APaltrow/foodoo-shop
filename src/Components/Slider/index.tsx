@@ -11,8 +11,6 @@ interface SliderProps {
   category: number;
 }
 
-//@ts-ignore
-
 export const Slider: FC<SliderProps> = ({ imgURL, category }) => {
   const ref = useRef<HTMLDivElement>(null);
   const items = [{ url: imgURL }, ...SLIDER_TYPES[category]];
@@ -29,10 +27,10 @@ export const Slider: FC<SliderProps> = ({ imgURL, category }) => {
       setOffset(0);
     }
     if (active === 1) {
-      setOffset(ref.current.offsetWidth + 20);
+      ref.current && setOffset(ref.current.offsetWidth + 20);
     }
     if (active > 1) {
-      setOffset(ref.current.offsetWidth * active + active * 20);
+      ref.current && setOffset(ref.current.offsetWidth * active + active * 20);
     }
   };
 

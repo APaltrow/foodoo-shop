@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 import { getAuthState } from "../../Redux/Slices/authSlice";
 import {
   getSingleProductState,
@@ -10,7 +10,6 @@ import {
 import { Rating, Loader, CustomIcon, CustomButton } from "..";
 
 import style from "./Reviews.module.scss";
-import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 
 //@ts-ignore
 
@@ -19,7 +18,9 @@ export const Reviews: FC = () => {
 
   const { uid } = useAppSelector(getAuthState).user;
   const { reviews, id } = useAppSelector(getSingleProductState).singleProduct;
+
   const { status } = useAppSelector(getSingleProductState);
+
   const [editComment, setEditComment] = useState({
     ratingId: null,
     editValue: "",

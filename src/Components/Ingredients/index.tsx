@@ -2,6 +2,7 @@ import React, { useState, FC } from "react";
 
 import { SpecialOrder, CustomModal, CustomIcon, CustomButton } from "..";
 import { IActiveSizeWithDiscount } from "../../Hooks/useDiscount";
+import { GetSpecOrderType } from "../../Hooks/useProduct";
 
 import style from "./Ingredients.module.scss";
 
@@ -10,7 +11,7 @@ interface IngredientsProps {
   specialOrder: string[];
   activeSize: IActiveSizeWithDiscount;
 
-  getSpecialOrder: () => void;
+  getSpecialOrder: GetSpecOrderType;
 }
 
 export const Ingredients: FC<IngredientsProps> = ({

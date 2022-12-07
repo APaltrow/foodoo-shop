@@ -48,6 +48,7 @@ type EditProfileFN = (credentials: EditProfileCredentials) => void;
 type ChangePasswordFN = (credentials: ChangePasswordCredentials) => void;
 
 //@ts-ignore
+
 const useAuthentication = (type: string) => {
   const { user, status, error } = useAppSelector(getAuthState);
   const dispatch = useAppDispatch();
@@ -57,6 +58,7 @@ const useAuthentication = (type: string) => {
 
   const login: LoginFN = async (credentials) => {
     const { payload } = await dispatch(fetchCheckUser(credentials.email));
+
     if (
       payload.length &&
       payload[0].password === credentials.password &&

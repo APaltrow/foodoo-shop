@@ -1,6 +1,8 @@
 import { useState, useEffect, FC } from "react";
 
 import { CustomSelect } from "..";
+import { SelectTypes } from "..";
+import { Preorder } from "../../Redux/Slices/checkoutSlice";
 
 import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 
@@ -17,14 +19,22 @@ export const PreOrder: FC = () => {
   const { order } = useAppSelector(getCheckoutState);
 
   const preorder = order?.preorder;
-  const [data, setData] = useState({});
+  const [data, setData] = useState<Preorder>({
+    hours: null,
+    dayPart: null,
+    calendar: null,
+  });
 
   const getPreorder = () => {
-    dispatch(setPreOrder(!preorder));
+    if (preorder) {
+      dispatch(setPreOrder(null));
+    } else {
+      dispatch(setPreOrder(data));
+    }
   };
-  const showData = (credentials) => {
+  const showData = (type: string, credentials: string | number) => {
     setData((prev) => {
-      return { ...prev, [credentials.type]: credentials.credentials };
+      return { ...prev, [type]: credentials };
     });
   };
 
@@ -47,10 +57,10 @@ export const PreOrder: FC = () => {
       {preorder && (
         <div className={style.pre_order_time}>
           <div className={style.pre_order_day}>
-            <CustomSelect type={"hours"} getData={showData} />
-            <CustomSelect type={"dayPart"} getData={showData} />
+            <CustomSelect type={SelectTypes.HOURS} getData={showData} />
+            <CustomSelect type={SelectTypes.DAYPART} getData={showData} />
           </div>
-          <CustomSelect type={"calendar"} getData={showData} />
+          <CustomSelect type={SelectTypes.CALENDAR} getData={showData} />
         </div>
       )}
       {preorder ? (

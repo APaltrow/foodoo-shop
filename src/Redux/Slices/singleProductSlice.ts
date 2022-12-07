@@ -9,7 +9,7 @@ import { StatusList } from "./dishCards";
 export const fetchSingleProduct = createAsyncThunk<Product, string>(
   "singleProduct/fetchSingleProduct",
   async (id) => {
-    const { data }: { data: Product } = await axios.get(`${ITEMS_URL}/${id}`);
+    const { data } = await axios.get<Product>(`${ITEMS_URL}/${id}`);
 
     return data;
   }
@@ -19,7 +19,7 @@ export const fetchRateProduct = createAsyncThunk<Product, FetchReview>(
 
   async (params) => {
     const { id, reviews } = params;
-    const { data }: { data: Product } = await axios.put(`${ITEMS_URL}/${id}`, {
+    const { data } = await axios.put<Product>(`${ITEMS_URL}/${id}`, {
       reviews,
     });
 
@@ -30,14 +30,14 @@ export const fetchRateProduct = createAsyncThunk<Product, FetchReview>(
 type FetchReview = { id: string; reviews: Review[] };
 
 type SingleProductState = {
-  singleProduct: Product | {};
+  singleProduct: Product | null;
 
   status: StatusList | string;
   error: string;
 };
 
 const initialState: SingleProductState = {
-  singleProduct: {},
+  singleProduct: null,
 
   status: StatusList.IDLE,
   error: "",
@@ -63,7 +63,7 @@ export const singleProductSlice = createSlice({
         state.status = StatusList.SUCCESS;
       })
       .addCase(fetchSingleProduct.rejected, (state, action) => {
-        state.singleProduct = {};
+        state.singleProduct = null;
         state.status = StatusList.ERROR;
         state.error = action.error.message || "error";
       })
@@ -72,7 +72,10 @@ export const singleProductSlice = createSlice({
         state.error = "";
       })
       .addCase(fetchRateProduct.fulfilled, (state, action) => {
-        state.singleProduct.reviews = action.payload.reviews;
+        if (state.singleProduct) {
+          state.singleProduct.reviews = action.payload.reviews;
+        }
+
         state.status = StatusList.SUCCESS;
       })
       .addCase(fetchRateProduct.rejected, (state, action) => {

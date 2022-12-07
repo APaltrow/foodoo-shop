@@ -1,5 +1,5 @@
 export const SLIDER_TYPES = [
-  null,
+  [],
   [
     {
       url: "https://images.pexels.com/photos/6287283/pexels-photo-6287283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",

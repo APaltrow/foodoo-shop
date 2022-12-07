@@ -10,8 +10,6 @@ type URLParamsFN = (
   isASC: boolean
 ) => string;
 
-//@ts-ignore
-
 export const getFetchURLparams: URLParamsFN = (
   searchValue,
   activeCategory,
@@ -31,7 +29,7 @@ export const getFetchURLparams: URLParamsFN = (
     }
 
     if (activeCategory > 0 && activeCategory < 4) {
-      param.append("category", activeCategory);
+      param.append("category", `${activeCategory}`);
     }
   }
 
