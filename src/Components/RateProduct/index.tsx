@@ -1,17 +1,21 @@
 import { useState, useEffect, FC } from "react";
-import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 
 import { CustomModal, CustomIcon, CustomButton } from "..";
+import { generateIcon } from "../Icons/Icons";
 
 import { RATING_STATUSES } from "../../constants/RatingStatuses";
-import { generateIcon } from "../Icons/Icons";
+
 import {
   getSingleProductState,
   fetchRateProduct,
-} from "../../Redux/Slices/singleProductSlice";
-import { getAuthState } from "../../Redux/Slices/authSlice";
+  getAuthState,
+  useAppDispatch,
+  useAppSelector,
+} from "../../Redux";
+
+import { IReview } from "../../@types";
+
 import { useDate } from "../../Hooks/useDate";
-import { Review } from "../../Redux/Slices/cartSlice";
 
 import style from "./RateProduct.module.scss";
 
@@ -36,7 +40,7 @@ export const RateProduct: FC = () => {
     rating === 5 && setStatus(RATING_STATUSES[3]);
   };
   const onRateNow = () => {
-    const rewiews: Review[] = [
+    const rewiews: IReview[] = [
       {
         uid,
         ratingId: idWithDate,

@@ -6,12 +6,12 @@ import { CustomIcon } from "..";
 
 import style from "./Slider.module.scss";
 
-interface SliderProps {
+interface ISliderProps {
   imgURL: string;
   category: number;
 }
 
-export const Slider: FC<SliderProps> = ({ imgURL, category }) => {
+export const Slider: FC<ISliderProps> = ({ imgURL, category }) => {
   const ref = useRef<HTMLDivElement>(null);
   const items = [{ url: imgURL }, ...SLIDER_TYPES[category]];
 

@@ -1,15 +1,15 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import { generateIcon } from "../Icons/Icons";
 
 import style from "./Rating.module.scss";
 
-interface RatingProps {
+interface IRatingProps {
   rating: number;
   type?: string;
 }
 
-export const Rating: FC<RatingProps> = ({ rating, type }) => {
+export const Rating: FC<IRatingProps> = ({ rating, type }) => {
   return rating ? (
     <div className={type ? style[type] : style.rating}>
       {[...new Array(rating)].map((_, i) => (

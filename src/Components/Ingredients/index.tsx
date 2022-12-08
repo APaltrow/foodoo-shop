@@ -1,7 +1,8 @@
-import React, { useState, FC } from "react";
+import { useState, FC } from "react";
 
 import { SpecialOrder, CustomModal, CustomIcon, CustomButton } from "..";
-import { IActiveSizeWithDiscount } from "../../Hooks/useDiscount";
+import { IActiveSize } from "../../@types";
+
 import { GetSpecOrderType } from "../../Hooks/useProduct";
 
 import style from "./Ingredients.module.scss";
@@ -9,7 +10,7 @@ import style from "./Ingredients.module.scss";
 interface IngredientsProps {
   ingredients: string[];
   specialOrder: string[];
-  activeSize: IActiveSizeWithDiscount;
+  activeSize: IActiveSize;
 
   getSpecialOrder: GetSpecOrderType;
 }

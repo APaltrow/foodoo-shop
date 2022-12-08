@@ -1,7 +1,6 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 
-import { useAppSelector } from "../Hooks/storeHooks";
-import { getCartState } from "../Redux/Slices/cartSlice";
+import { getCartState, useAppSelector } from "../Redux";
 
 import { EmptyCart, Checkout, CartItems } from "../Components";
 

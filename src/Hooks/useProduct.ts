@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+
 import { useDiscount } from "./useDiscount";
 import { useGenerateLotID } from "./useGenerateLotID";
-import { addProducts } from "../Redux/Slices/cartSlice";
 
-import { IActiveSize, IActiveSizeWithDiscount } from "./useDiscount";
+import { addProducts, useAppDispatch } from "../Redux";
 
-interface useProductProps {
+import { ISize, ICartItem } from "../@types";
+
+interface IUseProductProps {
   id: string;
   imgURL: string;
   title: string;
@@ -18,23 +19,12 @@ interface useProductProps {
   discount?: number;
 
   ingredients: string[];
-  sizes: IActiveSize[];
+  sizes: ISize[];
   mySpecialOrder?: string[];
 }
 
-export type CartItem = {
-  id: string;
-  lot_id: string;
-  title: string;
-  imgURL: string;
-  count: number;
-
-  activeSize: IActiveSizeWithDiscount;
-  specialOrder: string[] | [];
-};
-
 export type GetSpecOrderType = (order: string[]) => void;
-export type ActiveSizeChangeType = (size: IActiveSize) => void;
+export type ActiveSizeChangeType = (size: ISize) => void;
 type AddProductType = () => void;
 
 export const useProduct = ({
@@ -49,9 +39,9 @@ export const useProduct = ({
   sizes,
   discount,
   mySpecialOrder,
-}: useProductProps) => {
+}: IUseProductProps) => {
   // Hooks here
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { calculatedActiveSize } = useDiscount();
   const { lotID } = useGenerateLotID();
 
@@ -70,7 +60,7 @@ export const useProduct = ({
   const getSpecialOrder: GetSpecOrderType = (order) => setSpecialOrder(order);
 
   const onAddProduct: AddProductType = () => {
-    const product: CartItem = {
+    const product: ICartItem = {
       title,
       id,
       lot_id: lotID(id, activeSize.size, specialOrder),

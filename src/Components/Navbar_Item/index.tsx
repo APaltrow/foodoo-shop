@@ -1,17 +1,20 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import { generateIcon } from "../Icons/Icons";
-import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
+
 import {
+  useAppDispatch,
+  useAppSelector,
   setSortCategory,
   getSortCategoryState,
-} from "../../Redux/Slices/sortCategory";
+} from "../../Redux";
 
 import style from "./NavbarItem.module.scss";
 
 export const NavbarItem: FC = () => {
-  const { activeCategory, NAVIGATION } = useAppSelector(getSortCategoryState);
   const dispatch = useAppDispatch();
+
+  const { activeCategory, NAVIGATION } = useAppSelector(getSortCategoryState);
 
   const setActiveCategory = (index: number) => dispatch(setSortCategory(index));
 

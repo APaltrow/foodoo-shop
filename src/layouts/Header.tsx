@@ -1,10 +1,10 @@
-import React, { FC } from "react";
-
-import { Profile, Logo, CustomIcon, Cart } from "../Components";
+import { FC } from "react";
 
 import { NavLink } from "react-router-dom";
-import { useAppDispatch } from "../Hooks/storeHooks";
-import { setLogOut } from "../Redux/Slices/authSlice";
+
+import { setLogOut, useAppDispatch } from "../Redux";
+
+import { Profile, Logo, CustomIcon, Cart } from "../Components";
 
 import style from "./Layouts.module.scss";
 

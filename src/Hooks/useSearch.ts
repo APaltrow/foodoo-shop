@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
+
 import { useDebounce } from "./useDebounce";
 import { useToggle } from "./useToggle";
-import { useAppDispatch, useAppSelector } from "./storeHooks";
+
 import {
+  useAppDispatch,
+  useAppSelector,
   setSearchValue,
   getSortCategoryState,
-} from "../Redux/Slices/sortCategory";
+} from "../Redux";
 
 export const useSearch = () => {
   const dispatch = useAppDispatch();
   const { searchValue } = useAppSelector(getSortCategoryState);
+
   const [value, setValue] = useState<string>("");
   const [debValue] = useDebounce(value, 600);
   const [isVisible, ref, toggle] = useToggle();
@@ -22,12 +26,14 @@ export const useSearch = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setValue(event.target.value);
+
   const onDismiss = () => setValue("");
 
   return {
     value,
     isVisible,
     ref,
+
     toggle,
     handleChange,
     onDismiss,

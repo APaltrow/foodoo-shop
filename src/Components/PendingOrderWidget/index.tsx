@@ -2,11 +2,12 @@ import { useState, useEffect, FC } from "react";
 
 import { Error, CustomIcon } from "..";
 
-import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 import {
   fetchDeliveredOrder,
   getOrderState,
-} from "../../Redux/Slices/orderSlice";
+  useAppDispatch,
+  useAppSelector,
+} from "../../Redux";
 
 import style from "./PendingOrder.module.scss";
 

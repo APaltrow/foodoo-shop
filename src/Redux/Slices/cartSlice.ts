@@ -1,63 +1,32 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CartItem } from "../../Hooks/useProduct";
+
 import { RootState } from "../store";
+import { ICartItem } from "../../@types";
 
-export type Size = {
-  size: string;
-  price: number;
-  weight: number;
-  nutrition: number;
-};
-export type Review = {
-  rating: number;
-  comment: string;
-
-  uid?: string;
-  ratingId?: number;
-  commenter?: string;
-  timestamp?: string;
-};
-
-export type Product = {
-  id: string;
-  title: string;
-  description: string;
-  imgURL: string;
-  category: number;
-  price: number;
-  discount?: number;
-  rating: number;
-  isVegitarian: boolean;
-
-  ingredients: string[];
-  sizes: Size[];
-  reviews: Review[];
-};
-
-// ==========!!! products to be reviewed
-
-type CartState = {
+interface ICartState {
   totalCount: number;
   totalCost: number;
   discount: number;
-  products: CartItem[];
-};
+  products: ICartItem[];
+}
 
-const initialState: CartState = {
+const initialState: ICartState = {
   totalCount: 0,
   totalCost: 0,
   discount: 0,
   products: [],
 };
 
-const calculateTotals = (state: CartState) => {
+const calculateTotals = (state: ICartState) => {
+  // Calculating total count
   state.totalCount = +state.products.reduce(
-    (res: number, val: CartItem) => res + val.count,
+    (res: number, val: ICartItem) => res + val.count,
     0
   );
+  // Calculating discount
   state.discount = +state.products
     .reduce(
-      (res: number, val: CartItem) =>
+      (res: number, val: ICartItem) =>
         res +
         (val.activeSize.savedOnDiscount
           ? val.activeSize.savedOnDiscount * val.count
@@ -65,9 +34,10 @@ const calculateTotals = (state: CartState) => {
       0
     )
     .toFixed(2);
+  // Calculating total Cost
   state.totalCost = +state.products
     .reduce(
-      (res: number, val: CartItem) =>
+      (res: number, val: ICartItem) =>
         res +
         (val.activeSize.discountedPrice
           ? val.activeSize.discountedPrice
@@ -82,7 +52,7 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addProducts: (state, action: PayloadAction<CartItem>) => {
+    addProducts: (state, action: PayloadAction<ICartItem>) => {
       const item = state.products.filter(
         (item) => item.lot_id === action.payload.lot_id
       );
@@ -97,14 +67,18 @@ export const cartSlice = createSlice({
       const item = state.products.filter(
         (item) => item.lot_id === action.payload
       );
+
       item[0].count++;
+
       calculateTotals(state);
     },
     minusProduct: (state, action: PayloadAction<string>) => {
       const item = state.products.filter(
         (item) => item.lot_id === action.payload
       );
+
       item[0].count--;
+
       calculateTotals(state);
     },
     removeProduct: (state, action: PayloadAction<string>) => {

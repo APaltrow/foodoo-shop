@@ -37,11 +37,13 @@ export const useCalendar = () => {
       return "depricated";
     }
   };
+
   return {
     date,
     year,
     month,
     day,
+
     setYear,
     setMonth,
     setDay,

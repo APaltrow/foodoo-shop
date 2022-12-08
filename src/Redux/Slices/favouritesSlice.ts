@@ -3,8 +3,8 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 import { FAVOURITES_URL } from "../../constants/Urls";
 import { RootState } from "../store";
-import { StatusList } from "./dishCards";
-import { IActiveSizeWithDiscount } from "../../Hooks/useDiscount";
+
+import { IFavourite, IState, StatusList } from "../../@types";
 
 export const fetchAddFavourites = createAsyncThunk<FetchAddFav, FetchAddFav>(
   "favourites/fetchAddFavourites",
@@ -17,48 +17,37 @@ export const fetchAddFavourites = createAsyncThunk<FetchAddFav, FetchAddFav>(
     return data;
   }
 );
-export const fetchFavourites = createAsyncThunk<Favourite[], string>(
+export const fetchFavourites = createAsyncThunk<IFavourite[], string>(
   "favourites/fetchFavourites",
   async (uid) => {
-    const { data }: { data: Favourite[] } = await axios.get(
+    const { data }: { data: IFavourite[] } = await axios.get(
       `${FAVOURITES_URL}?uid=${uid}`
     );
 
     return data;
   }
 );
-export const fetchDeleteFavourites = createAsyncThunk<Favourite, string>(
+export const fetchDeleteFavourites = createAsyncThunk<IFavourite, string>(
   "favourites/fetchDeleteFavourites",
   async (favId) => {
-    const { data }: { data: Favourite } = await axios.delete(
+    const { data }: { data: IFavourite } = await axios.delete(
       `${FAVOURITES_URL}/${favId}`
     );
 
     return data;
   }
 );
+
 type FetchAddFav = {
   uid: string;
-  favourites: Favourite;
-};
-type Favourite = {
-  id: string;
-  uid?: string;
-  favId?: string;
-
-  imgURL: string;
-  title: string;
-  specialOrder: string[];
-  size: IActiveSizeWithDiscount;
+  favourites: IFavourite;
 };
 
-type FavouritesState = {
-  favourites: Favourite[];
-  error: string;
-  status: StatusList;
-};
+interface IFavouritesState extends IState {
+  favourites: IFavourite[];
+}
 
-const initialState: FavouritesState = {
+const initialState: IFavouritesState = {
   favourites: [],
   status: StatusList.IDLE,
   error: "",
@@ -68,7 +57,7 @@ export const favouritesSlice = createSlice({
   name: "favourites",
   initialState,
   reducers: {
-    addFavourites: (state, action: PayloadAction<Favourite[]>) => {
+    addFavourites: (state, action: PayloadAction<IFavourite[]>) => {
       state.favourites = action.payload;
     },
   },
@@ -133,63 +122,3 @@ export const getFavouritesState = (state: RootState) => state.favouritesSlice;
 export const { addFavourites } = favouritesSlice.actions;
 
 export default favouritesSlice.reducer;
-
-{
-  /*  
-extraReducers: {
-   
-   
-    [fetchDeleteFavourites.pending]: (state) => {
-      state.status = "pending";
-      state.error = "";
-    },
-    [fetchDeleteFavourites.fulfilled]: (state, action) => {
-      state.favourites = state.favourites.filter(
-        (fav) => fav.favId !== action.payload.id
-      );
-
-      state.status = "success";
-    },
-    [fetchDeleteFavourites.rejected]: (state, action) => {
-      state.favourites = [];
-      state.error = action.error.message;
-
-      state.status = "error";
-    },
-  },
-[fetchAddFavourites.pending]: (state) => {
-      state.status = "pending";
-      state.error = "";
-      state.favourites = [];
-    },
-    [fetchAddFavourites.fulfilled]: (state) => {
-      state.status = "success";
-    },
-    [fetchAddFavourites.rejected]: (state, action) => {
-      state.favourites = [];
-      state.error = action.error.message;
-
-      state.status = "error";
-    },
-    [fetchFavourites.pending]: (state) => {
-      state.status = "pending";
-      state.error = "";
-      state.favourites = [];
-    }, 
-   [fetchFavourites.fulfilled]: (state, action) => {
-      state.favourites = action.payload.map((favourite) => ({
-        ...favourite.favourites,
-        favId: favourite.id,
-      }));
-      state.status = "success";
-    },
-    [fetchFavourites.rejected]: (state, action) => {
-      state.favourites = [];
-      state.error = action.error.message;
-
-      state.status = "error";
-    },
-  
-  
-  */
-}

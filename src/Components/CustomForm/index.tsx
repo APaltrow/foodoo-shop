@@ -1,15 +1,15 @@
-import React, { FC } from "react";
+import { FC } from "react";
+import { Link } from "react-router-dom";
 
 import { Loader, Error, CustomInput, CustomIcon, CustomButton } from "..";
 
-import { useAppDispatch } from "../../Hooks/storeHooks";
-import { Link } from "react-router-dom";
+import { fetchLogedInUser, useAppDispatch } from "../../Redux";
 
-import { fetchLogedInUser } from "../../Redux/Slices/authSlice";
 import { useForm } from "../../Hooks/useForm";
 
 import style from "./CustomForm.module.scss";
 
+// refactor-fix ! consider enum for types of forms ||  type: string => ENUM
 interface CustomFormProps {
   type: string;
   title: string;
@@ -52,7 +52,7 @@ export const CustomForm: FC<CustomFormProps> = ({ type, title, btn }) => {
       )}
 
       {status === "pending" && <Loader />}
-      {formError && <Error error={formError} />}
+      {formError && <Error error={`${formError}`} />}
 
       {inputs.map((input) => (
         <CustomInput

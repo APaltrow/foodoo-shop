@@ -1,9 +1,13 @@
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 
 import { Navigate, Outlet } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../Hooks/storeHooks";
 
-import { getAuthState, fetchLogedInUser } from "../Redux/Slices/authSlice";
+import {
+  getAuthState,
+  fetchLogedInUser,
+  useAppDispatch,
+  useAppSelector,
+} from "../Redux";
 
 export const AuthRequired: FC = () => {
   const dispatch = useAppDispatch();

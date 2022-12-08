@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import {
   Slider,
@@ -14,14 +14,14 @@ import {
   Count,
   AddFavourite,
 } from "..";
+import { IProduct } from "../../@types";
 
 import { useProduct } from "../../Hooks/useProduct";
-import { Product } from "../../Redux/Slices/cartSlice";
 
 import style from "./SingleProduct.module.scss";
 
 interface SingleProductProps {
-  singleProduct: Product;
+  singleProduct: IProduct;
 }
 
 export const SingleProduct: FC<SingleProductProps> = ({ singleProduct }) => {

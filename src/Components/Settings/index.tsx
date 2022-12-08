@@ -1,7 +1,6 @@
 import { useState, useEffect, FC } from "react";
 
-import { getAuthState } from "../../Redux/Slices/authSlice";
-import { useAppSelector } from "../../Hooks/storeHooks";
+import { getAuthState, useAppSelector } from "../../Redux";
 
 import { Error, CustomIcon, CustomForm, CustomButton } from "..";
 

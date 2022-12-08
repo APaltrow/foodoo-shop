@@ -1,11 +1,15 @@
 import { useState, FC } from "react";
-import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 
-import { fetchAddFavourites } from "../../Redux/Slices/favouritesSlice";
-import { getAuthState } from "../../Redux/Slices/authSlice";
+import {
+  getAuthState,
+  fetchAddFavourites,
+  useAppDispatch,
+  useAppSelector,
+} from "../../Redux";
 
 import { CustomModal, CustomIcon, CustomButton } from "..";
-import { IActiveSizeWithDiscount } from "../../Hooks/useDiscount";
+
+import { IActiveSize } from "../../@types";
 
 import style from "./AddFavourite.module.scss";
 
@@ -14,7 +18,7 @@ interface AddFavouriteProps {
   id: string;
   title: string;
   specialOrder: string[];
-  size: IActiveSizeWithDiscount;
+  size: IActiveSize;
 }
 
 export const AddFavourite: FC<AddFavouriteProps> = ({

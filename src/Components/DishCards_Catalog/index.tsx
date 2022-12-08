@@ -1,4 +1,15 @@
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
+
+import { getFetchURLparams } from "../../Helpers/getFetchURLparams";
+
+import {
+  getSortCategoryState,
+  setTotalPages,
+  useAppDispatch,
+  useAppSelector,
+  getDishCardsState,
+  fetchDishCards,
+} from "../../Redux";
 
 import {
   Paggination,
@@ -8,17 +19,6 @@ import {
   DishCardSkeleton,
   DishCardItem,
 } from "..";
-
-import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
-import {
-  getSortCategoryState,
-  setTotalPages,
-} from "../../Redux/Slices/sortCategory";
-import {
-  getDishCardsState,
-  fetchDishCards,
-} from "../../Redux/Slices/dishCards";
-import { getFetchURLparams } from "../../Helpers/getFetchURLparams";
 
 import style from "./DishCardsCatalog.module.scss";
 

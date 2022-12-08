@@ -1,10 +1,10 @@
 import React, { FC, useState, useEffect } from "react";
 
-import { Footer, Header } from ".";
-import { ScrollTop } from "../Components";
+import { useAppSelector, getAuthState } from "../Redux";
 
-import { useAppSelector } from "../Hooks/storeHooks";
-import { getAuthState } from "../Redux/Slices/authSlice";
+import { Footer, Header } from ".";
+
+import { ScrollTop } from "../Components";
 
 import style from "./Layouts.module.scss";
 

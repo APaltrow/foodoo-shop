@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Dropdown, CustomIcon } from "..";
 
 import { SETTINGS } from "../../constants/Settings";
 
-import { useNavigate } from "react-router-dom";
 import { useToggle } from "../../Hooks/useToggle";
 
 import style from "./Profile.module.scss";

@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { generateIcon } from "../Icons/Icons";
-import { useNavigate } from "react-router-dom";
 
 import style from "./CustomButton.module.scss";
 
@@ -26,7 +26,9 @@ export const CustomButton: FC<CustomButtonProps> = ({
   const navigation = useNavigate();
   const onClickBack = () => navigation(-1);
   const onClick = () => {
-    if (action) action(id);
+    if (action) {
+      action(id);
+    }
   };
 
   if (type === "goBack") {

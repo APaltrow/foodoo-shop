@@ -1,5 +1,13 @@
 import { FC, useEffect } from "react";
 
+import {
+  getAuthState,
+  fetchFavourites,
+  getFavouritesState,
+  useAppDispatch,
+  useAppSelector,
+} from "../Redux";
+
 import { PageLayout } from "../layouts";
 import {
   NotificationToast,
@@ -8,13 +16,6 @@ import {
   Error,
   PageLoader,
 } from "../Components";
-
-import {
-  fetchFavourites,
-  getFavouritesState,
-} from "../Redux/Slices/favouritesSlice";
-import { getAuthState } from "../Redux/Slices/authSlice";
-import { useAppDispatch, useAppSelector } from "../Hooks/storeHooks";
 
 const Favourites: FC = () => {
   const { uid } = useAppSelector(getAuthState).user;
@@ -30,6 +31,7 @@ const Favourites: FC = () => {
   return (
     <>
       <NotificationToast message={"In the cart !"} type={"cart"} />
+
       <PageLayout
         title={"My Favourites"}
         img={"favourites"}
@@ -37,6 +39,7 @@ const Favourites: FC = () => {
       >
         {status === "pending" && <PageLoader />}
         {error && <Error error={error} />}
+
         {status === "success" &&
           (favourites.length ? (
             favourites.map((favourite, index) => (

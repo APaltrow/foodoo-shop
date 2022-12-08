@@ -1,12 +1,14 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import { generateIcon } from "../Icons/Icons";
 
 import style from "./Error.module.scss";
 
-type ErrorTypes = { error: string };
+interface IErrorProps {
+  error: string;
+}
 
-export const Error: FC<ErrorTypes> = ({ error }) => {
+export const Error: FC<IErrorProps> = ({ error }) => {
   return (
     <div className={style.error}>
       {generateIcon("error")}

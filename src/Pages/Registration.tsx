@@ -1,11 +1,9 @@
-import React, { FC } from "react";
+import { FC } from "react";
+import { Navigate } from "react-router-dom";
+
+import { useAppSelector, getAuthState } from "../Redux/";
 
 import { CustomForm } from "../Components";
-
-import { Navigate } from "react-router-dom";
-import { getAuthState } from "../Redux/Slices/authSlice";
-
-import { useAppSelector } from "../Hooks/storeHooks";
 
 const Registration: FC = () => {
   const { isAuth } = useAppSelector(getAuthState);

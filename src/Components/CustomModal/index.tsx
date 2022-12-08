@@ -7,6 +7,7 @@ import style from "./CustomModal.module.scss";
 interface CustomModalProps {
   children: React.ReactNode;
   visible: boolean;
+
   handleModal: (arg: boolean) => void;
 }
 

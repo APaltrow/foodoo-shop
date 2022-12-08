@@ -1,19 +1,22 @@
 import { useCallback, useEffect, FC } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 
-import { getCartState, clearCart } from "../../Redux/Slices/cartSlice";
-import { getAuthState } from "../../Redux/Slices/authSlice";
+import { useNavigate } from "react-router-dom";
+
 import {
+  useAppDispatch,
+  useAppSelector,
+  getCartState,
+  clearCart,
+  getAuthState,
   getCheckoutState,
   setOrder,
   fetchOrder,
   setCancelOrder,
   setStatus,
-  Check,
-} from "../../Redux/Slices/checkoutSlice";
+} from "../../Redux";
 
 import { useDate } from "../../Hooks/useDate";
+import { IOrderCheck } from "../../@types";
 
 import { PageLayout } from "../../layouts";
 import {
@@ -44,7 +47,7 @@ export const Checkout: FC<CheckoutProps> = ({ onCancel }) => {
   const { order, status, error } = useAppSelector(getCheckoutState);
 
   const getOrder = useCallback(() => {
-    const ordercheck: Check[] = [];
+    const ordercheck: IOrderCheck[] = [];
     products.map((product) =>
       ordercheck.push({
         title: product.title,

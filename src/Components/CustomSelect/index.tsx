@@ -1,7 +1,10 @@
 import { useState, useEffect, FC } from "react";
+
 import { useToggle } from "../../Hooks/useToggle";
 import { useCalendar } from "../../Hooks/useCalendar";
+
 import { SELECT_TYPES } from "../../constants/SelectTypes";
+
 import { CustomIcon } from "..";
 
 import style from "./CustomSelect.module.scss";
@@ -15,11 +18,12 @@ export enum SelectTypes {
   HOURS = "hours",
   DAYPART = "dayPart",
 }
-//Consider setting calendar as a separate comp
+//  refactor-fix Consider setting calendar as a separate comp
 
 //@ts-ignore
 interface SelectProps {
   type: SelectTypes;
+
   getData: (type: string, credentials: string | number) => void;
 }
 

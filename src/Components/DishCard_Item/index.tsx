@@ -1,29 +1,14 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import { useProduct } from "../../Hooks/useProduct";
+import { IProduct } from "../../@types";
 
 import { Sizes, Rating, IMG, Discount, CustomButton, Count } from "..";
 
 import style from "./DishCard_Item.module.scss";
-import { IActiveSize } from "../../Hooks/useDiscount";
 
 interface DishCardItemProps {
-  data: {
-    id: string;
-    imgURL: string;
-    title: string;
-    price: number;
-    rating: number;
-    category: number;
-    description: string;
-
-    discount?: number;
-    isVegitarian: boolean;
-
-    ingredients: string[];
-    reviews: object[];
-    sizes: IActiveSize[];
-  };
+  data: IProduct;
 }
 
 export const DishCardItem: FC<DishCardItemProps> = ({ data }) => {

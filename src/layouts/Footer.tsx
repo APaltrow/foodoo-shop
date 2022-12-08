@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import { FC } from "react";
+
 import { CustomIcon } from "../Components";
 
 import style from "./Layouts.module.scss";

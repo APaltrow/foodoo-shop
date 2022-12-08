@@ -3,24 +3,30 @@ import { SORT, ISort } from "../../constants/Sort";
 import { NAVIGATION, INatigation } from "../../constants/Navigation";
 import { RootState } from "../store";
 
-type SortState = {
+interface ISortState {
   activeCategory: number;
   sortBy: number;
   isASC: boolean;
+
   searchValue: string;
+
   activePage: number;
   totalPages: number;
+
   NAVIGATION: INatigation[];
   SORT: ISort[];
-};
+}
 
-const initialState: SortState = {
+const initialState: ISortState = {
   activeCategory: 0,
   sortBy: 0,
   isASC: false,
+
   searchValue: "",
+
   activePage: 1,
   totalPages: 0,
+
   NAVIGATION,
   SORT,
 };
@@ -48,6 +54,7 @@ export const sortCategorySlice = createSlice({
     },
     setTotalPages: (state, action: PayloadAction<number>) => {
       state.totalPages = Math.ceil(action.payload / 4);
+
       if (state.activePage < 1) {
         state.activePage = 1;
       }

@@ -1,12 +1,13 @@
 import { useState, useEffect, FC } from "react";
 
-import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
 import {
   getOrderState,
   fetchOrdersList,
-  Order,
-} from "../../Redux/Slices/orderSlice";
-import { getAuthState } from "../../Redux/Slices/authSlice";
+  useAppDispatch,
+  useAppSelector,
+  getAuthState,
+} from "../../Redux";
+import { IOrder } from "../../@types";
 
 import { Error, CustomModal } from "..";
 
@@ -19,7 +20,7 @@ export const RecentOrders: FC = () => {
 
   const { id } = useAppSelector(getAuthState).user;
 
-  const [viewOrder, setViewOrder] = useState<Order | null>(null);
+  const [viewOrder, setViewOrder] = useState<IOrder | null>(null);
 
   const onViewOrder = (index: number) => setViewOrder(ordersList[index]);
   const handleModal = (e: boolean) => {
@@ -48,7 +49,7 @@ export const RecentOrders: FC = () => {
           </thead>
           <tbody>
             {ordersList.map((order, i) => (
-              <tr key={order.orderId + i + 1} onClick={() => onViewOrder(i)}>
+              <tr key={order.orderId || i + 3} onClick={() => onViewOrder(i)}>
                 <td>{order.orderDate}</td>
                 <td>{order.orderId}</td>
                 <td>{order.deliveryAddress}</td>
@@ -111,14 +112,16 @@ export const RecentOrders: FC = () => {
         )}
         {viewOrder && (
           <ul className={style.check_list}>
-            {viewOrder.ordercheck.map((item, i) => (
-              <li key={item.title + i}>
-                {`${item.title}, ${item.size}, x${
-                  item.count
-                } ...$${item.price.toFixed(2)} /`}
-                <small>{`${item.specialOrder}`}</small>
-              </li>
-            ))}
+            {viewOrder && viewOrder.ordercheck
+              ? viewOrder.ordercheck.map((item, i) => (
+                  <li key={item.title + i}>
+                    {`${item.title}, ${item.size}, x${
+                      item.count
+                    } ...$${item.price.toFixed(2)} /`}
+                    <small>{`${item.specialOrder}`}</small>
+                  </li>
+                ))
+              : null}
             <li>
               <b>Total due :</b> $ {viewOrder.totalCost}
             </li>

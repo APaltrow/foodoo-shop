@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { RecentOrders, PendingOrderWidget } from "../Components";
 
+import { RecentOrders, PendingOrderWidget } from "../Components";
 import { PageLayout } from "../layouts";
 
 const MyOrders: FC = () => {

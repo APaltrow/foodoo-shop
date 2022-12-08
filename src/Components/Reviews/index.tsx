@@ -1,11 +1,12 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 
-import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
-import { getAuthState } from "../../Redux/Slices/authSlice";
 import {
   getSingleProductState,
   fetchRateProduct,
-} from "../../Redux/Slices/singleProductSlice";
+  getAuthState,
+  useAppDispatch,
+  useAppSelector,
+} from "../../Redux";
 
 import { Rating, Loader, CustomIcon, CustomButton } from "..";
 

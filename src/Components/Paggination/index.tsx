@@ -1,8 +1,10 @@
 import { FC, useEffect } from "react";
-import { generateIcon } from "../Icons/Icons";
-import { useAppDispatch } from "../../Hooks/storeHooks";
-import { setActivePage } from "../../Redux/Slices/sortCategory";
+
 import { usePaggination } from "../../Hooks/usePaggination";
+
+import { setActivePage, useAppDispatch } from "../../Redux";
+
+import { generateIcon } from "../Icons/Icons";
 
 import style from "./Paggination.module.scss";
 

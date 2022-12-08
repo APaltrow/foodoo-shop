@@ -1,19 +1,6 @@
-export interface IActiveSize {
-  size: string;
-  price: number;
-  weight: number;
-  nutrition: number;
-}
+import { IActiveSize, ISize } from "../@types";
 
-export interface IActiveSizeWithDiscount extends IActiveSize {
-  discountedPrice: number | null;
-  savedOnDiscount: number | null;
-}
-
-type CalculationType = (
-  activeS: IActiveSize,
-  discount?: number
-) => IActiveSizeWithDiscount;
+type CalculationType = (activeS: ISize, discount?: number) => IActiveSize;
 
 export const useDiscount = () => {
   const calculatedActiveSize: CalculationType = (activeS, discount) => {

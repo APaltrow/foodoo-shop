@@ -1,6 +1,8 @@
-import React, { FC } from "react";
-import { CustomIcon } from "..";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { CustomIcon } from "..";
+
 import { useCurrentProductCount } from "../../Hooks/useCurrentProductCount";
 
 import style from "./Count.module.scss";

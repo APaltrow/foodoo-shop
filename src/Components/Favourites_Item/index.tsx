@@ -1,34 +1,25 @@
 import { FC } from "react";
 
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../Hooks/storeHooks";
+
+import { fetchDeleteFavourites, useAppDispatch } from "../../Redux";
+import { IFavourite } from "../../@types";
 
 import { useProduct } from "../../Hooks/useProduct";
-import { fetchDeleteFavourites } from "../../Redux/Slices/favouritesSlice";
-import { IActiveSizeWithDiscount } from "../../Hooks/useDiscount";
 
 import { IMG, CustomIcon, CustomButton } from "..";
 
 import style from "./FavouritesItem.module.scss";
 
-interface FavouritesItemProps {
-  favourite: {
-    id: string;
-    imgURL: string;
-    specialOrder: string[] | [];
-    title: string;
-    size: IActiveSizeWithDiscount;
-    favId: string;
-  };
+interface IFavouritesItemProps {
+  favourite: IFavourite;
 }
 
-export const FavouritesItem: FC<FavouritesItemProps> = ({ favourite }) => {
-  //@ts-ignore
+export const FavouritesItem: FC<IFavouritesItemProps> = ({ favourite }) => {
   const navigate = useNavigate(1);
   const dispatch = useAppDispatch();
   const { id, imgURL, specialOrder, title, size, favId } = favourite;
 
-  //@ts-ignore
   const { onAddProduct } = useProduct({
     id,
     imgURL,

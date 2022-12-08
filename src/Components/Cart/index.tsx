@@ -1,9 +1,8 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import { CustomIcon } from "..";
 
-import { useAppSelector } from "../../Hooks/storeHooks";
-import { getCartState } from "../../Redux/Slices/cartSlice";
+import { getCartState, useAppSelector } from "../../Redux";
 
 import style from "./Cart.module.scss";
 

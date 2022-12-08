@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-import { useAppDispatch, useAppSelector } from "./storeHooks";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -11,35 +10,37 @@ import {
   fetchUpdateAddress,
   fetchEditProfile,
   fetchChangePassword,
-} from "../Redux/Slices/authSlice";
+  useAppDispatch,
+  useAppSelector,
+} from "../Redux";
 
-type LoginCredentials = {
+interface LoginCredentials {
   email: string;
   password: string;
-};
+}
 
-export type RegisterCredentials = {
+export interface RegisterCredentials {
   email: string;
   password: string;
   firstname: string;
   lastname: string;
   phone: string;
-};
-export type UpdateAddressCredentials = {
+}
+export interface UpdateAddressCredentials {
   city: string;
   street: string;
   "house-number": string;
-};
-export type EditProfileCredentials = {
+}
+export interface EditProfileCredentials {
   firstname: string;
   lastname: string;
   phone: string;
-};
-export type ChangePasswordCredentials = {
+}
+export interface ChangePasswordCredentials {
   old_password: string;
   new_password: string;
   new_repeat_password: string;
-};
+}
 
 type LoginFN = (credentials: LoginCredentials) => void;
 type RegisterFN = (credentials: RegisterCredentials) => void;
@@ -54,7 +55,7 @@ const useAuthentication = (type: string) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [formError, setError] = useState(error);
+  const [formError, setError] = useState<string | boolean>(error);
 
   const login: LoginFN = async (credentials) => {
     const { payload } = await dispatch(fetchCheckUser(credentials.email));
@@ -72,6 +73,7 @@ const useAuthentication = (type: string) => {
 
   const register: RegisterFN = async (credentials) => {
     const { payload } = await dispatch(fetchCheckUser(credentials.email));
+
     if (payload.length) {
       setError("Please try a different Email");
     } else {

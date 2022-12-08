@@ -1,13 +1,14 @@
 import React, { FC, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import { SingleProduct, Error, DishCardSkeleton } from "../Components";
 
-import { useParams } from "react-router-dom";
 import {
+  useAppDispatch,
+  useAppSelector,
   getSingleProductState,
   fetchSingleProduct,
-} from "../Redux/Slices/singleProductSlice";
-import { useAppDispatch, useAppSelector } from "../Hooks/storeHooks";
+} from "../Redux";
 
 const ProductPage: FC = () => {
   const dispatch = useAppDispatch();

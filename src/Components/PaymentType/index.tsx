@@ -1,12 +1,12 @@
 import { useRef, useState, useEffect, FC } from "react";
 
-import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
-
 import {
   getCheckoutState,
   setPaymentType,
   setPaymentStatus,
-} from "../../Redux/Slices/checkoutSlice";
+  useAppDispatch,
+  useAppSelector,
+} from "../../Redux";
 
 import { Error, CustomSelect, CustomInput, CustomButton } from "..";
 import { SelectTypes } from "..";
@@ -22,6 +22,7 @@ type FormType = (e: React.FormEvent<EventTarget>) => void;
 
 export const PaymentType: FC<PaymentTypeProps> = ({ fname, lname }) => {
   const dispatch = useAppDispatch();
+
   const paymentFormRef = useRef<HTMLFormElement>(null);
 
   const [validCredentials, setValidCredentials] = useState<boolean | string>(

@@ -1,7 +1,11 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
-import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
-import { getCartState, clearCart } from "../../Redux/Slices/cartSlice";
+import {
+  getCartState,
+  clearCart,
+  useAppDispatch,
+  useAppSelector,
+} from "../../Redux";
 
 import { CustomButton, CartItem } from "..";
 import { PageLayout } from "../../layouts";
@@ -19,8 +23,9 @@ export const CartItems: FC<ICartCatalog> = ({ checkout }) => {
     useAppSelector(getCartState);
 
   const onClearCart = () => {
-    window.confirm("Are you sure you want to clear your orders?") &&
+    if (window.confirm("Are you sure you want to clear your orders?")) {
       dispatch(clearCart());
+    }
   };
   const onCheckout = () => {
     checkout(true);

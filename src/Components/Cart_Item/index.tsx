@@ -1,38 +1,17 @@
-import React, { FC } from "react";
-import { useAppDispatch } from "../../Hooks/storeHooks";
-
-import { IMG, CustomIcon, CustomButton } from "..";
+import { FC } from "react";
 
 import {
+  useAppDispatch,
   removeProduct,
   plusProduct,
   minusProduct,
-} from "../../Redux/Slices/cartSlice";
+} from "../../Redux";
+
+import { ICartItem } from "../../@types";
+
+import { IMG, CustomIcon, CustomButton } from "..";
 
 import style from "./CartItem.module.scss";
-import { IActiveSizeWithDiscount } from "../../Hooks/useDiscount";
-
-{
-  /*export interface IActiveSize {
-  discountedPrice: number | null;
-  savedOnDiscount: number | null;
-  nutrition: number;
-  price: number;
-  weight: number;
-  size: string;
-}*/
-}
-
-export interface ICartItem {
-  id: string;
-  lot_id: string;
-  imgURL: string;
-  title: string;
-  count: number;
-
-  activeSize: IActiveSizeWithDiscount;
-  specialOrder: string[];
-}
 
 interface ICartItemProps {
   data: ICartItem;

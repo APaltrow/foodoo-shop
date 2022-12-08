@@ -2,14 +2,14 @@ import { useState, useEffect, FC } from "react";
 
 import { CustomSelect } from "..";
 import { SelectTypes } from "..";
-import { Preorder } from "../../Redux/Slices/checkoutSlice";
-
-import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
+import { IPreorder } from "../../@types";
 
 import {
   getCheckoutState,
   setPreOrder,
-} from "../../Redux/Slices/checkoutSlice";
+  useAppDispatch,
+  useAppSelector,
+} from "../../Redux";
 
 import style from "./PreOrder.module.scss";
 
@@ -19,7 +19,7 @@ export const PreOrder: FC = () => {
   const { order } = useAppSelector(getCheckoutState);
 
   const preorder = order?.preorder;
-  const [data, setData] = useState<Preorder>({
+  const [data, setData] = useState<IPreorder>({
     hours: null,
     dayPart: null,
     calendar: null,

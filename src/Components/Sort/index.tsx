@@ -1,15 +1,17 @@
-import React, { FC } from "react";
+import { FC } from "react";
+
+import { useToggle } from "../../Hooks/useToggle";
 
 import { generateIcon } from "../Icons/Icons";
-import { useToggle } from "../../Hooks/useToggle";
-import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
+import { Dropdown } from "..";
+
 import {
   setSortBy,
   setIsASC,
   getSortCategoryState,
-} from "../../Redux/Slices/sortCategory";
-
-import { Dropdown } from "..";
+  useAppDispatch,
+  useAppSelector,
+} from "../../Redux";
 
 import style from "./Sort.module.scss";
 
