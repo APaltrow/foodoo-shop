@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
+import { IUser } from "../@types";
 
 import {
   getAuthState,
@@ -12,67 +13,49 @@ import {
   fetchChangePassword,
   useAppDispatch,
   useAppSelector,
+  UpdateAddress,
+  EditProfile,
+  ChangePassword,
 } from "../Redux";
 
-interface LoginCredentials {
-  email: string;
-  password: string;
+export type Credentials = Record<string, string>;
+
+type AuthFN = (arg: Credentials) => void;
+
+interface IPayloadType {
+  payload: IUser[];
 }
 
-export interface RegisterCredentials {
-  email: string;
-  password: string;
-  firstname: string;
-  lastname: string;
-  phone: string;
-}
-export interface UpdateAddressCredentials {
-  city: string;
-  street: string;
-  "house-number": string;
-}
-export interface EditProfileCredentials {
-  firstname: string;
-  lastname: string;
-  phone: string;
-}
-export interface ChangePasswordCredentials {
-  old_password: string;
-  new_password: string;
-  new_repeat_password: string;
-}
-
-type LoginFN = (credentials: LoginCredentials) => void;
-type RegisterFN = (credentials: RegisterCredentials) => void;
-type UpdateAddressFN = (credentials: UpdateAddressCredentials) => void;
-type EditProfileFN = (credentials: EditProfileCredentials) => void;
-type ChangePasswordFN = (credentials: ChangePasswordCredentials) => void;
-
-//@ts-ignore
-
-const useAuthentication = (type: string) => {
+export const useAuthentication = (type: string) => {
   const { user, status, error } = useAppSelector(getAuthState);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [formError, setError] = useState<string | boolean>(error);
 
-  const login: LoginFN = async (credentials) => {
-    const { payload } = await dispatch(fetchCheckUser(credentials.email));
+  const login: AuthFN = async (credentials) => {
+    //@ts-ignore
+    const { payload }: IPayloadType = await dispatch(
+      fetchCheckUser(credentials.email)
+    );
 
     if (
       payload.length &&
       payload[0].password === credentials.password &&
       payload[0].email === credentials.email
     ) {
+      localStorage.setItem("userId", `${payload[0].id}`);
       dispatch(setUser(payload[0]));
     } else {
       setError("Incorrect credentials");
     }
   };
 
-  const register: RegisterFN = async (credentials) => {
-    const { payload } = await dispatch(fetchCheckUser(credentials.email));
+  const register: AuthFN = async (credentials) => {
+    //@ts-ignore
+    const { payload }: IPayloadType = await dispatch(
+      fetchCheckUser(credentials.email)
+    );
 
     if (payload.length) {
       setError("Please try a different Email");
@@ -84,15 +67,22 @@ const useAuthentication = (type: string) => {
     }
   };
 
-  const updateAddress: UpdateAddressFN = (credentials) => {
-    dispatch(fetchUpdateAddress({ id: user.id, address: { ...credentials } }));
+  const updateAddress: AuthFN = (credentials) => {
+    dispatch(
+      fetchUpdateAddress({
+        id: user.id,
+        address: { ...credentials },
+      } as UpdateAddress)
+    );
   };
 
-  const editProfile: EditProfileFN = (credentials) => {
-    dispatch(fetchEditProfile({ id: user.id, profile: credentials }));
+  const editProfile: AuthFN = (credentials) => {
+    dispatch(
+      fetchEditProfile({ id: user.id, profile: credentials } as EditProfile)
+    );
   };
 
-  const changePassword: ChangePasswordFN = (credentials) => {
+  const changePassword: AuthFN = (credentials) => {
     if (
       credentials["old_password"] === user.password &&
       credentials["new_password"] === credentials["new_repeat_password"]
@@ -101,14 +91,14 @@ const useAuthentication = (type: string) => {
         fetchChangePassword({
           id: user.id,
           password: { password: credentials["new_password"] },
-        })
+        } as ChangePassword)
       );
     } else {
       setError("Credentials do not match");
     }
   };
 
-  const authenticate = (credentials) => {
+  const authenticate: AuthFN = (credentials) => {
     switch (type) {
       case "registration":
         register(credentials);
@@ -147,5 +137,3 @@ const useAuthentication = (type: string) => {
     authenticate,
   };
 };
-
-export default useAuthentication;

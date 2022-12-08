@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { SingleProduct, Error, DishCardSkeleton } from "../Components";
@@ -26,7 +26,9 @@ const ProductPage: FC = () => {
   if (status === "error") return <Error error={error} />;
   if (status === "pending") return <DishCardSkeleton type="big" />;
   if (status === "success" || status === "pending-rate") {
-    return <SingleProduct singleProduct={singleProduct} />;
+    return singleProduct ? (
+      <SingleProduct singleProduct={singleProduct} />
+    ) : null;
   } else {
     return null;
   }

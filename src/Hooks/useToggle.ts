@@ -2,13 +2,20 @@ import { useState, useRef, useEffect } from "react";
 
 //@ts-ignore
 
-type ToggleType = () => [boolean, React.RefObject<HTMLElement>, () => void];
+//type RefElement = HTMLDivElement | HTMLLabelElement;
+
+type RefType = React.RefObject<HTMLDivElement>;
+
+type ToggleFN = () => void;
+
+type ToggleType = () => [boolean, RefType, ToggleFN];
 
 export const useToggle: ToggleType = () => {
   const [isVisible, setVisible] = useState<boolean>(false);
-  const ref = useRef<HTMLElement>(null);
 
-  const toggle = () => setVisible(!isVisible);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const toggle: ToggleFN = () => setVisible(!isVisible);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

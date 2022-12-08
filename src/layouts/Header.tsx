@@ -12,8 +12,10 @@ export const Header: FC = () => {
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
-    window.confirm("Are you sure you would like to log out?") &&
+    if (window.confirm("Are you sure you would like to log out?")) {
+      localStorage.clear();
       dispatch(setLogOut());
+    }
   };
 
   return (

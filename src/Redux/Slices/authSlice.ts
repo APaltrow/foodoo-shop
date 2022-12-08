@@ -4,45 +4,41 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { USERS_URL } from "../../constants/Urls";
 import { RootState } from "../store";
 
-import {
-  EditProfileCredentials,
-  RegisterCredentials,
-  UpdateAddressCredentials,
-} from "../../Hooks/useAuthentication";
+import { Credentials } from "../../Hooks/useAuthentication";
 import { IState, IUser, StatusList } from "../../@types";
 
-export const fetchCheckUser = createAsyncThunk<IUser, string>(
+export const fetchCheckUser = createAsyncThunk<IUser[], string>(
   "auth/fetchCheckUser",
   async (credentials) => {
-    const { data } = await axios.get(`${USERS_URL}?email=${credentials}`);
+    const { data } = await axios.get<IUser[]>(
+      `${USERS_URL}?email=${credentials}`
+    );
 
     return data;
   }
 );
-export const fetchLogedInUser = createAsyncThunk<IUser, string>(
+export const fetchLogedInUser = createAsyncThunk<IUser[], string>(
   "auth/fetchLogedInUser",
   async (uid) => {
-    const { data }: { data: IUser[] } = await axios.get(
-      `${USERS_URL}?id=${uid}`
-    );
-    return data[0];
+    const { data } = await axios.get<IUser[]>(`${USERS_URL}?id=${uid}`);
+    return data;
   }
 );
-export const fetchRegisterUser = createAsyncThunk<IUser, RegisterCredentials>(
+export const fetchRegisterUser = createAsyncThunk<IUser[], Credentials>(
   "auth/fetchRegisterUser",
   async (credentials) => {
-    const { data }: { data: IUser } = await axios.post(USERS_URL, credentials);
+    const { data } = await axios.post<IUser[]>(USERS_URL, credentials);
 
     return data;
   }
 );
-export const fetchUpdateAddress = createAsyncThunk<IUser, UpdateAddress>(
+export const fetchUpdateAddress = createAsyncThunk<IUser[], UpdateAddress>(
   "auth/fetchUpdateAddress",
   async (credentials) => {
     const { id, address } = credentials;
     const updatedAddress = { address: { ...address } };
 
-    const { data }: { data: IUser } = await axios.put(
+    const { data } = await axios.put<IUser[]>(
       `${USERS_URL}/${id}`,
       updatedAddress
     );
@@ -50,49 +46,43 @@ export const fetchUpdateAddress = createAsyncThunk<IUser, UpdateAddress>(
     return data;
   }
 );
-export const fetchEditProfile = createAsyncThunk<IUser, EditProfile>(
+export const fetchEditProfile = createAsyncThunk<IUser[], EditProfile>(
   "auth/fetchEditProfile",
   async (credentials) => {
     const { id, profile } = credentials;
 
-    const { data }: { data: IUser } = await axios.put(
-      `${USERS_URL}/${id}`,
-      profile
-    );
+    const { data } = await axios.put<IUser[]>(`${USERS_URL}/${id}`, profile);
 
     return data;
   }
 );
-export const fetchChangePassword = createAsyncThunk<IUser, ChangePassword>(
+export const fetchChangePassword = createAsyncThunk<IUser[], ChangePassword>(
   "auth/fetchChangePassword",
   async (credentials) => {
     const { id, password } = credentials;
 
-    const { data }: { data: IUser } = await axios.put(
-      `${USERS_URL}/${id}`,
-      password
-    );
+    const { data } = await axios.put<IUser[]>(`${USERS_URL}/${id}`, password);
 
     return data;
   }
 );
 
 // refactor-fix
-type ChangePassword = {
+export type ChangePassword = {
   id: string;
   password: {
     password: string;
   };
 };
 
-type EditProfile = {
+export type EditProfile = {
   id: string;
-  profile: EditProfileCredentials;
+  profile: Credentials;
 };
 
-type UpdateAddress = {
+export type UpdateAddress = {
   id: string;
-  address: UpdateAddressCredentials;
+  address: Credentials;
 };
 
 interface IAuthState extends IState {
@@ -125,12 +115,8 @@ export const authSlice = createSlice({
     setUser: (state, action: PayloadAction<IUser>) => {
       state.user = action.payload;
       state.isAuth = true;
-      //refactor-fix
-      localStorage.setItem("userId", `${action.payload.id}`);
     },
     setLogOut: (state) => {
-      //refactor-fix
-      localStorage.clear();
       state.user = {
         id: null,
         uid: null,
@@ -171,9 +157,17 @@ export const authSlice = createSlice({
         state.status = StatusList.SUCCESS;
       })
       .addCase(fetchRegisterUser.rejected, (state, action) => {
-        //refactor-fix
-        //@ts-ignore
-        state.user = {};
+        state.user = {
+          id: null,
+          uid: null,
+          email: null,
+          password: null,
+          firstname: null,
+          lastname: null,
+          phone: null,
+
+          address: null,
+        };
         state.isAuth = false;
         state.status = StatusList.ERROR;
         state.error = action.error.message || "Error";
@@ -183,7 +177,7 @@ export const authSlice = createSlice({
         state.error = "";
       })
       .addCase(fetchUpdateAddress.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload[0];
         state.status = StatusList.SUCCESS;
       })
       .addCase(fetchUpdateAddress.rejected, (state, action) => {
@@ -195,7 +189,7 @@ export const authSlice = createSlice({
         state.error = "";
       })
       .addCase(fetchEditProfile.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload[0];
         state.status = StatusList.SUCCESS;
       })
       .addCase(fetchEditProfile.rejected, (state, action) => {
@@ -207,7 +201,7 @@ export const authSlice = createSlice({
         state.error = "";
       })
       .addCase(fetchChangePassword.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload[0];
         state.status = StatusList.SUCCESS;
       })
       .addCase(fetchChangePassword.rejected, (state, action) => {
@@ -219,7 +213,7 @@ export const authSlice = createSlice({
         state.error = "";
       })
       .addCase(fetchLogedInUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload[0];
         state.isAuth = true;
         state.status = StatusList.SUCCESS;
       })

@@ -12,7 +12,7 @@ import {
   setOrder,
   fetchOrder,
   setCancelOrder,
-  setStatus,
+  setChekoutOrderStatus,
 } from "../../Redux";
 
 import { useDate } from "../../Hooks/useDate";
@@ -112,7 +112,7 @@ export const Checkout: FC<CheckoutProps> = ({ onCancel }) => {
 
     return () => {
       if (status === "success") {
-        dispatch(setStatus());
+        dispatch(setChekoutOrderStatus());
       }
     };
   }, [status]);

@@ -16,21 +16,29 @@ interface IFavouritesItemProps {
 }
 
 export const FavouritesItem: FC<IFavouritesItemProps> = ({ favourite }) => {
+  //@ts-ignore
   const navigate = useNavigate(1);
   const dispatch = useAppDispatch();
   const { id, imgURL, specialOrder, title, size, favId } = favourite;
 
   const { onAddProduct } = useProduct({
     id,
-    imgURL,
     title,
+    rating: 0,
+    imgURL,
+    category: 0,
+    description: "",
+    isVegitarian: true,
+
+    ingredients: [],
     sizes: [size],
     mySpecialOrder: specialOrder,
   });
 
-  const onDeleteFavourite = (favId: string) => {
-    window.confirm("Are you sure to delete this Favourite?") &&
-      dispatch(fetchDeleteFavourites(favId));
+  const onDeleteFavourite = (favId?: string) => {
+    if (window.confirm("Are you sure to delete this Favourite?")) {
+      favId && dispatch(fetchDeleteFavourites(favId));
+    }
   };
 
   return (

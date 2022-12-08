@@ -79,7 +79,7 @@ export const checkoutSlice = createSlice({
       state.status = StatusList.IDLE;
       state.error = "";
     },
-    setStatus: (state) => {
+    setChekoutOrderStatus: (state) => {
       state.status = StatusList.IDLE;
     },
   },
@@ -121,7 +121,7 @@ export const {
   setPaymentType,
   setPaymentStatus,
   setPreOrder,
-  setStatus,
+  setChekoutOrderStatus,
   setCancelOrder,
 } = checkoutSlice.actions;
 

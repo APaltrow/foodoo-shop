@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { FORM_TYPES } from "../constants/FormTypes";
 
-import useAuthentication from "./useAuthentication";
+import { useAuthentication } from "./useAuthentication";
 
 export type ValidInput =
   | {

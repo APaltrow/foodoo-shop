@@ -12,22 +12,25 @@ import { Rating, Loader, CustomIcon, CustomButton } from "..";
 
 import style from "./Reviews.module.scss";
 
-//@ts-ignore
+interface IEditComment {
+  ratingId: number | null;
+  editValue: string;
+}
 
 export const Reviews: FC = () => {
   const dispatch = useAppDispatch();
 
   const { uid } = useAppSelector(getAuthState).user;
-  const { reviews, id } = useAppSelector(getSingleProductState).singleProduct;
+  const { reviews, id } = useAppSelector(getSingleProductState).singleProduct!;
 
   const { status } = useAppSelector(getSingleProductState);
 
-  const [editComment, setEditComment] = useState({
+  const [editComment, setEditComment] = useState<IEditComment>({
     ratingId: null,
     editValue: "",
   });
 
-  const onDeleteComment = (ratingId) => {
+  const onDeleteComment = (ratingId: number | undefined) => {
     if (window.confirm("Are you sure to delete the comment?")) {
       const updatedRewiews = reviews.filter(
         (review) => review.ratingId !== ratingId
@@ -36,13 +39,13 @@ export const Reviews: FC = () => {
       dispatch(fetchRateProduct({ id: id, reviews: updatedRewiews }));
     }
   };
-  const onEditComment = (edit) => {
+  const onEditComment = (id: number, value: string) => {
     setEditComment({
-      ratingId: edit.id,
-      editValue: edit.value,
+      ratingId: id,
+      editValue: value,
     });
   };
-  const onConfirmEdit = (ratingId) => {
+  const onConfirmEdit = (ratingId: number | undefined) => {
     if (window.confirm("Are you sure to edit the comment?")) {
       const editedReview = {
         ...reviews.filter((review) => review.ratingId === ratingId)[0],
@@ -71,6 +74,7 @@ export const Reviews: FC = () => {
       </div>
 
       {status === "pending-rate" && <Loader />}
+
       {reviews.length ? (
         reviews.map((review, index) => (
           <div className={style.reviews_single} key={index}>
@@ -89,10 +93,7 @@ export const Reviews: FC = () => {
                     autoComplete="off"
                     value={editComment.editValue}
                     onChange={(e) => {
-                      onEditComment({
-                        id: review.ratingId,
-                        value: e.target.value,
-                      });
+                      onEditComment(Number(review.ratingId), e.target.value);
                     }}
                   />
                   <span className={style.submitEdit}>
@@ -117,7 +118,7 @@ export const Reviews: FC = () => {
                         icon={"edit"}
                         action={() =>
                           setEditComment({
-                            ratingId: review.ratingId,
+                            ratingId: +review.ratingId!,
                             editValue: review.comment,
                           })
                         }

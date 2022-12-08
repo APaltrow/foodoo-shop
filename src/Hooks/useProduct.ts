@@ -11,7 +11,6 @@ interface IUseProductProps {
   id: string;
   imgURL: string;
   title: string;
-  price: number;
   rating: number;
   category: number;
   description: string;

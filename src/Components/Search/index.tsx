@@ -11,6 +11,7 @@ export const Search: FC = () => {
     useSearch();
 
   return (
+    //@ts-ignore
     <label htmlFor="search" className={style.search} ref={ref}>
       <CustomIcon type={"mid"} icon={"search"} action={toggle} />
 

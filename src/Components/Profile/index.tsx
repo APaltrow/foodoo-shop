@@ -9,7 +9,6 @@ import { useToggle } from "../../Hooks/useToggle";
 
 import style from "./Profile.module.scss";
 
-// @ts-ignore
 export const Profile: FC = () => {
   const navigate = useNavigate();
   const [isVisible, ref, toggle] = useToggle();
