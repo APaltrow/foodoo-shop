@@ -26,9 +26,10 @@ _Intuitive and user friendly interface delivers the best UX._
 
 ## Tech Stack
 
-| Side             | Tech                     | Icon                                      |
+| Side             | Tech                     |                                           |
 | ---------------- | ------------------------ | ----------------------------------------- |
 | Front End        | React                    | ![](src/assets/readme-assets/React.png)   |
+| Lang             | Typescript               | ![](src/assets/readme-assets/ts.png)      |
 | Styles           | Sass / Scss _(modules)_  | ![](src/assets/readme-assets/Sass.png)    |
 | State management | Redux / Tool Kit         | ![](src/assets/readme-assets/Redux.png)   |
 | Server requests  | Axios / Redux AsyncThunk | ![](src/assets/readme-assets/server.png)  |
