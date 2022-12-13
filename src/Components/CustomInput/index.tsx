@@ -3,13 +3,17 @@ import { FC } from "react";
 import { Error } from "..";
 
 import { generateIcon } from "../Icons/Icons";
-import { INPUT_VALIDATIONS } from "../../constants/InputValidations";
+import {
+  Input,
+  InputValidations,
+  INPUT_VALIDATIONS,
+} from "../../constants/InputValidations";
 import { useInput } from "../../Hooks/useInput";
 
 import style from "./CustomInput.module.scss";
 
 interface CustomInputProps {
-  type: string;
+  type: keyof InputValidations;
   placeholder: string;
   name: string;
   id: string;
@@ -21,8 +25,7 @@ export const CustomInput: FC<CustomInputProps> = ({
   name,
   id,
 }) => {
-  //@ts-ignore
-  const validations = INPUT_VALIDATIONS[type];
+  const validations: Input = INPUT_VALIDATIONS[type];
   const { value, isDirty, onChange, onBlur, isError } = useInput(validations);
 
   return (

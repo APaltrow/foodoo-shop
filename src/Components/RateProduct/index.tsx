@@ -1,4 +1,4 @@
-import { useState, useEffect, FC } from "react";
+import { useState, useEffect, FC, memo } from "react";
 
 import { CustomModal, CustomIcon, CustomButton } from "..";
 import { generateIcon } from "../Icons/Icons";
@@ -19,7 +19,7 @@ import { useDate } from "../../Hooks/useDate";
 
 import style from "./RateProduct.module.scss";
 
-export const RateProduct: FC = () => {
+export const RateProduct: FC = memo(() => {
   const dispatch = useAppDispatch();
   const { date, idWithDate } = useDate();
 
@@ -149,4 +149,4 @@ export const RateProduct: FC = () => {
       </span>
     </>
   );
-};
+});

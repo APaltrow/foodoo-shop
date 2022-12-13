@@ -39,17 +39,19 @@ export const PaymentType: FC<PaymentTypeProps> = ({ fname, lname }) => {
     e.preventDefault();
 
     const validCredentials: string[] = [];
-    //@ts-ignore
-    for (let input of paymentFormRef.current.elements) {
-      if (input.getAttribute("name") === "card-number") {
-        input.value.length === 16
-          ? validCredentials.push("valid card number")
-          : setCredentialsError(`Card number should be 16 digits`);
-      }
-      if (input.getAttribute("name") === "card-cvv") {
-        input.value.length === 3
-          ? validCredentials.push("valid cvv")
-          : setCredentialsError(`Cvv should be 3 digits`);
+
+    if (paymentFormRef.current) {
+      for (let input of paymentFormRef.current.elements) {
+        if (input.getAttribute("name") === "card-number") {
+          input.value.length === 16
+            ? validCredentials.push("valid card number")
+            : setCredentialsError(`Card number should be 16 digits`);
+        }
+        if (input.getAttribute("name") === "card-cvv") {
+          input.value.length === 3
+            ? validCredentials.push("valid cvv")
+            : setCredentialsError(`Cvv should be 3 digits`);
+        }
       }
     }
 

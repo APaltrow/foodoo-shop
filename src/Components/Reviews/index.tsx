@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, memo } from "react";
 
 import {
   getSingleProductState,
@@ -17,7 +17,7 @@ interface IEditComment {
   editValue: string;
 }
 
-export const Reviews: FC = () => {
+export const Reviews: FC = memo(() => {
   const dispatch = useAppDispatch();
 
   const { uid } = useAppSelector(getAuthState).user;
@@ -154,4 +154,4 @@ export const Reviews: FC = () => {
       )}
     </section>
   );
-};
+});

@@ -18,6 +18,7 @@ export const Settins: FC = () => {
     useAppSelector(getAuthState).user;
 
   const [emailVisible, setEmailVisible] = useState<boolean>(false);
+
   const [active, setActive] = useState<ActiveFormNames>(ActiveFormNames.none);
 
   const onModifyProfile = (formName: ActiveFormNames) => {

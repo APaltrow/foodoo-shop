@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 import { CustomIcon } from "..";
 
@@ -9,7 +9,7 @@ type DiscountProps = {
   type?: string;
 };
 
-export const Discount: FC<DiscountProps> = ({ discount, type }) => {
+export const Discount: FC<DiscountProps> = memo(({ discount, type }) => {
   return discount ? (
     <button className={type ? style[type] : style.discount}>
       <CustomIcon icon={"discount"} type={"discount"} />
@@ -19,4 +19,4 @@ export const Discount: FC<DiscountProps> = ({ discount, type }) => {
       </span>
     </button>
   ) : null;
-};
+});

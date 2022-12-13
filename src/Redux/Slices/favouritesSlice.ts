@@ -20,7 +20,7 @@ export const fetchAddFavourites = createAsyncThunk<FetchAddFav, FetchAddFav>(
 export const fetchFavourites = createAsyncThunk<IFavourite[], string>(
   "favourites/fetchFavourites",
   async (uid) => {
-    const { data }: { data: IFavourite[] } = await axios.get(
+    const { data } = await axios.get<IFavourite[]>(
       `${FAVOURITES_URL}?uid=${uid}`
     );
 
@@ -84,7 +84,6 @@ export const favouritesSlice = createSlice({
       })
       .addCase(fetchFavourites.fulfilled, (state, action) => {
         state.favourites = action.payload.map((favourite) => ({
-          //@ts-ignore
           ...favourite.favourites,
           favId: favourite.id,
         }));

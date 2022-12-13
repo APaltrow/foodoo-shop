@@ -1,9 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 
-//@ts-ignore
-
-//type RefElement = HTMLDivElement | HTMLLabelElement;
-
 type RefType = React.RefObject<HTMLDivElement>;
 
 type ToggleFN = () => void;
@@ -18,8 +14,12 @@ export const useToggle: ToggleType = () => {
   const toggle: ToggleFN = () => setVisible(!isVisible);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.path.includes(ref.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const _event = event as MouseEvent & {
+        path: Node[];
+      };
+
+      if (ref.current && !_event.path.includes(ref.current)) {
         setVisible(false);
       }
     };

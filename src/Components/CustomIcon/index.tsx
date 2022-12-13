@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo, useMemo } from "react";
 
 import { generateIcon } from "../Icons/Icons";
 
@@ -10,10 +10,11 @@ interface ICustomIcon {
   action?: () => void;
 }
 
-export const CustomIcon: FC<ICustomIcon> = ({ type, icon, action }) => {
+export const CustomIcon: FC<ICustomIcon> = memo(({ type, icon, action }) => {
+  const getIcon = useMemo(() => generateIcon(icon), [icon]);
   return (
     <div className={style[type]} onClick={action}>
-      {generateIcon(icon)}
+      {getIcon}
     </div>
   );
-};
+});

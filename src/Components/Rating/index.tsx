@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 import { generateIcon } from "../Icons/Icons";
 
@@ -9,7 +9,7 @@ interface IRatingProps {
   type?: string;
 }
 
-export const Rating: FC<IRatingProps> = ({ rating, type }) => {
+export const Rating: FC<IRatingProps> = memo(({ rating, type }) => {
   return rating ? (
     <div className={type ? style[type] : style.rating}>
       {[...new Array(rating)].map((_, i) => (
@@ -22,4 +22,4 @@ export const Rating: FC<IRatingProps> = ({ rating, type }) => {
       </div>
     </div>
   ) : null;
-};
+});

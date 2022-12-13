@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, FC } from "react";
+import { useState, useEffect, useRef, FC, memo } from "react";
 
 import { SLIDER_TYPES } from "../../constants/SliderTypes";
 
@@ -11,7 +11,7 @@ interface ISliderProps {
   category: number;
 }
 
-export const Slider: FC<ISliderProps> = ({ imgURL, category }) => {
+export const Slider: FC<ISliderProps> = memo(({ imgURL, category }) => {
   const ref = useRef<HTMLDivElement>(null);
   const items = [{ url: imgURL }, ...SLIDER_TYPES[category]];
 
@@ -86,4 +86,4 @@ export const Slider: FC<ISliderProps> = ({ imgURL, category }) => {
       </aside>
     </>
   );
-};
+});

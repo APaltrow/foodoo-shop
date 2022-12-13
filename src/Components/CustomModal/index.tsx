@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 
 import { CustomIcon } from "..";
 
@@ -11,31 +11,33 @@ interface CustomModalProps {
   handleModal: (arg: boolean) => void;
 }
 
-export const CustomModal: FC<CustomModalProps> = ({
-  children,
-  visible,
+export const CustomModal: FC<CustomModalProps> = memo(
+  ({
+    children,
+    visible,
 
-  handleModal,
-}) => {
-  return (
-    <div
-      className={visible ? style.modal_active : style.modal_closed}
-      onClick={() => handleModal(false)}
-    >
+    handleModal,
+  }) => {
+    return (
       <div
-        className={visible ? style.content_active : style.content_closed}
-        onClick={(e) => e.stopPropagation()}
+        className={visible ? style.modal_active : style.modal_closed}
+        onClick={() => handleModal(false)}
       >
-        {children}
+        <div
+          className={visible ? style.content_active : style.content_closed}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {children}
 
-        <div className={style.dismiss}>
-          <CustomIcon
-            icon={"dismiss"}
-            type={"small"}
-            action={() => handleModal(false)}
-          />
+          <div className={style.dismiss}>
+            <CustomIcon
+              icon={"dismiss"}
+              type={"small"}
+              action={() => handleModal(false)}
+            />
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+);

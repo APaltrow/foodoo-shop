@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
-import { InputValidations } from "../constants/InputValidations";
+import { Input } from "../constants/InputValidations";
 
 type ValidationsType = (
   value: string,
-  validations: InputValidations
+  validations: Input
 ) => { isError: boolean | string };
-
-//@ts-ignore
 
 export const useValidation: ValidationsType = (value, validations) => {
   const [isEmpty, setEmpty] = useState<boolean | string>(true);
@@ -32,9 +30,11 @@ export const useValidation: ValidationsType = (value, validations) => {
             ? setMaxLengthError(`Max length ${validations[validation]}`)
             : setMaxLengthError(false);
           break;
+
         case "isEmail":
           const validator =
             /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
           validator.test(String(value).toLowerCase())
             ? setEmailError(false)
             : setEmailError("Invalid email");
