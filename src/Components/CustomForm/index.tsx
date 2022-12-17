@@ -4,19 +4,20 @@ import { Link } from "react-router-dom";
 import { Loader, Error, CustomInput, CustomIcon, CustomButton } from "..";
 
 import { fetchLogedInUser, useAppDispatch } from "../../Redux";
+import { InputValidations } from "../../constants/InputValidations";
+import { FormTypesList } from "../../constants/FormTypes";
 
 import { useForm } from "../../Hooks/useForm";
 
 import style from "./CustomForm.module.scss";
 
-// refactor-fix ! consider enum for types of forms ||  type: string => ENUM
-interface CustomFormProps {
-  type: string;
+interface ICustomFormProps {
+  type: FormTypesList;
   title: string;
   btn: string;
 }
 
-export const CustomForm: FC<CustomFormProps> = ({ type, title, btn }) => {
+export const CustomForm: FC<ICustomFormProps> = ({ type, title, btn }) => {
   const dispatch = useAppDispatch();
 
   const {
@@ -42,10 +43,10 @@ export const CustomForm: FC<CustomFormProps> = ({ type, title, btn }) => {
       onSubmit={onFormSubmit}
       onKeyUp={checkIfValidForm}
     >
-      {type === "login" || type === "registration" ? (
+      {type === FormTypesList.LOGIN || type === FormTypesList.REGISTRATION ? (
         <CustomIcon type="big" icon="logo" />
       ) : null}
-      {type === "login" || type === "registration" ? (
+      {type === FormTypesList.LOGIN || type === FormTypesList.REGISTRATION ? (
         <h1>{title}</h1>
       ) : (
         <h3>{title}</h3>
@@ -58,7 +59,7 @@ export const CustomForm: FC<CustomFormProps> = ({ type, title, btn }) => {
         <CustomInput
           key={input.id}
           id={input.id}
-          type={input.type}
+          type={input.type as keyof InputValidations}
           placeholder={input.placeholder}
           name={input.name}
         />
@@ -66,19 +67,19 @@ export const CustomForm: FC<CustomFormProps> = ({ type, title, btn }) => {
 
       <CustomButton text={btn} disabled={!formValid} />
 
-      {type === "login" && (
+      {type === FormTypesList.LOGIN && (
         <div className={style.hint}>
           Do not have an account yet?
           <Link to={"/registration"}> Register</Link>
         </div>
       )}
-      {type === "registration" && (
+      {type === FormTypesList.REGISTRATION && (
         <div className={style.hint}>
           If you have an account, try to
           <Link to={"/login"}> Login</Link>
         </div>
       )}
-      {type === "login" && (
+      {type === FormTypesList.LOGIN && (
         <CustomButton
           text={"login with demo account"}
           action={onLoginWithDemo}

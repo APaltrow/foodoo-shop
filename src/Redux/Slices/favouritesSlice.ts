@@ -6,21 +6,18 @@ import { RootState } from "../store";
 
 import { IFavourite, IState, StatusList } from "../../@types";
 
-export const fetchAddFavourites = createAsyncThunk<FetchAddFav, FetchAddFav>(
-  "favourites/fetchAddFavourites",
-  async (favourite) => {
-    const { data }: { data: FetchAddFav } = await axios.post(
-      FAVOURITES_URL,
-      favourite
-    );
+export const fetchAddFavourites = createAsyncThunk<
+  IFetchFavourite,
+  IFetchFavourite
+>("favourites/fetchAddFavourites", async (favourite) => {
+  const { data } = await axios.post<IFetchFavourite>(FAVOURITES_URL, favourite);
 
-    return data;
-  }
-);
-export const fetchFavourites = createAsyncThunk<IFavourite[], string>(
+  return data;
+});
+export const fetchFavourites = createAsyncThunk<IFetchFavourite[], string>(
   "favourites/fetchFavourites",
   async (uid) => {
-    const { data } = await axios.get<IFavourite[]>(
+    const { data } = await axios.get<IFetchFavourite[]>(
       `${FAVOURITES_URL}?uid=${uid}`
     );
 
@@ -30,7 +27,7 @@ export const fetchFavourites = createAsyncThunk<IFavourite[], string>(
 export const fetchDeleteFavourites = createAsyncThunk<IFavourite, string>(
   "favourites/fetchDeleteFavourites",
   async (favId) => {
-    const { data }: { data: IFavourite } = await axios.delete(
+    const { data } = await axios.delete<IFavourite>(
       `${FAVOURITES_URL}/${favId}`
     );
 
@@ -38,10 +35,11 @@ export const fetchDeleteFavourites = createAsyncThunk<IFavourite, string>(
   }
 );
 
-type FetchAddFav = {
+interface IFetchFavourite {
+  id: string;
   uid: string;
   favourites: IFavourite;
-};
+}
 
 interface IFavouritesState extends IState {
   favourites: IFavourite[];

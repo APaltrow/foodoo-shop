@@ -8,7 +8,7 @@ interface NotificationProps {
 
 export const useNotification = ({ type }: NotificationProps) => {
   const { totalCount } = useAppSelector(getCartState);
-  //@ts-ignore
+
   const { address, email, password, firstname, lastname, phone } =
     useAppSelector(getAuthState).user;
 

@@ -1,54 +1,48 @@
 import React, { useState, useRef } from "react";
-import { FORM_TYPES } from "../constants/FormTypes";
+import { FormTypesList, FORM_TYPES } from "../constants/FormTypes";
 
-import { useAuthentication } from "./useAuthentication";
+import { Credentials, useAuthentication } from "./useAuthentication";
 
-export type ValidInput =
-  | {
-      [name: string]: string;
-    }
-  | {};
-
-type ValidInputs = ValidInput[] | [];
+export type ValidInput = Credentials | {};
 
 type FormFunctions = (e?: React.FormEvent<EventTarget>) => void;
 
-export const useForm = (type: string) => {
+export type FormElements = HTMLFormControlsCollection & HTMLInputElement[];
+
+export const useForm = (type: FormTypesList) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [inputs, setInputs] = useState(FORM_TYPES[type]);
   const [credentials, setCredentials] = useState<ValidInput>({});
   const [formValid, setFormValid] = useState(false);
   const { formError, authenticate, status } = useAuthentication(type);
 
-  const generateCredentials = (validInputsList: ValidInputs) => {
-    const credentials: ValidInput = {};
-    validInputsList.map((input) => Object.assign(credentials, input));
-    return credentials;
-  };
-
   const checkIfValidForm: FormFunctions = () => {
-    const validInputsList: ValidInputs = [];
-    //@ts-ignore
-    for (let input of formRef.current.elements) {
-      if (input.getAttribute("data-valid") === "true") {
-        //@ts-ignore
-        validInputsList.push({ [input.name]: input.value });
+    const validInputsList: ValidInput[] = [];
+    const formInputs: HTMLInputElement[] = formRef?.current
+      ?.elements as FormElements;
+
+    if (formRef.current) {
+      for (let input of formInputs) {
+        if (input.getAttribute("data-valid") === "true") {
+          validInputsList.push([input.name, input.value]);
+        }
       }
     }
+
     inputs.length === validInputsList.length
       ? setFormValid(true)
       : setFormValid(false);
-    setCredentials(generateCredentials(validInputsList));
+    //@ts-ignore
+    setCredentials(Object.fromEntries(validInputsList));
   };
 
   const onFormSubmit: FormFunctions = (e) => {
-    if (e) {
+    if (e && formValid) {
       e.preventDefault();
-      if (formValid) {
-        setFormValid(false);
-        authenticate(credentials);
-        setFormValid(true);
-      }
+
+      setFormValid(false);
+      authenticate(credentials as Credentials);
+      setFormValid(true);
     }
   };
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-interface IPagginationProps {
+export interface IPagginationProps {
   totalPages: number;
   activePage: number;
 }

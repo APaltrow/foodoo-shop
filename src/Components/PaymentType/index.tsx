@@ -10,6 +10,7 @@ import {
 
 import { Error, CustomSelect, CustomInput, CustomButton } from "..";
 import { SelectTypes } from "..";
+import { FormElements } from "../../Hooks/useForm";
 
 import style from "./PaymenType.module.scss";
 
@@ -41,7 +42,10 @@ export const PaymentType: FC<PaymentTypeProps> = ({ fname, lname }) => {
     const validCredentials: string[] = [];
 
     if (paymentFormRef.current) {
-      for (let input of paymentFormRef.current.elements) {
+      const inputs: HTMLInputElement[] = paymentFormRef.current
+        .elements as FormElements;
+
+      for (let input of inputs) {
         if (input.getAttribute("name") === "card-number") {
           input.value.length === 16
             ? validCredentials.push("valid card number")
@@ -101,14 +105,14 @@ export const PaymentType: FC<PaymentTypeProps> = ({ fname, lname }) => {
           icon={"cash"}
           text="cash"
           action={() => onPaymentChange("cash")}
-          disabled={paymentStatus ? true : false}
+          disabled={!!paymentStatus}
         />
         <CustomButton
           type={paymentType == "card" ? "active" : ""}
           icon={"card"}
           text="card"
           action={() => onPaymentChange("card")}
-          disabled={paymentStatus ? true : false}
+          disabled={!!paymentStatus}
         />
       </div>
       {paymentType === "card" && !paymentStatus && (

@@ -13,7 +13,6 @@ import {
 
 import style from "./PreOrder.module.scss";
 
-//@ts-ignore
 export const PreOrder: FC = () => {
   const dispatch = useAppDispatch();
   const { order } = useAppSelector(getCheckoutState);

@@ -24,8 +24,8 @@ export const RateProduct: FC = memo(() => {
   const { date, idWithDate } = useDate();
 
   const { uid, firstname } = useAppSelector(getAuthState).user;
-  //@ts-ignore
-  const { reviews, id } = useAppSelector(getSingleProductState).singleProduct;
+
+  const { reviews, id } = useAppSelector(getSingleProductState).singleProduct!;
 
   const [status, setStatus] = useState(RATING_STATUSES[0]);
 
@@ -40,19 +40,21 @@ export const RateProduct: FC = memo(() => {
     rating === 5 && setStatus(RATING_STATUSES[3]);
   };
   const onRateNow = () => {
-    const rewiews: IReview[] = [
-      {
-        uid,
-        ratingId: idWithDate,
-        rating: rating,
-        comment: ratingComment,
-        commenter: firstname,
-        timestamp: date,
-      },
-      ...reviews,
-    ];
-    dispatch(fetchRateProduct({ id: id, reviews: rewiews }));
-    onRateThisProduct(false);
+    if (uid && firstname) {
+      const rewiews: IReview[] = [
+        {
+          uid,
+          ratingId: idWithDate,
+          rating: rating,
+          comment: ratingComment,
+          commenter: firstname,
+          timestamp: date,
+        },
+        ...reviews,
+      ];
+      dispatch(fetchRateProduct({ id, reviews: rewiews }));
+      onRateThisProduct(false);
+    }
   };
 
   const getRatingComment = (e: React.ChangeEvent<HTMLInputElement>) => {

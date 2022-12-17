@@ -9,9 +9,7 @@ import { IOrder, IState, StatusList } from "../../@types";
 export const fetchOrdersList = createAsyncThunk<IListOrder[], string>(
   "order/fetchOrdersList",
   async (id) => {
-    const { data }: { data: IListOrder[] } = await axios.get(
-      `${ORDERS_URL}?uid=${id}`
-    );
+    const { data } = await axios.get<IListOrder[]>(`${ORDERS_URL}?uid=${id}`);
     return data;
   }
 );
@@ -19,7 +17,7 @@ export const fetchDeliveredOrder = createAsyncThunk<IListOrder[], IListOrder>(
   "order/fetchDeliveredOrder",
   async (order) => {
     const { id } = order;
-    const { data }: { data: IListOrder[] } = await axios.put(
+    const { data } = await axios.put<IListOrder[]>(
       `${ORDERS_URL}/${id}`,
       order
     );
@@ -27,7 +25,7 @@ export const fetchDeliveredOrder = createAsyncThunk<IListOrder[], IListOrder>(
   }
 );
 
-interface IListOrder extends IOrder {
+export interface IListOrder extends IOrder {
   id: string;
 }
 
@@ -60,7 +58,6 @@ export const orderSlice = createSlice({
         state.error = "";
       })
       .addCase(fetchOrdersList.fulfilled, (state, action) => {
-        //refactor-fix || no types for ActionPayload
         const pendingOrder = action.payload.filter(
           (order) => order.orderStatus === "pending"
         );

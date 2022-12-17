@@ -5,12 +5,13 @@ import { getAuthState, useAppSelector } from "../../Redux";
 import { Error, CustomIcon, CustomForm, CustomButton } from "..";
 
 import style from "./Settings.module.scss";
+import { FormTypesList } from "../../constants/FormTypes";
 
 enum ActiveFormNames {
-  none = "",
-  password = "password",
-  address = "address",
-  profile = "profile",
+  NONE = "",
+  PASSWORD = "password",
+  ADDRESS = "address",
+  PROFILE = "profile",
 }
 
 export const Settins: FC = () => {
@@ -19,14 +20,14 @@ export const Settins: FC = () => {
 
   const [emailVisible, setEmailVisible] = useState<boolean>(false);
 
-  const [active, setActive] = useState<ActiveFormNames>(ActiveFormNames.none);
+  const [active, setActive] = useState<ActiveFormNames>(ActiveFormNames.NONE);
 
   const onModifyProfile = (formName: ActiveFormNames) => {
-    formName === active ? setActive(ActiveFormNames.none) : setActive(formName);
+    formName === active ? setActive(ActiveFormNames.NONE) : setActive(formName);
   };
 
   useEffect(() => {
-    setActive(ActiveFormNames.none);
+    setActive(ActiveFormNames.NONE);
   }, [address, firstname, lastname, phone, password]);
 
   return (
@@ -66,39 +67,43 @@ export const Settins: FC = () => {
       )}
       <div className={style.settings_buttons}>
         <CustomButton
-          text={active === "profile" ? "cancel" : "edit profile"}
-          type={active === "profile" ? "delete" : ""}
-          action={() => onModifyProfile(ActiveFormNames.profile)}
+          text={active === ActiveFormNames.PROFILE ? "cancel" : "edit profile"}
+          type={active === ActiveFormNames.PROFILE ? "delete" : ""}
+          action={() => onModifyProfile(ActiveFormNames.PROFILE)}
         />
         <CustomButton
-          text={active === "address" ? "cancel" : "update address"}
-          type={active === "address" ? "delete" : ""}
-          action={() => onModifyProfile(ActiveFormNames.address)}
+          text={
+            active === ActiveFormNames.ADDRESS ? "cancel" : "update address"
+          }
+          type={active === ActiveFormNames.ADDRESS ? "delete" : ""}
+          action={() => onModifyProfile(ActiveFormNames.ADDRESS)}
         />
         <CustomButton
-          text={active === "password" ? "cancel" : "change password"}
-          type={active === "password" ? "delete" : ""}
-          action={() => onModifyProfile(ActiveFormNames.password)}
+          text={
+            active === ActiveFormNames.PASSWORD ? "cancel" : "change password"
+          }
+          type={active === ActiveFormNames.PASSWORD ? "delete" : ""}
+          action={() => onModifyProfile(ActiveFormNames.PASSWORD)}
         />
       </div>
 
       {active === "address" && (
         <CustomForm
-          type={"delivery_address"}
+          type={FormTypesList.DELIVERY_ADDRESS}
           title={"Delivery address"}
           btn={"apply"}
         />
       )}
       {active === "profile" && (
         <CustomForm
-          type={"edit_profile"}
+          type={FormTypesList.EDIT_PROFILE}
           title={"Edit profile"}
           btn={"confirm"}
         />
       )}
       {active === "password" && (
         <CustomForm
-          type={"change_password"}
+          type={FormTypesList.CHANGE_PASSWORD}
           title={"Change password"}
           btn={"confirm"}
         />

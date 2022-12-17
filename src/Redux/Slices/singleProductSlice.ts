@@ -35,7 +35,7 @@ interface FetchReview {
 interface ISingleProductState extends IState {
   singleProduct: IProduct | null;
 }
-//refactor-fix singleProduct need to be reviewed
+
 const initialState: ISingleProductState = {
   singleProduct: null,
 

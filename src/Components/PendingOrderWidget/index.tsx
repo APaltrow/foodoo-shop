@@ -5,6 +5,7 @@ import { Error, CustomIcon } from "..";
 import {
   fetchDeliveredOrder,
   getOrderState,
+  IListOrder,
   useAppDispatch,
   useAppSelector,
 } from "../../Redux";
@@ -35,8 +36,10 @@ export const PendingOrderWidget: FC = () => {
       setTimer(0);
       alert("Your order is Delivered!");
       dispatch(
-        //@ts-ignore
-        fetchDeliveredOrder({ ...pendingOrder, orderStatus: "delivered" })
+        fetchDeliveredOrder({
+          ...pendingOrder,
+          orderStatus: "delivered",
+        } as IListOrder)
       );
     }
   }, [timer]);
@@ -51,6 +54,7 @@ export const PendingOrderWidget: FC = () => {
               className={style.slider_bar}
             ></div>
           </div>
+
           <div className={timer >= 15 ? style.item_active : style.item}>
             Processing
             <CustomIcon type="order-status" icon="price" />
@@ -66,6 +70,7 @@ export const PendingOrderWidget: FC = () => {
               </strong>
             )}
           </div>
+
           <div className={timer >= 29 ? style.item_active : style.item}>
             Cooking
             <CustomIcon type="order-status" icon="cooking" />
@@ -81,6 +86,7 @@ export const PendingOrderWidget: FC = () => {
               </strong>
             ) : null}
           </div>
+
           <div className={timer >= 45 ? style.item_active : style.item}>
             Delivering
             <CustomIcon type="order-status" icon="delivery" />
@@ -96,6 +102,7 @@ export const PendingOrderWidget: FC = () => {
               </strong>
             ) : null}
           </div>
+
           <div className={style.item}>
             Done !
             <span>
@@ -111,6 +118,7 @@ export const PendingOrderWidget: FC = () => {
               </strong>
             ) : null}
           </div>
+
           {pendingOrder && (
             <>
               {timer < 48 && <p>Order might take up to 30 min ...</p>}

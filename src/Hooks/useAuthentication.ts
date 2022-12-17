@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-
 import { useNavigate } from "react-router-dom";
+
 import { IUser } from "../@types";
+import { FormTypesList } from "../constants/FormTypes";
 
 import {
   getAuthState,
@@ -18,22 +19,50 @@ import {
   ChangePassword,
 } from "../Redux";
 
-export type Credentials = Record<string, string>;
+interface ILoginCredentials {
+  email: string;
+  password: string;
+}
+interface IRegisterCredentials extends ILoginCredentials {
+  firstname: string;
+  lastname: string;
+  phone: string;
+}
+interface IUpdateAddressCredentials {
+  city: string;
+  street: string;
+  "house-number": string;
+}
+interface IEditProfileCredentials {
+  firstname: string;
+  lastname: string;
+  phone: string;
+}
+interface IChangePasswordCredentials {
+  old_password: string;
+  new_password: string;
+  new_repeat_password: string;
+}
 
-type AuthFN = (arg: Credentials) => void;
+export type Credentials =
+  | ILoginCredentials
+  | IRegisterCredentials
+  | IUpdateAddressCredentials
+  | IEditProfileCredentials
+  | IChangePasswordCredentials;
 
 interface IPayloadType {
   payload: IUser[];
 }
 
-export const useAuthentication = (type: string) => {
+export const useAuthentication = (type: FormTypesList) => {
   const { user, status, error } = useAppSelector(getAuthState);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [formError, setError] = useState<string | boolean>(error);
 
-  const login: AuthFN = async (credentials) => {
+  const login = async (credentials: ILoginCredentials) => {
     //@ts-ignore
     const { payload }: IPayloadType = await dispatch(
       fetchCheckUser(credentials.email)
@@ -51,7 +80,7 @@ export const useAuthentication = (type: string) => {
     }
   };
 
-  const register: AuthFN = async (credentials) => {
+  const register = async (credentials: IRegisterCredentials) => {
     //@ts-ignore
     const { payload }: IPayloadType = await dispatch(
       fetchCheckUser(credentials.email)
@@ -67,7 +96,7 @@ export const useAuthentication = (type: string) => {
     }
   };
 
-  const updateAddress: AuthFN = (credentials) => {
+  const updateAddress = (credentials: IUpdateAddressCredentials) => {
     dispatch(
       fetchUpdateAddress({
         id: user.id,
@@ -76,13 +105,13 @@ export const useAuthentication = (type: string) => {
     );
   };
 
-  const editProfile: AuthFN = (credentials) => {
+  const editProfile = (credentials: IEditProfileCredentials) => {
     dispatch(
       fetchEditProfile({ id: user.id, profile: credentials } as EditProfile)
     );
   };
 
-  const changePassword: AuthFN = (credentials) => {
+  const changePassword = (credentials: IChangePasswordCredentials) => {
     if (
       credentials["old_password"] === user.password &&
       credentials["new_password"] === credentials["new_repeat_password"]
@@ -98,23 +127,24 @@ export const useAuthentication = (type: string) => {
     }
   };
 
-  const authenticate: AuthFN = (credentials) => {
+  const authenticate = (credentials: Credentials) => {
     switch (type) {
-      case "registration":
-        register(credentials);
+      case FormTypesList.REGISTRATION:
+        register(credentials as IRegisterCredentials);
         break;
-      case "login":
-        login(credentials);
+      case FormTypesList.LOGIN:
+        login(credentials as ILoginCredentials);
         break;
-      case "delivery_address":
-        updateAddress(credentials);
+      case FormTypesList.DELIVERY_ADDRESS:
+        updateAddress(credentials as IUpdateAddressCredentials);
         break;
-      case "edit_profile":
-        editProfile(credentials);
+      case FormTypesList.EDIT_PROFILE:
+        editProfile(credentials as IEditProfileCredentials);
         break;
-      case "change_password":
-        changePassword(credentials);
+      case FormTypesList.CHANGE_PASSWORD:
+        changePassword(credentials as IChangePasswordCredentials);
         break;
+
       default:
         return null;
     }

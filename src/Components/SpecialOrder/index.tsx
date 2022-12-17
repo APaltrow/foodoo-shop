@@ -28,9 +28,12 @@ export const SpecialOrder: FC<SpecialOrderProps> = ({
   const exclude = () => {
     const excludedIngredients: string[] = [];
     if (formRef.current) {
-      //@ts-ignore
-      for (let input of formRef.current.elements) {
-        input.checked && excludedIngredients.push(input.name);
+      const inputs = formRef.current.elements;
+      for (let input of inputs) {
+        let inputElem = input as HTMLInputElement;
+        if (inputElem.checked) {
+          excludedIngredients.push(inputElem.name);
+        }
       }
     }
 

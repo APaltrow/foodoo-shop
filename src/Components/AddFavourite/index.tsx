@@ -38,6 +38,7 @@ export const AddFavourite: FC<AddFavouriteProps> = ({
     if (uid) {
       dispatch(
         fetchAddFavourites({
+          id,
           uid,
           favourites: { title, specialOrder, size, imgURL, id },
         })

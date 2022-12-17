@@ -1,3 +1,11 @@
+export enum FormTypesList {
+  LOGIN = "login",
+  REGISTRATION = "registration",
+  DELIVERY_ADDRESS = "delivery_address",
+  EDIT_PROFILE = "edit_profile",
+  CHANGE_PASSWORD = "change_password",
+}
+
 type InputType = {
   [type: string]: string;
 };

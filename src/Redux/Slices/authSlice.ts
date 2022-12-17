@@ -67,7 +67,6 @@ export const fetchChangePassword = createAsyncThunk<IUser[], ChangePassword>(
   }
 );
 
-// refactor-fix
 export type ChangePassword = {
   id: string;
   password: {
