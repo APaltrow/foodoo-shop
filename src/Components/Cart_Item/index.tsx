@@ -25,7 +25,10 @@ export const CartItem: FC<ICartItemProps> = ({ data }) => {
   const onPlusItem = () => dispatch(plusProduct(lot_id));
   const onMinusItem = () => dispatch(minusProduct(lot_id));
   const onRemoveItem = () => {
-    if (window.confirm("Are you sure you want to remove the product?")) {
+    const isAgreed = window.confirm(
+      "Are you sure you want to remove the product?"
+    );
+    if (isAgreed) {
       dispatch(removeProduct(lot_id));
     }
   };

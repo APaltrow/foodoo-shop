@@ -68,11 +68,11 @@ export const useAuthentication = (type: FormTypesList) => {
       fetchCheckUser(credentials.email)
     );
 
-    if (
-      payload.length &&
-      payload[0].password === credentials.password &&
-      payload[0].email === credentials.email
-    ) {
+    const isUserFound = payload.length > 0;
+    const isPassSame = payload[0].password === credentials.password;
+    const isEmailSame = payload[0].email === credentials.email;
+
+    if (isUserFound && isPassSame && isEmailSame) {
       localStorage.setItem("userId", `${payload[0].id}`);
       dispatch(setUser(payload[0]));
     } else {
@@ -112,10 +112,11 @@ export const useAuthentication = (type: FormTypesList) => {
   };
 
   const changePassword = (credentials: IChangePasswordCredentials) => {
-    if (
-      credentials["old_password"] === user.password &&
-      credentials["new_password"] === credentials["new_repeat_password"]
-    ) {
+    const isOldPassSame = credentials["old_password"] === user.password;
+    const isNewPassSame =
+      credentials["new_password"] === credentials["new_repeat_password"];
+
+    if (isOldPassSame && isNewPassSame) {
       dispatch(
         fetchChangePassword({
           id: user.id,

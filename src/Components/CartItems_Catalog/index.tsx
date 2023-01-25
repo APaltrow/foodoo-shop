@@ -23,7 +23,11 @@ export const CartItems: FC<ICartCatalog> = ({ checkout }) => {
     useAppSelector(getCartState);
 
   const onClearCart = () => {
-    if (window.confirm("Are you sure you want to clear your orders?")) {
+    const isAgree = window.confirm(
+      "Are you sure you want to clear your orders?"
+    );
+
+    if (isAgree) {
       dispatch(clearCart());
     }
   };

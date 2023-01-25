@@ -7,7 +7,7 @@ import { IState, StatusList, IProduct } from "../../@types";
 export const fetchDishCards = createAsyncThunk<IProduct[], string>(
   "dishCards/fetchDishCards",
   async (url) => {
-    const { data }: { data: IProduct[] } = await axios.get(url);
+    const { data } = await axios.get<IProduct[]>(url);
 
     return data;
   }

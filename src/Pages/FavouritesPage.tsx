@@ -43,14 +43,13 @@ const Favourites: FC = () => {
         {status === "success" &&
           (favourites.length ? (
             favourites.map((favourite, index) => (
-              <FavouritesItem favourite={favourite} key={index} />
+              <FavouritesItem
+                key={favourite.favId || index}
+                favourite={favourite}
+              />
             ))
           ) : (
-            <NotFound
-              message={
-                "Looks like you have not added anything to favourites ..."
-              }
-            />
+            <NotFound message="Looks like you have not added anything to favourites ..." />
           ))}
       </PageLayout>
     </>

@@ -19,6 +19,7 @@ const ProductPage: FC = () => {
       dispatch(fetchSingleProduct(id));
     }
   }, []);
+
   const { status, error, singleProduct } = useAppSelector(
     getSingleProductState
   );
